@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>IDP groep 9</title>
+    <title>IDP Tracheata</title>
 
     <link href="~/content/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="~/content/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -20,14 +20,22 @@
 <body>
     <form id="form1" runat="server">
     <div class="container body">
-        <div class="page-header">
-            <h1>SpInDP groep 9</h1>
+        <div class="page-header PaginaHeader">
+            <div style="position: relative; float: left">
+                <asp:Image id="HeaderImage" ImageUrl="/Images/spin.png"  runat="server" Height="98px" Width="125px" />
+            </div>
+            <div style="position: relative; float: left; margin-left: 3px;">
+                <h1>Tracheata (groep 9)</h1>
+            </div>
+            
+            
         </div>
         <div style="height: 75px" runat="server" id="MenuDiv" visible="true">
                 <ul class="nav nav-pills">
                      <li class="active"><a href="Default.aspx">Thuisbasis</a></li>
-                     <li><a href="/WeZijnWe.aspx">Wie is groep 9</a></li>
-                     <li><a href="/WatDoenWe.aspx">Wat doet groep 9</a></li>
+                     <li><a href="/WeZijnWe.aspx">Wie doen er mee aan Tracheata</a></li>
+                     <li><a href="/WatDoenWe.aspx">Wat doet Tracheata</a></li>
+                     <li><a href="/Contact.aspx">Hoe neem ik contact op met Tracheata</a></li>
                 </ul>
         </div>
         <div class="ContentContainer">
@@ -35,11 +43,12 @@
 
             </asp:ContentPlaceHolder>
         </div>
+        
+        </div>
         <div class="Paginafooter">
 
 
         </div>
-    </div>
     </form>
 </body>
 </html>

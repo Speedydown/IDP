@@ -5,7 +5,7 @@
 
         <div class="balkje">
             <span>
-                <h2> Project leden:</h2>
+                <h2>Wie doen er mee aan groep 9:</h2>
             </span>
         </div>
         
@@ -21,7 +21,7 @@
             <ItemTemplate> 
                 <div class="media balkje">                
                     <a class="pull-left" href="#">
-                        <img class="media-object" src="<%# Eval("Plaatje") %>">
+                        <img class="media-object" src="<%# Eval("Plaatje") %>" width="64px" height="64px">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading"><b><%# Eval("Voornaam") + " " + Eval("Achternaam") %></b></h4>

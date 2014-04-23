@@ -5,7 +5,7 @@
 
     
     <div class="well-lg">
-        <h2>Wat doet groep 9:</h2>
+        <h2>Wat doet Tracheata:</h2>
         <h3>Projectopdracht:</h3>
         <div>
             <span>
@@ -53,6 +53,19 @@
             </span>
 
         </div>
+        <div>
+            <span>
+                <h3>Beeld:</h3>
+            </span>
+            <span>
+                <div class="well-lg">
+                    <iframe width="800px" height="380px" src="//www.youtube.com/embed/fa7IAvvYPOs" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </span>
+
+        </div>
+
+        
 
 
    </div>

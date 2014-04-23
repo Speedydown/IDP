@@ -11,14 +11,14 @@
         <header><h2>Hoe ver zijn we?</h2></header>
 
         <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-succes" style="width: 35%;"></div>
-            <div class="progress-bar progress-bar-warning" style="width: 20%;"></div>
-            <div class="progress-bar progress-bar-danger" style="width: 10%;"></div>
+            <div class="progress-bar progress-bar-succes" style="width: 1%;"></div>
+            <div class="progress-bar progress-bar-warning" style="width: 1%;"></div>
+            <div class="progress-bar progress-bar-danger" style="width: 1%;"></div>
         </div>
         <div class="Legenda">
-            <b>Blauw:</b> I <br />
-            <b>Oranje:</b> E <br />
-            <b>Rood:</b> WTB <br />
+            <b>Blauw:</b> Informatica: 1% <br />
+            <b>Oranje:</b> Elektrotechniek: 1% <br />
+            <b>Rood:</b> Werktuigbouwkunde: 1% <br />
         </div>
         
    </div>

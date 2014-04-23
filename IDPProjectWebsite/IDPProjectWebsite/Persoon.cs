@@ -18,7 +18,6 @@ namespace IDPProjectWebsite
             this.Achternaam = Achternaam;
             this.Beschrijving = Beschrijving;
             this.Plaatje = Plaatje;
-
         }
     }
 }

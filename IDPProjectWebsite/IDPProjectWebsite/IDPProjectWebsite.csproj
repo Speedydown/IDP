@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -64,7 +65,14 @@
     <Content Include="Content\spin.css" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Images\1186113_572430379485972_171116281_n.jpg" />
+    <Content Include="Images\293693_190070444401510_2123158820_n.jpg" />
     <Content Include="Images\64x64.png" />
+    <Content Include="Images\email.png" />
+    <Content Include="Images\imagesLCEWID2X.jpg" />
+    <Content Include="Images\spin-116-352832.jpg" />
+    <Content Include="Images\spin.png" />
+    <Content Include="Images\twitter.png" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -74,6 +82,7 @@
     <Content Include="Default.Master" />
     <Content Include="WatDoenWe.aspx" />
     <Content Include="WeZijnWe.aspx" />
+    <None Include="Properties\PublishProfiles\IDP.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -83,6 +92,13 @@
     <Content Include="Scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
