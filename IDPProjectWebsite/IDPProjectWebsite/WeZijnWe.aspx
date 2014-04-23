@@ -5,7 +5,7 @@
 
         <div class="balkje">
             <span>
-                <h2>Wie doen er mee aan groep 9:</h2>
+                <h2>Wie doen er mee aan Tracheata:</h2>
             </span>
         </div>
         

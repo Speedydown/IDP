@@ -24,7 +24,7 @@
    </div>
     <div class="spacer"></div>
     <div class="balkje">
-        <header><h2>Live updates van groep 9:</h2></header>
+        <header><h2>Live updates van Tracheata:</h2></header>
         <div class="twitter"> 
         
          <a class="twitter-timeline" href="https://twitter.com/spiderdp" width="520" height="500" data-widget-id="458870517131259904">Tweets van @spiderdp</a>
