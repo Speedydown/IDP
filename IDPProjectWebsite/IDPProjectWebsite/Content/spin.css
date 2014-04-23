@@ -1,0 +1,50 @@
+﻿.body 
+{
+    position: relative;
+    width: 900px ;
+    margin-right: auto ;
+    margin-top: 25px;
+}
+
+.ContentContainer
+{
+    border: 1px solid;
+    border-color: #428bca;
+
+}
+
+.balkje
+{
+    margin: 10px;
+    overflow-wrap:break-word;
+}
+
+.Paginafooter
+{
+    height: 75px;
+
+}
+
+.Legenda
+{
+    position: relative;
+    float: right;
+    font-size:x-small;
+    border: 1px solid;
+    border-color: #428bca;
+    margin: 5px;
+    padding: 5px;
+    width: 200px;
+}
+
+.twitter
+{
+    width: 520px;
+    margin-left: auto ;
+    margin-right: auto ;
+}
+
+.spacer
+{
+    height: 100px;
+}
