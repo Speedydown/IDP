@@ -66,8 +66,11 @@
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\1186113_572430379485972_171116281_n.jpg" />
+    <Content Include="Images\28484_1372048216414_1088013647_30974926_3824999_n_400x400.jpg" />
     <Content Include="Images\293693_190070444401510_2123158820_n.jpg" />
+    <Content Include="Images\418382_270519999722978_505425335_n.jpg" />
     <Content Include="Images\64x64.png" />
+    <Content Include="Images\denns.jpg" />
     <Content Include="Images\email.png" />
     <Content Include="Images\imagesLCEWID2X.jpg" />
     <Content Include="Images\spin-116-352832.jpg" />

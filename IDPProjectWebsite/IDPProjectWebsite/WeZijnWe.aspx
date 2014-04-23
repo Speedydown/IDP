@@ -45,7 +45,7 @@
             <ItemTemplate> 
                 <div class="media balkje">                
                     <a class="pull-left" href="#">
-                        <img class="media-object" src="<%# Eval("Plaatje") %>">
+                        <img class="media-object" src="<%# Eval("Plaatje") %> "width="64px" height="64px">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading"><b><%# Eval("Voornaam") + " " + Eval("Achternaam") %></b></h4>
@@ -69,7 +69,7 @@
             <ItemTemplate> 
                 <div class="media balkje">                
                     <a class="pull-left" href="#">
-                        <img class="media-object" src="<%# Eval("Plaatje") %>">
+                        <img class="media-object" src="<%# Eval("Plaatje") %> "width="64px" height="64px">
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading"><b><%# Eval("Voornaam") + " " + Eval("Achternaam") %></b></h4>
