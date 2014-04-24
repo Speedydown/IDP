@@ -16,12 +16,12 @@ namespace IDPProjectWebsite
             InformaticaPersonen.Add(new Persoon("Matthé", "Jacobs", "jaco1101@student.nhl.nl", "/Images/293693_190070444401510_2123158820_n.jpg"));
             InformaticaPersonen.Add(new Persoon("Miriam", "Haye", "haij1202@student.nhl.nl", "/Images/miriam.jpg"));
             InformaticaPersonen.Add(new Persoon("Ivar", "de Lange", "lang1001@student.nhl.nl", "/Images/1186113_572430379485972_171116281_n.jpg"));
-            InformaticaPersonen.Add(new Persoon("Teake", "Otter", "otte0901@student.nhl.nl", "/Images/otter.jpg"));
+            InformaticaPersonen.Add(new Persoon("Teake", "Otter", "otte0901@student.nhl.nl", "/Images/teeak2.0.jpg"));
             InformaticaRepeater.DataSource = InformaticaPersonen;
             InformaticaRepeater.DataBind();
 
             List<Persoon> WTBPersonen = new List<Persoon>();
-            WTBPersonen.Add(new Persoon("Kees", "Kempenaar", "kemp1200@student.nhl.nl", "/Images/64x64.png"));
+            WTBPersonen.Add(new Persoon("Kees", "Kempenaar", "kemp1200@student.nhl.nl", "/Images/kees.jpg"));
             WTBPersonen.Add(new Persoon("Jasper", "Talsma", "tals1302@student.nhl.nl", "/Images/jasper.jpg"));
             WTBPersonen.Add(new Persoon("Dennis", "van der Wal", "wal1102@student.nhl.nl", "/Images/denns.jpg"));
             WTBRepeater.DataSource = WTBPersonen;
