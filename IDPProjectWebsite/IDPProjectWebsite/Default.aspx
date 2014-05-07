@@ -12,7 +12,11 @@
 
         <div class="progress progress-striped active">
             <div class="progress-bar progress-bar-succes" style="width: 1%;"></div>
+        </div>
+        <div class="progress progress-striped active">
             <div class="progress-bar progress-bar-warning" style="width: 1%;"></div>
+        </div>
+        <div class="progress progress-striped active">
             <div class="progress-bar progress-bar-danger" style="width: 1%;"></div>
         </div>
         <div class="Legenda">
