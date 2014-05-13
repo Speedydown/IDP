@@ -31,12 +31,17 @@
             
         </div>
         <div style="height: 75px" runat="server" id="MenuDiv" visible="true">
-                <ul class="nav nav-pills">
-                     <li class="active"><a href="Default.aspx">Thuisbasis</a></li>
-                     <li><a href="/WeZijnWe.aspx">Wie doen er mee aan Tracheata</a></li>
-                     <li><a href="/WatDoenWe.aspx">Wat doet Tracheata</a></li>
-                     <li><a href="/Contact.aspx">Hoe neem ik contact op met Tracheata</a></li>
-                </ul>
+             <asp:Repeater ID="MenuRepeater" runat="server">
+                            <HeaderTemplate>
+                                <ul class="nav nav-pills">
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                    <%# (((bool)Eval("Active")) ?  "<li class='active'>" : "<li>")%> <a href='<%#Eval("ItemAdress")%>'> <%# Eval("ItemName") %> </a></li> 
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                </ul>
+                            </FooterTemplate>
+                        </asp:Repeater>
         </div>
         <div class="ContentContainer">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
