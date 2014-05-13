@@ -28,7 +28,7 @@
    </div>
     <div class="spacer"></div>
     <div class="balkje">
-        <header><h2>Live updates van Tracheata:</h2></header>
+        <header><h2>Twitter-updates van Tracheata:</h2></header>
         <div class="twitter"> 
         
          <a class="twitter-timeline" href="https://twitter.com/spiderdp" width="520" height="500" data-widget-id="458870517131259904">Tweets van @spiderdp</a>
@@ -36,6 +36,19 @@
 
 
         </div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="balkje">
+        <header><h2>Videoupdates van Tracheata</h2></header>
+        <div>
+        <span>
+            <div class="well-lg">
+                <iframe width="560" height="315" src="//www.youtube.com/embed/qx4AllfOmsQ?list=PLsnYODr6Xxbbu18I0fVEA8MX87l8-xu9A" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </span>
+        </div>
+
     </div>
 
 
