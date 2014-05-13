@@ -11,18 +11,18 @@
         <header><h2>Hoe ver zijn we?</h2></header>
 
         <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-succes" style="width: 1%;"></div>
+            <div class="progress-bar progress-bar-succes" style="width: 18%;"></div>
         </div>
         <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-warning" style="width: 1%;"></div>
+            <div class="progress-bar progress-bar-warning" style="width: 24%;"></div>
         </div>
         <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-danger" style="width: 1%;"></div>
+            <div class="progress-bar progress-bar-danger" style="width: 20%;"></div>
         </div>
         <div class="Legenda">
-            <b>Blauw:</b> Informatica: 1% <br />
-            <b>Oranje:</b> Elektrotechniek: 1% <br />
-            <b>Rood:</b> Werktuigbouwkunde: 1% <br />
+            <b>Blauw:</b> Informatica: 18% <br />
+            <b>Oranje:</b> Elektrotechniek: 24% <br />
+            <b>Rood:</b> Werktuigbouwkunde: 20% <br />
         </div>
         
    </div>
