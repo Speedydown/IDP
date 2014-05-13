@@ -13,7 +13,6 @@ class NetworkInterface(Thread):
         self._Exit = False
 
     def run(self):
-        print "Acceptiong connections \n"
         serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         serverSocket.bind(('', 1337))
@@ -48,8 +47,6 @@ class NetworkInterface(Thread):
             data = self._OutputBuffer.Pop()
             
             if len(str(data)) > 0:
-                print str(data)  
-                print "Sending " + data + "\n"
                 clientSocket.send(str(data))
                 data = ""
         time.sleep(1)

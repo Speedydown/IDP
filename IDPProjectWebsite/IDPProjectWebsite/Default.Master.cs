@@ -15,9 +15,9 @@ namespace IDPProjectWebsite
 
             WebsiteMenuItem[] menuitems = {
                                             new WebsiteMenuItem("/Default.aspx", "Thuisbasis", false),
-                                            new WebsiteMenuItem("/WeZijnWe.aspx", "Manage persons", false),
-                                            new WebsiteMenuItem("/WatDoenWe.aspx", "Manage TV shows", false),
-                                            new WebsiteMenuItem("/Contact.aspx", "Manage stats", false),
+                                            new WebsiteMenuItem("/WeZijnWe.aspx", "Wie doen er mee aan Tracheata?", false),
+                                            new WebsiteMenuItem("/WatDoenWe.aspx", "Wat doet Tracheata?", false),
+                                            new WebsiteMenuItem("/Contact.aspx", "Neem contact op met Tracheata", false),
                                        };
 
             string url = Request.RawUrl.ToLower();
