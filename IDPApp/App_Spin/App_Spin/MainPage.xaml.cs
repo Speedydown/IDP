@@ -136,6 +136,8 @@ namespace App_Spin
 
                 await (Network.NetworkHandler.Recv());
                 Sending = false;
+                RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
+
             }
         }
 
