@@ -43,6 +43,7 @@ namespace App_Spin.Network
             // add after calling ConnectAsync on the StreamSocket Object
             reader = new DataReader(socket.InputStream);
             writer = new DataWriter(socket.OutputStream);
+            InputBuffer.Append("Connected to: " + hostname + "!");
         }
 
         public static async Task Recv()
@@ -50,7 +51,7 @@ namespace App_Spin.Network
             // container for the received Data
             string receivedData;
             reader.InputStreamOptions = InputStreamOptions.Partial;
-            var count = await reader.LoadAsync(2048);
+            var count = await reader.LoadAsync(4096);
 
             // read the data as a string and store it in our container
             if (count > 0)
