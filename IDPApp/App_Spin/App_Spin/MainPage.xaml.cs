@@ -114,7 +114,7 @@ namespace App_Spin
                 //Wait for connection
                 await(Network.NetworkHandler.Connect(txtConn.Text));
                 //txtConn.Text = txtIP;
-                this.Frame.Navigate(typeof(SpinUI));
+                //this.Frame.Navigate(typeof(SpinUI));
             }
             else
             {

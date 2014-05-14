@@ -33,10 +33,7 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
-            <Path x:Name="pTopRight" Data="M25,0 A25,25 90 0 1 50,25 1-25,0 Z" Fill="Orange" Grid.Row="0" Grid.Column="1" Stretch="Fill"/>
-            <Path x:Name="pBottomRight" Data="M50,25 A25,25 90 0 1 25,50 10,-25 Z" Fill="Red" Grid.Row="1" Grid.Column="1" Stretch="Fill"/>
-            <Path x:Name="pBottomLeft" Data="M25,50 A25,25 90 0 1 0,25 125,0 Z" Fill="Blue" Grid.Row="1" Grid.Column="0" Stretch="Fill"/>
-            <Path x:Name="pTopLeft" Data="M0,25 A25,25 90 0 1 25,0 10,25 Z" Fill="Green" Grid.Row="0" Grid.Column="0" Stretch="Fill"/>
+            
             
             <Ellipse x:Name="eAround" Fill="Transparent" Stroke="Black" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
         </Grid>

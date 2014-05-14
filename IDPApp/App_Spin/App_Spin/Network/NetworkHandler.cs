@@ -50,7 +50,7 @@ namespace App_Spin.Network
             // container for the received Data
             string receivedData;
             reader.InputStreamOptions = InputStreamOptions.Partial;
-            var count = await reader.LoadAsync(512);
+            var count = await reader.LoadAsync(2048);
 
             // read the data as a string and store it in our container
             if (count > 0)
