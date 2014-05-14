@@ -113,6 +113,7 @@ namespace App_Spin
             {
                 //Wait for connection
                 await(Network.NetworkHandler.Connect(txtConn.Text));
+                RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
                 //txtConn.Text = txtIP;
                 //this.Frame.Navigate(typeof(SpinUI));
             }
