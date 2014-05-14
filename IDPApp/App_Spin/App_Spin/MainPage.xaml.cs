@@ -26,6 +26,7 @@ namespace App_Spin
     public sealed partial class MainPage : Page
     {
         public string txtIP;
+        public bool Sending = false;
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
@@ -106,10 +107,12 @@ namespace App_Spin
 
         #endregion
 
-        private void btnConnect_Click(object sender, RoutedEventArgs e)
+        private async void btnConnect_Click(object sender, RoutedEventArgs e)
         {
             if (txtConn.Text != null)
             {
+                //Wait for connection
+                await(Network.NetworkHandler.Connect(txtConn.Text));
                 //txtConn.Text = txtIP;
                 this.Frame.Navigate(typeof(SpinUI));
             }
@@ -118,5 +121,23 @@ namespace App_Spin
                 lblError.Text = "Could not connect!";
             }
         }
+
+        private async void SendButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (Sending == false)
+            {
+                string input = Input.Text;
+
+                Sending = true;
+                if (input.Length > 0)
+                {
+                    await (Network.NetworkHandler.Send(input));
+                }
+
+                await (Network.NetworkHandler.Recv());
+                Sending = false;
+            }
+        }
+
     }
 }
