@@ -40,11 +40,12 @@
             <TextBlock x:Name="pageTitle" Text="Spider Control" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <TextBox x:Name="txtConn" Height="35" Width="200" Text="192.168.178.26" Margin="120,60,1043,529" Grid.Row="1"/>
+        <TextBox x:Name="txtConn" Height="35" Text="192.168.178.26" Margin="120,70,0,0" Grid.Row="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <Button x:Name="btnConnect" Content="Connect" HorizontalAlignment="Left" Margin="120,120,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnConnect_Click"/>
         <TextBlock x:Name="lblError" Text="" Height="35" Width="200" HorizontalAlignment="Left" Margin="220,260,0,0"/>
         <TextBox x:Name="RecievedLog" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="122,177,0,0" Grid.Row="1" Height="367" Width="1234" IsReadOnly="True" Text="" AcceptsReturn="True" />
         <TextBox x:Name="Input" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="122,549,0,0" Grid.Row="1" Width="1066"/>
-        <Button x:Name="SendButton" Content="Send" HorizontalAlignment="Left" Margin="1190,546,0,0" Grid.Row="1" VerticalAlignment="Top" Width="169" Click="SendButton_Click"/>
+        <Button x:Name="SendButton" Content="Send" HorizontalAlignment="Left" Margin="1190,546,0,0" Grid.Row="1" VerticalAlignment="Top" Width="169" Click="SendButton_Click" IsEnabled="False"/>
+        <Button x:Name="BTN_Exit" Content="Exit" HorizontalAlignment="Left" Width="89" Margin="217,120,0,0" Grid.Row="1" VerticalAlignment="Top" Click="BTN_Exit_Click"/>
     </Grid>
 </Page>

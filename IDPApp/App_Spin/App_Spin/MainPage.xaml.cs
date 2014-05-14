@@ -114,6 +114,8 @@ namespace App_Spin
                 //Wait for connection
                 await(Network.NetworkHandler.Connect(txtConn.Text));
                 RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
+                SendButton.IsEnabled = true;
+                btnConnect.IsEnabled = false;
                 //txtConn.Text = txtIP;
                 //this.Frame.Navigate(typeof(SpinUI));
             }
@@ -140,6 +142,13 @@ namespace App_Spin
                 RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
 
             }
+        }
+
+        private async void BTN_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            await(Network.NetworkHandler.Close());
+            SendButton.IsEnabled = false;
+            btnConnect.IsEnabled = false;
         }
 
     }

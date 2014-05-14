@@ -72,6 +72,13 @@ namespace App_Spin.Network
             }
         }
 
+        public static async Task Close()
+        {
+            await(Send("shtd"));
+            socket.Dispose();
+            App.Current.Exit();
+        }
+
 
     }
 }

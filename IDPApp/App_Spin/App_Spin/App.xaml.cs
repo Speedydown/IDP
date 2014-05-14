@@ -102,6 +102,7 @@ namespace App_Spin
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
+            Network.NetworkHandler.Close();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
