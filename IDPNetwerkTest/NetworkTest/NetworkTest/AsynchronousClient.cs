@@ -34,7 +34,7 @@ namespace NetworkTest
                 // Establish the remote endpoint for the socket.
                 // The name of the 
                 // remote device is "host.contoso.com".
-                IPHostEntry ipHostInfo = Dns.Resolve("192.168.31.105");
+                IPHostEntry ipHostInfo = Dns.Resolve("127.0.0.1");
                 IPAddress ipAddress = ipHostInfo.AddressList[0];
                 IPEndPoint remoteEP = new IPEndPoint(ipAddress, port);
 
@@ -50,21 +50,25 @@ namespace NetworkTest
                 while (!quit)
                 {
                     Console.WriteLine("Data to send");
+
                     // Send test data to the remote device.
-                    Send(client, "prin " + Console.ReadLine());
-                    sendDone.WaitOne();
+                    string text = Console.ReadLine();
+                    Receive(client);
 
-                    Send(client, "glog");
+                    // Write the response to the console.
+                    
+                    Send(client, text);
                     sendDone.WaitOne();
-
+  
+                    
                     // Receive the response from the remote device.
                     Receive(client);
                     receiveDone.WaitOne();
-
-                    Send(client, "exit");
-                    sendDone.WaitOne();
-                    // Write the response to the console.
                     Console.WriteLine("Response received : {0}", response);
+
+                    
+
+                    
                 }
 
                 
@@ -117,6 +121,8 @@ namespace NetworkTest
                 // Begin receiving the data from the remote device.
                 client.BeginReceive(state.buffer, 0, StateObject.BufferSize, 0,
                     new AsyncCallback(ReceiveCallback), state);
+
+                state.buffer.Count();
             }
             catch (Exception e)
             {

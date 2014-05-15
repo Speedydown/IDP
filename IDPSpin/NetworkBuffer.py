@@ -23,6 +23,7 @@ class NetworkBuffer(object):
         except:
             output = ""
         self.InputSemaphore.release()
+        
         return output
 
     

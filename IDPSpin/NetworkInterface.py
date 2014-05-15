@@ -29,6 +29,8 @@ class NetworkInterface(Thread):
                 t2 =  threading.Thread(target=self.Send, args = (clientSocket,))
                 t.start()
                 t2.start()
+
+                #self._OutputBuffer.Append("Connection established")
             
             except:
                 print "Error: Unable to start thread \n"
@@ -38,7 +40,8 @@ class NetworkInterface(Thread):
     def Listen(self, clientSocket):
         while self._Exit == False:
             data = clientSocket.recv(1024) #buffergroote
-            self._InputBuffer.Append(data)  
+            self._InputBuffer.Append(data)
+            print "Recieved: " + data
             time.sleep(1)
 
     def Send(self, clientSocket):
