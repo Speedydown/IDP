@@ -37,9 +37,9 @@ namespace App_Spin
 
         }
 
-        private void cmd_ChangeColor_Click(object sender, RoutedEventArgs e)
+        private void cmd_goJoystick_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Frame.Navigate(typeof(JoystickTest));
         }
     }
 }

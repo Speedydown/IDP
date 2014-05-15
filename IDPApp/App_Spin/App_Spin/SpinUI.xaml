@@ -24,19 +24,6 @@
             </AppBarButton>
         </AppBarButton>
         
-        <Grid Width="100" Height="100">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
-            
-            
-            <Ellipse x:Name="eAround" Fill="Transparent" Stroke="Black" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        </Grid>
-        <Button x:Name="cmdColors" Content="Change color" Click="cmd_ChangeColor_Click"/>
+        <Button x:Name="cmdColors" Content="Joystick Test" Click="cmd_goJoystick_Click" Margin="200,100,0,0"/>
     </Grid>
 </Page>
