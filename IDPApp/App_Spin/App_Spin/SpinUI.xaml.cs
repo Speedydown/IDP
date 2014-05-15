@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,6 +24,8 @@ namespace App_Spin
     public sealed partial class SpinUI : Page
     {
         private bool joyDown = false;
+        private Point joyStart = new Point(-350,-350);
+        private Thickness m;
 
         public SpinUI()
         {
@@ -58,7 +61,21 @@ namespace App_Spin
         {
             if (joyDown == true)
             {
-                //yolo
+                GeneralTransform gt = TransformToVisual(joyStick);
+                Point screenPoint;
+
+                screenPoint = gt.TransformPoint(new Point(screenPoint.X, screenPoint.Y));
+
+                txtJoytest.Text = screenPoint.ToString();
+                
+                //p = e.GetCurrentPoint(joyStick);
+
+                
+                m = joyStick.Margin;
+                m.Left = screenPoint.X;
+                m.Top = screenPoint.Y;
+
+                joyStick.Margin = m;
             }
         }
     }
