@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -98,15 +96,17 @@ namespace App_Spin
         public JoystickTest()
         {
             InitializeComponent();
+            Knob.PointerPressed += Knob_MouseLeftButtonDown;
+
 
             Knob.MouseLeftButtonDown += Knob_MouseLeftButtonDown;
             Knob.MouseMove += Knob_MouseMove;
             Knob.MouseLeftButtonUp += Knob_MouseLeftButtonUp;
         }
 
-        void Knob_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        void Knob_MouseLeftButtonDown(object sender, PointerRoutedEventArgs e)
         {
-            _startPos = e.GetPosition(Base);
+            _startPos = e.GetCurrentPoint(null);
             _prevAngle = _prevDistance = 0;
             Knob.CaptureMouse();
         }

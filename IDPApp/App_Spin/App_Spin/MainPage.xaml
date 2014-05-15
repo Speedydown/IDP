@@ -47,5 +47,6 @@
         <TextBox x:Name="Input" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="122,549,0,0" Grid.Row="1" Width="1066"/>
         <Button x:Name="SendButton" Content="Send" HorizontalAlignment="Left" Margin="1190,546,0,0" Grid.Row="1" VerticalAlignment="Top" Width="169" Click="SendButton_Click" IsEnabled="False"/>
         <Button x:Name="BTN_Exit" Content="Exit" HorizontalAlignment="Left" Width="89" Margin="217,120,0,0" Grid.Row="1" VerticalAlignment="Top" Click="BTN_Exit_Click"/>
+        <Button Content="UI" HorizontalAlignment="Left" Margin="320,120,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Page>

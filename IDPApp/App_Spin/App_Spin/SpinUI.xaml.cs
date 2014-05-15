@@ -22,6 +22,8 @@ namespace App_Spin
     /// </summary>
     public sealed partial class SpinUI : Page
     {
+        private bool joyDown = false;
+
         public SpinUI()
         {
             this.InitializeComponent();
@@ -39,7 +41,25 @@ namespace App_Spin
 
         private void cmd_goJoystick_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(JoystickTest));
+            //this.Frame.Navigate(typeof(JoystickTest));
+        }
+
+        private void joyPressed(object sender, PointerRoutedEventArgs e)
+        {
+            joyDown = true;
+        }
+
+        private void joyReleased(object sender, PointerRoutedEventArgs e)
+        {
+            joyDown = false;
+        }
+
+        private void joyMoved(object sender, PointerRoutedEventArgs e)
+        {
+            if (joyDown == true)
+            {
+                //yolo
+            }
         }
     }
 }

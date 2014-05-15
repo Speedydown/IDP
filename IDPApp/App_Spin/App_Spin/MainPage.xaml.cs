@@ -151,5 +151,10 @@ namespace App_Spin
             btnConnect.IsEnabled = false;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SpinUI));
+        }
+
     }
 }

@@ -112,9 +112,6 @@
     <Compile Include="IOConnection.xaml.cs">
       <DependentUpon>IOConnection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="JoystickTest.xaml.cs">
-      <DependentUpon>JoystickTest.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -146,10 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="IOConnection.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="JoystickTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
