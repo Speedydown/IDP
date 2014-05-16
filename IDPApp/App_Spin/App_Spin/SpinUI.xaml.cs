@@ -23,9 +23,11 @@ namespace App_Spin
     /// </summary>
     public sealed partial class SpinUI : Page
     {
-        private bool joyDown = false;
-        private Point joyStart = new Point(-350,-350);
-        private Thickness m;
+        PointerPoint pPoint;
+        Point screenPoint;
+
+        private bool grdPress = false;
+        public string move = "";
 
         public SpinUI()
         {
@@ -42,41 +44,69 @@ namespace App_Spin
 
         }
 
-        private void cmd_goJoystick_Click(object sender, RoutedEventArgs e)
+        private void cmd_joyTest_Click(object sender, RoutedEventArgs e)
         {
-            //this.Frame.Navigate(typeof(JoystickTest));
+            //TODO button
         }
 
-        private void joyPressed(object sender, PointerRoutedEventArgs e)
+        private void grdReleased(object sender, PointerRoutedEventArgs e)
         {
-            joyDown = true;
+            grdPress = false;
+
+            Thickness n = joyStick.Margin;
+            n.Left = 150;
+            n.Top = 150;
+
+            joyStick.Margin = n;
         }
 
-        private void joyReleased(object sender, PointerRoutedEventArgs e)
+        private async void grdPressed(object sender, PointerRoutedEventArgs e)
         {
-            joyDown = false;
-        }
+            pPoint = e.GetCurrentPoint(joyStick);
+            screenPoint = pPoint.Position;
 
-        private void joyMoved(object sender, PointerRoutedEventArgs e)
-        {
-            if (joyDown == true)
+            Thickness m = joyStick.Margin;
+                
+            //if (screenPoint.X )
+            m.Left = screenPoint.X + 50;
+            m.Top = screenPoint.Y + 50;
+
+            joyStick.Margin = m;
+
+            txtJoytest.Text = "X" + screenPoint.X.ToString() + "Y" + screenPoint.Y.ToString();
+
+            grdPress = true;
+
+            if (screenPoint.X < 0)
             {
-                GeneralTransform gt = TransformToVisual(joyStick);
-                Point screenPoint;
+                if (screenPoint.Y < 0) /*LINKS*/
+                {
+                    //move = "tsen 30";
+                    //await (Network.NetworkHandler.Send(move));
+                    //await (Network.NetworkHandler.Recv());
+                    //Network.NetworkHandler.InputBuffer.Get();
+                }
+                else /*screenPoint.Y > 0 == DOWN */
+                {
 
-                screenPoint = gt.TransformPoint(new Point(screenPoint.X, screenPoint.Y));
-
-                txtJoytest.Text = screenPoint.ToString();
-                
-                //p = e.GetCurrentPoint(joyStick);
-
-                
-                m = joyStick.Margin;
-                m.Left = screenPoint.X;
-                m.Top = screenPoint.Y;
-
-                joyStick.Margin = m;
+                }
             }
+            else /*screenPoint.X > 0*/
+            {
+                if (screenPoint.Y < 0) /*UP*/
+                {
+
+                }
+                else /*screenPoint.Y > 0 == RECHTS*/
+                {
+
+                }
+            }
+
+            
+            
+
+            //txtJoytest.Text = screenPoint.ToString();
         }
     }
 }
