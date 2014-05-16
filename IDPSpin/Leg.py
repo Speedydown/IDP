@@ -30,8 +30,6 @@ class Leg(object):
         if Servo.getAngle() != Angle:
             Servo.SetAngle(Angle)
 
-            #voor TestDoeleiden
-            return "Moved servo to: " + Angle
         
        
 

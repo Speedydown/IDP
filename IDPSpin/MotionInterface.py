@@ -8,6 +8,7 @@ class MotionInterface(object):
         self.Leg1 = Leg(["0x40", "0x40", "0x40"], [0, 1, 2])
 
     def test(self, Angle):
+        print "Angle: " + Angle
         self.Leg1.moveAnkle(Angle)
         self.Leg1.moveKnee(Angle)
         self.Leg1.moveHip(Angle)

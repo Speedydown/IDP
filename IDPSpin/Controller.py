@@ -18,7 +18,7 @@ class Controller(object):
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
         self._networkOutputBuffer = NetworkBuffer.NetworkBuffer()
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer, self._networkOutputBuffer)
-        self._MotionInterface = MotionInterface(self)
+        self._MotionInterface = MotionInterface()
         self._Log = SpinLog.SpinLog()
         self._Exit = False;
                 
@@ -49,10 +49,7 @@ class Controller(object):
                 elif Command == "gcpu":
                     self.gcpu()
                 elif Command == "tsen":
-                    try:
-                        self._networkOutputBuffer.Append(self._MotionInterface.test(self, data[5:]))
-                    except:
-                        pass
+                    self._networkOutputBuffer.Append(self._MotionInterface.test(self, data[5:]))
                 elif Command == "exit":
                     self._networkOutputBuffer.Append("Exited")
                     self.Exit()
