@@ -5,6 +5,7 @@ import time
 import thread
 import threading
 import subprocess
+from MotionInterface import MotionInterface
 from threading import Thread
 from subprocess import call
 
@@ -17,6 +18,7 @@ class Controller(object):
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
         self._networkOutputBuffer = NetworkBuffer.NetworkBuffer()
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer, self._networkOutputBuffer)
+        self._MotionInterface = MotionInterface(self)
         self._Log = SpinLog.SpinLog()
         self._Exit = False;
                 
@@ -46,6 +48,11 @@ class Controller(object):
                     self._Log.clear()
                 elif Command == "gcpu":
                     self.gcpu()
+                elif Command == "tsen":
+                    try:
+                        self._MotionInterface.test(self, data[5:])
+                    except:
+                        pass
                 elif Command == "exit":
                     self._networkOutputBuffer.Append("Exited")
                     self.Exit()
