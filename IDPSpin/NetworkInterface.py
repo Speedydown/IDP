@@ -29,8 +29,6 @@ class NetworkInterface(Thread):
                 t2 =  threading.Thread(target=self.Send, args = (clientSocket,))
                 t.start()
                 t2.start()
-
-                #self._OutputBuffer.Append("Connection established")
             
             except:
                 print "Error: Unable to start thread \n"

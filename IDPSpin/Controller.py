@@ -4,6 +4,7 @@ import SpinLog
 import time
 import thread
 import threading
+import subprocess
 from threading import Thread
 from subprocess import call
 
@@ -43,6 +44,8 @@ class Controller(object):
                 elif Command  == "cllg":
                     self._networkOutputBuffer.Append("Cleared log!")
                     self._Log.clear()
+                elif Command == "gcpu":
+                    self.gcpu()
                 elif Command == "exit":
                     self._networkOutputBuffer.Append("Exited")
                     self.Exit()
@@ -79,6 +82,12 @@ class Controller(object):
             print "Goodbye"
         except:
             print "Cannot shut down"
+
+    def gcpu(self):
+        cmd = ["top -b -n 10 -d.2 | grep 'Cpu' |  awk 'NR==3{ print($2)}'"]
+        result = subprocess.check_output(cmd,shell=True)
+
+        self._networkOutputBuffer.Append("CPU usage: " + result)
         
                 
             
