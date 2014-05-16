@@ -11,3 +11,5 @@ class MotionInterface(object):
         self.Leg1.moveAnkle(Angle)
         self.Leg1.moveKnee(Angle)
         self.Leg1.moveHip(Angle)
+
+        return "moved servo: " + Angle
