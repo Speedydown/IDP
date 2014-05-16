@@ -2,9 +2,9 @@ __author__ = 'Ivar'
 
 from Adafruit_PWM_Servo_Driver import PWM
 
-class servo(object):
+class Servo(object):
 
-    def __init__(self, channel, address, maxAngle=40.0, minAngle=40.0, freq=60):
+    def __init__(self, channel, address, maxAngle=40.0, minAngle=-40.0, freq=60):
 
         self.channel = channel
         self.address = address

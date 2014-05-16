@@ -26,7 +26,7 @@
       <file leaf-file-name="Servo.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Servo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="24" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="816">
+            <state line="4" column="7" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
               <folding />
             </state>
           </provider>
@@ -46,7 +46,7 @@
       <file leaf-file-name="MotionInterface.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MotionInterface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="21" selection-start="277" selection-end="277" vertical-scroll-proportion="0.33333334" vertical-offset="0" max-vertical-offset="612">
+            <state line="12" column="23" selection-start="279" selection-end="279" vertical-scroll-proportion="0.33333334" vertical-offset="0" max-vertical-offset="612">
               <folding />
             </state>
           </provider>
@@ -64,8 +64,8 @@
       <list>
         <option value="$USER_HOME$/PycharmProjects/Legs/Servo.py" />
         <option value="$PROJECT_DIR$/Leg.py" />
-        <option value="$PROJECT_DIR$/Servo.py" />
         <option value="$PROJECT_DIR$/TestServo.py" />
+        <option value="$PROJECT_DIR$/Servo.py" />
         <option value="$PROJECT_DIR$/MotionInterface.py" />
       </list>
     </option>
@@ -403,13 +403,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Servo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="24" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="19" selection-start="132" selection-end="132" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
@@ -419,9 +412,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Servo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="7" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="21" selection-start="277" selection-end="277" vertical-scroll-proportion="0.33333334" vertical-offset="0" max-vertical-offset="612">
+        <state line="12" column="23" selection-start="279" selection-end="279" vertical-scroll-proportion="0.33333334" vertical-offset="0" max-vertical-offset="612">
           <folding />
         </state>
       </provider>

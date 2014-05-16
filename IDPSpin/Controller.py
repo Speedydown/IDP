@@ -18,7 +18,7 @@ class Controller(object):
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
         self._networkOutputBuffer = NetworkBuffer.NetworkBuffer()
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer, self._networkOutputBuffer)
-        self._MotionInterface = MotionInterface(self)
+        self._MotionInterface = MotionInterface()
         self._Log = SpinLog.SpinLog()
         self._Exit = False;
                 
