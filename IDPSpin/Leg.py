@@ -28,7 +28,7 @@ class Leg(object):
     def MoveServo(self, Servo, Angle):
 
         if Servo.getAngle() != Angle:
-            Servo.SetAngle(Angle)
+            Servo.setAngle(Angle)
 
         
        

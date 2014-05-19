@@ -4,8 +4,9 @@ from Adafruit_PWM_Servo_Driver import PWM
 
 class Servo(object):
 
-    def __init__(self, channel, address, maxAngle=40.0, minAngle=-40.0, freq=60):
+    def __init__(self, address, channel, maxAngle=600, minAngle=0, freq=60):
 
+        self.angle = 0
         self.channel = channel
         self.address = address
         self.freq = freq
@@ -36,8 +37,8 @@ class Servo(object):
         elif self.millisec < self.minmillisec:
             self.millisec = self.minmillisec
         self.tickOn = (self.millisec/1000.0)/self.timepertick
-        print self.tickOn
-        self.pwm.setPWM(self.channel, 0, int(self.tickOn))
+        print self.channel
+        self.pwm.setPWM(int(self.channel), 0, int(self.angle))
 
     def getAngle(self):
         return self.angle

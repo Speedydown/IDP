@@ -1,9 +1,7 @@
 __author__ = 'Ivar'
 
-from Servo import servo
+from Servo import Servo
 import time
 
-servo = servo(1,0x40)
-servo.setAngle(40)
-time.sleep(1)
-servo.setAngle(-40)
+servo = Servo(1,0x40)
+servo.getAngle()

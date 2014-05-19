@@ -49,7 +49,7 @@ class Controller(object):
                 elif Command == "gcpu":
                     self.gcpu()
                 elif Command == "tsen":
-                    self._networkOutputBuffer.Append(self._MotionInterface.test(self, data[5:]))
+                    self._networkOutputBuffer.Append(self._MotionInterface.test(data[5:]))
                 elif Command == "exit":
                     self._networkOutputBuffer.Append("Exited")
                     self.Exit()
