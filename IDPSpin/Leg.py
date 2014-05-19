@@ -14,7 +14,7 @@ class Leg(object):
             self._Ankle = Servo(self._AddressArray[2], self._ChannelArray[2])
         else:
             print "-----------Error Creating less-----------"
-            "Could not create leg:", sys.exc_info()[0]
+            #"Could not create leg:", sys.exc_info()[0]
             
     def moveHip(self, Angle):
         return self.MoveServo(self._Hip, Angle)
