@@ -4,7 +4,7 @@ from Adafruit_PWM_Servo_Driver import PWM
 
 class Servo(object):
 
-    def __init__(self, address, channel, maxAngle=600, minAngle=0, freq=50):
+    def __init__(self, address, channel, maxAngle=90, minAngle=-90, freq=60):
 
         self.angle = 0
         self.channel = channel

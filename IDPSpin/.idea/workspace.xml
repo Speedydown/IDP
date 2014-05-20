@@ -52,10 +52,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MotionInterface.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MotionInterface.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MotionInterface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="38" selection-start="362" selection-end="362" vertical-scroll-proportion="0.41666666" vertical-offset="0" max-vertical-offset="612">
+            <state line="16" column="0" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
               <folding />
             </state>
           </provider>
@@ -64,7 +64,7 @@
       <file leaf-file-name="Adafruit_PWM_Servo_Driver.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="26" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1207">
+            <state line="45" column="44" selection-start="1316" selection-end="1316" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1207">
               <folding />
             </state>
           </provider>
@@ -73,16 +73,16 @@
       <file leaf-file-name="Servo.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Servo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="73" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="850">
+            <state line="11" column="24" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="850">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestServo.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TestServo.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TestServo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
+            <state line="13" column="13" selection-start="224" selection-end="224" vertical-scroll-proportion="0.19444445" vertical-offset="102" max-vertical-offset="850">
               <folding>
                 <element signature="e#21#44#0" expanded="true" />
               </folding>
@@ -102,10 +102,11 @@
       <list>
         <option value="$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py" />
         <option value="$PROJECT_DIR$/Controller.py" />
-        <option value="$PROJECT_DIR$/TestServo.py" />
         <option value="$PROJECT_DIR$/Leg.py" />
-        <option value="$PROJECT_DIR$/Servo.py" />
         <option value="$PROJECT_DIR$/MotionInterface.py" />
+        <option value="$PROJECT_DIR$/Servo.py" />
+        <option value="$PROJECT_DIR$/opencvtest.py" />
+        <option value="$PROJECT_DIR$/TestServo.py" />
       </list>
     </option>
   </component>
@@ -170,6 +171,11 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/IDP 2014/Informatica/Adafruit_PWM_Servo_Driver" />
+  </component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings />
+    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="tests" factoryName="py.test">
@@ -358,29 +364,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="26" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1207">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestServo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="97" selection-end="97" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
-          <folding>
-            <element signature="e#21#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="0" selection-start="947" selection-end="947" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
@@ -397,17 +380,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Servo.py">
+    <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="73" selection-start="159" selection-end="159" vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="850">
+        <state line="16" column="0" selection-start="363" selection-end="363" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MotionInterface.py">
+    <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="38" selection-start="362" selection-end="362" vertical-scroll-proportion="0.41666666" vertical-offset="0" max-vertical-offset="612">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="612">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="44" selection-start="1316" selection-end="1316" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1207">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Servo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="24" selection-start="274" selection-end="274" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="850">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TestServo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="224" selection-end="224" vertical-scroll-proportion="0.19444445" vertical-offset="102" max-vertical-offset="850">
+          <folding>
+            <element signature="e#21#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
