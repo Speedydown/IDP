@@ -10,7 +10,7 @@ class MotionInterface(object):
     def test(self, Angle):
         print "Angle: " + Angle
         self.Leg1.moveAnkle(Angle)
-        self.Leg1.moveKnee(Angle)
-        self.Leg1.moveHip(Angle)
+        #self.Leg1.moveKnee(Angle)
+        #self.Leg1.moveHip(Angle)
 
         return "moved servo: " + Angle
