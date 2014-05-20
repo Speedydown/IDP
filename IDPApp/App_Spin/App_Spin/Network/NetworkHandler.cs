@@ -74,7 +74,7 @@ namespace App_Spin.Network
 
         public static async Task Close()
         {
-            await(Send("shtd"));
+            //await(Send("shtd"));
             if (socket == null)
             {
                 socket.Dispose();
