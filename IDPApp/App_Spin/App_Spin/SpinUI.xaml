@@ -34,6 +34,7 @@
 
         <Button x:Name="btnJoyTest" Content="Joystick Test" Click="cmd_joyTest_Click" Margin="200,610,0,0"/>
         <TextBox x:Name="txtJoytest" HorizontalAlignment="Left" Margin="667,488,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="400" Margin="850,200,0,0" VerticalAlignment="Top" Width="400"/>
 
     </Grid>
 </Page>
