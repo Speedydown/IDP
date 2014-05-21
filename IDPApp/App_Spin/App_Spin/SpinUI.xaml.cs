@@ -102,10 +102,6 @@ namespace App_Spin
 
                 }
             }
-
-            
-            
-
             //txtJoytest.Text = screenPoint.ToString();
         }
     }

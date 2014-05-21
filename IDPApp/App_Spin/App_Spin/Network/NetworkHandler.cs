@@ -66,6 +66,7 @@ namespace App_Spin.Network
             // write a string to the OutputStream
             if (Data.Length > 0)
             {
+                Data += "<EOF>";
                 writer.WriteString(Data);
                 // commit and send the data in the OutputStream
                 await writer.StoreAsync();
@@ -74,7 +75,7 @@ namespace App_Spin.Network
 
         public static async Task Close()
         {
-            await(Send("shtd"));
+            await(Send("exit"));
             if (socket == null)
             {
                 socket.Dispose();

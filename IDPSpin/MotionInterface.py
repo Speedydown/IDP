@@ -5,12 +5,12 @@ from Leg import Leg
 class MotionInterface(object):
 
     def __init__(self):
-        self.Leg1 = Leg(["0x40", "0x40", "0x40"], [0, 1, 2])
+        self.Leg1 = Leg(["0x40", "0x40", "0x40"], [0, 1, 2], [375, 375, 375])
 
-    def test(self, Angle):
-        print "Angle: " + Angle
-        self.Leg1.moveAnkle(Angle)
-        self.Leg1.moveKnee(Angle)
-        self.Leg1.moveHip(Angle)
+    def test(self, Pulse):
+        print "Pulse: " + Pulse
+        self.Leg1.moveAnkle(int(Pulse[:3]))
+        self.Leg1.moveKnee(int(Pulse[:3]))
+        self.Leg1.moveHip(int(Pulse[:3]))
 
-        return "moved servo: " + Angle
+        return "moved servo: " + Pulse

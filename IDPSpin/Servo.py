@@ -4,40 +4,26 @@ from Adafruit_PWM_Servo_Driver import PWM
 
 class Servo(object):
 
-    def __init__(self, channel, address, maxAngle=40.0, minAngle=-40.0, freq=60):
+    def __init__(self, address, channel, startingPulse, minPulse=150, maxPulse=600, freq=60):
 
-        self.channel = channel
-        self.address = address
-        self.freq = freq
-        self.maxAngle = maxAngle
-        self.minAngle = minAngle
-        self.maxmillisec = 2.0
-        self.minmillisec = 1.0
-        self.m = (self.minmillisec - self.maxmillisec)/(self.maxAngle - self.minAngle)
-        self.b = self.maxmillisec - (self.m * self.minAngle)
+        self.pulse = 0
+        self.channel = channel              # channels of the adafruit servo driver (0 to 16) used 2times
+        self.address = address              # 2 addresses of the adafruit (0x40,0x41)
+        self.freq = freq                    # standard frequenty for the adafruit (60Hz)
+        self.maxPulse = maxPulse            # setting the maximum pulse of the servo
+        self.minPulse = minPulse            # setting the mininum pulse of the servo
         self.pwm = PWM()
         self.pwm.setPWMFreq(self.freq)
-        self.cycle = 1.0/float(self.freq)
-        self.timepertick = self.cycle / 4096
+        self.setPulse(startingPulse)
 
-    def setAngle(self, angle):
-        self.angle = angle
-        print self.angle
+    def setPulse(self, pulse):
+        if pulse > self.maxPulse:
+            pulse = self.maxPulse
+        elif pulse < self.minPulse:
+            pulse = self.minPulse
 
-        if self.angle > self.maxAngle:
-            self.angle = self.maxAngle
-        elif self.angle < self.minAngle:
-            self.angle = self.minAngle
-        self.millisec = self.angle * self.m + self.b
-        print self.millisec
+        self.pwm.setPWM(self.channel, 0, pulse)
+        self.pulse = pulse
 
-        if self.millisec > self.maxmillisec:
-            self.millisec = self.maxmillisec
-        elif self.millisec < self.minmillisec:
-            self.millisec = self.minmillisec
-        self.tickOn = (self.millisec/1000.0)/self.timepertick
-        print self.tickOn
-        self.pwm.setPWM(self.channel, 0, int(self.tickOn))
-
-    def getAngle(self):
-        return self.angle
+    def getPulse(self):
+        return self.pulse
