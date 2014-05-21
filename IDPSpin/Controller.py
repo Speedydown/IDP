@@ -5,7 +5,7 @@ import time
 import thread
 import threading
 import subprocess
-from MotionInterface import MotionInterface
+#from MotionInterface import MotionInterface
 from threading import Thread
 from subprocess import call
 
@@ -16,9 +16,8 @@ class Controller(object):
     def __init__(self):
         print "spInOS active"
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
-        self._networkOutputBuffer = NetworkBuffer.NetworkBuffer()
-        self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer, self._networkOutputBuffer)
-        self._MotionInterface = MotionInterface()
+        self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
+        #self._MotionInterface = MotionInterface()
         self._Log = SpinLog.SpinLog()
         self._Exit = False;
                 
@@ -32,38 +31,37 @@ class Controller(object):
             data = self._networkInputBuffer.Pop()    
 
             if len(str(data)) > 0:
-                Command = data[:4]
+                ID = data[:5]
+                Command = data[5:9]
                 self._Log.append(str(data))
                 
                 if Command == "prin":
-                    try:
-                        print(data[5:])
-                        self._networkOutputBuffer.Append("Printed: " + data[5:])
-                    except:
-                        pass
+                    print(data[10:])
+                    self._NetworkInterface.Send("Printed: " + data[10:], ID)
+
                 elif Command == "glog":
-                    self._networkOutputBuffer.Append(self._Log.get())
+                    self._NetworkInterface.Send(self._Log.get(), ID)
                 elif Command  == "cllg":
-                    self._networkOutputBuffer.Append("Cleared log!")
+                    self._NetworkInterface.Send("Cleared log!", iD)
                     self._Log.clear()
                 elif Command == "gcpu":
-                    self.gcpu()
+                    self.gcpu(ID)
                 elif Command == "tsen":
-                    self._networkOutputBuffer.Append(self._MotionInterface.test(self, data[5:]))
+                   self._NetworkInterface.Send(self._MotionInterface.test(self, data[10:]), ID)
                 elif Command == "exit":
-                    self._networkOutputBuffer.Append("Exited")
+                    self._NetworkInterface.Send("Exited", ID)
                     self.Exit()
                     self._Exit = True
                 elif Command == "rebt":
-                    self._networkOutputBuffer.Append("Reboot!")
+                    self._NetworkInterface.Send("Reboot!", ID)
                     self._Exit = True
                     self.Reboot()
                 elif Command == "shtd":
-                    self._networkOutputBuffer.Append("Shutting down!")
+                    self._NetworkInterface.Send("Shutting down!", ID1b)
                     self._Exit = True
                     self.Shutdown()
                     
-            time.sleep(1)
+            time.sleep(0.100)
 
     def Exit(self):
         self._NetworkInterface.Exit()
@@ -87,11 +85,11 @@ class Controller(object):
         except:
             print "Cannot shut down"
 
-    def gcpu(self):
+    def gcpu(self, ID):
         cmd = ["top -b -n 10 -d.2 | grep 'Cpu' |  awk 'NR==3{ print($2)}'"]
         result = subprocess.check_output(cmd,shell=True)
 
-        self._networkOutputBuffer.Append("CPU usage: " + result)
+        self._NetworkInterface.Send("CPU usage: " + result, ID)
         
                 
             

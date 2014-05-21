@@ -3,32 +3,34 @@ import thread
 import threading
 from threading import Thread
 from NetworkBuffer import NetworkBuffer
+from NetworkClient import NetworkClient
 import time
 import socket
 
 class NetworkInterface(Thread):
-    def __init__(self, InputBuffer, OutputBuffer):
-        self._InputBuffer = InputBuffer
-        self._OutputBuffer = OutputBuffer
+    def __init__(self, Buffer):
+        self._NetworkClients = []
+        self._Buffer = Buffer
         self._Exit = False
+        self._Identify = 1
 
     def run(self):
         serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         serverSocket.bind(('', 1337))
         serverSocket.listen(1)
-        ConnectedCount = 0
 
-        while self._Exit == False & ConnectedCount == 0:
+        while self._Exit == False:
             clientSocket, address = serverSocket.accept()
+            networkclient = NetworkClient(clientSocket, self._Identify)
+            self._NetworkClients.append(networkclient)
+            self._Identify += 1
+
             print "Connected with " + address[0] + ":" + str(address[1]) + "\n"
-            ConnectedCount += 1
             
             try:
-                t =  threading.Thread(target=self.Listen, args = (clientSocket,))
-                t2 =  threading.Thread(target=self.Send, args = (clientSocket,))
+                t =  threading.Thread(target=self.Listen, args = (networkclient,))
                 t.start()
-                t2.start()
             
             except:
                 print "Error: Unable to start thread \n"
@@ -36,31 +38,40 @@ class NetworkInterface(Thread):
             time.sleep(1)
 
     def Listen(self, clientSocket):
-        while self._Exit == False:
-            data = clientSocket.recv(1024) #buffergroote
-            self._InputBuffer.Append(data)
-            print "Recieved: " + data
-            time.sleep(1)
 
-    def Send(self, clientSocket):
-        data = ""
         while self._Exit == False:
-            data = self._OutputBuffer.Pop()
-            
-            if len(str(data)) > 0:
-                clientSocket.send(str(data))
-                data = ""
-        time.sleep(1)
+
+            data = clientSocket.getClientSocket().recv(1024) #buffergroote
+            while "<EOF>" not in data:
+                data = data + clientSocket.getClientSocket().recv(1024)
+
+            data = data[:data.find("<EOF>")]
+            self._Buffer.Append("<ID" + clientSocket.getClientID() + ">" + data)
+            time.sleep(0.100)
+
+    def Send(self, Data, ID):
+        print "Data: " + Data + " ID: " + ID
+        ID = ID[3:4]
+
+        ClientSocket = 0
+        if len(str(Data)) > 0:
+            for c in self._NetworkClients:
+                if c.getClientID() == ID:
+                    ClientSocket = c
+                    break
+
+            ClientSocket.getClientSocket().send(str(Data) + "<EOF>")
 
     def Exit(self):
         self._Exit = True
         
             
 
-    
 
         
         
 
-    
+
+
+
             
