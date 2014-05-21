@@ -102,19 +102,7 @@ namespace App_Spin
 
                 }
             }
-
-            
-            
-
             //txtJoytest.Text = screenPoint.ToString();
-        }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //move = "tsen 30";
-            //await (Network.NetworkHandler.Send(move));
-            //await (Network.NetworkHandler.Recv());
-            //Network.NetworkHandler.InputBuffer.Get();
         }
     }
 }
