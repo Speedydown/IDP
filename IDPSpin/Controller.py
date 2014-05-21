@@ -57,7 +57,7 @@ class Controller(object):
                     self._Exit = True
                     self.Reboot()
                 elif Command == "shtd":
-                    self._NetworkInterface.Send("Shutting down!", ID1b)
+                    self._NetworkInterface.Send("Shutting down!", ID)
                     self._Exit = True
                     self.Shutdown()
                     
