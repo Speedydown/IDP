@@ -28,12 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.NetworkTest = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
+            // 
+            // NetworkTest
+            // 
+            this.NetworkTest.Location = new System.Drawing.Point(13, 13);
+            this.NetworkTest.Name = "NetworkTest";
+            this.NetworkTest.Size = new System.Drawing.Size(259, 20);
+            this.NetworkTest.TabIndex = 0;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.NetworkTest);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox NetworkTest;
     }
 }
 

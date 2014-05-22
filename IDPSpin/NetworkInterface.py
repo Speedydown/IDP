@@ -50,7 +50,6 @@ class NetworkInterface(Thread):
             time.sleep(0.100)
 
     def Send(self, Data, ID):
-        print "Data: " + Data + " ID: " + ID
         ID = ID[3:4]
 
         ClientSocket = 0

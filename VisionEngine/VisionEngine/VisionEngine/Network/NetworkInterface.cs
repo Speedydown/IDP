@@ -14,16 +14,18 @@ namespace VisionEngine.Network
         private TcpClient  clientSocket = new TcpClient();
         private NetworkStream serverStream;
 
-        public NetworkInterface()
+        public NetworkInterface(NetworkBuffer _Buffer)
         {
-            serverStream = clientSocket.GetStream();
+            this._Buffer = _Buffer;
+            this.clientSocket.Connect("192.168.178.26", 1337);
+            this.serverStream = clientSocket.GetStream();
         }
 
         public void Send(string Data)
         {
             byte[] outStream = System.Text.Encoding.ASCII.GetBytes(Data);
-            serverStream.Write(outStream, 0, outStream.Length);
-            serverStream.Flush();
+            this.serverStream.Write(outStream, 0, outStream.Length);
+           // this.serverStream.Flush();
 
         }
 
@@ -32,11 +34,19 @@ namespace VisionEngine.Network
             byte[] inStream = new byte[1024];
             
             string Data = string.Empty;
-            while (Data.Contains("<EOF>"))
-
-            serverStream.Read(inStream, 0, (int)clientSocket.ReceiveBufferSize);
-            string returndata = System.Text.Encoding.ASCII.GetString(inStream);
             
+            while (!Data.Contains("<EOF>"))
+            {
+                serverStream.Read(inStream, 0, 1024);
+                Data += Encoding.ASCII.GetString(inStream);
+            }
+
+            _Buffer.Append(Data.Substring(0, Data.Length - 5));
+        }
+
+        public void Disconnect()
+        {
+            serverStream.Dispose();
         }
 
     }

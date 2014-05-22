@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VisionEngine.Network;
 
 namespace VisionEngine
 {
@@ -17,6 +18,13 @@ namespace VisionEngine
         {
             InitializeComponent();
             CmdInt.Init();
+            NetworkBuffer buffer = new NetworkBuffer();
+            NetworkInterface networkInterface = new NetworkInterface(buffer);
+            networkInterface.Send("prin Test<EOF>");
+            networkInterface.Recv();
+            NetworkTest.Text = buffer.Get();
+
+            
         }
     }
 }
