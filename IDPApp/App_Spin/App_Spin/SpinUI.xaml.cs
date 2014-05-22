@@ -23,15 +23,23 @@ namespace App_Spin
     /// </summary>
     public sealed partial class SpinUI : Page
     {
-        PointerPoint pPoint;
-        Point screenPoint;
+        //PointerPoint pPoint;
+        //Point screenPoint;
 
-        private bool grdPress = false;
+        //private bool grdPress = false;
         public string move = "";
+        public int count = 0;
 
         public SpinUI()
         {
             this.InitializeComponent();
+            /*
+             * Add new EventHandlers per button, not standard supported.
+             * Each button will get two new handlers, *_Pressed and *_Released.
+             */
+            // btnFw
+            btnFw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnFw_Pressed), true);
+            btnFw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnFw_Released), true);
         }
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
@@ -44,65 +52,70 @@ namespace App_Spin
 
         }
 
-        private void cmd_joyTest_Click(object sender, RoutedEventArgs e)
+        // LF - FW - RF
+
+        #region Left-Fw
+
+        #endregion
+
+        #region Forward
+        /*
+         * Bindings for btnFw to send move commands to Raspberry Pi
+         * move commands are as follows:
+         * - move fw    ; to move forward
+         * - move stop  ; to stop current movement
+         */
+        
+        private void btnFw_Pressed(object sender, PointerRoutedEventArgs e)
         {
-            //TODO button
+            move = "move 1";
+            txtJoytest.Text = move;
         }
 
-        private void grdReleased(object sender, PointerRoutedEventArgs e)
+        private void btnFw_Released(object sender, PointerRoutedEventArgs e)
         {
-            grdPress = false;
+            move = "move 0";
+            txtJoytest.Text = move;
+        }
+        #endregion
 
-            Thickness n = joyStick.Margin;
-            n.Left = 150;
-            n.Top = 150;
+        
 
-            joyStick.Margin = n;
+        #region Right-Fw
+
+        #endregion
+
+        // L - R
+
+        #region Left
+
+        #endregion
+
+        #region Right
+
+        #endregion
+
+        //LB - BW - RB
+
+        #region Left-Bw
+
+        #endregion
+
+        #region Backward
+        private void btnBw_Pressed(object sender, PointerRoutedEventArgs e)
+        {
+
         }
 
-        private async void grdPressed(object sender, PointerRoutedEventArgs e)
+        private void btnBw_Released(object sender, PointerRoutedEventArgs e)
         {
-            pPoint = e.GetCurrentPoint(joyStick);
-            screenPoint = pPoint.Position;
 
-            Thickness m = joyStick.Margin;
-                
-            //if (screenPoint.X )
-            m.Left = screenPoint.X + 50;
-            m.Top = screenPoint.Y + 50;
-
-            joyStick.Margin = m;
-
-            txtJoytest.Text = "X" + screenPoint.X.ToString() + "Y" + screenPoint.Y.ToString();
-
-            grdPress = true;
-
-            if (screenPoint.X < 0)
-            {
-                if (screenPoint.Y < 0) /*LINKS*/
-                {
-                    //move = "tsen 30";
-                    //await (Network.NetworkHandler.Send(move));
-                    //await (Network.NetworkHandler.Recv());
-                    //Network.NetworkHandler.InputBuffer.Get();
-                }
-                else /*screenPoint.Y > 0 == DOWN */
-                {
-
-                }
-            }
-            else /*screenPoint.X > 0*/
-            {
-                if (screenPoint.Y < 0) /*UP*/
-                {
-
-                }
-                else /*screenPoint.Y > 0 == RECHTS*/
-                {
-
-                }
-            }
-            //txtJoytest.Text = screenPoint.ToString();
         }
+        #endregion
+
+        #region Right-Bw
+
+        #endregion
+
     }
 }
