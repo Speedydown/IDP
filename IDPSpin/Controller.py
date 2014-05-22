@@ -5,7 +5,7 @@ import time
 import thread
 import threading
 import subprocess
-from MotionInterface import MotionInterface
+#from MotionInterface import MotionInterface
 from threading import Thread
 from subprocess import call
 
@@ -17,7 +17,7 @@ class Controller(object):
         print "spInOS active"
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
-        self._MotionInterface = MotionInterface()
+        #self._MotionInterface = MotionInterface()
         self._Log = SpinLog.SpinLog()
         self._Exit = False;
                 
@@ -62,6 +62,7 @@ class Controller(object):
                     self.Shutdown()
                     
             time.sleep(0.100)
+        print "CommandHandler says goodbye"
 
     def Exit(self):
         self._NetworkInterface.Exit()
