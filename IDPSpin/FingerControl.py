@@ -1,4 +1,4 @@
-__author__ = 'Matthé Jacobs'
+__author__ = 'Matthe Jacobs'
 
 from MotionInterface import MotionInterface
 from Adafruit_PWM_Servo_Driver import PWM
