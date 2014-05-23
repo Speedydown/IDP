@@ -18,13 +18,20 @@ namespace VisionEngine
         {
             InitializeComponent(); 
             CmdInt.Init();
+            VisionEngine.VisionLabInterface.VisionLabInterface vi = new VisionEngine.VisionLabInterface.VisionLabInterface();
+            this.pictureBoxResult.Image = vi.processImage();
+
+            /*
             NetworkBuffer buffer = new NetworkBuffer();
             NetworkInterface networkInterface = new NetworkInterface(buffer);
             networkInterface.Send("prin Test<EOF>");
             networkInterface.Recv();
-            NetworkTest.Text = buffer.Get();
+            NetworkTest.Text = buffer.Get();*/
+
 
             
         }
+
+
     }
 }
