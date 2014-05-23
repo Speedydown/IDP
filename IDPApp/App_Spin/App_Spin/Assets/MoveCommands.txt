@@ -1,0 +1,18 @@
+﻿Move Commands.
+
+In order to send move-messages to the spider we are using the following format to give the spider
+directions; 'move **', ** are two numbers which correspond with a direction or command.
+
+The directions are (in the two number combination):
+
+10 - stop
+11 - forward
+12 - right-forward
+13 - right
+14 - right-backwards
+15 - backwards
+16 - left-backwards
+17 - left
+18 - left-forward
+
+Later commands will start at 20.

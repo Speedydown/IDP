@@ -25,7 +25,6 @@ namespace App_Spin
 
     public sealed partial class MainPage : Page
     {
-        public string txtIP;
         public bool Sending = false;
 
         private NavigationHelper navigationHelper;
@@ -140,7 +139,6 @@ namespace App_Spin
                 await (Network.NetworkHandler.Recv());
                 Sending = false;
                 RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
-
             }
         }
 
