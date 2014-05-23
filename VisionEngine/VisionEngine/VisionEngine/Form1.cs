@@ -16,7 +16,7 @@ namespace VisionEngine
     {
         public Form1()
         {
-            InitializeComponent();
+            InitializeComponent(); 
             CmdInt.Init();
             NetworkBuffer buffer = new NetworkBuffer();
             NetworkInterface networkInterface = new NetworkInterface(buffer);
