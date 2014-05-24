@@ -8,6 +8,7 @@ import subprocess
 #from MotionInterface import MotionInterface
 from threading import Thread
 from subprocess import call
+from Camera import Camera
 
 class Controller(object):
 
@@ -19,6 +20,7 @@ class Controller(object):
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
         #self._MotionInterface = MotionInterface()
         self._Log = SpinLog.SpinLog()
+        self._Camera = Camera()
         self._Exit = False;
                 
         self._NetworkInterfaceThread = threading.Thread(target=self._NetworkInterface.run)
@@ -48,6 +50,8 @@ class Controller(object):
                     self.gcpu(ID)
                 elif Command == "tsen":
                    self._NetworkInterface.Send(self._MotionInterface.test(data[10:]), ID)
+                elif Command == "gimg":
+                    self._NetworkInterface.Send(self._Camera.takeImage(), ID)
                 elif Command == "exit":
                     self._NetworkInterface.Send("Exited", ID)
                     self.Exit()
@@ -66,11 +70,13 @@ class Controller(object):
 
     def Exit(self):
         self._NetworkInterface.Exit()
+        self._Camera.Exit()
 
         print "Goodbye"
         
     def Reboot(self):
         self._NetworkInterface.Exit()
+        self._Camera.Exit()
         try:
             call(["shutdown", "-r", "NOW"])
             print "BRB"
@@ -79,6 +85,7 @@ class Controller(object):
         
     def Shutdown(self):
         self._NetworkInterface.Exit()
+        self._Camera.Exit()
 
         try:
             call(["poweroff"])

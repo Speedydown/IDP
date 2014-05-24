@@ -59,6 +59,7 @@ class NetworkInterface(Thread):
                     ClientSocket = c
                     break
 
+            print len(Data)
             ClientSocket.getClientSocket().send(str(Data) + "<EOF>")
 
     def Exit(self):

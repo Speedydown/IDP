@@ -17,7 +17,7 @@ namespace VisionEngine.Network
         public NetworkInterface(NetworkBuffer _Buffer)
         {
             this._Buffer = _Buffer;
-            this.clientSocket.Connect("192.168.178.26", 1337);
+            this.clientSocket.Connect("192.168.178.24", 1337);
             this.serverStream = clientSocket.GetStream();
         }
 
@@ -25,7 +25,7 @@ namespace VisionEngine.Network
         {
             byte[] outStream = System.Text.Encoding.ASCII.GetBytes(Data);
             this.serverStream.Write(outStream, 0, outStream.Length);
-           // this.serverStream.Flush();
+            this.serverStream.Flush();
 
         }
 
@@ -39,9 +39,13 @@ namespace VisionEngine.Network
             {
                 serverStream.Read(inStream, 0, 1024);
                 Data += Encoding.ASCII.GetString(inStream);
+                inStream = new byte[1024];
             }
 
-            _Buffer.Append(Data.Substring(0, Data.Length - 5));
+            Data = Data.Replace("\0", "");
+
+            int EOFIndex = Data.IndexOf("<EOF>");
+            _Buffer.Append(Data.Substring(0, EOFIndex));
         }
 
         public void Disconnect()
