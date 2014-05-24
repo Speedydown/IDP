@@ -12,7 +12,7 @@ class NetworkInterface(Thread):
         self._NetworkClients = []
         self._Buffer = Buffer
         self._Exit = False
-        self._Identify = 1
+        self._Identify = 10
 
     def run(self):
         serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -38,19 +38,23 @@ class NetworkInterface(Thread):
             time.sleep(1)
 
     def Listen(self, clientSocket):
-
         while self._Exit == False:
+            try:
+                data = clientSocket.getClientSocket().recv(1024)
+                while "<EOF>" not in data:
+                    data = data + clientSocket.getClientSocket().recv(1024)
 
-            data = clientSocket.getClientSocket().recv(1024) #buffergroote
-            while "<EOF>" not in data:
-                data = data + clientSocket.getClientSocket().recv(1024)
-
-            data = data[:data.find("<EOF>")]
-            self._Buffer.Append("<ID" + clientSocket.getClientID() + ">" + data)
-            time.sleep(0.100)
+                data = data[:data.find("<EOF>")]
+                self._Buffer.Append("<ID" + clientSocket.getClientID() + ">" + data)
+                time.sleep(0.001)
+            except:
+                print "Client " + clientSocket.getClientID() + " has disconnected."
+                break
+            
+        
 
     def Send(self, Data, ID):
-        ID = ID[3:4]
+        ID = ID[3:5]
 
         ClientSocket = 0
         if len(str(Data)) > 0:
@@ -58,12 +62,15 @@ class NetworkInterface(Thread):
                 if c.getClientID() == ID:
                     ClientSocket = c
                     break
-
-            print len(Data)
-            ClientSocket.getClientSocket().send(str(Data) + "<EOF>")
+            try:
+                ClientSocket.getClientSocket().send(str(Data) + "<EOF>")
+            except:
+                pass
 
     def Exit(self):
         self._Exit = True
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.connect(("127.0.0.1", 1337))
         
             
 

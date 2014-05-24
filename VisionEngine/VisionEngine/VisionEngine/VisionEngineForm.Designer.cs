@@ -1,6 +1,6 @@
 ﻿namespace VisionEngine
 {
-    partial class Form1
+    partial class VisionEngineForm
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.StartButton = new System.Windows.Forms.Button();
+            this.StopButton = new System.Windows.Forms.Button();
+            this.ShutdownButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutput)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +63,6 @@
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Input";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -78,22 +79,48 @@
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(75, 23);
             this.StartButton.TabIndex = 6;
-            this.StartButton.Text = "Start";
+            this.StartButton.Text = "Start stream";
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
-            // Form1
+            // StopButton
+            // 
+            this.StopButton.Location = new System.Drawing.Point(95, 3);
+            this.StopButton.Name = "StopButton";
+            this.StopButton.Size = new System.Drawing.Size(75, 23);
+            this.StopButton.TabIndex = 7;
+            this.StopButton.Text = "stop steam";
+            this.StopButton.UseVisualStyleBackColor = true;
+            this.StopButton.Click += new System.EventHandler(this.StopButton_Click);
+            // 
+            // ShutdownButton
+            // 
+            this.ShutdownButton.Location = new System.Drawing.Point(176, 3);
+            this.ShutdownButton.Name = "ShutdownButton";
+            this.ShutdownButton.Size = new System.Drawing.Size(75, 23);
+            this.ShutdownButton.TabIndex = 8;
+            this.ShutdownButton.Text = "Shutdown SpInOS";
+            this.ShutdownButton.UseVisualStyleBackColor = true;
+            this.ShutdownButton.Click += new System.EventHandler(this.ShutdownButton_Click);
+            // 
+            // VisionEngineForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(983, 393);
+            this.ControlBox = false;
+            this.Controls.Add(this.ShutdownButton);
+            this.Controls.Add(this.StopButton);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBoxOutput);
             this.Controls.Add(this.pictureBoxInput);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "VisionEngineForm";
+            this.Text = "Vision Engine®";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutput)).EndInit();
             this.ResumeLayout(false);
@@ -108,6 +135,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button StartButton;
+        private System.Windows.Forms.Button StopButton;
+        private System.Windows.Forms.Button ShutdownButton;
     }
 }
 

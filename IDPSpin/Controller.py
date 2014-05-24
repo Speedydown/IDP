@@ -33,14 +33,15 @@ class Controller(object):
             data = self._networkInputBuffer.Pop()    
 
             if len(str(data)) > 0:
-                ID = data[:5]
-                Command = data[5:9]
+                ID = data[:6]
+                Command = data[6:10]
                 self._Log.append(str(data))
                 
                 if Command == "prin":
                     print(data[10:])
-                    self._NetworkInterface.Send("Printed: " + data[10:], ID)
-
+                    self._NetworkInterface.Send("Printed: " + data[11:], ID)
+                elif Command == "cocl":
+                    self._NetworkInterface.Send(len(self._NetworkInterface._NetworkClients), ID)
                 elif Command == "glog":
                     self._NetworkInterface.Send(self._Log.get(), ID)
                 elif Command  == "cllg":
@@ -49,9 +50,13 @@ class Controller(object):
                 elif Command == "gcpu":
                     self.gcpu(ID)
                 elif Command == "tsen":
-                   self._NetworkInterface.Send(self._MotionInterface.test(data[10:]), ID)
+                   self._NetworkInterface.Send(self._MotionInterface.test(data[11:]), ID)
+                elif Command == "move":
+                    self._NetworkInterface.Send(self._MotionInterface.test(data[11:]), ID)
                 elif Command == "gimg":
                     self._NetworkInterface.Send(self._Camera.takeImage(), ID)
+                elif Command == "gcim":
+                    self._NetworkInterface.Send(self._Camera.getImageFromMemory(), ID)
                 elif Command == "exit":
                     self._NetworkInterface.Send("Exited", ID)
                     self.Exit()
@@ -65,7 +70,7 @@ class Controller(object):
                     self._Exit = True
                     self.Shutdown()
                     
-            time.sleep(0.100)
+            time.sleep(0.001)
         print "CommandHandler says goodbye"
 
     def Exit(self):
