@@ -65,15 +65,10 @@ namespace App_Spin
             #endregion
         }
 
-        private void AppBarButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
-        }
+        //private void Pressed(object sender, PointerRoutedEventArgs e)
+        //{
 
-        private void Pressed(object sender, PointerRoutedEventArgs e)
-        {
-
-        }
+        //}
 
         
         private async void sendCmd(string moveMessage)
