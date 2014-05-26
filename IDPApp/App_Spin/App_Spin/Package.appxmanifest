@@ -15,7 +15,12 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="App_Spin.App">
-      <m2:VisualElements DisplayName="App_Spin" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="App_Spin" ForegroundText="light" BackgroundColor="#464646">
+      <m2:VisualElements DisplayName="Spider App" Square150x150Logo="Assets\spin150.png" Square30x30Logo="Assets\spin30.png" Description="App_Spin" ForegroundText="dark" BackgroundColor="#464646">
+        <m2:DefaultTile ShortName="Spider App">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
         <m2:SplashScreen Image="Assets\SplashScreen.png" />
       </m2:VisualElements>
     </Application>

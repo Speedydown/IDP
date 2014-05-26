@@ -27,6 +27,9 @@ namespace App_Spin
         //Point screenPoint;
 
         //private bool grdPress = false;
+        private int battery;
+        private int slope;
+
         public string move = "";
         private bool cmdSending = false;
 
@@ -63,12 +66,26 @@ namespace App_Spin
             btnRightBw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnRightBw_Pressed), true);
             btnRightBw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnRightBw_Released), true);
             #endregion
-        }
 
+            getBattery();
+            getSlope();
+        }
+        
         //private void Pressed(object sender, PointerRoutedEventArgs e)
         //{
-
         //}
+
+        private void getBattery()
+        {
+            battery = 100;
+            lblBattery.Text = "Battery: " + battery.ToString();
+        }
+
+        private void getSlope()
+        {
+            slope = 50;
+            lblSlope.Text = "Slope: " + slope.ToString();
+        }
 
         
         private async void sendCmd(string moveMessage)
@@ -76,6 +93,9 @@ namespace App_Spin
             /* Send msg method to Raspberry Pi
              * Needs input string (move)
              */
+
+            //await (Network.NetworkHandler.Send(moveMessage));
+
             //if (cmdSending == false)
             //{
 
@@ -88,6 +108,7 @@ namespace App_Spin
 
             //    Network.NetworkHandler.InputBuffer.Get();
             //}
+
             txtJoytest.Text = moveMessage;
         }
 
@@ -96,6 +117,8 @@ namespace App_Spin
         {
             move = "move 10";
             sendCmd(move);
+            getBattery();
+            getSlope();
         }
 
         /* Bindings 
