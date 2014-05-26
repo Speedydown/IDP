@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -14,6 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace App_Spin
@@ -23,19 +26,17 @@ namespace App_Spin
     /// </summary>
     public sealed partial class SpinUI : Page
     {
-        //PointerPoint pPoint;
-        //Point screenPoint;
-
-        //private bool grdPress = false;
         private int battery;
         private int slope;
 
         public string move = "";
-        private bool cmdSending = false;
 
+        DispatcherTimer clock;
+               
         public SpinUI()
         {
             this.InitializeComponent();
+            clock = new DispatcherTimer();
             /*
              * Add new EventHandlers per button, not standard supported.
              * Each button will get two new handlers, *_Pressed and *_Released.
@@ -66,14 +67,19 @@ namespace App_Spin
             btnRightBw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnRightBw_Pressed), true);
             btnRightBw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnRightBw_Released), true);
             #endregion
-
+            
             getBattery();
             getSlope();
+
+            time();
         }
-        
-        //private void Pressed(object sender, PointerRoutedEventArgs e)
-        //{
-        //}
+
+        private void time()
+        {
+            //lblHour.Text = DateTime.Now.Hour.ToString();
+            //lblMin.Text = DateTime.Now.Minute.ToString();
+            //lblSec.Text = DateTime.Now.Second.ToString();
+        }
 
         private void getBattery()
         {
@@ -253,5 +259,6 @@ namespace App_Spin
         }
 
         #endregion
+
     }
 }
