@@ -10,22 +10,24 @@
         <header><h2>Hoe ver zijn we?</h2></header>
 
         <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-succes" style="width: 40%;"></div>
+            <div class="progress-bar progress-bar-succes" style="width: 47%;"></div>
         </div>
 
         <h3>Recent behaalde doelstellingen:</h3>
-        <h4>Week 3:</h4>
+        <h4>Week 4:</h4>
         <span>
-            Deze week hebben we verschillende deelfuncties gerealiseerd. De communicatie tussen de applicatie 
-            en de Raspberry Pi werkt, Elektrotechniek heeft de vingerbesturing werkend en de benodigde
-            accu berekend en vrijdag is een prototype van de poot uitgelaserd waarvoor de 
-            definitieve tekeningen van Werktuigbouwkunde zijn gebruikt. De vingerbesturing is getest in combinatie
-             met de Arduino, momenteel wordt gewerkt aan de communicatie tussen de vingerbesturing en de Raspberry Pi.  
-            Deze week is het ook gelukt om de servo’s aan te sturen via de Raspberry Pi, een mooi voorbeeld 
-            van samenwerking tussen Informatica en Elektrotechniek. Helaas hadden we op vrijdag te maken met een 
-            tegenslag in de vorm van een corrupte SD-kaart waardoor het ons net niet is gelukt om de servo’s aan 
-            te sturen via de applicatie.  Donderdag hebben we de ballonnen gekregen, welke ook gebruikt  gaan worden 
-            tijdens de wedstrijddag. Deze ballonnen gebruiken we momenteel om onze visiontechnieken te optimaliseren. 
+            Afgelopen week stond onder andere in het teken van de deelfunctiedemo. 
+            Bij deze demonstratie heeft het projectteam een aantal functies en tekeningen laten zien aan
+            de opdrachtgever. Werktuigbouwkunde heeft de tekeningen van de spin laten zien en Informatica
+            heeft onder andere het Vision gedeelte en de pootaansturing via de tablet gedemonstreerd.
+            Elektrotechniek heeft de vingerbesturing laten zien.
+
+            Daarnaast heeft Informatica deze week een ontwerpreview gehad welke is afgerond 
+            met het oordeel ‘goed’. Elektrotechniek heeft de vingerbesturing draadloos 
+            werkend via de Xbee en gewerkt aan de voedingsprintplaat. Werktuigbouwkunde heeft berekeningen 
+            gemaakt voor de hoekstanden van de poot en is begonnen met het uitdenken van de spinlift. 
+            We hadden deze week één tegenvaller, er zijn twee servo’s kapot gegaan
+            tijdens het werken aan het project, dit is opgelost doordat we twee nieuwe servo's gekregen hebben.
         </span>
     </div>
 
