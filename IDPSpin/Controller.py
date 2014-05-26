@@ -61,12 +61,15 @@ class Controller(object):
                     self._NetworkInterface.Send("Exited", ID)
                     self.Exit()
                     self._Exit = True
+                    exit()
                 elif Command == "rebt":
                     self._NetworkInterface.Send("Reboot!", ID)
+                    self.Exit()
                     self._Exit = True
                     self.Reboot()
                 elif Command == "shtd":
                     self._NetworkInterface.Send("Shutting down!", ID)
+                    self.Exit()
                     self._Exit = True
                     self.Shutdown()
                     
@@ -83,7 +86,9 @@ class Controller(object):
         self._NetworkInterface.Exit()
         self._Camera.Exit()
         try:
-            call(["shutdown", "-r", "NOW"])
+            call(["reboot"])
+            print "Goodbye"
+
             print "BRB"
         except:
             print "Cannot reboot"

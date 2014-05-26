@@ -19,10 +19,12 @@ namespace VisionEngine
         private Thread streamThread;
         private VisionEngineForm visionEngine;
         private Semaphore commandHandlerSemaphore;
+        private ConnectionForm connectionForm;
 
         public CommandHandler(NetworkInterface networkInterface, ConnectionForm connectionForm)
         {
             CmdInt.Init();
+            this.connectionForm = connectionForm;
             this.networkInterface = networkInterface;
             this.visionLabInterface = new VisionLabInterface();
             this.visionEngine = new VisionEngineForm(this, connectionForm);
@@ -39,9 +41,17 @@ namespace VisionEngine
         public void stopStream()
         {
             commandHandlerSemaphore.WaitOne();
-            streamThread.Abort();
-            commandHandlerSemaphore.Release();
-            
+            if (streamThread != null)
+            {
+                streamThread.Abort();
+            }
+            commandHandlerSemaphore.Release(); 
+        }
+
+        public void disconnect()
+        {
+            networkInterface.Disconnect();
+            connectionForm.UpdateFormAFterConnect("Disconnected");
         }
 
         public string execute(string Command)
@@ -64,10 +74,17 @@ namespace VisionEngine
                 Image OutputImage;
                 using (MemoryStream ms = new MemoryStream(bytes))
                 {
-                    InputImage = Image.FromStream(ms);
-                    OutputImage = visionLabInterface.processImage(new Bitmap(InputImage));
-                    visionEngine.Invoke(visionEngine.UpdateImageDelegate, new Object[] { InputImage, OutputImage });
-                    //image.Save("Image.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                    try
+                    {
+                        InputImage = Image.FromStream(ms);
+                        OutputImage = visionLabInterface.processImage(new Bitmap(InputImage));
+                        visionEngine.Invoke(visionEngine.UpdateImageDelegate, new Object[] { InputImage, OutputImage });
+                        //image.Save("Image.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
             }
         }

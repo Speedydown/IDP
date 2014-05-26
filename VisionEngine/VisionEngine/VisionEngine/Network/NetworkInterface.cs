@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 
@@ -12,10 +13,11 @@ namespace VisionEngine.Network
     {
         private TcpClient  clientSocket = new TcpClient();
         private NetworkStream serverStream;
+        private Semaphore networkInterfaceSemaphore;
 
         public NetworkInterface()
         {
-
+            this.networkInterfaceSemaphore = new Semaphore(1, 1);
         }
 
         public void Connect(string Address, int Port, ConnectionForm cform)
@@ -46,34 +48,49 @@ namespace VisionEngine.Network
 
         public void Send(string Data)
         {
-            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(Data);
-            this.serverStream.Write(outStream, 0, outStream.Length);
-            this.serverStream.Flush();
+            try
+            {
+                networkInterfaceSemaphore.WaitOne();
+                byte[] outStream = System.Text.Encoding.ASCII.GetBytes(Data);
+                this.serverStream.Write(outStream, 0, outStream.Length);
+                this.serverStream.Flush();
+                networkInterfaceSemaphore.Release();
+            }
+            catch
+            {
 
+            }
         }
 
         public string Recv()
         {
-            byte[] inStream = new byte[1024];
-            
-            string Data = string.Empty;
-            
-            while (!Data.Contains("<EOF>"))
-            {
-                serverStream.Read(inStream, 0, 1024);
-                Data += Encoding.ASCII.GetString(inStream);
-                inStream = new byte[1024];
-            }
+                networkInterfaceSemaphore.WaitOne();
+                byte[] inStream = new byte[1024];
+                string Data = string.Empty;
 
-            Data = Data.Replace("\0", "");
+                while (!Data.Contains("<EOF>"))
+                {
+                    serverStream.Read(inStream, 0, 1024);
+                    Data += Encoding.ASCII.GetString(inStream);
+                    inStream = new byte[1024];
+                }
 
-            int EOFIndex = Data.IndexOf("<EOF>");
-            return Data.Substring(0, EOFIndex);
+                Data = Data.Replace("\0", "");
+
+                int EOFIndex = Data.IndexOf("<EOF>");
+                networkInterfaceSemaphore.Release();
+                return Data.Substring(0, EOFIndex);
+
         }
 
         public void Disconnect()
         {
-            serverStream.Dispose();
+            networkInterfaceSemaphore.WaitOne();
+            clientSocket.Close();
+            serverStream.Close();
+            clientSocket = null;
+            serverStream = null;
+            networkInterfaceSemaphore.Release();
         }
 
     }
