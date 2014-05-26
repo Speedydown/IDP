@@ -1,7 +1,6 @@
 __author__ = 'Matthe Jacobs'
 
 from MotionInterface import MotionInterface
-from Adafruit_PWM_Servo_Driver import PWM
 import serial
 
 class FingerControl(self, MotionInterface):    

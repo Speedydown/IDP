@@ -5,10 +5,10 @@ import time
 import thread
 import threading
 import subprocess
-#from MotionInterface import MotionInterface
+from MotionInterface import MotionInterface
 from threading import Thread
 from subprocess import call
-from Camera import Camera
+#from Camera import Camera
 
 class Controller(object):
 
@@ -18,9 +18,9 @@ class Controller(object):
         print "spInOS active"
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
-        #self._MotionInterface = MotionInterface()
+        self._MotionInterface = MotionInterface()
         self._Log = SpinLog.SpinLog()
-        self._Camera = Camera()
+        #self._Camera = Camera()
         self._Exit = False;
                 
         self._NetworkInterfaceThread = threading.Thread(target=self._NetworkInterface.run)
@@ -72,6 +72,9 @@ class Controller(object):
                     self.Exit()
                     self._Exit = True
                     self.Shutdown()
+                else:
+                    self._NetworkInterface.Send("Could not execute command", ID)
+
                     
             time.sleep(0.001)
         print "CommandHandler says goodbye"
