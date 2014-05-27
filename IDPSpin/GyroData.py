@@ -69,5 +69,5 @@ class GyroData(object):
                                       accel_yout_scaled, accel_zout_scaled)
     def getXYDegrees(self):
         CalculateAngle()
-        xyString = '%X: %d; Y: %d;' %(xDegree, yDegree)
-        return self.xyArray
+        xyString = '%X: %d, Y: %d' %(xDegree, yDegree)
+        return self.xyString
