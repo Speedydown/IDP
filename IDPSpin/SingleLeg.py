@@ -44,7 +44,7 @@ class SingleLeg(self, MotionInterface):
         elif legNum == 5:
             self.Leg5.moveHip(pulseHip)
             self.Leg5.moveKnee(pulseKnee)
-            self.Leg5fg.moveAnkle(pulseAnkle)
+            self.Leg5.moveAnkle(pulseAnkle)
         elif legNum == 6:
             self.Leg6.moveHip(pulseHip)
             self.Leg6.moveKnee(pulseKnee)
