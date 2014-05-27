@@ -14,7 +14,6 @@ class GyroData(object):
         self.bus.write_byte_data(self.address, self.power_mgmt_1, 0)
         self.xDegree = 0
         self.yDegree = 0
-        self.xyString = ''
         self.run()        
         
     def read_byte(self, adr):
@@ -54,6 +53,7 @@ class GyroData(object):
         print "gyro_yout: ", gyro_yout, " scaled: ", (gyro_yout / 131)
         print "gyro_zout: ", gyro_zout, " scaled: ", (gyro_zout / 131)
 
+    #Calculates the rotation degree
     def calculateAngle(self):
         accel_xout = self.read_word_2c(0x3b)
         accel_yout = self.read_word_2c(0x3d)
@@ -67,7 +67,15 @@ class GyroData(object):
                                       accel_yout_scaled, accel_zout_scaled)
         self.yDegree = self.get_y_rotation(accel_xout_scaled,
                                       accel_yout_scaled, accel_zout_scaled)
-    def getXYDegrees(self):
+
+    #Get x degree
+    def getXDegrees(self):
         CalculateAngle()
-        xyString = '%X: %d, Y: %d' %(xDegree, yDegree)
-        return self.xyString
+        xString = '%d' %(self.xDegree)
+        return xString
+
+    #Get y degree
+    def getYDegrees(self):
+        CalculateAngle()
+        yString = '%d' %(self.yDegree)
+        return yString
