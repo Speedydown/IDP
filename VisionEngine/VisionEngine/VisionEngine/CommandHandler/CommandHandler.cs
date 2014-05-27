@@ -76,13 +76,9 @@ namespace VisionEngine
                 {
                     try
                     {
-                        InputImage = Image.FromStream(ms);
+                        InputImage = new Bitmap(Image.FromStream(ms));
                         OutputImage = visionLabInterface.processImage(new Bitmap(InputImage));
                         visionEngine.Invoke(visionEngine.UpdateImageDelegate, new Object[] { InputImage, OutputImage });
-                        Thread.Sleep(100);
-                        OutputImage.Save("imageo.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                        InputImage.Save("imagei.jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
-                        Thread.Sleep(100);
                     }
                     catch (Exception)
                     {

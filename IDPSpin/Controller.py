@@ -27,6 +27,8 @@ class Controller(object):
         self._NetworkInterfaceThread.start()
         self._CommandHandlerThread = threading.Thread(target=self.CommandHandler)
         self._CommandHandlerThread.start()
+        self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.run())
+        self._MotionInterfaceThread.start()
     
     def CommandHandler(self):
         while self._Exit == False:
@@ -52,10 +54,10 @@ class Controller(object):
                 elif Command == "tsen":
                    self._NetworkInterface.Send(self._MotionInterface.test(data[11:]), ID)
                 elif Command == "move":
-                    self._NetworkInterface.Send(self._MotionInterface.test(data[11:]), ID)
+                    self._NetworkInterface.Send(self._MotionInterface.set_CurrentCommand(data[11:13]), ID)
                 elif Command == "gimg":
                     self._NetworkInterface.Send(self._Camera.takeImage(), ID)
-                elif Command == "gcim":
+                elif Command == "gifm":
                     self._NetworkInterface.Send(self._Camera.getImageFromMemory(), ID)
                 elif Command == "exit":
                     self._NetworkInterface.Send("Exited", ID)

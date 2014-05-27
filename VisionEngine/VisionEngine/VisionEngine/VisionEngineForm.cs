@@ -21,6 +21,7 @@ namespace VisionEngine
         public UpdateImage UpdateImageDelegate;
         private CommandHandler commandHandler;
         private ConnectionForm connectionForm;
+        private int ImageCount = 1;
 
         public VisionEngineForm(CommandHandler commandHandler, ConnectionForm connectionForm)
         {
@@ -104,6 +105,24 @@ namespace VisionEngine
         private void enableCustomCommandsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Height = 502;
+        }
+
+        private void saveInputPictureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lock (pictureBoxInput.Image)
+            {
+                pictureBoxInput.Image.Save("Input" + ImageCount + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                ImageCount++;
+            }
+        }
+
+        private void saveOutputPictureToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            lock (pictureBoxOutput.Image)
+            {
+                pictureBoxOutput.Image.Save("Output" + ImageCount + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
+                ImageCount++;
+            }
         }
 
     }

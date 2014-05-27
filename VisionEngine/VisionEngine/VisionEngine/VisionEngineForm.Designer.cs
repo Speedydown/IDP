@@ -36,19 +36,21 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.disconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rebootServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shutdownServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rebootServerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitVisionEngineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.streamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startStreamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopStreamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exitVisionEngineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableCustomCommandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.InputTextbox = new System.Windows.Forms.TextBox();
             this.executeButton = new System.Windows.Forms.Button();
             this.OutputTextbox = new System.Windows.Forms.TextBox();
+            this.saveInputPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveOutputPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutput)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -127,13 +129,6 @@
             this.exitServerToolStripMenuItem.Text = "Exit server";
             this.exitServerToolStripMenuItem.Click += new System.EventHandler(this.exitServerToolStripMenuItem_Click);
             // 
-            // rebootServerToolStripMenuItem
-            // 
-            this.rebootServerToolStripMenuItem.Name = "rebootServerToolStripMenuItem";
-            this.rebootServerToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.rebootServerToolStripMenuItem.Text = "Reboot server";
-            this.rebootServerToolStripMenuItem.Click += new System.EventHandler(this.rebootServerToolStripMenuItem_Click);
-            // 
             // shutdownServerToolStripMenuItem
             // 
             this.shutdownServerToolStripMenuItem.Name = "shutdownServerToolStripMenuItem";
@@ -141,14 +136,44 @@
             this.shutdownServerToolStripMenuItem.Text = "Shutdown server";
             this.shutdownServerToolStripMenuItem.Click += new System.EventHandler(this.shutdownServerToolStripMenuItem_Click);
             // 
+            // rebootServerToolStripMenuItem
+            // 
+            this.rebootServerToolStripMenuItem.Name = "rebootServerToolStripMenuItem";
+            this.rebootServerToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.rebootServerToolStripMenuItem.Text = "Reboot server";
+            this.rebootServerToolStripMenuItem.Click += new System.EventHandler(this.rebootServerToolStripMenuItem_Click);
+            // 
+            // exitVisionEngineToolStripMenuItem
+            // 
+            this.exitVisionEngineToolStripMenuItem.Name = "exitVisionEngineToolStripMenuItem";
+            this.exitVisionEngineToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.exitVisionEngineToolStripMenuItem.Text = "Exit Vision Engine";
+            this.exitVisionEngineToolStripMenuItem.Click += new System.EventHandler(this.exitVisionEngineToolStripMenuItem_Click);
+            // 
             // streamToolStripMenuItem
             // 
             this.streamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.startStreamToolStripMenuItem,
-            this.stopStreamToolStripMenuItem});
+            this.stopStreamToolStripMenuItem,
+            this.saveInputPictureToolStripMenuItem,
+            this.saveOutputPictureToolStripMenuItem});
             this.streamToolStripMenuItem.Name = "streamToolStripMenuItem";
             this.streamToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.streamToolStripMenuItem.Text = "Stream";
+            // 
+            // startStreamToolStripMenuItem
+            // 
+            this.startStreamToolStripMenuItem.Name = "startStreamToolStripMenuItem";
+            this.startStreamToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.startStreamToolStripMenuItem.Text = "Start stream";
+            this.startStreamToolStripMenuItem.Click += new System.EventHandler(this.startStreamToolStripMenuItem_Click);
+            // 
+            // stopStreamToolStripMenuItem
+            // 
+            this.stopStreamToolStripMenuItem.Name = "stopStreamToolStripMenuItem";
+            this.stopStreamToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.stopStreamToolStripMenuItem.Text = "Stop stream";
+            this.stopStreamToolStripMenuItem.Click += new System.EventHandler(this.stopStreamToolStripMenuItem_Click);
             // 
             // advancedToolStripMenuItem
             // 
@@ -158,6 +183,13 @@
             this.advancedToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.advancedToolStripMenuItem.Text = "Advanced";
             // 
+            // enableCustomCommandsToolStripMenuItem
+            // 
+            this.enableCustomCommandsToolStripMenuItem.Name = "enableCustomCommandsToolStripMenuItem";
+            this.enableCustomCommandsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.enableCustomCommandsToolStripMenuItem.Text = "Enable custom commands";
+            this.enableCustomCommandsToolStripMenuItem.Click += new System.EventHandler(this.enableCustomCommandsToolStripMenuItem_Click);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -166,40 +198,12 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             // 
-            // startStreamToolStripMenuItem
-            // 
-            this.startStreamToolStripMenuItem.Name = "startStreamToolStripMenuItem";
-            this.startStreamToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.startStreamToolStripMenuItem.Text = "Start stream";
-            this.startStreamToolStripMenuItem.Click += new System.EventHandler(this.startStreamToolStripMenuItem_Click);
-            // 
-            // stopStreamToolStripMenuItem
-            // 
-            this.stopStreamToolStripMenuItem.Name = "stopStreamToolStripMenuItem";
-            this.stopStreamToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.stopStreamToolStripMenuItem.Text = "Stop stream";
-            this.stopStreamToolStripMenuItem.Click += new System.EventHandler(this.stopStreamToolStripMenuItem_Click);
-            // 
             // infoToolStripMenuItem
             // 
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
-            // 
-            // exitVisionEngineToolStripMenuItem
-            // 
-            this.exitVisionEngineToolStripMenuItem.Name = "exitVisionEngineToolStripMenuItem";
-            this.exitVisionEngineToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.exitVisionEngineToolStripMenuItem.Text = "Exit Vision Engine";
-            this.exitVisionEngineToolStripMenuItem.Click += new System.EventHandler(this.exitVisionEngineToolStripMenuItem_Click);
-            // 
-            // enableCustomCommandsToolStripMenuItem
-            // 
-            this.enableCustomCommandsToolStripMenuItem.Name = "enableCustomCommandsToolStripMenuItem";
-            this.enableCustomCommandsToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.enableCustomCommandsToolStripMenuItem.Text = "Enable custom commands";
-            this.enableCustomCommandsToolStripMenuItem.Click += new System.EventHandler(this.enableCustomCommandsToolStripMenuItem_Click);
             // 
             // InputTextbox
             // 
@@ -226,6 +230,20 @@
             this.OutputTextbox.ReadOnly = true;
             this.OutputTextbox.Size = new System.Drawing.Size(959, 35);
             this.OutputTextbox.TabIndex = 12;
+            // 
+            // saveInputPictureToolStripMenuItem
+            // 
+            this.saveInputPictureToolStripMenuItem.Name = "saveInputPictureToolStripMenuItem";
+            this.saveInputPictureToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.saveInputPictureToolStripMenuItem.Text = "Save Input picture";
+            this.saveInputPictureToolStripMenuItem.Click += new System.EventHandler(this.saveInputPictureToolStripMenuItem_Click);
+            // 
+            // saveOutputPictureToolStripMenuItem
+            // 
+            this.saveOutputPictureToolStripMenuItem.Name = "saveOutputPictureToolStripMenuItem";
+            this.saveOutputPictureToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.saveOutputPictureToolStripMenuItem.Text = "Save Output picture";
+            this.saveOutputPictureToolStripMenuItem.Click += new System.EventHandler(this.saveOutputPictureToolStripMenuItem_Click);
             // 
             // VisionEngineForm
             // 
@@ -280,6 +298,8 @@
         private System.Windows.Forms.TextBox InputTextbox;
         private System.Windows.Forms.Button executeButton;
         private System.Windows.Forms.TextBox OutputTextbox;
+        private System.Windows.Forms.ToolStripMenuItem saveInputPictureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveOutputPictureToolStripMenuItem;
     }
 }
 
