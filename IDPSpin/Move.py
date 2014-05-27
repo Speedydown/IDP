@@ -7,9 +7,6 @@ class Move(MotionInterface):
         MotionInterface.__init__(self)
         self._Stop = False
 
-
-
-
     def moveForward(self):
 
         while self._Stop == False:

@@ -5,7 +5,7 @@ from Leg import Leg
 class MotionInterface(object):
 
     def __init__(self):
-        self.Leg1 = Leg(["0x40", "0x40", "0x40"], [0, 1, 3], [350, 350, 375])
+        self.Leg1 = Leg(["0x40", "0x40", "0x40"], [0, 1, 3], [375, 375, 375])
 
     def test(self, Pulse):
         print "Pulse: " + Pulse
