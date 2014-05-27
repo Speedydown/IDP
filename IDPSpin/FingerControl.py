@@ -11,7 +11,6 @@ class FingerControl(self, MotionInterface):
     def run(self):
         while(True):
             incoming = ser.readLine()
-
             try:
                 if incoming[0] == 'a':
                     incomingInt = int(incoming.strip('a'))
