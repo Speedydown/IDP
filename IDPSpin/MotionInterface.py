@@ -7,7 +7,7 @@ import time
 class MotionInterface(object):
     def __init__(self):
         self._Legs = [
-            Leg(["0x40", "0x40", "0x40"], [0, 1, 3], [350, 350, 375])
+            Leg(["0x40", "0x40", "0x40"], [0, 1, 3], [375, 375, 375])
         ]
         self._currentCommand = 0
         self._Exit = False
