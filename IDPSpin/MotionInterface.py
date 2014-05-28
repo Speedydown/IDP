@@ -1,6 +1,7 @@
 __author__ = 'Ivar'
 
 from Leg import Leg
+import threading
 from threading import Semaphore
 import time
 

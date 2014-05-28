@@ -22,7 +22,7 @@ class Servo(object):
         elif pulse < self.minPulse:
             pulse = self.minPulse
 
-        self.pwm.setPWM(self.channel, 150, pulse)
+        self.pwm.setPWM(self.channel, 0, pulse)
         self.pulse = pulse
 
     def getPulse(self):
