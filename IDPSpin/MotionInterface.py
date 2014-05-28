@@ -9,7 +9,7 @@ class MotionInterface(object):
         self._Legs = [
             Leg(["0x40", "0x40", "0x40"], [0, 1, 3], [350, 350, 375])
         ]
-        self._currentCommand
+        self._currentCommand = 0
         self._Exit = False
         self.Semaphore = threading.Semaphore(1)
         self.ExitSemaphore = threading.Semaphore(1)
