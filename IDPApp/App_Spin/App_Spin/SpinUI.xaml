@@ -13,9 +13,9 @@
             <TextBlock HorizontalAlignment="Left" Margin="150,10,0,0" TextWrapping="Wrap" Text="Spider Control" VerticalAlignment="Top" Height="100" Width="500" FontSize="72"/>
             <TextBlock x:Name="lblBattery" Margin="950,10,0,0" VerticalAlignment="Top" Height="30" Width="100" FontSize="15"/>
             <TextBlock x:Name="lblSlope" Margin="950,60,0,0" VerticalAlignment="Top" Height="30" Width="100" FontSize="15"/> 
-            <TextBlock x:Name="lblHour" Margin="1200,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="40"/>
-            <TextBlock x:Name="lblMin" Margin="1200,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="40"/>
-            <TextBlock x:Name="lblSec" Margin="1200,65,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="40"/>
+            <TextBlock x:Name="lblHour" Margin="1240,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
+            <TextBlock x:Name="lblMin" Margin="1240,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
+            <TextBlock x:Name="lblSec" Margin="1240,65,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             
             <ComboBox x:Name="cmbMissionSelect" Margin="650,25,0,0" Height="50" Width="280" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Global User Interface">
                 <ComboBoxItem Content="Handmatige besturing" IsSelected="True"/>
@@ -29,12 +29,6 @@
                 <ComboBoxItem Content="Paringsdans / Oorlog"/>
             </ComboBox>
         </Grid>
-        
-        <Popup x:Name="popBattery" IsOpen="False" Margin="0,0,0,0" Height="300" Width="600" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Name="txtBatteryPop" FontSize="72">
-                Battery Info
-            </TextBlock>
-        </Popup>
 
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,200,0,0" Width="400" Height="400">
             <Canvas>
@@ -50,10 +44,7 @@
                 <Button x:Name="btnRightBw" Height="100" Width="100" Content="RightBw" Canvas.Left="240" Canvas.Top="240" PointerPressed="btnRightBw_Pressed" PointerReleased="btnRightBw_Released" Opacity="0"/>
             </Canvas>
         </Grid>
-        
-        <TextBox x:Name="TimerLog" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,620,0,0"/>
         <TextBox x:Name="txtJoytest" HorizontalAlignment="Left" Margin="200,620,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" FontFamily="Global User Interface"/>
         <Image x:Name="videoFeed" Source="Assets/imgVideo.jpg" HorizontalAlignment="Left" Width="576" Height="432" Margin="700,190,0,0" VerticalAlignment="Top"/>
-        
     </Grid>
 </Page>

@@ -30,13 +30,17 @@ namespace App_Spin
         private int slope;
 
         public string move = "";
-
-        DispatcherTimer clock;
-               
+                       
         public SpinUI()
         {
             this.InitializeComponent();
-            clock = new DispatcherTimer();
+            
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+            timer.Tick += (o, e) => lblHour.Text = DateTime.Now.Hour.ToString();
+            timer.Tick += (o, e) => lblMin.Text = DateTime.Now.Minute.ToString();
+            timer.Tick += (o, e) => lblSec.Text = DateTime.Now.Second.ToString();
+            timer.Start();
+
             /*
              * Add new EventHandlers per button, not standard supported.
              * Each button will get two new handlers, *_Pressed and *_Released.
@@ -70,15 +74,6 @@ namespace App_Spin
             
             getBattery();
             getSlope();
-
-            time();
-        }
-
-        private void time()
-        {
-            //lblHour.Text = DateTime.Now.Hour.ToString();
-            //lblMin.Text = DateTime.Now.Minute.ToString();
-            //lblSec.Text = DateTime.Now.Second.ToString();
         }
 
         private void getBattery()
@@ -118,6 +113,15 @@ namespace App_Spin
             txtJoytest.Text = moveMessage;
         }
 
+
+
+        /* Bindings 
+         *  for buttons to send move commands to Raspberry Pi
+         *  move commands are as follows:
+         *      - move 11-18 ; move in 8 directions, 11 is forward, clockwise to 18 is left-forward
+         *      - move 10    ; to stop current movement
+         */
+
         /* Stop command for move */
         private void stop()
         {
@@ -126,13 +130,6 @@ namespace App_Spin
             getBattery();
             getSlope();
         }
-
-        /* Bindings 
-         *  for buttons to send move commands to Raspberry Pi
-         *  move commands are as follows:
-         *      - move 11-18 ; move in 8 directions, 11 is forward, clockwise to 18 is left-forward
-         *      - move 10    ; to stop current movement
-         */
 
         // LF - FW - RF
 
