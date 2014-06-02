@@ -6,6 +6,7 @@ import thread
 import threading
 import subprocess
 from MotionInterface import MotionInterface
+from Move import Move
 from threading import Thread
 from subprocess import call
 #from Camera import Camera
@@ -18,10 +19,11 @@ class Controller(object):
         print "spInOS active"
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
-        self._MotionInterface = MotionInterface()
+        self._MotionInterface = Move()
         self._Log = SpinLog.SpinLog()
         #self._Camera = Camera()
         self._Exit = False;
+        self._Mode = 1
                 
         self._NetworkInterfaceThread = threading.Thread(target=self._NetworkInterface.run)
         self._NetworkInterfaceThread.start()
@@ -53,6 +55,17 @@ class Controller(object):
                     self.gcpu(ID)
                 elif Command == "tsen":
                    self._NetworkInterface.Send(self._MotionInterface.test(data[11:]), ID)
+                elif Command == "smde":
+                    self._Mode = data[11:12]
+                    self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
+
+                    if int(self._Mode) == 1:
+                        self._MotionInterface = Move()
+
+                    self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.run())
+                    self._MotionInterfaceThread.start()
+                elif Command == "gmde":
+                    self._NetworkInterface.Send(self._Mode, ID)
                 elif Command == "move":
                     self._NetworkInterface.Send(self._MotionInterface.set_CurrentCommand(data[11:13]), ID)
                 elif Command == "gimg":
@@ -84,6 +97,7 @@ class Controller(object):
     def Exit(self):
         self._NetworkInterface.Exit()
         self._Camera.Exit()
+        self._MotionInterface.exit()
 
         print "Goodbye"
         
