@@ -17,6 +17,9 @@ class Servo(object):
         self.setPulse(startingPulse)
 
     def setPulse(self, pulse):
+        # If the input pulse is bigger then maxPulse, then set to maxPulse,
+        # for input smaller then minPulse, then set to minPulse.
+        #
         if pulse > self.maxPulse:
             pulse = self.maxPulse
         elif pulse < self.minPulse:

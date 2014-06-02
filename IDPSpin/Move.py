@@ -7,15 +7,14 @@ class Move(MotionInterface):
         self._Stop = False
 
     def moveForward(self):
-        #MotionInterface._Legs[0].moveHip(375)
-        self._MInterface._Legs[0].moveKnee(347)
-        self._MInterface._Legs[0].moveAnkle(339)
+        self._MInterface._Legs[0].moveHip(375)
+        self._MInterface._Legs[0].moveKnee(375)
+        self._MInterface._Legs[0].moveAnkle(375)
         time.sleep(1)
-        self._MInterface._Legs[0].moveKnee(355)
-        self._MInterface._Legs[0].moveAnkle(360)
+        self._MInterface._Legs[0].moveHip(472)
+        self._MInterface._Legs[0].moveKnee(329)
+        self._MInterface._Legs[0].moveAnkle(312)
         time.sleep(1)
-
-
 
     def run(self):
 
@@ -25,7 +24,6 @@ class Move(MotionInterface):
             self._MInterface.getExitSemaphore().release()
             time.sleep(0.001)
 
-
     def executeCommand(self, Command):
         Command = int(Command)
 
@@ -33,7 +31,6 @@ class Move(MotionInterface):
             pass
         elif Command == 11:
             self.moveForward()
-
 
     def get_CurrentCommand(self):
         return self._MInterface.get_CurrentCommand()
