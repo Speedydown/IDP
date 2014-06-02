@@ -19,6 +19,8 @@ namespace VisionEngine
     {
         public delegate void UpdateImage(Bitmap Input, Bitmap Output);
         public UpdateImage UpdateImageDelegate;
+        public delegate void UpdateImageBalloon(string color, int index);
+        public UpdateImageBalloon UpdateImageBalloonDelegate;
         private CommandHandler commandHandler;
         private ConnectionForm connectionForm;
         private int ImageCount = 1;
@@ -31,7 +33,34 @@ namespace VisionEngine
             pictureBoxInput.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxOutput.SizeMode = PictureBoxSizeMode.StretchImage;
             UpdateImageDelegate = new UpdateImage(updateImages);
+            UpdateImageBalloonDelegate = new UpdateImageBalloon(updateImageBalloon);
  
+        }
+
+        private void updateImageBalloon(string color, int index)
+        {
+            Console.WriteLine("INHEREEEE");
+            switch (color) { 
+                case "RED":
+                     PictureBox pb = (PictureBox) this.Controls.Find(("balloon" + index.ToString()), true)[0];
+                     pb.Image = VisionEngine.Properties.Resources.balloonRed;
+                     //this.balloon1.Image = VisionEngine.Properties.Resources.balloonRed;
+                    break;
+                case "BLUE":
+                     PictureBox pb1 = (PictureBox) this.Controls.Find(("balloon" + index.ToString()), true)[0];
+                     pb1.Image = VisionEngine.Properties.Resources.balloonBlue;
+                    //PictureBox pb1 = (PictureBox) this.Controls.Find(("balloon" + index.ToString()), false)[0];
+                    //pb1.Image = VisionEngine.Properties.Resources.balloonRed;
+                    break;
+                case "GREEN":
+                     PictureBox pb2 = (PictureBox) this.Controls.Find(("balloon" + index.ToString()), true)[0];
+                     pb2.Image = VisionEngine.Properties.Resources.balloonGreen;
+                    //PictureBox pb2 = (PictureBox)this.Controls.Find(("balloon" + index.ToString()), false)[0];
+                    //pb2.Image = VisionEngine.Properties.Resources.balloonRed;
+                    break;
+    
+            }
+                
         }
 
         private void updateImages(Bitmap Input, Bitmap Output)
@@ -123,6 +152,11 @@ namespace VisionEngine
                 pictureBoxOutput.Image.Save("Output" + ImageCount + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                 ImageCount++;
             }
+        }
+
+        private void VisionEngineForm_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

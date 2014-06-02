@@ -1,0 +1,24 @@
+$ana = BlobAnalysisArray obj &$tab SortUp TopLeft UseX TopLeft TopRight BottomLeft BottomRight CentreOfGravity
+for $i = 0 to $ana do
+  VarToArray &$tab[$i] &$elm
+  $topleft = $elm[1]
+  $topright = $elm[2]
+  $bottomleft = $elm[4]
+    $bottomright = $elm[5]
+  $center = $elm[3]
+DrawLine img $topleft $topright 255 KeepOriginal
+DrawLine img $topleft $bottomleft 255 KeepOriginal
+DrawLine img $bottomright $bottomleft 255 KeepOriginal
+DrawLine img $bottomright $topright 255 KeepOriginal
+
+endfor
+
+//$x = getnthfromvector 1 $center
+//$y = getnthfromvector 2 $center
+//$x = Round $x
+//$y = Round $y 
+//$x = $x
+//30
+//$y = $y - 20
+//$f =         
+//TextOnImage img $x $y courier14 $f

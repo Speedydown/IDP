@@ -1,0 +1,98 @@
+//// Miriam Haije, SpinDP groep 9
+AddScript findColor C:\Users\Miriam\Desktop\test.jls
+AddScript removeTrash C:\Users\Miriam\Desktop\removeTrashCard.jls
+AddScript output C:\Users\Miriam\Desktop\outputCard.jls
+////
+
+ExtractRGBchannels img2 R G B Int16Image
+
+//extract pixels where R is higher then B+G, with threshold off -30
+Add B G
+Subtract R B
+Threshold R -30 255
+
+Convert img imgHSV HSV888Image
+
+Extract1HSVchannel imgHSV H Hue Int16Image
+
+//red has issue off Hue can be between 0-20 and 225 - 255 due to mapping
+//this code transforms 0-20 in 255-275, is easier with next calculations
+AddPixel H 1
+Copy H H1
+Copy H H2
+Threshold H1 -1 25
+Threshold H2 25 255
+Multiply H1 H
+AddPixel H1 255
+Copy H1 H01
+Threshold H1 256 900
+Multiply H1 H01
+Multiply H2 H
+Add H1 H2 
+Copy H1 H
+
+$diff = 1
+$hueVal = 260 //greenval
+$hueMax = $hueVal + 25 + $diff //greenMax
+$breakValue = $hueVal - 25 //greenMin
+
+$go = true
+while $go
+ Copy H obj 
+ icall findColor
+ Add obj R
+ Threshold obj 2 2
+ 
+ icall removeTrash
+ 
+ $count = CountLabels obj 1 400
+ if $count != 0 then
+   $ana = BlobAnalysisArray obj &$tab SortUp Area UseX TopLeft Area
+   
+   for $i = 0 to $ana do
+    VarToArray &$tab[$i] &$elm
+    $areaOld = $elm[1]
+   endfor
+   $go2 = true
+   while $go2
+     Copy obj objLast
+     Copy H obj 
+     icall findColor
+     //display obj
+      Add obj R
+      Threshold obj 2 2
+      icall removeTrash
+ 
+     LabelBlobs obj EightConnected
+     
+     $count = CountLabels obj 1 400
+     if $count == 0 then
+      Copy objLast obj
+      $go = false
+      $go2 = false
+     else 
+      $ana = BlobAnalysisArray obj &$tab SortUp Area UseX TopLeft Area
+      for $i = 0 to $ana do
+      VarToArray &$tab[$i] &$elm
+      $areaNew = $elm[1]
+      if $areaNew < $areaOld then
+       Copy objLast obj
+       $go = false
+       $go2 = fals
+      endif
+    endfor
+       
+     endif
+     
+   endwhile
+ 
+ 
+ endif
+ 
+ if $hueMax < $breakValue then
+  $go = false
+ endif
+endwhile
+
+$f = RED
+icall output

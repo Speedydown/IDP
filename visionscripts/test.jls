@@ -1,0 +1,7 @@
+$hueMax = $hueMax - $diff
+$hueMin = $hueMax - 10
+
+Threshold obj $hueMin $hueMax
+
+
+//$greenMax = $greenMax + 4

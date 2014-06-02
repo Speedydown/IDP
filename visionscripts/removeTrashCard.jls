@@ -1,0 +1,15 @@
+LabelBlobs obj EightConnected
+RemoveBlobs obj EightConnected Area 1 5000 UseX
+RemoveBlobs obj EightConnected Area 28000 100000 UseX
+
+RemoveBlobs obj EightConnected LengthBreadthRatio 1.47 900 UseX
+//RemoveBlobs obj EightConnected EllipsFit 0.65 1 UseX
+RemoveBlobs obj EightConnected FormFactor 0 0.13 UseX
+LabelBlobs obj EightConnected
+
+
+//RemoveBlobs obj EightConnected CentreOfGravity (400,348) (500,500) UseX
+
+
+//LabelBlobs obj EightConnected
+

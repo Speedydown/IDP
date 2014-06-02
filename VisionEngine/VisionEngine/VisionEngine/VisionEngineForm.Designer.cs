@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxInput = new System.Windows.Forms.PictureBox();
-            this.pictureBoxOutput = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -42,6 +40,8 @@
             this.streamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startStreamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stopStreamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveInputPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveOutputPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableCustomCommandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,28 +49,20 @@
             this.InputTextbox = new System.Windows.Forms.TextBox();
             this.executeButton = new System.Windows.Forms.Button();
             this.OutputTextbox = new System.Windows.Forms.TextBox();
-            this.saveInputPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveOutputPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInput)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutput)).BeginInit();
+            this.balloonPanel = new System.Windows.Forms.Panel();
+            this.balloon3 = new System.Windows.Forms.PictureBox();
+            this.balloon2 = new System.Windows.Forms.PictureBox();
+            this.balloon1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxOutput = new System.Windows.Forms.PictureBox();
+            this.pictureBoxInput = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
+            this.balloonPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.balloon3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balloon2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balloon1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInput)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBoxInput
-            // 
-            this.pictureBoxInput.Location = new System.Drawing.Point(12, 42);
-            this.pictureBoxInput.Name = "pictureBoxInput";
-            this.pictureBoxInput.Size = new System.Drawing.Size(477, 327);
-            this.pictureBoxInput.TabIndex = 1;
-            this.pictureBoxInput.TabStop = false;
-            // 
-            // pictureBoxOutput
-            // 
-            this.pictureBoxOutput.Location = new System.Drawing.Point(495, 42);
-            this.pictureBoxOutput.Name = "pictureBoxOutput";
-            this.pictureBoxOutput.Size = new System.Drawing.Size(477, 327);
-            this.pictureBoxOutput.TabIndex = 3;
-            this.pictureBoxOutput.TabStop = false;
             // 
             // label1
             // 
@@ -99,7 +91,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(983, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -175,6 +167,20 @@
             this.stopStreamToolStripMenuItem.Text = "Stop stream";
             this.stopStreamToolStripMenuItem.Click += new System.EventHandler(this.stopStreamToolStripMenuItem_Click);
             // 
+            // saveInputPictureToolStripMenuItem
+            // 
+            this.saveInputPictureToolStripMenuItem.Name = "saveInputPictureToolStripMenuItem";
+            this.saveInputPictureToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.saveInputPictureToolStripMenuItem.Text = "Save Input picture";
+            this.saveInputPictureToolStripMenuItem.Click += new System.EventHandler(this.saveInputPictureToolStripMenuItem_Click);
+            // 
+            // saveOutputPictureToolStripMenuItem
+            // 
+            this.saveOutputPictureToolStripMenuItem.Name = "saveOutputPictureToolStripMenuItem";
+            this.saveOutputPictureToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.saveOutputPictureToolStripMenuItem.Text = "Save Output picture";
+            this.saveOutputPictureToolStripMenuItem.Click += new System.EventHandler(this.saveOutputPictureToolStripMenuItem_Click);
+            // 
             // advancedToolStripMenuItem
             // 
             this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -231,27 +237,70 @@
             this.OutputTextbox.Size = new System.Drawing.Size(959, 35);
             this.OutputTextbox.TabIndex = 12;
             // 
-            // saveInputPictureToolStripMenuItem
+            // balloonPanel
             // 
-            this.saveInputPictureToolStripMenuItem.Name = "saveInputPictureToolStripMenuItem";
-            this.saveInputPictureToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.saveInputPictureToolStripMenuItem.Text = "Save Input picture";
-            this.saveInputPictureToolStripMenuItem.Click += new System.EventHandler(this.saveInputPictureToolStripMenuItem_Click);
+            this.balloonPanel.Controls.Add(this.balloon3);
+            this.balloonPanel.Controls.Add(this.balloon2);
+            this.balloonPanel.Controls.Add(this.balloon1);
+            this.balloonPanel.Location = new System.Drawing.Point(978, 42);
+            this.balloonPanel.Name = "balloonPanel";
+            this.balloonPanel.Size = new System.Drawing.Size(170, 327);
+            this.balloonPanel.TabIndex = 13;
             // 
-            // saveOutputPictureToolStripMenuItem
+            // balloon3
             // 
-            this.saveOutputPictureToolStripMenuItem.Name = "saveOutputPictureToolStripMenuItem";
-            this.saveOutputPictureToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.saveOutputPictureToolStripMenuItem.Text = "Save Output picture";
-            this.saveOutputPictureToolStripMenuItem.Click += new System.EventHandler(this.saveOutputPictureToolStripMenuItem_Click);
+            this.balloon3.Image = global::VisionEngine.Properties.Resources.balloonUnkown;
+            this.balloon3.Location = new System.Drawing.Point(30, 220);
+            this.balloon3.Name = "balloon3";
+            this.balloon3.Size = new System.Drawing.Size(106, 104);
+            this.balloon3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.balloon3.TabIndex = 2;
+            this.balloon3.TabStop = false;
+            // 
+            // balloon2
+            // 
+            this.balloon2.Image = global::VisionEngine.Properties.Resources.balloonGreen;
+            this.balloon2.Location = new System.Drawing.Point(30, 110);
+            this.balloon2.Name = "balloon2";
+            this.balloon2.Size = new System.Drawing.Size(106, 104);
+            this.balloon2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.balloon2.TabIndex = 1;
+            this.balloon2.TabStop = false;
+            // 
+            // balloon1
+            // 
+            this.balloon1.Image = global::VisionEngine.Properties.Resources.balloonGreen1;
+            this.balloon1.Location = new System.Drawing.Point(30, 0);
+            this.balloon1.Name = "balloon1";
+            this.balloon1.Size = new System.Drawing.Size(106, 104);
+            this.balloon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.balloon1.TabIndex = 0;
+            this.balloon1.TabStop = false;
+            // 
+            // pictureBoxOutput
+            // 
+            this.pictureBoxOutput.Location = new System.Drawing.Point(495, 42);
+            this.pictureBoxOutput.Name = "pictureBoxOutput";
+            this.pictureBoxOutput.Size = new System.Drawing.Size(477, 327);
+            this.pictureBoxOutput.TabIndex = 3;
+            this.pictureBoxOutput.TabStop = false;
+            // 
+            // pictureBoxInput
+            // 
+            this.pictureBoxInput.Location = new System.Drawing.Point(12, 42);
+            this.pictureBoxInput.Name = "pictureBoxInput";
+            this.pictureBoxInput.Size = new System.Drawing.Size(477, 327);
+            this.pictureBoxInput.TabIndex = 1;
+            this.pictureBoxInput.TabStop = false;
             // 
             // VisionEngineForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(983, 382);
+            this.ClientSize = new System.Drawing.Size(1200, 381);
             this.ControlBox = false;
+            this.Controls.Add(this.balloonPanel);
             this.Controls.Add(this.OutputTextbox);
             this.Controls.Add(this.executeButton);
             this.Controls.Add(this.InputTextbox);
@@ -266,10 +315,15 @@
             this.MinimizeBox = false;
             this.Name = "VisionEngineForm";
             this.Text = "Vision Engine®";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInput)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutput)).EndInit();
+            this.Load += new System.EventHandler(this.VisionEngineForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.balloonPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.balloon3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balloon2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.balloon1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,6 +354,10 @@
         private System.Windows.Forms.TextBox OutputTextbox;
         private System.Windows.Forms.ToolStripMenuItem saveInputPictureToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveOutputPictureToolStripMenuItem;
+        private System.Windows.Forms.Panel balloonPanel;
+        private System.Windows.Forms.PictureBox balloon3;
+        private System.Windows.Forms.PictureBox balloon2;
+        private System.Windows.Forms.PictureBox balloon1;
     }
 }
 
