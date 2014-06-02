@@ -16,3 +16,4 @@ class GetSpiData:
 
         def getSpi(self):
                 spiData = '%d' %(readadc(0))
+                return spiData
