@@ -7,14 +7,14 @@ class Servo(object):
     Setting the channels, address, startingPulse and frequency to create an servo.
     Using the Adafruit PWM servo driver to set the min and max Pulse of the servo.
     """
-    def __init__(self, address, channel, startingPulse, minPulse=150, maxPulse=600, freq=60):
+    def __init__(self, address, channel, startingPulse):
     # Constructor
         self.pulse = 0
         self.channel = channel
         self.address = address
-        self.freq = freq
-        self.maxPulse = maxPulse
-        self.minPulse = minPulse
+        self.freq = 60
+        self.maxPulse = 600
+        self.minPulse = 150
         self.pwm = PWM()
         self.pwm.setPWMFreq(self.freq)
         self.setPulse(startingPulse)
