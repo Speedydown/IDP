@@ -15,6 +15,15 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+/* CONTROLLER */
+using Windows.Devices.Enumeration;
+using Windows.Devices.Bluetooth;
+using Windows.Devices.Bluetooth.Rfcomm;
+using Windows.Devices.Bluetooth.GenericAttributeProfile;
+
+using Windows.Devices.HumanInterfaceDevice;
+using Windows.Storage;
+using Windows.Storage.Streams;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
@@ -26,25 +35,30 @@ namespace App_Spin
     /// </summary>
     public sealed partial class SpinUI : Page
     {
+        /*BATTERY AND SLOPE INTS*/
         private int battery;
         private int slope;
-
+        /*MOVE STRING*/
         public string move = "";
-                       
+
         public SpinUI()
         {
             this.InitializeComponent();
             
+            /* TIMER IN RIGHT TOP CORNER SPLIT IN HOUR MINUTE SECOND */
             var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
             timer.Tick += (o, e) => lblHour.Text = DateTime.Now.Hour.ToString();
             timer.Tick += (o, e) => lblMin.Text = DateTime.Now.Minute.ToString();
             timer.Tick += (o, e) => lblSec.Text = DateTime.Now.Second.ToString();
             timer.Start();
 
+            /*Human Interface Device, DualShock 4*/
+
             /*
              * Add new EventHandlers per button, not standard supported.
              * Each button will get two new handlers, *_Pressed and *_Released.
              */
+
             #region Handlers
             //LF
             btnLeftFw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnLeftFw_Pressed), true);
@@ -74,6 +88,69 @@ namespace App_Spin
             
             getBattery();
             getSlope();
+            ds4detect();
+            getInput(ds4);
+        }
+
+        /*IDs FOR THE WIRELESS CONTROLLER (HID DEVICE)*/
+        UInt16 PID = 0x05C4;
+        UInt16 VID = 0x054C;
+        UInt16 usagePage = 0x01;
+        UInt16 UID = 0x05;
+
+        HidDevice ds4;
+        DeviceWatcher ds4watcher;
+
+        private async void ds4detect()
+        {
+            string select = HidDevice.GetDeviceSelector(usagePage, UID, VID, PID);
+            var devices = await DeviceInformation.FindAllAsync(select);
+
+            if (devices.Count > 0)
+            {
+                /*
+                 * SCAN FOR HID DEVICES
+                 * ElementAt(0) --> ds4
+                 */
+                ds4 = await HidDevice.FromIdAsync(devices.ElementAt(0).Id, FileAccessMode.ReadWrite);
+
+                //ds4watcher = DeviceInformation.CreateWatcher(select);
+                //ds4watcher.Updated += (o, e) => ds4watcher.Start();
+
+                /*TEST SECTION*/
+                //txtTest.Text = ds4watcher.Status.ToString();
+                if (ds4 != null)
+                {
+                    txtTest.Text = ds4.ProductId.ToString();
+                }
+
+                if (ds4 == null)
+                {
+                    txtTest.Text = "fail";
+                }
+            }
+            else
+            {
+                txtJoytest.Text = "Nothing here!";
+            }
+        }
+
+        HidOutputReport ho;
+        HidInputReport hi;
+        HidNumericControl hc;
+        private async void getInput(HidDevice d)
+        {
+            try
+            {
+                hi = await d.GetInputReportAsync(01);
+                hc = hi.GetNumericControl(usagePage, UID);
+
+                txtTest.Text = hi.Data.ToString();
+            }
+            catch (NullReferenceException ex)
+            {
+                //txtJoytest.Text = ex.ToString();
+            }
         }
 
         private void getBattery()

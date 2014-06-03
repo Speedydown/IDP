@@ -44,6 +44,7 @@
                 <Button x:Name="btnRightBw" Height="100" Width="100" Content="RightBw" Canvas.Left="240" Canvas.Top="240" PointerPressed="btnRightBw_Pressed" PointerReleased="btnRightBw_Released" Opacity="0"/>
             </Canvas>
         </Grid>
+        <TextBox x:Name="txtTest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,670,0,0" Width="150"/>
         <TextBox x:Name="txtJoytest" HorizontalAlignment="Left" Margin="200,620,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" FontFamily="Global User Interface"/>
         <Image x:Name="videoFeed" Source="Assets/imgVideo.jpg" HorizontalAlignment="Left" Width="576" Height="432" Margin="700,190,0,0" VerticalAlignment="Top"/>
     </Grid>
