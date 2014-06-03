@@ -1,4 +1,6 @@
+#The class to control only one leg
 __author__ = 'Matthe Jacobs'
+
 
 from MotionInterface import MotionInterface
 
@@ -24,6 +26,7 @@ class SingleLeg(self, MotionInterface):
     def ControlLeg6(self, pulseHip, pusleKnee, pulseAnkle):
         moveLeg(6, pulseHip, pusleKnee, pulseAnkle)
 
+    #Function to move the leg
     def moveLeg(self, legNum, pulseHip, pusleKnee, pulseAnkle):    
         if legNum == 1:
             self.Leg1.moveHip(pulseHip)
