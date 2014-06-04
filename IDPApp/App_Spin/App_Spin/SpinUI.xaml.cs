@@ -356,5 +356,10 @@ namespace App_Spin
         {
 
         }
+
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
     }
 }

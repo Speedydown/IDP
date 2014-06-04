@@ -11,7 +11,8 @@
     <Grid Background="DarkGreen">
         <!--Open Bar Grid-->
         <Grid x:Name="gridApp" HorizontalAlignment="Left" Height="100" Margin="50,50,0,0" VerticalAlignment="Top" Width="1280">
-            <Image x:Name="imgApp" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Assets/SmallLogo.png"/>
+            <Image x:Name="imgApp" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Assets/spin150.png"/>
+            <Button x:Name="btnReturn" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="100" Click="btnReturn_Click"/>
             <TextBlock HorizontalAlignment="Left" Margin="150,10,0,0" TextWrapping="Wrap" Text="Spider Control" VerticalAlignment="Top" 
                        Height="100" Width="500" FontSize="72"/>
             
