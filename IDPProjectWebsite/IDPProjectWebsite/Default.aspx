@@ -10,24 +10,21 @@
         <header><h2>Hoe ver zijn we?</h2></header>
 
         <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-succes" style="width: 47%;"></div>
+            <div class="progress-bar progress-bar-succes" style="width: 55%;"></div>
         </div>
 
         <h3>Recent behaalde doelstellingen:</h3>
-        <h4>Week 4:</h4>
+        <h4>Week 5:</h4>
         <span>
-            Afgelopen week stond onder andere in het teken van de deelfunctiedemo. 
-            Bij deze demonstratie heeft het projectteam een aantal functies en tekeningen laten zien aan
-            de opdrachtgever. Werktuigbouwkunde heeft de tekeningen van de spin laten zien en Informatica
-            heeft onder andere het Vision gedeelte en de pootaansturing via de tablet gedemonstreerd.
-            Elektrotechniek heeft de vingerbesturing laten zien.
-
-            Daarnaast heeft Informatica deze week een ontwerpreview gehad welke is afgerond 
-            met het oordeel ‘goed’. Elektrotechniek heeft de vingerbesturing draadloos 
-            werkend via de Xbee en gewerkt aan de voedingsprintplaat. Werktuigbouwkunde heeft berekeningen 
-            gemaakt voor de hoekstanden van de poot en is begonnen met het uitdenken van de spinlift. 
-            We hadden deze week één tegenvaller, er zijn twee servo’s kapot gegaan
-            tijdens het werken aan het project, dit is opgelost doordat we twee nieuwe servo's gekregen hebben.
+            In de korte week 5 stond de bouw van de spin op de planning. De onderdelen zijn echter 
+            niet allemaal binnengekomen en zo loopt het project in deze week grote vertraging op. 
+            Hopelijk komen volgende week de rest van de onderdelen binnen zodat we dan verder 
+            kunnen met het project. De binnengekomen onderdelen zullen komend weekend gespoten worden. 
+            De onderdelen die niet binnen zijn blijven de kleur houden die aluminium normaal heeft. 
+            Ook heeft Informatica deze week een lopende beweging gemaakt op basis van de 
+            Inverse Kinematics berekeningen van de jongens van Werktuigbouwkunde. Het is nu wachten 
+            tot de spin er is om dit te finetunen. Elektrotechniek is bezig geweest met de prints 
+            voor de stroomvoorziening voor de servo’s.
         </span>
     </div>
 

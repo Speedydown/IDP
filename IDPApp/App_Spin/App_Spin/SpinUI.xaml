@@ -7,17 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <!--Open Background Grid-->
     <Grid Background="DarkGreen">
+        <!--Open Bar Grid-->
         <Grid x:Name="gridApp" HorizontalAlignment="Left" Height="100" Margin="50,50,0,0" VerticalAlignment="Top" Width="1280">
             <Image x:Name="imgApp" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Assets/SmallLogo.png"/>
-            <TextBlock HorizontalAlignment="Left" Margin="150,10,0,0" TextWrapping="Wrap" Text="Spider Control" VerticalAlignment="Top" Height="100" Width="500" FontSize="72"/>
-            <TextBlock x:Name="lblBattery" Margin="950,10,0,0" VerticalAlignment="Top" Height="30" Width="100" FontSize="15"/>
-            <TextBlock x:Name="lblSlope" Margin="950,60,0,0" VerticalAlignment="Top" Height="30" Width="100" FontSize="15"/> 
+            <TextBlock HorizontalAlignment="Left" Margin="150,10,0,0" TextWrapping="Wrap" Text="Spider Control" VerticalAlignment="Top" 
+                       Height="100" Width="500" FontSize="72"/>
+            
+            <Button x:Name="btnConnDS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="950,20,0,0" Width="60" Height="60" Content="DS4" PointerPressed="btnConnDS_Pressed"/>
+            
+            <TextBlock x:Name="lblBattery" Margin="1050,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" FontSize="15" PointerPressed="lblBattery_Pressed"/>
+            <TextBlock x:Name="lblSlope" Margin="1050,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" FontSize="15" PointerPressed="lblSlope_Pressed"/> 
             <TextBlock x:Name="lblHour" Margin="1240,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             <TextBlock x:Name="lblMin" Margin="1240,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             <TextBlock x:Name="lblSec" Margin="1240,65,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             
-            <ComboBox x:Name="cmbMissionSelect" Margin="650,25,0,0" Height="50" Width="280" HorizontalAlignment="Left" VerticalAlignment="Top" FontFamily="Global User Interface">
+            <!--ComboBox for Mission Select-->
+            <ComboBox x:Name="cmbMissionSelect" Margin="650,25,0,0" Height="50" Width="280" HorizontalAlignment="Left" 
+                      VerticalAlignment="Top" FontFamily="Global User Interface">
                 <ComboBoxItem Content="Handmatige besturing" IsSelected="True"/>
                 <ComboBoxItem Content="Limbo-test / Kwalificatie"/>
                 <ComboBoxItem Content="Spider Race / Snelheid"/>
@@ -28,24 +36,50 @@
                 <ComboBoxItem Content="Spinnen in de olie / Herkennen"/>
                 <ComboBoxItem Content="Paringsdans / Oorlog"/>
             </ComboBox>
+            <!--Close Bar Grid-->
         </Grid>
 
+        <!--Open Joystick Grid-->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,200,0,0" Width="400" Height="400">
             <Canvas>
-                <Ellipse x:Name="joyStick" Fill="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Height="400" Margin="0,0,0,0" Stroke="Black" Width="400"/>
-                <Button x:Name="btnFw" Height="100" Width="100" Content="Forward" Canvas.Left="150" Canvas.Top="10" PointerPressed="btnFw_Pressed" PointerReleased="btnFw_Released" Opacity="0"/>
-                <Button x:Name="btnBw" Height="100" Width="100" Content="Backward" Canvas.Left="150" Canvas.Top="290" PointerPressed="btnBw_Pressed" PointerReleased="btnBw_Released" Opacity="0"/>
-                <Button x:Name="btnLeft" Height="100" Width="100" Content="Left" Canvas.Left="10" Canvas.Top="150" PointerPressed="btnLeft_Pressed" PointerReleased="btnLeft_Released" Opacity="0"/>
-                <Button x:Name="btnRight" Height="100" Width="100" Content="Right" Canvas.Left="290" Canvas.Top="150" PointerPressed="btnRight_Pressed" PointerReleased="btnRight_Released" Opacity="0"/>
+                <!--Joystick Layout + Buttons-->
+                <Ellipse x:Name="joyStick" Fill="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Height="400" 
+                         Margin="0,0,0,0" Stroke="Black" Width="400"/>
+                <Button x:Name="btnFw" Height="100" Width="100" Content="Forward" Canvas.Left="150" Canvas.Top="10" 
+                        PointerPressed="btnFw_Pressed" PointerReleased="btnFw_Released" Opacity="0"/>
+                <Button x:Name="btnBw" Height="100" Width="100" Content="Backward" Canvas.Left="150" Canvas.Top="290" 
+                        PointerPressed="btnBw_Pressed" PointerReleased="btnBw_Released" Opacity="0"/>
+                <Button x:Name="btnLeft" Height="100" Width="100" Content="Left" Canvas.Left="10" Canvas.Top="150" 
+                        PointerPressed="btnLeft_Pressed" PointerReleased="btnLeft_Released" Opacity="0"/>
+                <Button x:Name="btnRight" Height="100" Width="100" Content="Right" Canvas.Left="290" Canvas.Top="150" 
+                        PointerPressed="btnRight_Pressed" PointerReleased="btnRight_Released" Opacity="0"/>
 
-                <Button x:Name="btnLeftFw" Height="100" Width="100" Content="LeftFw" Canvas.Left="60" Canvas.Top="60" PointerPressed="btnLeftFw_Pressed" PointerReleased="btnLeftFw_Released" Opacity="0"/>
-                <Button x:Name="btnRightFw" Height="100" Width="100" Content="RightFw" Canvas.Left="240" Canvas.Top="60" PointerPressed="btnRightFw_Pressed" PointerReleased="btnRightFw_Released" Opacity="0"/>
-                <Button x:Name="btnLeftBw" Height="100" Width="100" Content="LeftBw" Canvas.Left="60" Canvas.Top="240" PointerPressed="btnLeftBw_Pressed" PointerReleased="btnLeftBw_Released" Opacity="0"/>
-                <Button x:Name="btnRightBw" Height="100" Width="100" Content="RightBw" Canvas.Left="240" Canvas.Top="240" PointerPressed="btnRightBw_Pressed" PointerReleased="btnRightBw_Released" Opacity="0"/>
+                <Button x:Name="btnLeftFw" Height="100" Width="100" Content="LeftFw" Canvas.Left="60" Canvas.Top="60"
+                        PointerPressed="btnLeftFw_Pressed" PointerReleased="btnLeftFw_Released" Opacity="0"/>
+                <Button x:Name="btnRightFw" Height="100" Width="100" Content="RightFw" Canvas.Left="240" Canvas.Top="60" 
+                        PointerPressed="btnRightFw_Pressed" PointerReleased="btnRightFw_Released" Opacity="0"/>
+                <Button x:Name="btnLeftBw" Height="100" Width="100" Content="LeftBw" Canvas.Left="60" Canvas.Top="240" 
+                        PointerPressed="btnLeftBw_Pressed" PointerReleased="btnLeftBw_Released" Opacity="0"/>
+                <Button x:Name="btnRightBw" Height="100" Width="100" Content="RightBw" Canvas.Left="240" Canvas.Top="240" 
+                        PointerPressed="btnRightBw_Pressed" PointerReleased="btnRightBw_Released" Opacity="0"/>
             </Canvas>
+            <!--Close Joystick Grid-->
         </Grid>
-        <TextBox x:Name="txtTest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,670,0,0" Width="150"/>
+        
+        <!--TextBox for input test-->
+        <TextBox x:Name="txtTest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,620,0,0" Width="200"/>
         <TextBox x:Name="txtJoytest" HorizontalAlignment="Left" Margin="200,620,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" FontFamily="Global User Interface"/>
+        
+        <!--VideoFeed-->
         <Image x:Name="videoFeed" Source="Assets/imgVideo.jpg" HorizontalAlignment="Left" Width="576" Height="432" Margin="700,190,0,0" VerticalAlignment="Top"/>
+        
+        <!--Popup for battery graph-->
+        <Popup x:Name="popBattery" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,300,0,0" Width="700" Height="300" IsOpen="False">
+            <Canvas>
+                <TextBlock x:Name="popText" Text="HALLO" FontSize="100" FontStyle="Normal" Margin="200,0,0,0" Width="400"/>
+            </Canvas>
+            <!--Close battery graph popup-->
+        </Popup>
+        <!--Close Background Grid-->
     </Grid>
 </Page>
