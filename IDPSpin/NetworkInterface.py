@@ -7,13 +7,26 @@ from NetworkClient import NetworkClient
 import time
 import socket
 
-class NetworkInterface(Thread):
-    def __init__(self, Buffer):
-        self._NetworkClients = []
-        self._Buffer = Buffer
-        self._Exit = False
-        self._Identify = 10
+"""
+    class that handles network connections.
+    Contains the following methods:
+        run()
+        Listen()
+        Send()
+        Exit()
+"""
 
+
+class NetworkInterface(Thread):
+    #Constructor
+    def __init__(self, Buffer):
+        self._NetworkClients = []   #contains list of connected clients
+        self._Buffer = Buffer       #Command buffer
+        self._Exit = False          #boolean to determine
+        self._Identify = 10         #int that identifies a newly connected client
+
+
+    #Accepts incoming connections and creates a socket listening Thread.
     def run(self):
         serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -37,6 +50,7 @@ class NetworkInterface(Thread):
 
             time.sleep(1)
 
+    #Method listens to incoming data. Runs in Thread
     def Listen(self, clientSocket):
         while self._Exit == False:
             try:
@@ -50,9 +64,8 @@ class NetworkInterface(Thread):
             except:
                 print "Client " + clientSocket.getClientID() + " has disconnected."
                 break
-            
-        
 
+    #Method that sends data to connected client.
     def Send(self, Data, ID):
         ID = ID[3:5]
 
@@ -67,6 +80,7 @@ class NetworkInterface(Thread):
             except:
                 pass
 
+    #Method exits Listening Thread and terminates client connections
     def Exit(self):
         self._Exit = True
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

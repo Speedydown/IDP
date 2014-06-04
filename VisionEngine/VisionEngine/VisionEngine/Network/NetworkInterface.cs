@@ -9,17 +9,29 @@ using System.Threading.Tasks;
 
 namespace VisionEngine.Network
 {
+    /// <summary>
+    /// Handles all network Connections
+    /// </summary>
     public class NetworkInterface
     {
-        private TcpClient  clientSocket = new TcpClient();
-        private NetworkStream serverStream;
-        private Semaphore networkInterfaceSemaphore;
+        private TcpClient  clientSocket = new TcpClient();  //tcp object
+        private NetworkStream serverStream;                 //socket connection to server
+        private Semaphore networkInterfaceSemaphore;        
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public NetworkInterface()
         {
-            this.networkInterfaceSemaphore = new Semaphore(1, 1);
+            this.networkInterfaceSemaphore = new Semaphore(1, 1);   
         }
 
+        /// <summary>
+        /// Connects client to server with the address and port provided
+        /// </summary>
+        /// <param name="Address"></param>
+        /// <param name="Port"></param>
+        /// <param name="cform"></param>
         public void Connect(string Address, int Port, ConnectionForm cform)
         {
             try
@@ -46,6 +58,10 @@ namespace VisionEngine.Network
             }
         }
 
+        /// <summary>
+        /// sends data to the server
+        /// </summary>
+        /// <param name="Data"></param>
         public void Send(string Data)
         {
             try
@@ -62,6 +78,11 @@ namespace VisionEngine.Network
             }
         }
 
+        /// <summary>
+        /// receives data from the server and returns it as a string.
+        /// keeps receiving data until <EOF> has been recieved
+        /// </summary>
+        /// <returns></returns>
         public string Recv()
         {
                 networkInterfaceSemaphore.WaitOne();
@@ -83,6 +104,9 @@ namespace VisionEngine.Network
 
         }
 
+        /// <summary>
+        /// Disconnects the client from the server
+        /// </summary>
         public void Disconnect()
         {
             networkInterfaceSemaphore.WaitOne();

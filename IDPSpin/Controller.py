@@ -9,7 +9,7 @@ from MotionInterface import MotionInterface
 from Move import Move
 from threading import Thread
 from subprocess import call
-#from Camera import Camera
+from Camera import Camera
 
 class Controller(object):
 
@@ -21,7 +21,7 @@ class Controller(object):
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
         self._MotionInterface = Move()
         self._Log = SpinLog.SpinLog()
-        #self._Camera = Camera()
+        self._Camera = Camera()
         self._Exit = False;
         self._Mode = 1
                 
@@ -29,7 +29,7 @@ class Controller(object):
         self._NetworkInterfaceThread.start()
         self._CommandHandlerThread = threading.Thread(target=self.CommandHandler)
         self._CommandHandlerThread.start()
-        self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.run())
+        self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.runThread)
         self._MotionInterfaceThread.start()
     
     def CommandHandler(self):
@@ -56,14 +56,19 @@ class Controller(object):
                 elif Command == "tsen":
                    self._NetworkInterface.Send(self._MotionInterface.test(data[11:]), ID)
                 elif Command == "smde":
+                    print "entering smde"
                     self._Mode = data[11:12]
-                    self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
-
+                    self._MotionInterface.exit()
                     if int(self._Mode) == 1:
                         self._MotionInterface = Move()
-
-                    self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.run())
+                        print "mode set to 'move'"
+                    print threading.currentThread()
+                    self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
+                    self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.runThread)
                     self._MotionInterfaceThread.start()
+
+                    print "set mode"
+
                 elif Command == "gmde":
                     self._NetworkInterface.Send(self._Mode, ID)
                 elif Command == "move":
@@ -72,6 +77,8 @@ class Controller(object):
                     self._NetworkInterface.Send(self._Camera.takeImage(), ID)
                 elif Command == "gifm":
                     self._NetworkInterface.Send(self._Camera.getImageFromMemory(), ID)
+                elif Command == "ping":
+                    self._NetworkInterface.Send("ping", ID)
                 elif Command == "exit":
                     self._NetworkInterface.Send("Exited", ID)
                     self.Exit()
