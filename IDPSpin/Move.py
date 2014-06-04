@@ -7,13 +7,15 @@ class Move(MotionInterface):
         self._Stop = False
 
     def moveForward(self):
-        self._MInterface._Legs[0].moveHip(375)
-        self._MInterface._Legs[0].moveKnee(375)
-        self._MInterface._Legs[0].moveAnkle(375)
-        time.sleep(1)
-        self._MInterface._Legs[0].moveHip(472)
-        self._MInterface._Legs[0].moveKnee(329)
         self._MInterface._Legs[0].moveAnkle(312)
+        self._MInterface._Legs[0].moveKnee(329)
+        time.sleep(1)
+        self._MInterface._Legs[0].moveHip(278)
+        time.sleep(1)
+        self._MInterface._Legs[0].moveAnkle(375)
+        self._MInterface._Legs[0].moveKnee(375)
+        time.sleep(1)
+        self._MInterface._Legs[0].moveHip(375)
         time.sleep(1)
 
     def run(self):
