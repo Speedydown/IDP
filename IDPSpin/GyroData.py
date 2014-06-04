@@ -7,7 +7,7 @@ import time
 class GyroData(object):
 
     def __init__(self):
-        #Set ports and adress
+        #Set ports and address
         self.power_mgmt_1 = 0x6b
         self.power_mgmt_2 = 0x6c
         self.bus = smbus.SMBus(1)
@@ -15,11 +15,10 @@ class GyroData(object):
         self.bus.write_byte_data(self.address, self.power_mgmt_1, 0)
         self.xDegree = 0
         self.yDegree = 0
-        self.run()        
+        self.run()
         
     def read_byte(self, adr):
         return bus.read_byte_data(self.address, adr)
-
     
     def read_word(self, adr):
         high = self.bus.read_byte_data(self.address, adr)
@@ -27,7 +26,7 @@ class GyroData(object):
         val = (high << 8) + low
         return val
 
-    #Read data and converts it to two's compliment
+    #Read data and converts it to two's complement
     def read_word_2c(self, adr):
         val = self.read_word(adr)
         if(val >= 0x8000):

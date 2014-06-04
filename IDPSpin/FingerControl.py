@@ -14,17 +14,15 @@ class FingerControl(self, MotionInterface):
             #Read incoming data
             incoming = ser.readLine()
             try:
-                if incoming[0] == 'a':
-                    incomingInt = int(incoming.strip('a'))
+                if incoming[0] == 'a':                    
                     #Move the leg
-                    MotionInterface.Leg1.moveAnkle(incomingInt)
+                    MotionInterface.Legs[0].moveAnkle(int(incoming.strip('a')))
             except ValueError:
                 pass
             try:
                 if incoming[0] == 'b':
-                    incomingInt = int(incoming.strip('b'))
                     #Move the leg
-                    MotionInterface.Leg1.moveKnee(incomingInt)
+                    MotionInterface.Legs[0].moveKnee(int(incoming.strip('b')))
             except ValueError:
                 pass
             
