@@ -7,12 +7,13 @@ import serial
 class FingerControl(self, MotionInterface):    
     def __init__(self):
         MotionInterface.__init__(self)
+        self.ser = serial.Serial('/dev/ttyUSB0', 9600)
         run()
 
     def run(self):
         while(True):
             #Read incoming data
-            incoming = ser.readLine()
+            incoming = self.ser.readLine()
             try:
                 if incoming[0] == 'a':                    
                     #Move the leg
