@@ -2,6 +2,7 @@ from MotionInterface import MotionInterface
 from MovementAction import MovementAction
 import time
 import threading
+import math
 from threading import Thread
 
 class Move(MotionInterface):
@@ -74,7 +75,7 @@ class Move(MotionInterface):
     def calculatePulse(self, StartingPulse, EndPulse, Step, numberOfSteps=160):
         if Step > numberOfSteps or Step < 1:
             print "Step out of range - " + str(Step)
-            #raise Exception("Step out of range - " + str(Step))
+            raise Exception("")
 
         pulsedifference = 150
         if EndPulse < StartingPulse:
@@ -90,11 +91,22 @@ class Move(MotionInterface):
 
     def calculateEndPulse(self, hoogte, lengte):
 
-        a = 80
-        b = 127 #afstand servo naar einde poot
-        c = 125
-        d = 106 #lengte poot
-        e = 70  #hoogte poot
+        a = hoogte
+        b = lengte
+        c = round(math.sqrt((a * a) + (b * b)))
+        d = 80
+        e = 125
+
+        c
+        HoekA =
+        hoekA = math.degrees(math.atan(c/e))
+
+
+
+
+        #d = 106 #lengte poot
+        #e = 70  #hoogte poot
+
 
 
 
