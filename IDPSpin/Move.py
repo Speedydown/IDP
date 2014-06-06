@@ -89,23 +89,22 @@ class Move(MotionInterface):
             print pulse
             return pulse
 
-    def calculateEndPulse(self, hoogte, lengte):
+    def calculateEndPulse(self, hight, lenght):
 
-        a = hoogte
-        b = lengte
+        a = hight
+        b = lenght
         c = round(math.sqrt((a * a) + (b * b)))
         d = 80
         e = 125
 
-        c
-        HoekA =
-        hoekA = math.degrees(math.atan(c/e))
+        HoekC = round(float(math.acos((((d * d) + (e * e) - (c * c)) / (2 * d * e)) * 180 / math.pi)))
+        HoekD = round(float(math.acos((((c * c) + (e * e) - (d * d)) / (2 * c * e)) * 180 / math.pi)))
+        HoekE = round(float(math.acos((((c * c) + (d * d) - (e * e)) / (2 * c * d)) * 180 / math.pi)))
+
+        #hoek CD en E uitrekenen van standaard positie. hiermee kan worden bepaald of de nieuwe hoek groter of kleiner is en op basis daarvan kan de pulse worden uitgeekend (3 puls is 1 graad, verschil van standaardpositie met nieuwe positie)
 
 
 
-
-        #d = 106 #lengte poot
-        #e = 70  #hoogte poot
 
 
 
