@@ -1,15 +1,15 @@
 __author__ = 'Ivar'
 
-#from Leg import Leg
+from Leg import Leg
 import threading
 from threading import Semaphore
 import time
 
 class MotionInterface(object):
     def __init__(self):
-        #self._Legs = [
-         #   Leg(["0x40", "0x40", "0x40"], [0, 1, 3], [375, 375, 375])
-        #]
+        self._Legs = [
+            Leg([0x41, 0x41, 0x41], [0, 1, 2], [200, 375, 375])
+        ]
         self._CurrentCommand = 10
         self._Exit = False
         self._Semaphore = threading.Semaphore(1)

@@ -9,7 +9,7 @@ from MotionInterface import MotionInterface
 from Move import Move
 from threading import Thread
 from subprocess import call
-from Camera import Camera
+#from Camera import Camera
 
 class Controller(object):
 
@@ -21,7 +21,7 @@ class Controller(object):
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
         self._MotionInterface = Move()
         self._Log = SpinLog.SpinLog()
-        self._Camera = Camera()
+        #self._Camera = Camera()
         self._Exit = False;
         self._Mode = 1
                 

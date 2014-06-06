@@ -15,7 +15,7 @@ class Servo(object):
         self.freq = 60
         self.maxPulse = 600
         self.minPulse = 150
-        self.pwm = PWM()
+        self.pwm = PWM(address)
         self.pwm.setPWMFreq(self.freq)
         self.setPulse(startingPulse)
 
