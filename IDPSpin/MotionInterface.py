@@ -8,7 +8,12 @@ import time
 class MotionInterface(object):
     def __init__(self):
         self._Legs = [
-            Leg([0x41, 0x41, 0x41], [0, 1, 2], [200, 375, 375])
+            Leg([0x41, 0x41, 0x41], [0, 1, 2], [200, 375, 375]), #leg 1
+            Leg([0x40, 0x40, 0x40], [0, 1, 2], [200, 375, 375]), #leg 2
+            Leg([0x41, 0x41, 0x41], [4, 5, 6], [375, 375, 375]), #leg 3
+            Leg([0x40, 0x40, 0x40], [4, 5, 6], [375, 375, 375]), #leg 4
+            Leg([0x41, 0x41, 0x41], [8, 9, 10], [200, 375, 375]), #leg 5
+            Leg([0x40, 0x40, 0x40], [8, 9, 10], [200, 375, 375]), #leg 6
         ]
         self._CurrentCommand = 10
         self._Exit = False
