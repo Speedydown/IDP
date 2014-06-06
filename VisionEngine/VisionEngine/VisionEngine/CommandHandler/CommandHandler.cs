@@ -27,7 +27,7 @@ namespace VisionEngine
             this.connectionForm = connectionForm;
             this.networkInterface = networkInterface;
             this.visionEngine = new VisionEngineForm(this, connectionForm);
-            this.visionLabInterface = new VisionLabInterface(this.visionEngine);
+            this.visionLabInterface = new VisionLabInterface(this.visionEngine, this);
             this.commandHandlerSemaphore = new Semaphore(1, 1);
             this.visionEngine.Show();
         }

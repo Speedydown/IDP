@@ -39,24 +39,18 @@ namespace VisionEngine
 
         private void updateImageBalloon(string color, int index)
         {
-            Console.WriteLine("INHEREEEE");
             switch (color) { 
                 case "RED":
                      PictureBox pb = (PictureBox) this.Controls.Find(("balloon" + index.ToString()), true)[0];
                      pb.Image = VisionEngine.Properties.Resources.balloonRed;
-                     //this.balloon1.Image = VisionEngine.Properties.Resources.balloonRed;
                     break;
                 case "BLUE":
                      PictureBox pb1 = (PictureBox) this.Controls.Find(("balloon" + index.ToString()), true)[0];
                      pb1.Image = VisionEngine.Properties.Resources.balloonBlue;
-                    //PictureBox pb1 = (PictureBox) this.Controls.Find(("balloon" + index.ToString()), false)[0];
-                    //pb1.Image = VisionEngine.Properties.Resources.balloonRed;
                     break;
                 case "GREEN":
                      PictureBox pb2 = (PictureBox) this.Controls.Find(("balloon" + index.ToString()), true)[0];
                      pb2.Image = VisionEngine.Properties.Resources.balloonGreen;
-                    //PictureBox pb2 = (PictureBox)this.Controls.Find(("balloon" + index.ToString()), false)[0];
-                    //pb2.Image = VisionEngine.Properties.Resources.balloonRed;
                     break;
     
             }
@@ -155,6 +149,11 @@ namespace VisionEngine
         }
 
         private void VisionEngineForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void balloon1_Click(object sender, EventArgs e)
         {
 
         }

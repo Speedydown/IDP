@@ -259,7 +259,7 @@
             // 
             // balloon2
             // 
-            this.balloon2.Image = global::VisionEngine.Properties.Resources.balloonGreen;
+            this.balloon2.Image = global::VisionEngine.Properties.Resources.balloonUnkown;
             this.balloon2.Location = new System.Drawing.Point(30, 110);
             this.balloon2.Name = "balloon2";
             this.balloon2.Size = new System.Drawing.Size(106, 104);
@@ -269,13 +269,14 @@
             // 
             // balloon1
             // 
-            this.balloon1.Image = global::VisionEngine.Properties.Resources.balloonGreen1;
+            this.balloon1.Image = global::VisionEngine.Properties.Resources.balloonUnkown;
             this.balloon1.Location = new System.Drawing.Point(30, 0);
             this.balloon1.Name = "balloon1";
             this.balloon1.Size = new System.Drawing.Size(106, 104);
             this.balloon1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.balloon1.TabIndex = 0;
             this.balloon1.TabStop = false;
+            this.balloon1.Click += new System.EventHandler(this.balloon1_Click);
             // 
             // pictureBoxOutput
             // 

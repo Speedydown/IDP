@@ -65,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Balloon.cs" />
     <Compile Include="CommandHandler\CommandHandler.cs" />
     <Compile Include="ConnectionForm.cs">
       <SubType>Form</SubType>
