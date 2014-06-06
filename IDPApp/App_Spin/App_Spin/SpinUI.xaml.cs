@@ -27,8 +27,12 @@ namespace App_Spin
         private int slope;
         /*MOVE STRING*/
         public string move = "";
-        /*bool to check sending*/
+        /*BOOL TO CHECK SENDING*/
         public bool sending = false;
+
+        /*VALUES FOR SLIDERS SPEED AND HEIGHT*/
+        private int heightValue;
+        private int speedValue;
 
         public SpinUI()
         {
@@ -310,13 +314,19 @@ namespace App_Spin
         // Slider for configuring spider height on the fly
         private void sldHeight_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            txtTest.Text = sldHeight.Value.ToString();
+            heightValue = Convert.ToInt16(sldHeight.Value);
+
+            /*INSERT NETWORK COMMAND*/
+            txtTest.Text = heightValue.ToString();
         }
 
         // Slider for configuring spider speed on the fly
         private void sldSpeed_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            txtTest.Text = sldSpeed.Value.ToString();
+            speedValue = Convert.ToInt16(sldSpeed.Value);
+
+            /*INSERT NETWORK COMMAND*/
+            txtTest.Text = speedValue.ToString();
         }
     }
 }
