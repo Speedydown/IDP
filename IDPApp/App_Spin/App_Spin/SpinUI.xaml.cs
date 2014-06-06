@@ -15,23 +15,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-/* CONTROLLER */
-using Windows.Devices.Enumeration;
-using Windows.Devices.Bluetooth;
-using Windows.Devices.Bluetooth.Rfcomm;
-using Windows.Devices.Bluetooth.GenericAttributeProfile;
-
-using Windows.Devices.HumanInterfaceDevice;
-using Windows.Storage;
-using Windows.Storage.Streams;
-
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace App_Spin
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// SpinUI: The UI page for controlling the Spider
     /// </summary>
     public sealed partial class SpinUI : Page
     {
@@ -53,9 +40,7 @@ namespace App_Spin
             timer.Tick += (o, e) => lblMin.Text = "M " + DateTime.Now.Minute.ToString();
             timer.Tick += (o, e) => lblSec.Text = "S " + DateTime.Now.Second.ToString();
             timer.Start();
-
-            /*Human Interface Device, DualShock 4*/
-
+            
             /*
              * Add new EventHandlers per button, not standard supported.
              * Each button will get two new handlers, *_Pressed and *_Released.
@@ -86,10 +71,7 @@ namespace App_Spin
             //RB
             btnRightBw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnRightBw_Pressed), true);
             btnRightBw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnRightBw_Released), true);
-
-            //ConnectDS
-            btnConnDS.AddHandler(PointerPressedEvent, new PointerEventHandler(btnConnDS_Pressed), true);
-
+            
             //lblBattery
             //lblSlope
             lblBattery.AddHandler(PointerPressedEvent, new PointerEventHandler(lblBattery_Pressed), true);
@@ -98,44 +80,8 @@ namespace App_Spin
             
             getBattery();
             getSlope();
-        }
-
-        /*IDs FOR THE WIRELESS CONTROLLER (HID DEVICE)*/
-        UInt16 PID = 0x05C4; // product ID
-        UInt16 VID = 0x054C; // vendor ID
-        UInt16 usagePage = 0x01; // usagePage
-        UInt16 UID = 0x05; // usage ID
-
-        HidDevice ds4;
-
-        private async void ds4detect()
-        {
-            string select = HidDevice.GetDeviceSelector(usagePage, UID, VID, PID);
-            var devices = await DeviceInformation.FindAllAsync(select);
-
-            if (devices.Count > 0)
-            {
-                /*
-                 * SCAN FOR HID DEVICES
-                 * ElementAt(0) --> ds4
-                 */
-                ds4 = await HidDevice.FromIdAsync(devices.ElementAt(0).Id, FileAccessMode.ReadWrite);
-                txtTest.Text = devices.ElementAt(0).Id.ToString();
-                // returns
-                // \\?\HID#{00001124-0000-1000-8000-00805f9b34fb}_VID&0002054c_PID&05c4#9&1d5c15b1&4&0000#{4d1e55b2-f16f-11cf-88cb-001111000030}
-                //ds4 = HidDevice(devices.ElementAt(0).Id);
-                
-                /*TEST SECTION*/
-                if (ds4 != null)
-                    txtTest.Text = "DS4 Found!";
-                
-                if (ds4 == null)
-                    txtTest.Text = "DS4 NOT found!";
-            }
-            else
-            {
-                txtJoytest.Text = "No devices found!";
-            }
+            sldHeight.ValueChanged += sldHeight_ValueChanged;
+            sldSpeed.ValueChanged += sldSpeed_ValueChanged;
         }
 
         private async void getBattery()
@@ -184,7 +130,7 @@ namespace App_Spin
             txtJoytest.Text = moveMessage;
         }
 
-        /* Bindings 
+        /* Joypad Bindings 
          *  for buttons to send move commands to Raspberry Pi
          *  move commands are as follows:
          *      - move 11-18 ; move in 8 directions, 11 is forward, clockwise to 18 is left-forward
@@ -199,7 +145,7 @@ namespace App_Spin
         }
 
         // LF - FW - RF
-
+        
         #region Left-Fw
         // Move left-forward
         private void btnLeftFw_Pressed(object sender, PointerRoutedEventArgs e)
@@ -332,11 +278,8 @@ namespace App_Spin
 
         #endregion
 
-        private void btnConnDS_Pressed(object sender, PointerRoutedEventArgs e)
-        {
-            ds4detect();
-        }
 
+        // label Battery Pressed to open batterygraph
         private void lblBattery_Pressed(object sender, PointerRoutedEventArgs e)
         {
             
@@ -352,14 +295,28 @@ namespace App_Spin
             }
         }
 
+        // label Slope Pressed to open slopegraph
         private void lblSlope_Pressed(object sender, PointerRoutedEventArgs e)
         {
 
         }
 
+        // Return to MainPage
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
+        }
+
+        // Slider for configuring spider height on the fly
+        private void sldHeight_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            txtTest.Text = sldHeight.Value.ToString();
+        }
+
+        // Slider for configuring spider speed on the fly
+        private void sldSpeed_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            txtTest.Text = sldSpeed.Value.ToString();
         }
     }
 }

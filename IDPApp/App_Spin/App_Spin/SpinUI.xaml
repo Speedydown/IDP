@@ -12,22 +12,24 @@
         <!--Open Bar Grid-->
         <Grid x:Name="gridApp" HorizontalAlignment="Left" Height="100" Margin="50,50,0,0" VerticalAlignment="Top" Width="1280">
             <Image x:Name="imgApp" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Source="Assets/spin150.png"/>
-            <Button x:Name="btnReturn" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="100" Click="btnReturn_Click"/>
+            <Button x:Name="btnReturn" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="100" Click="btnReturn_Click" 
+                    Opacity="0.7" BorderThickness="1"/>
             <TextBlock HorizontalAlignment="Left" Margin="150,10,0,0" TextWrapping="Wrap" Text="Spider Control" VerticalAlignment="Top" 
                        Height="100" Width="500" FontSize="72"/>
-            
-            <Button x:Name="btnConnDS" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="950,20,0,0" Width="60" Height="60" Content="DS4" PointerPressed="btnConnDS_Pressed"/>
-            
-            <TextBlock x:Name="lblBattery" Margin="1050,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" FontSize="15" PointerPressed="lblBattery_Pressed"/>
-            <TextBlock x:Name="lblSlope" Margin="1050,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" FontSize="15" PointerPressed="lblSlope_Pressed"/> 
+
+            <TextBlock x:Name="lblBattery" Margin="1050,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" 
+                       FontSize="15" PointerPressed="lblBattery_Pressed"/>
+            <TextBlock x:Name="lblSlope" Margin="1050,60,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" 
+                       FontSize="15" PointerPressed="lblSlope_Pressed"/>
             <TextBlock x:Name="lblHour" Margin="1240,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             <TextBlock x:Name="lblMin" Margin="1240,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             <TextBlock x:Name="lblSec" Margin="1240,65,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
-            
+
             <!--ComboBox for Mission Select-->
             <ComboBox x:Name="cmbMissionSelect" Margin="650,25,0,0" Height="50" Width="280" HorizontalAlignment="Left" 
                       VerticalAlignment="Top" FontFamily="Global User Interface">
-                <ComboBoxItem Content="Handmatige besturing" IsSelected="True"/>
+                <ComboBoxItem Content="Handmatige besturing - Tablet" IsSelected="True"/>
+                <ComboBoxItem Content="Handmatige besturing - Controller"/>
                 <ComboBoxItem Content="Limbo-test / Kwalificatie"/>
                 <ComboBoxItem Content="Spider Race / Snelheid"/>
                 <ComboBoxItem Content="SYTYCD / Dansje"/>
@@ -41,7 +43,7 @@
         </Grid>
 
         <!--Open Joystick Grid-->
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,200,0,0" Width="400" Height="400">
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,200,0,0" Width="400" Height="450">
             <Canvas>
                 <!--Joystick Layout + Buttons-->
                 <Ellipse x:Name="joyStick" Fill="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Height="400" 
@@ -64,23 +66,34 @@
                 <Button x:Name="btnRightBw" Height="100" Width="100" Content="RightBw" Canvas.Left="240" Canvas.Top="240" 
                         PointerPressed="btnRightBw_Pressed" PointerReleased="btnRightBw_Released" Opacity="0"/>
             </Canvas>
+            <!--Sliders-->
+            <!--Slider for Spider Height-->
+            <Slider x:Name="sldHeight" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-500,0,0,0" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+                <Slider.RenderTransform>
+                    <CompositeTransform Rotation="270"/>
+                </Slider.RenderTransform>
+            </Slider>
+
+            <!--Slider for Spider Speed-->
+            <Slider x:Name="sldSpeed" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,400,0,0" Orientation="Horizontal"/>
             <!--Close Joystick Grid-->
         </Grid>
-        
+
         <!--TextBox for input test-->
-        <TextBox x:Name="txtTest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,620,0,0" Width="200"/>
-        <TextBox x:Name="txtJoytest" HorizontalAlignment="Left" Margin="200,620,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" FontFamily="Global User Interface"/>
-        
+        <TextBox x:Name="txtTest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,700,0,0" Width="200"/>
+        <TextBox x:Name="txtJoytest" HorizontalAlignment="Left" Margin="200,700,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" FontFamily="Global User Interface"/>
+
         <!--VideoFeed-->
         <Image x:Name="videoFeed" Source="Assets/imgVideo.jpg" HorizontalAlignment="Left" Width="576" Height="432" Margin="700,190,0,0" VerticalAlignment="Top"/>
-        
+
         <!--Popup for battery graph-->
         <Popup x:Name="popBattery" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,300,0,0" Width="700" Height="300" IsOpen="False">
             <Canvas>
                 <TextBlock x:Name="popText" Text="HALLO" FontSize="100" FontStyle="Normal" Margin="200,0,0,0" Width="400"/>
             </Canvas>
-            <!--Close battery graph popup-->
+        <!--Close battery graph popup-->
         </Popup>
+        
         <!--Close Background Grid-->
     </Grid>
 </Page>
