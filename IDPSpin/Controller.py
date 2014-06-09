@@ -73,6 +73,12 @@ class Controller(object):
                     self._NetworkInterface.Send(self._Mode, ID)
                 elif Command == "move":
                     self._NetworkInterface.Send(self._MotionInterface.set_CurrentCommand(data[11:13]), ID)
+                elif Command == "slen":
+                    self._MotionInterface.setLength(data[11:13])
+                    self._NetworkInterface.send("length has been set", ID)
+                elif Command == "shgt":
+                    self._MotionInterface.setHeight(data[11:13])
+                    self._NetworkInterface.send("height has been set", ID)
                 elif Command == "gimg":
                     self._NetworkInterface.Send(self._Camera.takeImage(), ID)
                 elif Command == "gifm":
