@@ -23,7 +23,7 @@ class MotionInterface(object):
         self._ExitSemaphore = threading.Semaphore(1)
         self._Height = 100
         self._Length = 100
-        self.SleepTime = 0.01
+        self.SleepTime = 0.05
         self._DefaultPulse = 375
         if mode == 1:
             self._CurrentMode = Move(self)
@@ -42,7 +42,7 @@ class MotionInterface(object):
         self._Semaphore.acquire()
         self._CurrentCommand = _CurrentCommand
         self._Semaphore.release()
-        return "Command " + _CurrentCommand + " has been received"
+        return "Command " + str(_CurrentCommand) + " has been received"
 
     def runThread(self):
         self._ExitSemaphore.acquire()
@@ -67,35 +67,53 @@ class MotionInterface(object):
         return self._Exit
 
     def setHeight(self, height):
+        try:
+            height = int(height)
+        except:
+            height = self._Height
+        
         if height < 40:
             self._Height = 40
         elif height > 110:
-            heigth._Height = 110
+            self._Height = 110
         else:
             self._Height = height
+
+        self.set_CurrentCommand(9)
 
     def getHeight(self):
         return self._Height
 
     def setLength(self, length):
+        try:
+            length = int(length)
+        except:
+            length = self._Length
+        
         if length < 20:
             self._Length = 40
         elif length > 120:
-            length._Length = 110
+            self._Length = 110
         else:
             self._Length = length
+
+        self.set_CurrentCommand(9)
 
     def getLength(self):
         return self._Length
 
     def setSpeed(self, Speed):
+        try:
+            Speed = int(Speed)
+        except:
+            Speed = self.SleepTime
+        
         if Speed > 0.01:
             self.SleepTime = 0.01
         elif Speed < 0.001:
-            length.SleepTime = 0.001
+            self.SleepTime = 0.001
         else:
             self.SleepTime = Speed
-
     def getSpeed(self):
         return self.SleepTime
 

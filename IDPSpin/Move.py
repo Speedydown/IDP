@@ -14,7 +14,15 @@ class Move():
     def executeCommand(self, Command):
         Command = int(Command)
 
-        if Command == 10:
+        if Command == 9:
+            self._LastCommand = 9;
+            self._MInterface.set_CurrentCommand(10)
+            leg1Thread = threading.Thread(target=self.StopLegs)
+            leg1Thread.start()
+
+            leg1Thread.join()
+            self._LastCommand = 10;
+        elif Command == 10:
             leg1Thread = threading.Thread(target=self.StopLegs)
             leg1Thread.start()
 
@@ -113,6 +121,7 @@ class Move():
             time.sleep(self._MInterface.SleepTime)
 
     def StopLegs(self):
+        #laatste pootbeweging
         if self._LastCommand == 11:
             self.raiseLegs(self.group1)
             self.MoveLegsBackward(self.group2)
