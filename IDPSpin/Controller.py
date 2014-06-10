@@ -66,19 +66,18 @@ class Controller(object):
                     self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
                     self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.runThread)
                     self._MotionInterfaceThread.start()
-
-                    print "set mode"
-
                 elif Command == "gmde":
                     self._NetworkInterface.Send(self._Mode, ID)
                 elif Command == "move":
                     self._NetworkInterface.Send(self._MotionInterface.set_CurrentCommand(data[11:13]), ID)
                 elif Command == "slen":
-                    self._MotionInterface.setLength(data[11:13])
+                    self._MotionInterface.setLength(data[11:14])
                     self._NetworkInterface.send("length has been set", ID)
                 elif Command == "shgt":
                     self._MotionInterface.setHeight(data[11:13])
                     self._NetworkInterface.send("height has been set", ID)
+                elif Command == "sspd":
+                    self._MotionInterface.setSpeed(data[11:17])
                 elif Command == "gimg":
                     self._NetworkInterface.Send(self._Camera.takeImage(), ID)
                 elif Command == "gifm":

@@ -39,6 +39,14 @@ class Leg(object):
         self.moveKnee(self._Knee, self._DefaultPulseArray[1])
         self.moveAnkle(self._Ankle, self._DefaultPulseArray[2])
 
+    def getHip(self):
+        return self._Hip.getPulse()
+
+    def getKnee(self):
+        return self._Knee.getPulse()
+
+    def getAnkle(self):
+        return self._Ankle.getPulse()
         
        
 
