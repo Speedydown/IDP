@@ -10,14 +10,14 @@ class Move(MotionInterface):
     def __init__(self):
         self._MInterface = MotionInterface()
         self._Stop = False
-        self.SleepTime = 0.005
+        self.SleepTime = 0.05
         self._PulsesPerDegree = 2.8125
-        self._Height = 40
+        self._Height = 100
         self._Length = 100
         self._DefaultPulse = 375
         self._LastCommand = 10
         self.group1 = [self._MInterface._Legs[0], self._MInterface._Legs[2], self._MInterface._Legs[4]]
-        self.group2 = [self._MInterface._Legs[0], self._MInterface._Legs[2], self._MInterface._Legs[4]]
+        self.group2 = [self._MInterface._Legs[1], self._MInterface._Legs[3], self._MInterface._Legs[5]]
 
 
     def runThread(self):
@@ -42,7 +42,43 @@ class Move(MotionInterface):
             leg1Thread.start()
 
             leg1Thread.join()
-            self._LastCommand = 11;
+            self._LastCommand = 11
+        elif Command == 12:
+            leg1Thread = threading.Thread(target=self.TestMove1)
+            leg1Thread.start()
+
+            leg1Thread.join()
+            self._LastCommand = 12
+        elif Command == 13:
+            leg1Thread = threading.Thread(target=self.TestMove2)
+            leg1Thread.start()
+
+            leg1Thread.join()
+            self._LastCommand = 13
+        elif Command == 14:
+            leg1Thread = threading.Thread(target=self.TestMove3)
+            leg1Thread.start()
+
+            leg1Thread.join()
+            self._LastCommand = 14
+        elif Command == 15:
+            leg1Thread = threading.Thread(target=self.TestMove4)
+            leg1Thread.start()
+
+            leg1Thread.join()
+            self._LastCommand = 15
+        elif Command == 16:
+            leg1Thread = threading.Thread(target=self.TestMove5)
+            leg1Thread.start()
+
+            leg1Thread.join()
+            self._LastCommand = 16
+        elif Command == 17:
+            leg1Thread = threading.Thread(target=self.TestMove6)
+            leg1Thread.start()
+
+            leg1Thread.join()
+            self._LastCommand = 17
 
     def get_CurrentCommand(self):
         return self._MInterface.get_CurrentCommand()
@@ -74,8 +110,10 @@ class Move(MotionInterface):
         for step in range(1, 50):
            #lower leg
             for Leg in Legs:
-                Leg.moveAnkle(self.calculateNonForwardPulse(Leg.getAnkle(), self.calculatePulse(self._Height, self._Length), step, 50))
-                Leg.moveKnee(self.calculateNonForwardPulse(Leg.getKnee(), self.calculatePulse(self._Height, self._Length), step, 50))
+                pulses = self.calculatePulse(self._Height, self._Length)
+                #print(str(Leg.getAnkle()) + " " + str(pulses[0]) + " " + str(pulses[1]))
+                Leg.moveAnkle(self.calculateNonForwardPulse(Leg.getAnkle(), pulses[0], step, 50))
+                Leg.moveKnee(self.calculateNonForwardPulse(Leg.getKnee(), pulses[1], step, 50))
             time.sleep(self.SleepTime)
 
     def MoveLegsForward(self, Legs):
@@ -86,7 +124,7 @@ class Move(MotionInterface):
                 Leg.moveHip(self.calculateHipPulse(step / 4))
                 Leg.moveKnee(pulses[0])
                 Leg.moveAnkle(pulses[1])
-        time.sleep(self.SleepTime)
+            time.sleep(self.SleepTime)
 
 
     def MoveLegsBackward(self, Legs):
@@ -101,29 +139,41 @@ class Move(MotionInterface):
 
     def StopLegs(self):
         if self._LastCommand == 11:
-            self.raiseLeg(self.group1)
+            self.raiseLegs(self.group1)
             self.MoveLegsBackward(self.group2)
             self.LowerLegs(self.group1)
         else:
-            self.LowerLegs(group1)
-            self.LowerLegs(group2)
+            self.LowerLegs(self.group1)
+            self.LowerLegs(self.group2)
 
     def MoveForward(self):
-
-
+        #eerste pootbeweging
         if self._LastCommand != 11:
             self.raiseLegs(self.group2)
             self.MoveLegsForward(self.group2)
             self.LowerLegs(self.group2)
 
-        self.raiseLeg(self.group1)
+        self.raiseLegs(self.group1)
         self.MoveLegsForward(self.group1)
         self.MoveLegsBackward(self.group2)
         self.LowerLegs(self.group1)
-        self.raiseLeg(self.group2)
+        self.raiseLegs(self.group2)
         self.MoveLegsForward(self.group2)
         self.MoveLegsBackward(self.group1)
         self.LowerLegs(self.group2)
+
+    def TestMove1(self):
+        self.raiseLegs(self.group1)
+    def TestMove2(self):
+        self.raiseLegs(self.group2)
+    def TestMove3(self):
+        self.LowerLegs(self.group1)
+    def TestMove4(self):
+        self.LowerLegs(self.group2)
+    def TestMove5(self):
+        self.MoveLegsForward(self.group1)
+    def TestMove6(self):
+        self.MoveLegsBackward(self.group1)
 
     #Inverse Kinematics
     def calculateNonForwardPulse(self, StartingPulse, EndPulse, Step, numberOfSteps=160):
@@ -135,35 +185,49 @@ class Move(MotionInterface):
         if EndPulse < StartingPulse:
             pulsedifference = StartingPulse - EndPulse
             pulse = StartingPulse - int((float(pulsedifference) / float(numberOfSteps)) * Step)
-            print pulse
             return pulse
         else:
             pulsedifference = EndPulse - StartingPulse
             pulse =  StartingPulse + int((float(pulsedifference) / float(numberOfSteps)) * Step)
-            print pulse
             return pulse
 
-    def calculatePulse(self, height, length, offsetAnkle = self._DefaultPulse, offsetKnee = self._DefaultPulse):
+    def calculatePulse(self, height, length, offsetAnkle = 375, offsetKnee = 375):
+
+        offsetAnkle = self._DefaultPulse
+        offsetKnee = self._DefaultPulse
+
+  
 
         a = height
         b = length
         c = round(math.sqrt((a * a) + (b * b)))
         d = 80
-        e = 125
+        e = 145
 
         #Calculate servo angles
         hoekC = float((math.acos(((d * d) + (e * e) - (c * c)) / (2 * d * e))) * 180 / math.pi)
         hoekE = float((math.acos(((c * c) + (d * d) - (e * e)) / (2 * c * d))) * 180 / math.pi)
 
+        hoekE = hoekE + self.calculateKnee(a, b)
+
         #Calculate difference in degrees
         differenceInDegreesC = (80 - hoekC)
         differenceInDegreesE = (80 - hoekE)
 
-        diffrencePulseC = differenceInDegreesC * self._PulsesPerDegree * -1;
-        diffrencePulseE = differenceInDegreesE * self._PulsesPerDegree * -1;
+        diffrencePulseC = differenceInDegreesC * self._PulsesPerDegree * -1
+        diffrencePulseE = differenceInDegreesE * self._PulsesPerDegree * -1
+
+        print "diffrencePulseC: " + str(diffrencePulseC)
+        print "diffrencePulseE: " + str(diffrencePulseE)
 
         Ankle = int(offsetAnkle + diffrencePulseC)
         Knee = int(offsetKnee + diffrencePulseE)
+
+        if Knee < 170 or Knee > 500:
+            Knee = 375
+
+        if Ankle < 170 or Ankle > 500:
+            Ankle = 375
 
         return [Knee, Ankle]
 
@@ -171,15 +235,22 @@ class Move(MotionInterface):
 
         hoekA = float(forwardDegrees)
         b = float(widthLeg)
-        a = float((Math.Tan(hoekA * Math.PI / 180) * b))
-        c = float(Math.Sqrt((a * a + b * b)))
+        a = float((math.tan(math.radians(hoekA))) * b)
+        c = float(math.sqrt(a * a + b * b))
 
-        return c
+        return int(c)
 
     def calculateHipPulse(self, degrees):
         pulse = degrees * self._PulsesPerDegree
-        return self._DefaultPulse + pulse
+        return int(self._DefaultPulse + pulse)
 
+    def calculateKnee(self, height, width):
+        a = height
+        b = width
+
+        hoekA = math.atan(b / a)
+
+        return (int(hoekA))
 
 
 
