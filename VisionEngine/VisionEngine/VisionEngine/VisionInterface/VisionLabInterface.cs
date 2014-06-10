@@ -19,13 +19,13 @@ namespace VisionEngine.VisionInterface
             this.commandHandler = commandHandler;
         }
 
-        private void setImage(int indexColor, int indexRank)
+        private void setImage(int color, int indexRank)
         {
             List<Balloon> balloonSequence = new List<Balloon>();
 
-            switch (indexColor)
+            switch (color)
             {
-                case 0:
+                case 0: 
                     visionEngine.Invoke(visionEngine.UpdateImageBalloonDelegate, new Object[] { "RED", indexRank });
                    
                     if (indexRank == 1) {
@@ -40,8 +40,6 @@ namespace VisionEngine.VisionInterface
                         JL_VisionLib_V3.CmdInt.Execute("addScript findballoon findBalloonGreen.jls");
                         Balloon bGreen = new Balloon(indexRank, Color.Green);
                     }
-
-
                     break;
                 case 2:
                     visionEngine.Invoke(visionEngine.UpdateImageBalloonDelegate, new Object[] { "BLUE", indexRank });
@@ -67,19 +65,23 @@ namespace VisionEngine.VisionInterface
 
         public Bitmap processImage(Bitmap bmpPicture)
         {
+            cardModus = true;
             if (cardModus)
             {
                 // Bitmap bmpPicture = (Bitmap)Image.FromFile("image.jpg");
                 JL_VisionLib_V3.CmdInt.Execute("addScript findballoon analyseCard2.jls");
+                //JL_VisionLib_V3.CmdInt.Execute("addScript findballoon findBalloonBlue.jls");
                 JL_VisionLib_V3.CmdInt.SetImage("img", "RGB888Image", bmpPicture);
 
                 String result = JL_VisionLib_V3.CmdInt.Execute("icall findballoon");
+                //Console.WriteLine("Result: " + result);
+                //return JL_VisionLib_V3.CmdInt.GetImage("img");
 
                 if (result != "-1")
                 {
                     List<string> values = result.Split(' ').ToList();
                     bool correctInput = Convert.ToBoolean(values[values.Count() - 1]);
-                    values.RemoveAt(values.Count() - 1);
+                    values.RemoveAt(values.Count() - 1); //remove boolean value
 
                     List<int> yValues = new List<int>();
 
@@ -112,15 +114,13 @@ namespace VisionEngine.VisionInterface
                 
                 int result = Convert.ToInt16(JL_VisionLib_V3.CmdInt.Execute("icall findballoon"));
                 Console.WriteLine("RESULT: " + result);
-                if (result == 1)
+                if (result != -1)
                 {
-
+                    Console.WriteLine(result);
                     //this.commandHandler.execute("move 11");
                 }
                 //else { this.commandHandler.execute("move 10"); }
             }
-
-            
 
             return JL_VisionLib_V3.CmdInt.GetImage("img");
         }
