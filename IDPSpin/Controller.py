@@ -19,7 +19,7 @@ class Controller(object):
         print "spInOS active"
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
-        self._MotionInterface = Move()
+        self._MotionInterface = MotionInterface(1)
         self._Log = SpinLog.SpinLog()
         #self._Camera = Camera()
         self._Exit = False;
@@ -60,7 +60,7 @@ class Controller(object):
                     self._Mode = data[11:12]
                     self._MotionInterface.exit()
                     if int(self._Mode) == 1:
-                        self._MotionInterface = Move()
+                        self._MotionInterface = MotionInterface(1)
                         print "mode set to 'move'"
                     print threading.currentThread()
                     self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)

@@ -1,23 +1,31 @@
 __author__ = 'Ivar'
-
-from Adafruit_PWM_Servo_Driver import PWM
+try:
+    from Adafruit_PWM_Servo_Driver import PWM
+except ImportError:
+    print "my gues is you are running windows or your PWM driver is not correctly configured"
 
 class Servo(object):
     """
     Setting the channels, address, startingPulse and frequency to create an servo.
     Using the Adafruit PWM servo driver to set the min and max Pulse of the servo.
     """
-    def __init__(self, address, channel, startingPulse):
+    def __init__(self, address, channel, startingPulse, inverse=False):
     # Constructor
-        self.pulse = 0
+        self.pulse = startingPulse
         self.channel = channel
         self.address = address
         self.freq = 60
         self.maxPulse = 600
         self.minPulse = 150
-        self.pwm = PWM(address)
-        self.pwm.setPWMFreq(self.freq)
-        self.setPulse(startingPulse)
+        self.inverse = inverse
+        
+        try:
+            self.pwm = PWM(address)
+            self.pwm.setPWMFreq(self.freq)
+            self.setPulse(startingPulse)
+        except:
+            pass
+        
 
     def setPulse(self, pulse):
         # Setting the area of pulses between 150 and 600. If the input is bigger then 600 pulses
@@ -28,8 +36,17 @@ class Servo(object):
         elif pulse < self.minPulse:
             pulse = self.minPulse
 
-        self.pwm.setPWM(self.channel, 0, pulse) # 0 means: zero pulse away from input pulse.
-        self.pulse = pulse                      # setting the input pulse
+        if self.inverse == True:
+            pulse = pulse - 150
+            #calculate difference
+            difference = 225 - pulse
+            pulse = 375 + difference
+
+        try:
+            self.pwm.setPWM(self.channel, 0, pulse) # 0 means: zero pulse away from input pulse.
+        except:
+            print "moved virtual servo to: " + str(pulse)
+            self.pulse = pulse                      # setting the input pulse
 
     def getPulse(self):
         return self.pulse
