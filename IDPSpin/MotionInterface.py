@@ -10,20 +10,20 @@ import math
 class MotionInterface(object):
     def __init__(self, mode=1):
         self._Legs = [
-            Leg([0x41, 0x41, 0x41], [0, 1, 2], [375, 375, 375]), #leg 1
-            Leg([0x40, 0x40, 0x40], [0, 1, 2], [375, 375, 375], True), #leg 2
-            Leg([0x41, 0x41, 0x41], [4, 5, 6], [375, 375, 375]), #leg 3
-            Leg([0x40, 0x40, 0x40], [4, 5, 6], [375, 375, 375], True), #leg 4
-            Leg([0x41, 0x41, 0x41], [8, 9, 10], [375, 375, 375]), #leg 5
-            Leg([0x40, 0x40, 0x40], [8, 9, 10], [375, 375, 375], True), #leg 6
+            Leg([0x41, 0x41, 0x41], [0, 1, 2], [375, 375, 375], [0, 0, 0]), #leg 1
+            Leg([0x40, 0x40, 0x40], [0, 1, 2], [375, 375, 375], True, [0, 0, 0]), #leg 2
+            Leg([0x41, 0x41, 0x41], [4, 5, 6], [375, 375, 375], [0, 0, 0]), #leg 3
+            Leg([0x40, 0x40, 0x40], [4, 5, 6], [375, 375, 375], True, [0, 0, 0]), #leg 4
+            Leg([0x41, 0x41, 0x41], [8, 9, 10], [375, 375, 375], [0, 0, 0]), #leg 5
+            Leg([0x40, 0x40, 0x40], [8, 9, 10], [375, 375, 375], True, [0, 0, 0]), #leg 6
         ]
         self._CurrentCommand = 10
         self._Exit = False
         self._Semaphore = threading.Semaphore(1)
         self._ExitSemaphore = threading.Semaphore(1)
-        self._Height = 100
-        self._Length = 100
-        self.SleepTime = 0.05
+        self._Height = 115
+        self._Length = 50
+        self.SleepTime = 0.01
         self._DefaultPulse = 375
         if mode == 1:
             self._CurrentMode = Move(self)
@@ -122,12 +122,11 @@ class MotionInterface(object):
 
 
     #Inverse kinematics!
-    def calculatePulse(self, height, length, offsetAnkle = 375, offsetKnee = 375):
-
-        offsetAnkle = self._DefaultPulse
-        offsetKnee = self._DefaultPulse
-
-  
+    def calculatePulse(self, height, length, offsetAnkle = -1, offsetKnee = -1):
+        if offsetAnkle == -1:
+            offsetAnkle = self._DefaultPulse
+        if offsetKnee == -1:
+            offsetKnee = self._DefaultPulse
 
         a = height
         b = length

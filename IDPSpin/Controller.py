@@ -6,6 +6,7 @@ import thread
 import threading
 import subprocess
 from MotionInterface import MotionInterface
+from GetSpiData import GetSpiData
 from Move import Move
 from threading import Thread
 from subprocess import call
@@ -20,6 +21,7 @@ class Controller(object):
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
         self._MotionInterface = MotionInterface(1)
+        self._SPIData = GetSpiData()
         self._Log = SpinLog.SpinLog()
         #self._Camera = Camera()
         self._Exit = False;
@@ -55,6 +57,8 @@ class Controller(object):
                     self.gcpu(ID)
                 elif Command == "tsen":
                    self._NetworkInterface.Send(self._MotionInterface.test(data[11:]), ID)
+                elif Command == "gspi":
+                    self._NetworkInterface.Send(self._SPIData.getSpi(), ID)
                 elif Command == "smde":
                     print "entering smde"
                     self._Mode = data[11:12]
@@ -75,10 +79,10 @@ class Controller(object):
                     self._NetworkInterface.Send("length has been set", ID)
                 elif Command == "shgt":
                     self._MotionInterface.setHeight(data[11:14])
-                    self._NetworkInterface.Send("height has been set", ID)
+                    self._NetworkInterface.Send("height has been set to:" + data[11:14], ID)
                 elif Command == "sspd":
                     self._MotionInterface.setSpeed(data[11:17])
-                    self._NetworkInterface.Send("Speed has been set", ID)
+                    self._NetworkInterface.Send("Speed has been set to:" + data[11:14], ID)
                 elif Command == "gimg":
                     self._NetworkInterface.Send(self._Camera.takeImage(), ID)
                 elif Command == "gifm":
