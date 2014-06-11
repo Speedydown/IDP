@@ -86,14 +86,14 @@ class Move():
 
     def LowerLegs(self, Legs):
         steps = 50
-        startpulseAnkle = Legs[0].getAnkle()
+        startpulseAnkle = Legs[0].getAnkle() #klopt die array? twee keer 0 voor ankle en knee.
         startpulseKnee = Legs[0].getKnee()
         pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
         for step in range(1, steps):
            #lower leg
             for Leg in Legs:
                 Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startpulseAnkle, pulses[0], step, steps))
-                Leg.moveKnee(self._MInterface.calculateVerticalPulse(startpulseAnkle, pulses[1], step, steps))
+                Leg.moveKnee(self._MInterface.calculateVerticalPulse(startpulseKnee, pulses[1], step, steps)) #startpulseKnee in plaats van Ankle
             time.sleep(self._MInterface.SleepTime)
 
     def MoveLegsForward(self, Legs):
@@ -111,7 +111,7 @@ class Move():
 
 
     def MoveLegsBackward(self, Legs):
-        offsetAnkle = Legs[0].getAnkle()
+        offsetAnkle = Legs[0].getAnkle() #Zelfde verhaal als de andere array
         offsetKnee = Legs[0].getKnee()
         steps = 80
         for step in range(1, steps):

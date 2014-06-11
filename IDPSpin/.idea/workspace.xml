@@ -26,7 +26,7 @@
       <file leaf-file-name="Leg.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Leg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="22" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+            <state line="20" column="33" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1020">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="Controller.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="8" selection-start="5077" selection-end="5077" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2312">
+            <state line="80" column="39" selection-start="3495" selection-end="3495" vertical-scroll-proportion="0.0" vertical-offset="2027" max-vertical-offset="2465">
               <folding />
             </state>
           </provider>
@@ -44,7 +44,7 @@
       <file leaf-file-name="Move.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Move.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="24" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1836">
+            <state line="118" column="28" selection-start="4412" selection-end="4412" vertical-scroll-proportion="0.0" vertical-offset="1887" max-vertical-offset="3043">
               <folding />
             </state>
           </provider>
@@ -53,7 +53,7 @@
       <file leaf-file-name="MotionInterface.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MotionInterface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="72" selection-start="614" selection-end="614" vertical-scroll-proportion="0.34634975" vertical-offset="0" max-vertical-offset="1003">
+            <state line="184" column="0" selection-start="5381" selection-end="5381" vertical-scroll-proportion="2.49354" vertical-offset="2078" max-vertical-offset="3383">
               <folding />
             </state>
           </provider>
@@ -62,7 +62,7 @@
       <file leaf-file-name="Servo.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Servo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="46" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+            <state line="19" column="30" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1173">
               <folding />
             </state>
           </provider>
@@ -83,10 +83,10 @@
         <option value="$PROJECT_DIR$/Controller.py" />
         <option value="$PROJECT_DIR$/TestServo.py" />
         <option value="$PROJECT_DIR$/SingleLeg.py" />
-        <option value="$PROJECT_DIR$/Leg.py" />
         <option value="$PROJECT_DIR$/Servo.py" />
-        <option value="$PROJECT_DIR$/Move.py" />
         <option value="$PROJECT_DIR$/MotionInterface.py" />
+        <option value="$PROJECT_DIR$/Leg.py" />
+        <option value="$PROJECT_DIR$/Move.py" />
       </list>
     </option>
   </component>
@@ -122,7 +122,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -143,6 +142,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -294,7 +294,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -303,7 +303,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11598513" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3284553" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -351,6 +351,20 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/MotionInterface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="33" selection-start="822" selection-end="822" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1003">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Servo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="46" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="697">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="37" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
@@ -360,9 +374,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187">
-          <folding />
-        </state>
+        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
@@ -381,9 +393,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="36" selection-start="809" selection-end="809" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1241">
-          <folding />
-        </state>
+        <state line="29" column="36" selection-start="809" selection-end="809" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1241" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
@@ -395,9 +405,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476">
-          <folding />
-        </state>
+        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
@@ -416,9 +424,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187">
-          <folding />
-        </state>
+        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
@@ -444,9 +450,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476">
-          <folding />
-        </state>
+        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
@@ -465,9 +469,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
-          <folding />
-        </state>
+        <state line="5" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
@@ -493,9 +495,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476">
-          <folding />
-        </state>
+        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
@@ -514,9 +514,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
-          <folding />
-        </state>
+        <state line="5" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
@@ -547,9 +545,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272">
-          <folding />
-        </state>
+        <state line="10" column="0" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
@@ -561,9 +557,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
-          <folding />
-        </state>
+        <state line="5" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
@@ -594,9 +588,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272">
-          <folding />
-        </state>
+        <state line="10" column="0" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
@@ -618,68 +610,66 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2533" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SingleLeg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="39" selection-start="114" selection-end="114" vertical-scroll-proportion="0.11505922" vertical-offset="0" max-vertical-offset="969" />
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharm30/system/python_stubs/-1442825926/time.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="18" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6409" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Leg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="22" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="8" selection-start="5077" selection-end="5077" vertical-scroll-proportion="0.0" vertical-offset="2312" max-vertical-offset="2482">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="36" selection-start="809" selection-end="809" vertical-scroll-proportion="0.7792869" vertical-offset="0" max-vertical-offset="1207">
-          <folding />
-        </state>
+        <state line="29" column="36" selection-start="809" selection-end="809" vertical-scroll-proportion="0.7792869" vertical-offset="0" max-vertical-offset="1207" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.60611206" vertical-offset="0" max-vertical-offset="589">
+        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.60611206" vertical-offset="0" max-vertical-offset="589" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SingleLeg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="39" selection-start="105" selection-end="105" vertical-scroll-proportion="0.17571059" vertical-offset="0" max-vertical-offset="1020">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="46" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="697">
+        <state line="19" column="30" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1173">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.13178295" vertical-offset="0" max-vertical-offset="387">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="39" selection-start="3495" selection-end="3495" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Leg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="33" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1020">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Move.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="24" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1836">
+        <state line="118" column="28" selection-start="4412" selection-end="4412" vertical-scroll-proportion="0.0" vertical-offset="1377" max-vertical-offset="3043">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="72" selection-start="614" selection-end="614" vertical-scroll-proportion="0.34634975" vertical-offset="0" max-vertical-offset="1003">
+        <state line="184" column="0" selection-start="5381" selection-end="5381" vertical-scroll-proportion="2.49354" vertical-offset="2078" max-vertical-offset="3383">
           <folding />
         </state>
       </provider>

@@ -10,12 +10,12 @@ import math
 class MotionInterface(object):
     def __init__(self, mode=1):
         self._Legs = [
-            Leg([0x41, 0x41, 0x41], [0, 1, 2], [375, 375, 375], [0, 0, 0]), #leg 1
-            Leg([0x40, 0x40, 0x40], [0, 1, 2], [375, 375, 375], True, [0, 0, 0]), #leg 2
-            Leg([0x41, 0x41, 0x41], [4, 5, 6], [375, 375, 375], [0, 0, 0]), #leg 3
+            Leg([0x41, 0x41, 0x41], [0, 1, 2], [375, 450, 375], [0, 0, 0]), #leg 1
+            Leg([0x40, 0x40, 0x40], [0, 1, 2], [375, 450, 375], True, [0, 0, 0]), #leg 2
+            Leg([0x41, 0x41, 0x41], [4, 5, 6], [375, 450, 375], [0, 0, 0]), #leg 3
             Leg([0x40, 0x40, 0x40], [4, 5, 6], [375, 375, 375], True, [0, 0, 0]), #leg 4
-            Leg([0x41, 0x41, 0x41], [8, 9, 10], [375, 375, 375], [0, 0, 0]), #leg 5
-            Leg([0x40, 0x40, 0x40], [8, 9, 10], [375, 375, 375], True, [0, 0, 0]), #leg 6
+            Leg([0x41, 0x41, 0x41], [8, 9, 10], [375, 450, 375], [0, 0, 0]), #leg 5
+            Leg([0x40, 0x40, 0x40], [8, 9, 10], [375, 450, 375], True, [0, 0, 0]), #leg 6
         ]
         self._CurrentCommand = 10
         self._Exit = False
@@ -54,7 +54,7 @@ class MotionInterface(object):
     def exit(self):
         self._ExitSemaphore.acquire()
         self._Exit = True
-        slef._CurrentMode.exit()
+        self._CurrentMode.exit()
         self._ExitSemaphore.release()
 
     def getSemaphore(self):
@@ -178,19 +178,19 @@ class MotionInterface(object):
 
         return (int(hoekA))
 
-    def calculateVerticalPulse(self, StartingPulse, EndPulse, Step, numberOfSteps=160):
+    def calculateVerticalPulse(self, startingPulse, EndPulse, Step, numberOfSteps=160):
         if Step > numberOfSteps or Step < 1:
             print "Step out of range - " + str(Step)
             raise Exception("")
 
-        pulsedifference = 150
-        if EndPulse < StartingPulse:
-            pulsedifference = StartingPulse - EndPulse
-            pulse = StartingPulse - int((float(pulsedifference) / float(numberOfSteps)) * Step)
+        pulsedifference = 150 # wordt deze gebruikt?
+        if EndPulse < startingPulse:
+            pulsedifference = startingPulse - EndPulse
+            pulse = startingPulse - int((float(pulsedifference) / float(numberOfSteps)) * Step)
             return pulse
         else:
-            pulsedifference = EndPulse - StartingPulse
-            pulse =  StartingPulse + int((float(pulsedifference) / float(numberOfSteps)) * Step)
+            pulsedifference = EndPulse - startingPulse
+            pulse = startingPulse + int((float(pulsedifference) / float(numberOfSteps)) * Step)
             return pulse
         
 

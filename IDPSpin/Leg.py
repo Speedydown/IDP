@@ -18,8 +18,8 @@ class Leg(object):
     # it will print an Error.
         if len(self._AddressArray) == 3:
             self._Hip = Servo(self._AddressArray[0], self._ChannelArray[0], self._DefaultPulseArray[0], self._inverse, self._offset[0])
-            self._Knee = Servo(self._AddressArray[1], self._ChannelArray[1], self._DefaultPulseArray[1], self._inverse, self._offset[0])
-            self._Ankle = Servo(self._AddressArray[2], self._ChannelArray[2],self._DefaultPulseArray[2], self._inverse, self._offset[0])
+            self._Knee = Servo(self._AddressArray[1], self._ChannelArray[1], self._DefaultPulseArray[1], self._inverse, self._offset[1])
+            self._Ankle = Servo(self._AddressArray[2], self._ChannelArray[2],self._DefaultPulseArray[2], self._inverse, self._offset[2]) #3 keer nul? aangepast naar 0,1,2
         else:
             print "-----------Error Creating leg-----------"
 
