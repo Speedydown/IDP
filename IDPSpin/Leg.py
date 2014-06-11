@@ -7,7 +7,7 @@ class Leg(object):
     Setting the addresses, channels and default position of the 3 servos of the leg.
     """
 
-    def __init__(self, AddressArray, ChannelArray, DefaultPulseArray, inverse = False, offset=[0,0,0]):
+    def __init__(self, AddressArray, ChannelArray, DefaultPulseArray, inverse=False, offset=[0,0,0]):
         self._AddressArray = AddressArray
         self._ChannelArray = ChannelArray
         self._DefaultPulseArray = DefaultPulseArray

@@ -10,12 +10,12 @@ import math
 class MotionInterface(object):
     def __init__(self, mode=1):
         self._Legs = [
-            Leg([0x41, 0x41, 0x41], [0, 1, 2], [375, 450, 375], [0, 0, 0]), #leg 1
-            Leg([0x40, 0x40, 0x40], [0, 1, 2], [375, 450, 375], True, [0, 0, 0]), #leg 2
-            Leg([0x41, 0x41, 0x41], [4, 5, 6], [375, 450, 375], [0, 0, 0]), #leg 3
+            Leg([0x41, 0x41, 0x41], [0, 1, 2], [375, 375, 375], [0, 0, 0]), #leg 1
+            Leg([0x40, 0x40, 0x40], [0, 1, 2], [375, 375, 375], True, [0, 0, 0]), #leg 2
+            Leg([0x41, 0x41, 0x41], [4, 5, 6], [375, 375, 375], [0, 0, 0]), #leg 3
             Leg([0x40, 0x40, 0x40], [4, 5, 6], [375, 375, 375], True, [0, 0, 0]), #leg 4
-            Leg([0x41, 0x41, 0x41], [8, 9, 10], [375, 450, 375], [0, 0, 0]), #leg 5
-            Leg([0x40, 0x40, 0x40], [8, 9, 10], [375, 450, 375], True, [0, 0, 0]), #leg 6
+            Leg([0x41, 0x41, 0x41], [8, 9, 10], [375, 375, 375], [0, 0, 0]), #leg 5
+            Leg([0x40, 0x40, 0x40], [8, 9, 10], [375, 375, 375], True, [0, 0, 0]), #leg 6
         ]
         self._CurrentCommand = 10
         self._Exit = False
@@ -90,10 +90,10 @@ class MotionInterface(object):
         except:
             length = self._Length
         
-        if length < 20:
-            self._Length = 40
-        elif length > 120:
-            self._Length = 110
+        if length < 50:
+            self._Length = 50
+        elif length > 160:
+            self._Length = 160
         else:
             self._Length = length
 
@@ -171,11 +171,11 @@ class MotionInterface(object):
         return int(self._DefaultPulse + pulse)
 
     def calculateKnee(self, height, width):
-        a = height
-        b = width
+        a = float(height)
+        b = float(width)
 
-        hoekA = math.atan(b / a)
-
+        hoekA = math.degrees(math.atan(b/a))
+        #print "Knee " + str(hoekA) + " heigth: " + str(height) + " width: " + str(width)
         return (int(hoekA))
 
     def calculateVerticalPulse(self, startingPulse, EndPulse, Step, numberOfSteps=160):

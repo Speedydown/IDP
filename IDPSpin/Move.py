@@ -77,11 +77,13 @@ class Move():
     def raiseLegs(self, Legs):
         steps = 50
         pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
+        startpulseAnkle = Legs[0].getAnkle() #klopt die array? twee keer 0 voor ankle en knee.
+        startpulseKnee = Legs[0].getKnee()
         for step in range(1, steps):
             #raise leg
             for Leg in Legs:
-                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(pulses[0], 280, step, steps)) #was 312
-                Leg.moveKnee(self._MInterface.calculateVerticalPulse(pulses[1], 280, step, steps)) #was 329
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startpulseAnkle, pulses[0] - 95, step, steps)) #was 312
+                Leg.moveKnee(self._MInterface.calculateVerticalPulse(startpulseKnee, pulses[1] - 95, step, steps)) #was 329
             time.sleep(self._MInterface.SleepTime)
 
     def LowerLegs(self, Legs):
@@ -153,7 +155,8 @@ class Move():
     def TestMove1(self):
         self.raiseLegs(self.group1)
     def TestMove2(self):
-        self.raiseLegs(self.group2)
+        for Leg in self._MInterface._Legs:
+            Leg.moveAnkle(280)
     def TestMove3(self):
         self.LowerLegs(self.group1)
     def TestMove4(self):
