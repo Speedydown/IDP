@@ -21,8 +21,8 @@ class MotionInterface(object):
         self._Exit = False
         self._Semaphore = threading.Semaphore(1)
         self._ExitSemaphore = threading.Semaphore(1)
-        self._Height = 115
-        self._Length = 50
+        self._Height = 50
+        self._Length = 100
         self.SleepTime = 0.01
         self._DefaultPulse = 375
         if mode == 1:
@@ -120,6 +120,8 @@ class MotionInterface(object):
     def convertDegreesToPulse(self, pulse):
         return int(pulse * 2.8125)
 
+    def setDefaultPulse(self, pulse):
+        self._DefaultPulse = int(pulse)
 
     #Inverse kinematics!
     def calculatePulse(self, height, length, offsetAnkle = -1, offsetKnee = -1):
@@ -128,23 +130,23 @@ class MotionInterface(object):
         if offsetKnee == -1:
             offsetKnee = self._DefaultPulse
 
-        a = height
-        b = length
-        c = round(math.sqrt((a * a) + (b * b)))
-        d = 80
-        e = 145
+        a = float(height)
+        b = float(length)
+        c = math.sqrt((a * a) + (b * b))
+        d = float(80)
+        e = float(145)
 
         #Calculate servo angles
         hoekC = float((math.acos(((d * d) + (e * e) - (c * c)) / (2 * d * e))) * 180 / math.pi)
         hoekE = float((math.acos(((c * c) + (d * d) - (e * e)) / (2 * c * d))) * 180 / math.pi)
 
-        hoekE = hoekE + self.calculateKnee(a, b)
+        #hoekE = hoekE + self.calculateKnee(a, b)
 
         #Calculate difference in degrees
         differenceInDegreesC = (80 - hoekC)
         differenceInDegreesE = (80 - hoekE)
         
-        diffrencePulseC = self.convertDegreesToPulse(differenceInDegreesC) * -1
+        diffrencePulseC = self.convertDegreesToPulse(differenceInDegreesC)
         diffrencePulseE = self.convertDegreesToPulse(differenceInDegreesE) * -1
 
         Ankle = int(offsetAnkle + diffrencePulseC)

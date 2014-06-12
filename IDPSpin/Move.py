@@ -91,6 +91,9 @@ class Move():
         startpulseAnkle = Legs[0].getAnkle() #klopt die array? twee keer 0 voor ankle en knee.
         startpulseKnee = Legs[0].getKnee()
         pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
+
+        print(str(self._MInterface._Height) + " " + str(startpulseAnkle) + " "  + str(startpulseKnee) + " " + str(pulses[0]) + " " + str(pulses[1]))
+
         for step in range(1, steps):
            #lower leg
             for Leg in Legs:

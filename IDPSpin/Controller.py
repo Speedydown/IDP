@@ -83,6 +83,9 @@ class Controller(object):
                 elif Command == "sspd":
                     self._MotionInterface.setSpeed(data[11:17])
                     self._NetworkInterface.Send("Speed has been set to:" + data[11:14], ID)
+                elif Command == "spul":
+                    self._MotionInterface.setDefaultPulse(data[11:17])
+                    self._NetworkInterface.Send("Defaultpulse has been updated", ID)
                 elif Command == "gimg":
                     self._NetworkInterface.Send(self._Camera.takeImage(), ID)
                 elif Command == "gifm":
