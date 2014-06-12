@@ -86,6 +86,9 @@ class Controller(object):
                 elif Command == "spul":
                     self._MotionInterface.setDefaultPulse(data[11:17])
                     self._NetworkInterface.Send("Defaultpulse has been updated", ID)
+                elif Command == "cali":
+                    self._MotionInterface.Calibreren(data[11:12], data[14:17])
+                    self._NetworkInterface.Send("Defaultpulse has been updated", ID)
                 elif Command == "gimg":
                     self._NetworkInterface.Send(self._Camera.takeImage(), ID)
                 elif Command == "gifm":

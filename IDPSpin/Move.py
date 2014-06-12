@@ -70,6 +70,12 @@ class Move():
 
             leg1Thread.join()
             self._LastCommand = 17
+        elif Command == 18:
+            leg1Thread = threading.Thread(target=self.Calibreren())
+            leg1Thread.start()
+
+            leg1Thread.join()
+            self._LastCommand = 18
 
     def exit(self):
         pass #exit methode
@@ -102,13 +108,16 @@ class Move():
             time.sleep(self._MInterface.SleepTime)
 
     def MoveLegsForward(self, Legs):
-        offsetAnkle = 280 #Legs[0].getAnkle()
-        offsetKnee = 280#Legs[0].getKnee()
+
+        offsetAnkle = Legs[0].getAnkle()
+        offsetKnee = Legs[0].getKnee()
         steps = 80
         for step in range(1, steps):
             #move leg forward
+            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step / 4), offsetAnkle, offsetKnee)
             for Leg in Legs:
-                pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step / 4), offsetAnkle, offsetKnee)
+
+                print(str(pulses[0]) + " " + str(pulses[1]) + " " + str(offsetAnkle) + " " + str(offsetKnee))
                 Leg.moveHip(self._MInterface.calculateHipPulse(step / 4))
                 Leg.moveKnee(pulses[0])
                 Leg.moveAnkle(pulses[1])
@@ -121,8 +130,10 @@ class Move():
         steps = 80
         for step in range(1, steps):
             #move leg backward
+            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, (steps - step) / 4), offsetAnkle, offsetKnee)
             for Leg in Legs:
-                pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, (steps - step) / 4), offsetAnkle, offsetKnee)
+
+                print(str(pulses[0]) + " " + str(pulses[1]) + " " + str(offsetAnkle) + " " + str(offsetKnee))
                 Leg.moveHip(self._MInterface.calculateHipPulse((steps - step) / 4))
                 Leg.moveKnee(pulses[0])
                 Leg.moveAnkle(pulses[1])
@@ -168,6 +179,9 @@ class Move():
         self.MoveLegsForward(self.group1)
     def TestMove6(self):
         self.MoveLegsBackward(self.group1)
+
+
+
 
     
 

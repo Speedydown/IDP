@@ -21,8 +21,8 @@ class MotionInterface(object):
         self._Exit = False
         self._Semaphore = threading.Semaphore(1)
         self._ExitSemaphore = threading.Semaphore(1)
-        self._Height = 50
-        self._Length = 100
+        self._Height = 100
+        self._Length = 160
         self.SleepTime = 0.01
         self._DefaultPulse = 375
         if mode == 1:
@@ -136,27 +136,34 @@ class MotionInterface(object):
         d = float(80)
         e = float(145)
 
-        #Calculate servo angles
-        hoekC = float((math.acos(((d * d) + (e * e) - (c * c)) / (2 * d * e))) * 180 / math.pi)
-        hoekE = float((math.acos(((c * c) + (d * d) - (e * e)) / (2 * c * d))) * 180 / math.pi)
+        hoekB = math.degrees(math.atan(b/a))
 
-        #hoekE = hoekE + self.calculateKnee(a, b)
+        #Calculate servo angles
+        hoekC = float(math.degrees((math.acos(((d * d) + (e * e) - (c * c)) / (2 * d * e)))))
+        hoekE = float(math.degrees((math.acos(((c * c) + (d * d) - (e * e)) / (2 * c * d)))))
+
+        HoekE2 = 90 - hoekB
+        HoekE1 = hoekE - HoekE2
+
+        HoekC1 = 90 - HoekE1
+        HoekC2 = hoekC - HoekC1
 
         #Calculate difference in degrees
-        differenceInDegreesC = (80 - hoekC)
-        differenceInDegreesE = (80 - hoekE)
+        differenceInDegreesC = (90 - HoekC2)
+        differenceInDegreesE = (90 - HoekE1)
+
         
         diffrencePulseC = self.convertDegreesToPulse(differenceInDegreesC)
-        diffrencePulseE = self.convertDegreesToPulse(differenceInDegreesE) * -1
+        diffrencePulseE = self.convertDegreesToPulse(differenceInDegreesE)
 
-        Ankle = int(offsetAnkle + diffrencePulseC)
-        Knee = int(offsetKnee + diffrencePulseE)
+        Ankle = int(offsetAnkle - diffrencePulseC)
+        Knee = int(offsetKnee - diffrencePulseE)
 
-        if Knee < 170 or Knee > 500:
-            Knee = 375
+        if Knee < 170:
+            Knee = 170
 
-        if Ankle < 170 or Ankle > 500:
-            Ankle = 375
+
+
 
         return [Knee, Ankle]
 
@@ -172,14 +179,6 @@ class MotionInterface(object):
         pulse = self.convertDegreesToPulse(degrees)
         return int(self._DefaultPulse + pulse)
 
-    def calculateKnee(self, height, width):
-        a = float(height)
-        b = float(width)
-
-        hoekA = math.degrees(math.atan(b/a))
-        #print "Knee " + str(hoekA) + " heigth: " + str(height) + " width: " + str(width)
-        return (int(hoekA))
-
     def calculateVerticalPulse(self, startingPulse, EndPulse, Step, numberOfSteps=160):
         if Step > numberOfSteps or Step < 1:
             print "Step out of range - " + str(Step)
@@ -194,6 +193,18 @@ class MotionInterface(object):
             pulsedifference = EndPulse - startingPulse
             pulse = startingPulse + int((float(pulsedifference) / float(numberOfSteps)) * Step)
             return pulse
+
+    def getDefaultPulse(self):
+        return self._DefaultPulse
+
+    def Calibreren(self, number, pulse):
+        for Leg in self._MInterface._Legs:
+            if number == 1:
+                Leg.moveHip(pulse)
+            if number == 2:
+                Leg.moveAnkle(pulse)
+            if number == 3:
+                Leg.moveKnee(pulse)
         
 
 
