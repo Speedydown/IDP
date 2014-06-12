@@ -62,7 +62,11 @@ namespace VisionEngine.VisionInterface
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bmpPicture"></param>
+        /// <returns></returns>
         public Bitmap processImage(Bitmap bmpPicture)
         {
             cardModus = true;
