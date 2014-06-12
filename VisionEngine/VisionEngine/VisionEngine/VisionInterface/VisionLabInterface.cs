@@ -78,7 +78,7 @@ namespace VisionEngine.VisionInterface
                 //return JL_VisionLib_V3.CmdInt.GetImage("img");
 
                 if (result != "-1")
-                {
+                { 
                     List<string> values = result.Split(' ').ToList();
                     bool correctInput = Convert.ToBoolean(values[values.Count() - 1]);
                     values.RemoveAt(values.Count() - 1); //remove boolean value
