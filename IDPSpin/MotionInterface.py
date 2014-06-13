@@ -23,7 +23,7 @@ class MotionInterface(object):
         self._ExitSemaphore = threading.Semaphore(1)
         self._Height = 100
         self._Length = 160
-        self.SleepTime = 0.01
+        self.SleepTime = 0.005
         self._DefaultPulse = 375
         if mode == 1:
             self._CurrentMode = Move(self)
@@ -163,7 +163,8 @@ class MotionInterface(object):
             Knee = 170
 
 
-
+        if Ankle < 150:
+            Ankle = 150
 
         return [Knee, Ankle]
 

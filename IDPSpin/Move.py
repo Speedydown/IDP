@@ -117,7 +117,7 @@ class Move():
             pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step / 4), offsetAnkle, offsetKnee)
             for Leg in Legs:
 
-                print(str(pulses[0]) + " " + str(pulses[1]) + " " + str(offsetAnkle) + " " + str(offsetKnee))
+
                 Leg.moveHip(self._MInterface.calculateHipPulse(step / 4))
                 Leg.moveKnee(pulses[0])
                 Leg.moveAnkle(pulses[1])
@@ -125,19 +125,27 @@ class Move():
 
 
     def MoveLegsBackward(self, Legs):
-        offsetAnkle = Legs[0].getAnkle() #Zelfde verhaal als de andere array
-        offsetKnee = Legs[0].getKnee()
+
         steps = 80
         for step in range(1, steps):
-            #move leg backward
-            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, (steps - step) / 4), offsetAnkle, offsetKnee)
+
+            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
             for Leg in Legs:
 
-                print(str(pulses[0]) + " " + str(pulses[1]) + " " + str(offsetAnkle) + " " + str(offsetKnee))
                 Leg.moveHip(self._MInterface.calculateHipPulse((steps - step) / 4))
-                Leg.moveKnee(pulses[0])
-                Leg.moveAnkle(pulses[1])
+                #Leg.moveKnee(pulses[0])
+                #Leg.moveAnkle(pulses[1])
+
             time.sleep(self._MInterface.SleepTime)
+
+
+
+
+
+
+
+
+
 
     def StopLegs(self):
         #laatste pootbeweging
