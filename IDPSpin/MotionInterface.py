@@ -23,7 +23,7 @@ class MotionInterface(object):
         self._ExitSemaphore = threading.Semaphore(1)
         self._Height = 100
         self._Length = 160
-        self.SleepTime = 0.005
+        self.SleepTime = 0.001
         self._DefaultPulse = 375
         if mode == 1:
             self._CurrentMode = Move(self)
@@ -74,8 +74,8 @@ class MotionInterface(object):
         
         if height < 40:
             self._Height = 40
-        elif height > 110:
-            self._Height = 110
+        elif height > 150:
+            self._Height = 150
         else:
             self._Height = height
 
@@ -92,8 +92,8 @@ class MotionInterface(object):
         
         if length < 50:
             self._Length = 50
-        elif length > 160:
-            self._Length = 160
+        elif length > 200:
+            self._Length = 200
         else:
             self._Length = length
 
@@ -145,12 +145,20 @@ class MotionInterface(object):
         HoekE2 = 90 - hoekB
         HoekE1 = hoekE - HoekE2
 
+
         HoekC1 = 90 - HoekE1
         HoekC2 = hoekC - HoekC1
 
         #Calculate difference in degrees
-        differenceInDegreesC = (90 - HoekC2)
-        differenceInDegreesE = (90 - HoekE1)
+        if hoekC <= HoekC1:
+            differenceInDegreesC = (90 + HoekC2)
+        else:
+            differenceInDegreesC = (90 - HoekC2)
+
+        if hoekE <= HoekE2:
+            differenceInDegreesE = (90 + HoekE1)
+        else:
+            differenceInDegreesE = (90 - HoekE1)
 
         
         diffrencePulseC = self.convertDegreesToPulse(differenceInDegreesC)

@@ -10,7 +10,8 @@ from GetSpiData import GetSpiData
 from Move import Move
 from threading import Thread
 from subprocess import call
-#from Camera import Camera
+from Camera import Camera
+from IOPIN import IOPIN
 
 class Controller(object):
 
@@ -23,7 +24,8 @@ class Controller(object):
         self._MotionInterface = MotionInterface(1)
         self._SPIData = GetSpiData()
         self._Log = SpinLog.SpinLog()
-        #self._Camera = Camera()
+        self._IOPIN = IOPIN()
+        self._Camera = Camera()
         self._Exit = False;
         self._Mode = 1
                 

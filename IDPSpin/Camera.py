@@ -1,16 +1,23 @@
 import time
-import picamera
+try:
+    import picamera
+except:
+    "could not start camera"
 import io
 import base64
 
 class Camera(object):
 
     def __init__(self):
-        self._Camera = picamera.PiCamera()
-        self._Camera.resolution = (640, 480)
-        self._Camera.brightness = 50
-        self._Camera.start_preview()
-        self._StoredImage = ""
+        try:
+            self._Camera = picamera.PiCamera()
+            self._Camera.resolution = (640, 480)
+            self._Camera.brightness = 50
+            self._Camera.start_preview()
+            self._StoredImage = ""
+        except:
+            pass
+
     
     def takeImage(self):
         my_stream = io.BytesIO()

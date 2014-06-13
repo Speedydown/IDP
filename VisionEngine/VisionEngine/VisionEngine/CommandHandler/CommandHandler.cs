@@ -60,7 +60,31 @@ namespace VisionEngine
             networkInterface.Send(Command + "<EOF>");
             string output = networkInterface.Recv();
             commandHandlerSemaphore.Release();
+
+            if (Command == "gimg")
+            {
+                byte[] bytes = Convert.FromBase64String(output);
+
+                Image InputImage;
+                Image OutputImage;
+                using (MemoryStream ms = new MemoryStream(bytes))
+                {
+                    try
+                    {
+                        InputImage = new Bitmap(Image.FromStream(ms));
+                        //OutputImage = visionLabInterface.processImage(new Bitmap(InputImage));
+                        visionEngine.Invoke(visionEngine.UpdateImageDelegate, new Object[] { InputImage, InputImage });
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+            }
+
             return output;
+
+            
             
         }
 
