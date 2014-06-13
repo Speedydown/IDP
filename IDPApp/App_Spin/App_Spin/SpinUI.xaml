@@ -8,7 +8,7 @@
     mc:Ignorable="d">
 
     <!--Open Background Grid-->
-    <Grid Background="DarkGreen">
+    <Grid Background="DarkBlue">
         <!--Open Bar Grid-->
         <Grid x:Name="gridApp" HorizontalAlignment="Left" Height="100" Margin="50,50,0,0" VerticalAlignment="Top" Width="1280">
             <Button x:Name="btnReturn" Margin="10,30,0,0" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top" Click="btnReturn_Click"/>
@@ -29,19 +29,17 @@
                       VerticalAlignment="Top" FontFamily="Global User Interface">
                 <ComboBoxItem Content="Handmatige besturing - Tablet" IsSelected="True"/>
                 <ComboBoxItem Content="Handmatige besturing - Controller"/>
-                <ComboBoxItem Content="Limbo-test / Kwalificatie"/>
-                <ComboBoxItem Content="Spider Race / Snelheid"/>
                 <ComboBoxItem Content="SYTYCD / Dansje"/>
                 <ComboBoxItem Content="Spinnijdig / Waterbeker"/>
                 <ComboBoxItem Content="Spider Gap / Oversteek"/>
                 <ComboBoxItem Content="Zwarte Weduwe / Ballonnen"/>
                 <ComboBoxItem Content="Spinnen in de olie / Herkennen"/>
-                <ComboBoxItem Content="Paringsdans / Oorlog"/>
             </ComboBox>
             <!--Close Bar Grid-->
         </Grid>
 
         <!--Open Joystick Grid-->
+        <Grid Background="Orange" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190,190,0,0" Width="420" Height="420"/>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,200,0,0" Width="400" Height="450">
             <Canvas>
                 <!--Joystick Layout + Buttons-->
@@ -73,8 +71,9 @@
                 </Slider.RenderTransform>
             </Slider>
 
+            <Grid Background="Orange" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,420,0,0" Height="25" Width="220"/>
             <!--Slider for Spider Speed-->
-            <Slider x:Name="sldSpeed" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,400,0,0" Orientation="Horizontal"/>
+            <Slider x:Name="sldSpeed" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,410,0,0" Orientation="Horizontal"/>
             <!--Close Joystick Grid-->
         </Grid>
 
