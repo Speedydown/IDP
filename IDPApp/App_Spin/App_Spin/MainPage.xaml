@@ -20,7 +20,7 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Background="DarkGreen">
+    <Grid Background="DarkBlue">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -40,13 +40,28 @@
             <TextBlock x:Name="pageTitle" Text="Spider Control" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <TextBox x:Name="txtConn" Height="35" Text="192.168.178.26" Margin="120,70,0,0" Grid.Row="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        
+        <Grid Background="Orange" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,250" Height="100" Width="300">
+            <TextBox x:Name="txtConn" Background="White" Height="35" Text="192.168.178.26" Margin="0,0,0,60" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button x:Name="btnConnect" BorderBrush="DarkBlue" Content="Connect" Margin="0,0,0,-20" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnConnect_Click"/>
+            <TextBlock x:Name="lblError" Text="" Height="20" Width="145" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-80"/>
+        </Grid>
+
+        <Grid Background="Orange" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,-200" Height="50" Width="150">
+            <Button x:Name="btnDisconnect" BorderBrush="DarkBlue" Content="Disconnect" Margin="0,0,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDisconnect_Click"/>
+        </Grid>
+        
+        <!--<TextBox x:Name="txtConn" Height="35" Text="192.168.178.26" Margin="120,70,0,0" Grid.Row="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <Button x:Name="btnConnect" Content="Connect" HorizontalAlignment="Left" Margin="120,120,0,0" Grid.Row="1" VerticalAlignment="Top" Click="btnConnect_Click" FontFamily="Global User Interface"/>
         <TextBlock x:Name="lblError" Text="" Height="35" Width="200" HorizontalAlignment="Left" Margin="420,260,0,0"/>
+        -->
+        
+        <!--
         <TextBox x:Name="RecievedLog" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="122,177,0,0" Grid.Row="1" Height="367" Width="1234" IsReadOnly="True" Text="" AcceptsReturn="True" />
         <TextBox x:Name="Input" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="122,549,0,0" Grid.Row="1" Width="1066"/>
         <Button x:Name="SendButton" Content="Send" HorizontalAlignment="Left" Margin="1190,546,0,0" Grid.Row="1" VerticalAlignment="Top" Width="169" Click="SendButton_Click" IsEnabled="False"/>
         <Button x:Name="BTN_Exit" Content="Exit" HorizontalAlignment="Left" Width="89" Margin="217,120,0,0" Grid.Row="1" VerticalAlignment="Top" Click="BTN_Exit_Click"/>
         <Button Content="UI" HorizontalAlignment="Left" Margin="320,120,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"/>
+        -->
     </Grid>
 </Page>

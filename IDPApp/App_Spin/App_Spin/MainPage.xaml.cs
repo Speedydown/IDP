@@ -111,48 +111,55 @@ namespace App_Spin
             if (txtConn.Text != null)
             {
                 //Wait for connection
-                await(Network.NetworkHandler.Connect(txtConn.Text));
-                RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
-                SendButton.IsEnabled = true;
-                btnConnect.IsEnabled = false;
-                //txtConn.Text = txtIP;
-                //this.Frame.Navigate(typeof(SpinUI));
+                //await(Network.NetworkHandler.Connect(txtConn.Text));
+                //RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
+                //SendButton.IsEnabled = true;
+                //btnConnect.IsEnabled = false;
+
+                this.Frame.Navigate(typeof(SpinUI));
+                lblError.Text = "You are connected to Spider!";
+                txtConn.IsEnabled = false;
             }
             else
             {
-                lblError.Text = "Could not connect!";
+                lblError.Text = "Could not connect to Spider!";
             }
         }
 
-        private async void SendButton_Click(object sender, RoutedEventArgs e)
+        private void btnDisconnect_Click(object sender, RoutedEventArgs e)
         {
-            if (Sending == false)
-            {
-                string input = Input.Text;
 
-                Sending = true;
-                if (input.Length > 0)
-                {
-                    await (Network.NetworkHandler.Send(input));
-                }
-
-                await (Network.NetworkHandler.Recv());
-                Sending = false;
-                RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
-            }
         }
 
-        private async void BTN_Exit_Click(object sender, RoutedEventArgs e)
-        {
-            await(Network.NetworkHandler.Close());
-            SendButton.IsEnabled = false;
-            btnConnect.IsEnabled = false;
-        }
+        //private async void SendButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (Sending == false)
+        //    {
+        //        string input = Input.Text;
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(SpinUI));
-        }
+        //        Sending = true;
+        //        if (input.Length > 0)
+        //        {
+        //            await (Network.NetworkHandler.Send(input));
+        //        }
+
+        //        await (Network.NetworkHandler.Recv());
+        //        Sending = false;
+        //        RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
+        //    }
+        //}
+
+        //private async void BTN_Exit_Click(object sender, RoutedEventArgs e)
+        //{
+        //    await(Network.NetworkHandler.Close());
+        //    SendButton.IsEnabled = false;
+        //    btnConnect.IsEnabled = false;
+        //}
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this.Frame.Navigate(typeof(SpinUI));
+        //}
 
     }
 }

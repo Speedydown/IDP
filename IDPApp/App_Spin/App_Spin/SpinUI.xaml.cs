@@ -81,7 +81,7 @@ namespace App_Spin
             lblBattery.AddHandler(PointerPressedEvent, new PointerEventHandler(lblBattery_Pressed), true);
             lblSlope.AddHandler(PointerPressedEvent, new PointerEventHandler(lblSlope_Pressed), true);
             #endregion
-            
+                        
             getBattery();
             getSlope();
             sldHeight.ValueChanged += sldHeight_ValueChanged;
