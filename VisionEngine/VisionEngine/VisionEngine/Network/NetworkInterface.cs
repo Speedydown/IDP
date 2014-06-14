@@ -22,7 +22,7 @@ namespace VisionEngine.Network
         /// </summary>
         public NetworkInterface()
         {
-            this.networkInterfaceSemaphore = new Semaphore(1, 1);   
+            this.networkInterfaceSemaphore = new Semaphore(1, 1);
         }
 
         /// <summary>
