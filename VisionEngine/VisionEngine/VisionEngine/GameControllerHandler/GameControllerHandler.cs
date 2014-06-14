@@ -40,13 +40,15 @@ namespace VisionEngine
             this.chandler = chandler;
             this.controllerSemaphore = new Semaphore(1,1);
 
+        }
+
+        public void enable()
+        {
             // Initialize DirectInput
             var directInput = new DirectInput();
 
             // Find a Gamepad Guid
             var gamepadGuid = Guid.Empty;
-
-            //PC Depended : DeviceType = Device op laptop, PC is Device. Vaag
 
             DeviceType[] dtList = { DeviceType.Gamepad, DeviceType.Joystick, DeviceType.FirstPerson };
             IList<DeviceInstance> deviceInstanceList = null;
@@ -60,7 +62,7 @@ namespace VisionEngine
                     break;
                 }
             }
-            
+
 
 
             foreach (var deviceInstance in deviceInstanceList)
@@ -73,7 +75,18 @@ namespace VisionEngine
             }
 
             // Instantiate the gamepad
-            joystick = new Joystick(directInput, gamepadGuid);
+
+            joystick = null;
+
+            try
+            {
+                joystick = new Joystick(directInput, gamepadGuid);
+            }
+            catch (Exception)
+            {
+                this.disable();
+                return;
+            }
 
             Console.WriteLine("Found Joystick/Gamepad with GUID: {0}", gamepadGuid);
 
@@ -88,10 +101,7 @@ namespace VisionEngine
             // Acquire the joystick
             joystick.Acquire();
 
-        }
 
-        public void enable()
-        {
             controllerThread = new Thread(() => run());
             controllerThread.Start();
         }
@@ -368,7 +378,16 @@ namespace VisionEngine
 
         public JoystickState getCurrentState()
         {
-            return joystick.GetCurrentState();
+            try
+            {
+
+                return joystick.GetCurrentState();
+            }
+            catch (Exception e)
+            {
+                this.disable();
+                return null;
+            }
         }
 
 

@@ -163,11 +163,13 @@ namespace VisionEngine
         private void enableControllerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             gcHandler.enable();
+            enableControllerToolStripMenuItem.Enabled = false;
         }
 
         private void disableControllerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             gcHandler.disable();
+            enableControllerToolStripMenuItem.Enabled = true;
         }
 
     }
