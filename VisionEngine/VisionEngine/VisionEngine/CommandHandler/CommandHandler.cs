@@ -20,13 +20,15 @@ namespace VisionEngine
         private VisionEngineForm visionEngine;
         private Semaphore commandHandlerSemaphore;
         private ConnectionForm connectionForm;
+        private GameControllerHandler gcHandler;
 
         public CommandHandler(NetworkInterface networkInterface, ConnectionForm connectionForm)
         {
             CmdInt.Init();
+            this.gcHandler = new GameControllerHandler(this);
             this.connectionForm = connectionForm;
             this.networkInterface = networkInterface;
-            this.visionEngine = new VisionEngineForm(this, connectionForm);
+            this.visionEngine = new VisionEngineForm(this, connectionForm, gcHandler);
             this.visionLabInterface = new VisionLabInterface(this.visionEngine, this);
             this.commandHandlerSemaphore = new Semaphore(1, 1);
             this.visionEngine.Show();

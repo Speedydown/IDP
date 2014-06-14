@@ -23,13 +23,15 @@ namespace VisionEngine
         public UpdateImageBalloon UpdateImageBalloonDelegate;
         private CommandHandler commandHandler;
         private ConnectionForm connectionForm;
+        private GameControllerHandler gcHandler;
         private int ImageCount = 1;
 
-        public VisionEngineForm(CommandHandler commandHandler, ConnectionForm connectionForm)
+        public VisionEngineForm(CommandHandler commandHandler, ConnectionForm connectionForm, GameControllerHandler gcHandler)
         {
             InitializeComponent();
             this.commandHandler = commandHandler;
             this.connectionForm = connectionForm;
+            this.gcHandler = gcHandler;
             pictureBoxInput.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxOutput.SizeMode = PictureBoxSizeMode.StretchImage;
             UpdateImageDelegate = new UpdateImage(updateImages);
@@ -156,6 +158,16 @@ namespace VisionEngine
         private void balloon1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void enableControllerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            gcHandler.enable();
+        }
+
+        private void disableControllerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            gcHandler.disable();
         }
 
     }

@@ -3,7 +3,7 @@ import threading
 import math
 from threading import Thread
 
-class Move():
+class Move(object):
 
     def __init__(self, _MInterface):
         self._MInterface = _MInterface
@@ -88,8 +88,8 @@ class Move():
         for step in range(1, steps):
             #raise leg
             for Leg in Legs:
-                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startpulseAnkle, pulses[0] - 95, step, steps)) #was 312
-                Leg.moveKnee(self._MInterface.calculateVerticalPulse(startpulseKnee, pulses[1] - 95, step, steps)) #was 329
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startpulseAnkle, pulses[1] - 95, step, steps)) #was 312
+                Leg.moveKnee(self._MInterface.calculateVerticalPulse(startpulseKnee, pulses[0] - 95, step, steps)) #was 329
             time.sleep(self._MInterface.SleepTime)
 
     def LowerLegs(self, Legs):
@@ -98,52 +98,107 @@ class Move():
         startpulseKnee = Legs[0].getKnee()
         pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
 
-        print(str(self._MInterface._Height) + " " + str(startpulseAnkle) + " "  + str(startpulseKnee) + " " + str(pulses[0]) + " " + str(pulses[1]))
-
         for step in range(1, steps):
            #lower leg
             for Leg in Legs:
-                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startpulseAnkle, pulses[0], step, steps))
-                Leg.moveKnee(self._MInterface.calculateVerticalPulse(startpulseKnee, pulses[1], step, steps)) #startpulseKnee in plaats van Ankle
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startpulseAnkle, pulses[1], step, steps))
+                Leg.moveKnee(self._MInterface.calculateVerticalPulse(startpulseKnee, pulses[0], step, steps)) #startpulseKnee in plaats van Ankle
             time.sleep(self._MInterface.SleepTime)
 
-    def MoveLegsForward(self, Legs):
+    def MoveLegsForward(self, Legs, Raised=False, Turn=[0, 20]):
+        startpoint = Turn[0] * 4
+        steps = Turn[1] * 4
 
-        offsetAnkle = Legs[0].getAnkle()
-        offsetKnee = Legs[0].getKnee()
-        steps = 80
-        for step in range(1, steps):
+
+        for step in range(startpoint, steps):
             #move leg forward
-            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step / 4), offsetAnkle, offsetKnee)
+            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step / 4))
+
+            if Raised:
+                pulses[0] -= 90
+                pulses[1] -= 90
+
             for Leg in Legs:
-
-
                 Leg.moveHip(self._MInterface.calculateHipPulse(step / 4))
                 Leg.moveKnee(pulses[0])
                 Leg.moveAnkle(pulses[1])
             time.sleep(self._MInterface.SleepTime)
 
 
-    def MoveLegsBackward(self, Legs):
+    def MoveLegsBackward(self, Legs, Raised=False, Turn=[0, 20]):
+        startpoint = Turn[0] * 4
+        steps = Turn[1] * 4
 
-        steps = 80
-        for step in range(1, steps):
+        for step in range(startpoint, steps, -1):
+            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step / 4))
 
-            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
+            if Raised:
+                pulses[0] -= 90
+                pulses[1] -= 90
+
+            #pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
             for Leg in Legs:
-
                 Leg.moveHip(self._MInterface.calculateHipPulse((steps - step) / 4))
-                #Leg.moveKnee(pulses[0])
-                #Leg.moveAnkle(pulses[1])
+                Leg.moveKnee(pulses[0])
+                Leg.moveAnkle(pulses[1])
 
             time.sleep(self._MInterface.SleepTime)
 
+    def Rotate(self, Legs, Right=False):
+        if (Right):
+            group1 = [self._MInterface.Legs[0], self._MInterface.Legs[2], self._MInterface.Legs[4]]
+            group2 = [self._MInterface.Legs[1], self._MInterface.Legs[3], self._MInterface.Legs[5]]
+        else:
+            group2 = [self._MInterface.Legs[0], self._MInterface.Legs[2], self._MInterface.Legs[4]]
+            group1 = [self._MInterface.Legs[1], self._MInterface.Legs[3], self._MInterface.Legs[5]]
+
+        if not(self._LastCommand == 12 or self._LastCommand == 13):
+            self.StopLegs()
+            tempgroup = [group1[0], group2[0]]
+            self.raiseLegs(tempgroup)
+            self.MoveLegsForward(tempgroup[0], True, [0, 20])
+            self.MoveLegsBackward(tempgroup[1], True, [0, -20])
+            self.LowerLegs(tempgroup)
+
+            tempgroup = [group1[1], group2[1]]
+            self.raiseLegs(tempgroup)
+            self.MoveLegsForward(tempgroup[0], True, [0, 20])
+            self.MoveLegsBackward(tempgroup[1], True, [0, -20])
+            self.LowerLegs(tempgroup)
+
+            tempgroup = [group1[2], group2[2]]
+            self.raiseLegs(tempgroup)
+            self.MoveLegsForward(tempgroup[0], True, [0, 20])
+            self.MoveLegsBackward(tempgroup[1], True, [0, -20])
+            self.LowerLegs(tempgroup)
 
 
 
+        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (group1, False, [20, -20],))
+        leg1Thread.start()
+        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (group2, False, [-20, 20],))
+        leg2Thread.start()
 
+        leg1Thread.join()
+        leg2Thread.join()
 
+        tempgroup = [group1[0], group2[0]]
+        self.raiseLegs(tempgroup)
+        self.MoveLegsForward(tempgroup[0], True, [-20, 20])
+        self.MoveLegsBackward(tempgroup[1], True, [20, -20])
+        self.LowerLegs(tempgroup)
 
+        tempgroup = [group1[1], group2[1]]
+        self.raiseLegs(tempgroup)
+        self.MoveLegsForward(tempgroup[0], True, [-20, 20])
+        self.MoveLegsBackward(tempgroup[1], True, [20, -20])
+        self.LowerLegs(tempgroup)
+
+        tempgroup = [group1[2], group2[2]]
+        self.raiseLegs(tempgroup)
+        self.MoveLegsForward(tempgroup[0], True, [-20, 20])
+        self.MoveLegsBackward(tempgroup[1], True, [20, -20])
+        self.LowerLegs(tempgroup)
 
 
 
@@ -155,6 +210,10 @@ class Move():
             self.LowerLegs(self.group1)
         elif self._LastCommand == 9:
             self.LowerLegs(self._MInterface._Legs)
+        #elif self._LastCommand != 12:
+
+        #elif self._LastCommand != 13:
+
         else:
             pass
 
@@ -162,16 +221,34 @@ class Move():
         #eerste pootbeweging
         if self._LastCommand != 11:
             self.raiseLegs(self.group2)
-            self.MoveLegsForward(self.group2)
+            self.MoveLegsForward(self.group2, True)
             self.LowerLegs(self.group2)
 
         self.raiseLegs(self.group1)
-        self.MoveLegsForward(self.group1)
-        self.MoveLegsBackward(self.group2)
+
+        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group1, True,))
+        leg1Thread.start()
+        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group2,))
+        leg2Thread.start()
+
+        leg1Thread.join()
+        leg2Thread.join()
+
+        #self.MoveLegsForward(self.group1, True)
+        #self.MoveLegsBackward(self.group2)
         self.LowerLegs(self.group1)
         self.raiseLegs(self.group2)
-        self.MoveLegsForward(self.group2)
-        self.MoveLegsBackward(self.group1)
+
+        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group2, True,))
+        leg1Thread.start()
+        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group1,))
+        leg2Thread.start()
+
+        leg1Thread.join()
+        leg2Thread.join()
+
+        #self.MoveLegsForward(self.group2, True)
+        #self.MoveLegsBackward(self.group1)
         self.LowerLegs(self.group2)
 
     def TestMove1(self):

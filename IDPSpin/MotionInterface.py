@@ -9,22 +9,26 @@ import math
 
 class MotionInterface(object):
     def __init__(self, mode=1):
+        self._Height = 75
+        self._Length = 65
+        self._DefaultPulse = 375
+        pulses = self.calculatePulse(self._Height, self._Length)
+        
         self._Legs = [
-            Leg([0x41, 0x41, 0x41], [0, 1, 2], [375, 375, 375], [0, 0, 0]), #leg 1
-            Leg([0x40, 0x40, 0x40], [0, 1, 2], [375, 375, 375], True, [0, 0, 0]), #leg 2
-            Leg([0x41, 0x41, 0x41], [4, 5, 6], [375, 375, 375], [0, 0, 0]), #leg 3
-            Leg([0x40, 0x40, 0x40], [4, 5, 6], [375, 375, 375], True, [0, 0, 0]), #leg 4
-            Leg([0x41, 0x41, 0x41], [8, 9, 10], [375, 375, 375], [0, 0, 0]), #leg 5
-            Leg([0x40, 0x40, 0x40], [8, 9, 10], [375, 375, 375], True, [0, 0, 0]), #leg 6
+            Leg([0x41, 0x41, 0x41], [0, 1, 2], [375, pulses[0], pulses[1]], [0, 0, 0]), #leg 1
+            Leg([0x40, 0x40, 0x40], [0, 1, 2], [375, pulses[0], pulses[1]], True, [0, 0, 0]), #leg 2
+            Leg([0x41, 0x41, 0x41], [4, 5, 6], [375, pulses[0], pulses[1]], [0, 0, 0]), #leg 3
+            Leg([0x40, 0x40, 0x40], [4, 5, 6], [375, pulses[0], pulses[1]], True, [0, 0, 0]), #leg 4
+            Leg([0x41, 0x41, 0x41], [8, 9, 10], [375, pulses[0], pulses[1]], [0, 0, 0]), #leg 5
+            Leg([0x40, 0x40, 0x40], [8, 9, 10], [375, pulses[0], pulses[1]], True, [0, 0, 0]), #leg 6
         ]
         self._CurrentCommand = 10
         self._Exit = False
         self._Semaphore = threading.Semaphore(1)
         self._ExitSemaphore = threading.Semaphore(1)
-        self._Height = 100
-        self._Length = 160
-        self.SleepTime = 0.001
-        self._DefaultPulse = 375
+
+        self.SleepTime = 0.0005
+        
         if mode == 1:
             self._CurrentMode = Move(self)
 
@@ -124,11 +128,7 @@ class MotionInterface(object):
         self._DefaultPulse = int(pulse)
 
     #Inverse kinematics!
-    def calculatePulse(self, height, length, offsetAnkle = -1, offsetKnee = -1):
-        if offsetAnkle == -1:
-            offsetAnkle = self._DefaultPulse
-        if offsetKnee == -1:
-            offsetKnee = self._DefaultPulse
+    def calculatePulse(self, height, length):
 
         a = float(height)
         b = float(length)
@@ -149,30 +149,25 @@ class MotionInterface(object):
         HoekC1 = 90 - HoekE1
         HoekC2 = hoekC - HoekC1
 
+        HoekD = 90 - HoekC1
+
         #Calculate difference in degrees
         if hoekC <= HoekC1:
-            differenceInDegreesC = (90 + HoekC2)
+            differenceInDegreesC = (90 - hoekC - HoekD)
         else:
-            differenceInDegreesC = (90 - HoekC2)
+            differenceInDegreesC = ((HoekC2 - 90)* -1)
 
         if hoekE <= HoekE2:
-            differenceInDegreesE = (90 + HoekE1)
+            differenceInDegreesE = (HoekE2 * -1)
         else:
-            differenceInDegreesE = (90 - HoekE1)
+            differenceInDegreesE = (HoekE1)
 
-        
-        diffrencePulseC = self.convertDegreesToPulse(differenceInDegreesC)
         diffrencePulseE = self.convertDegreesToPulse(differenceInDegreesE)
-
-        Ankle = int(offsetAnkle - diffrencePulseC)
-        Knee = int(offsetKnee - diffrencePulseE)
-
-        if Knee < 170:
-            Knee = 170
+        diffrencePulseC = self.convertDegreesToPulse(differenceInDegreesC)
 
 
-        if Ankle < 150:
-            Ankle = 150
+        Ankle = int(self._DefaultPulse - diffrencePulseC)
+        Knee = int(self._DefaultPulse - diffrencePulseE)
 
         return [Knee, Ankle]
 

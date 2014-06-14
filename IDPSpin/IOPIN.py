@@ -7,8 +7,11 @@ except:
 class IOPIN(object):
 
     def __init__(self):
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(30, GPIO.OUT)
-        GPIO.output(30, True)
-        GPIO.setup(31, GPIO.OUT)
-        GPIO.output(31, True)
+        try:
+            GPIO.setmode(GPIO.BCM)
+            GPIO.setup(30, GPIO.OUT)
+            GPIO.output(30, True)
+            GPIO.setup(31, GPIO.OUT)
+            GPIO.output(31, True)
+        except:
+            pass

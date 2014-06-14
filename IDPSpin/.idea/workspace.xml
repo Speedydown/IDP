@@ -26,7 +26,8 @@
       <file leaf-file-name="Leg.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Leg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="33" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1020">
+            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1020">
+              <caret line="19" column="124" selection-start-line="19" selection-start-column="124" selection-end-line="19" selection-end-column="124" />
               <folding />
             </state>
           </provider>
@@ -35,8 +36,21 @@
       <file leaf-file-name="Controller.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="39" selection-start="3495" selection-end="3495" vertical-scroll-proportion="0.0" vertical-offset="2027" max-vertical-offset="2465">
+            <state vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="2567">
+              <caret line="80" column="39" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NetworkInterface.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/NetworkInterface.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1768">
+              <caret line="44" column="81" selection-start-line="44" selection-start-column="58" selection-end-line="44" selection-end-column="81" />
+              <folding>
+                <element signature="e#0#20#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,7 +58,8 @@
       <file leaf-file-name="Move.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Move.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="118" column="28" selection-start="4412" selection-end="4412" vertical-scroll-proportion="0.0" vertical-offset="1887" max-vertical-offset="3043">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3113" max-vertical-offset="4828">
+              <caret line="214" column="9" selection-start-line="214" selection-start-column="9" selection-end-line="214" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -53,7 +68,40 @@
       <file leaf-file-name="MotionInterface.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MotionInterface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="184" column="0" selection-start="5381" selection-end="5381" vertical-scroll-proportion="2.49354" vertical-offset="2078" max-vertical-offset="3383">
+            <state vertical-scroll-proportion="0.40599" vertical-offset="2391" max-vertical-offset="3757">
+              <caret line="155" column="55" selection-start-line="155" selection-start-column="55" selection-end-line="155" selection-end-column="55" />
+              <folding>
+                <element signature="e#21#40#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Camera.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Camera.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="765">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IOPIN.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IOPIN.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -62,7 +110,8 @@
       <file leaf-file-name="Servo.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Servo.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="30" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1173">
+            <state vertical-scroll-proportion="0.0" vertical-offset="359" max-vertical-offset="1173">
+              <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -83,18 +132,19 @@
         <option value="$PROJECT_DIR$/Controller.py" />
         <option value="$PROJECT_DIR$/TestServo.py" />
         <option value="$PROJECT_DIR$/SingleLeg.py" />
+        <option value="$PROJECT_DIR$/Leg.py" />
+        <option value="$PROJECT_DIR$/IOPIN.py" />
+        <option value="$PROJECT_DIR$/Move.py" />
         <option value="$PROJECT_DIR$/Servo.py" />
         <option value="$PROJECT_DIR$/MotionInterface.py" />
-        <option value="$PROJECT_DIR$/Leg.py" />
-        <option value="$PROJECT_DIR$/Move.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -110,7 +160,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -122,6 +172,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -142,15 +193,14 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PythonSdkConfigurable" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/IDP 2014/Informatica/Adafruit_PWM_Servo_Driver" />
+    <property name="last_opened_file_path" value="F:/Python27/pythonw.exe" />
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
   </component>
@@ -159,7 +209,25 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.Test">
+    <configuration default="false" name="Test" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="IDPSpin" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -281,7 +349,14 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <list size="0" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="Python.Test" />
+    </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Python.Test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="TaskManager">
@@ -293,18 +368,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981412" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.11598513" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17552084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3284553" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982087" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33930454" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -329,13 +404,16 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
   </component>
@@ -351,326 +429,408 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/MotionInterface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="33" selection-start="822" selection-end="822" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1003">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Servo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="46" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.0" vertical-offset="527" max-vertical-offset="697">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="37" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+          <caret line="11" column="37" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187">
+          <caret line="3" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="8" selection-start="4738" selection-end="4738" vertical-scroll-proportion="0.0" vertical-offset="2193" max-vertical-offset="2363">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2193" max-vertical-offset="2363">
+          <caret line="129" column="8" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Move.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="26" selection-start="236" selection-end="236" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="833">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="833">
+          <caret line="9" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="36" selection-start="809" selection-end="809" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1241" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="1241">
+          <caret line="29" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="944" selection-end="944" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="969">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="969">
+          <caret line="32" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#21#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476">
+          <caret line="22" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="46" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="697">
+        <state vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="697">
+          <caret line="30" column="46" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="13" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="850">
+          <caret line="20" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="187">
+          <caret line="3" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="23" selection-start="4039" selection-end="4039" vertical-scroll-proportion="0.0" vertical-offset="1717" max-vertical-offset="2363">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1717" max-vertical-offset="2363">
+          <caret line="101" column="23" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Move.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="816">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="944" selection-end="944" vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="969">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="969">
+          <caret line="32" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#21#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476">
+          <caret line="22" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="24" selection-start="530" selection-end="530" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="697">
+        <state vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="697">
+          <caret line="17" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="42" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <caret line="26" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
+          <caret line="5" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="3" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.0" vertical-offset="1281" max-vertical-offset="2125">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1281" max-vertical-offset="2125">
+          <caret line="32" column="3" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Move.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="25" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="476">
+        <state vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="476">
+          <caret line="14" column="25" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1348" selection-end="1348" vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="969">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="969">
+          <caret line="51" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#21#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="476">
+          <caret line="22" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="24" selection-start="679" selection-end="679" vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="595">
+        <state vertical-scroll-proportion="0.0" vertical-offset="238" max-vertical-offset="595">
+          <caret line="14" column="24" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="9" selection-start="1128" selection-end="1128" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="714">
+          <caret line="29" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
+          <caret line="5" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="66" selection-start="1537" selection-end="1537" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1734">
+        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1734">
+          <caret line="44" column="66" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="374">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="374">
+          <caret line="16" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#21#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="44" selection-start="1316" selection-end="1316" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1241" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1241">
+          <caret line="45" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="35" selection-start="891" selection-end="891" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="595">
+        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="595">
+          <caret line="21" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272">
+          <caret line="10" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="9" selection-start="1128" selection-end="1128" vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="714">
+        <state vertical-scroll-proportion="0.0" vertical-offset="493" max-vertical-offset="714">
+          <caret line="29" column="9" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="85" max-vertical-offset="187">
+          <caret line="5" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="26" selection-start="1160" selection-end="1168" vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1734">
+        <state vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1734">
+          <caret line="34" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="405" selection-end="405" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="374">
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="374">
+          <caret line="16" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#21#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="44" selection-start="1316" selection-end="1316" vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1241" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="1241">
+          <caret line="45" column="44" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="35" selection-start="891" selection-end="891" vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="595">
+        <state vertical-scroll-proportion="0.0" vertical-offset="357" max-vertical-offset="595">
+          <caret line="21" column="35" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="272">
+          <caret line="10" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="4" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="697">
+        <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="697">
+          <caret line="20" column="4" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Servo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="833">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Adafruit_I2C.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2533" />
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharm30/system/python_stubs/-1442825926/time.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="18" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6409" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2533">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="36" selection-start="809" selection-end="809" vertical-scroll-proportion="0.7792869" vertical-offset="0" max-vertical-offset="1207" />
+        <state vertical-scroll-proportion="0.7792869" vertical-offset="0" max-vertical-offset="1207">
+          <caret line="29" column="36" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="446" selection-end="446" vertical-scroll-proportion="0.60611206" vertical-offset="0" max-vertical-offset="589" />
+        <state vertical-scroll-proportion="0.60611206" vertical-offset="0" max-vertical-offset="589">
+          <caret line="22" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/SingleLeg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="39" selection-start="105" selection-end="105" vertical-scroll-proportion="0.17571059" vertical-offset="0" max-vertical-offset="1020">
-          <folding />
+        <state vertical-scroll-proportion="0.17571059" vertical-offset="0" max-vertical-offset="1020">
+          <caret line="4" column="39" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Servo.py">
+    <entry file="file://$PROJECT_DIR$/IOPIN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="30" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1173">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="50" selection-end="50" vertical-scroll-proportion="0.13178295" vertical-offset="0" max-vertical-offset="387">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="187">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Camera.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="39" selection-start="3495" selection-end="3495" vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2465">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1360" max-vertical-offset="2788">
+          <caret line="80" column="39" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetworkInterface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="1768">
+          <caret line="44" column="81" selection-start-line="44" selection-start-column="58" selection-end-line="44" selection-end-column="81" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Move.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3113" max-vertical-offset="4828">
+          <caret line="214" column="9" selection-start-line="214" selection-start-column="9" selection-end-line="214" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Leg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="33" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="1020">
+        <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="1020">
+          <caret line="19" column="124" selection-start-line="19" selection-start-column="124" selection-end-line="19" selection-end-column="124" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Move.py">
+    <entry file="file://$PROJECT_DIR$/Servo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="28" selection-start="4412" selection-end="4412" vertical-scroll-proportion="0.0" vertical-offset="1377" max-vertical-offset="3043">
+        <state vertical-scroll-proportion="0.0" vertical-offset="359" max-vertical-offset="1173">
+          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="0" selection-start="5381" selection-end="5381" vertical-scroll-proportion="2.49354" vertical-offset="2078" max-vertical-offset="3383">
-          <folding />
+        <state vertical-scroll-proportion="0.40599" vertical-offset="2391" max-vertical-offset="3757">
+          <caret line="155" column="55" selection-start-line="155" selection-start-column="55" selection-end-line="155" selection-end-column="55" />
+          <folding>
+            <element signature="e#21#40#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
