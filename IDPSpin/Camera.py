@@ -21,10 +21,7 @@ class Camera(object):
             self._Camera.start_preview()
             self._StoredImage = ""
         except:
-            pygame.init()
-            pygame.camera.init()
-            self._Camera = pygame.camera.Camera("/dev/video0",(640,480))
-            self._Camera.start()
+            pass
 
     
     def takeImage(self):
@@ -32,7 +29,7 @@ class Camera(object):
         try:
             self._Camera.capture(my_stream, 'jpeg')
         except:
-            my_stream = self._Camera.get_image()
+            pass
         encoded_string = base64.b64encode(my_stream.getvalue())
         self._StoredImage = encoded_string
         return encoded_string
