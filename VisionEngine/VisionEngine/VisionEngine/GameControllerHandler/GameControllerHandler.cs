@@ -229,6 +229,15 @@ namespace VisionEngine
                     buttons = 4;
                 }
 
+                if (getCurrentState().Buttons[4] == true)
+                {
+                    buttons = 5;
+                }
+
+                if (getCurrentState().Buttons[5] == true)
+                {
+                    buttons = 6;
+                }
                 #endregion
 
                 #region Get and Send Input
@@ -351,6 +360,12 @@ namespace VisionEngine
                     break;
                 case 4:
                     getButtons("btnt");
+                    break;
+                case 5:
+                    getButtons("move 20");
+                    break;
+                case 6:
+                    getButtons("move 21");
                     break;
                 default:
                     break;
