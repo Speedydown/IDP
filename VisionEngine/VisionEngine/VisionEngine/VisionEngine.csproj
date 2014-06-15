@@ -96,7 +96,10 @@
     <Compile Include="Network\NetworkInterface.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VisionInterface\BalloonFinder.cs" />
+    <Compile Include="VisionInterface\TarBallFinder.cs" />
     <Compile Include="VisionInterface\VisionLabInterface.cs" />
+    <Compile Include="VisionInterface\VisionLabInterface2.cs" />
     <EmbeddedResource Include="ConnectionForm.resx">
       <DependentUpon>ConnectionForm.cs</DependentUpon>
     </EmbeddedResource>
