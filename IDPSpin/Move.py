@@ -35,46 +35,46 @@ class Move(object):
             leg1Thread.join()
             self._LastCommand = 11
         elif Command == 12:
-            leg1Thread = threading.Thread(target=self.TestMove1)
-            leg1Thread.start()
+            #leg1Thread = threading.Thread(target=self.TestMove1)
+            #leg1Thread.start()
 
-            leg1Thread.join()
+            #leg1Thread.join()
             self._LastCommand = 12
         elif Command == 13:
-            leg1Thread = threading.Thread(target=self.TestMove2)
-            leg1Thread.start()
+            #leg1Thread = threading.Thread(target=self.TestMove2)
+            #leg1Thread.start()
 
-            leg1Thread.join()
+            #leg1Thread.join()
             self._LastCommand = 13
         elif Command == 14:
-            leg1Thread = threading.Thread(target=self.TestMove3)
-            leg1Thread.start()
+            #leg1Thread = threading.Thread(target=self.TestMove3)
+            #leg1Thread.start()
 
-            leg1Thread.join()
+            #leg1Thread.join()
             self._LastCommand = 14
         elif Command == 15:
-            leg1Thread = threading.Thread(target=self.TestMove4)
-            leg1Thread.start()
+            #leg1Thread = threading.Thread(target=self.TestMove4)
+            #leg1Thread.start()
 
-            leg1Thread.join()
+            #leg1Thread.join()
             self._LastCommand = 15
         elif Command == 16:
-            leg1Thread = threading.Thread(target=self.TestMove5)
-            leg1Thread.start()
+            #leg1Thread = threading.Thread(target=self.TestMove5)
+            #leg1Thread.start()
 
-            leg1Thread.join()
+            #leg1Thread.join()
             self._LastCommand = 16
         elif Command == 17:
-            leg1Thread = threading.Thread(target=self.TestMove6)
-            leg1Thread.start()
+            #leg1Thread = threading.Thread(target=self.TestMove6)
+            #leg1Thread.start()
 
-            leg1Thread.join()
+            #leg1Thread.join()
             self._LastCommand = 17
         elif Command == 18:
-            leg1Thread = threading.Thread(target=self.Calibreren())
-            leg1Thread.start()
+            #leg1Thread = threading.Thread(target=self.Calibreren())
+            #leg1Thread.start()
 
-            leg1Thread.join()
+            #leg1Thread.join()
             self._LastCommand = 18
 
     def exit(self):
@@ -106,31 +106,31 @@ class Move(object):
             time.sleep(self._MInterface.SleepTime)
 
     def MoveLegsForward(self, Legs, Raised=False, Turn=[0, 20]):
-        startpoint = Turn[0] * 4
-        steps = Turn[1] * 4
+        startpoint = Turn[0]
+        steps = Turn[1]
 
 
         for step in range(startpoint, steps):
             #move leg forward
-            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step / 4))
+            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step))
 
             if Raised:
                 pulses[0] -= 90
                 pulses[1] -= 90
 
             for Leg in Legs:
-                Leg.moveHip(self._MInterface.calculateHipPulse(step / 4))
+                Leg.moveHip(self._MInterface.calculateHipPulse(step))
                 Leg.moveKnee(pulses[0])
                 Leg.moveAnkle(pulses[1])
             time.sleep(self._MInterface.SleepTime)
 
 
-    def MoveLegsBackward(self, Legs, Raised=False, Turn=[0, 20]):
-        startpoint = Turn[0] * 4
-        steps = Turn[1] * 4
+    def MoveLegsBackward(self, Legs, Raised=False, Turn=[20, 0]):
+        startpoint = Turn[0]
+        steps = Turn[1]
 
         for step in range(startpoint, steps, -1):
-            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step / 4))
+            pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step))
 
             if Raised:
                 pulses[0] -= 90
@@ -138,7 +138,7 @@ class Move(object):
 
             #pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
             for Leg in Legs:
-                Leg.moveHip(self._MInterface.calculateHipPulse((steps - step) / 4))
+                Leg.moveHip(self._MInterface.calculateHipPulse(step))
                 Leg.moveKnee(pulses[0])
                 Leg.moveAnkle(pulses[1])
 
