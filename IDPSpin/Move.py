@@ -8,6 +8,10 @@ class Move(object):
     def __init__(self, _MInterface):
         self._MInterface = _MInterface
         self._LastCommand = 9
+        self._MaxAngle = 20
+        self._MinAngle = 6
+        self._DefaultMaxAngle = 20
+        self._DefaultMinAngle = 6
         self.group1 = [self._MInterface._Legs[0], self._MInterface._Legs[3], self._MInterface._Legs[4]]
         self.group2 = [self._MInterface._Legs[1], self._MInterface._Legs[2], self._MInterface._Legs[5]]
 
@@ -76,6 +80,10 @@ class Move(object):
             time.sleep(self._MInterface.SleepTime)
 
     def MoveLegsForward(self, Legs, Raised=False, Turn=[0, 20]):
+        if Turn[0] > Turn[1]:
+            self.MoveLegsBackward(Legs, Raised, Turn)
+            return
+
         startpoint = Turn[0]
         steps = Turn[1]
         pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
@@ -98,6 +106,10 @@ class Move(object):
 
 
     def MoveLegsBackward(self, Legs, Raised=False, Turn=[20, 0]):
+        if Turn[0] < Turn[1]:
+            self.MoveLegsForward(Legs, Raised, Turn)
+            return
+
         startpoint = Turn[0]
         steps = Turn[1]
         pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
@@ -105,13 +117,7 @@ class Move(object):
             pulses[0] -= 90
             pulses[1] -= 90
         for step in range(startpoint, steps, -1):
-            #pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step))
 
-            #if Raised:
-                #pulses[0] -= 90
-                #pulses[1] -= 90
-
-            #pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface._Length)
             for Leg in Legs:
                 Leg.moveHip(self._MInterface.calculateHipPulse(step))
                 #Leg.moveKnee(pulses[0])
@@ -120,23 +126,13 @@ class Move(object):
             time.sleep(self._MInterface.SleepTime)
 
     def rotateLegs(self, group1, group2, group1from, group1to, group2from, group2to):
-        tempgroup = [group1[0], group2[0]]
-        self.raiseLegs(tempgroup)
-        self.MoveLegsForward([tempgroup[0]], True, [group1from, group1to])
-        self.MoveLegsBackward([tempgroup[1]], True, [group2from, group2to])
-        self.LowerLegs(tempgroup)
 
-        tempgroup = [group1[1], group2[1]]
-        self.raiseLegs(tempgroup)
-        self.MoveLegsForward([tempgroup[0]], True, [group1from, group1to])
-        self.MoveLegsBackward([tempgroup[1]], True, [group2from, group2to])
-        self.LowerLegs(tempgroup)
-
-        tempgroup = [group1[2], group2[2]]
-        self.raiseLegs(tempgroup)
-        self.MoveLegsForward([tempgroup[0]], True, [group1from, group1to])
-        self.MoveLegsBackward([tempgroup[1]], True, [group2from, group2to])
-        self.LowerLegs(tempgroup)
+        for i in range(0, 3):
+            tempgroup = [group1[i], group2[i]]
+            self.raiseLegs(tempgroup)
+            self.MoveLegsForward([tempgroup[0]], True, [group1from, group1to])
+            self.MoveLegsBackward([tempgroup[1]], True, [group2from, group2to])
+            self.LowerLegs(tempgroup)
 
 
     def Rotate(self, Left=False):
@@ -151,24 +147,24 @@ class Move(object):
         #check if last command was also left or right, and move to start position if direction does not match
         if not(self._LastCommand == 13 or self._LastCommand == 17):
             self.StopLegs()
-            self.rotateLegs(group1, group2, 0, 20, 0, -20)
+            self.rotateLegs(group1, group2, 0, self._MaxAngle, 0, -self._MaxAngle)
         else:
             if (self._LastCommand == 13 and Left == True) or (self._LastCommand == 17 and Left == False):
                 self.StopLegs()
-                self.rotateLegs(group1, group2, 0, 20, 0, -20)
+                self.rotateLegs(group1, group2, 0, self._MaxAngle, 0, -self._MaxAngle)
 
 
         #move legs backward
-        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (group1, False, [20, -20],))
+        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (group1, False, [self._MaxAngle, -self._MaxAngle],))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (group2, False, [-20, 20],))
+        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (group2, False, [-self._MaxAngle, self._MaxAngle],))
         leg2Thread.start()
 
         leg1Thread.join()
         leg2Thread.join()
 
         #tilt legs and move them back to start position for rotation, stop command moves them back to default position if next command != rotate
-        self.rotateLegs(group1, group2, -20, 20, 20, -20)
+        self.rotateLegs(group1, group2, -self._MaxAngle, self._MaxAngle, self._MaxAngle, -self._MaxAngle)
 
     def MoveForwardAndRotate(self, Right = False):
 
@@ -190,26 +186,26 @@ class Move(object):
         if not(self._LastCommand == 12 or self._LastCommand == 18):
             self.StopLegs()
             self.raiseLegs(group2)
-            self.MoveLegsForward(forwardrightsidegroup2, True, [0, 20])
-            self.MoveLegsForward(forwardleftsidegroup2, True, [0, 6])
+            self.MoveLegsForward(forwardrightsidegroup2, True, [0, self._MaxAngle])
+            self.MoveLegsForward(forwardleftsidegroup2, True, [0, self._MinAngle])
             self.LowerLegs(group2)
         else:
             if (self._LastCommand == 12 and Right == False) or (self._LastCommand == 18 and Right == True):
                 self.StopLegs()
                 self.raiseLegs(group2)
-                self.MoveLegsForward(forwardrightsidegroup2, True, [0, 20])
-                self.MoveLegsForward(forwardleftsidegroup2, True, [0, 6])
+                self.MoveLegsForward(forwardrightsidegroup2, True, [0, self._MaxAngle])
+                self.MoveLegsForward(forwardleftsidegroup2, True, [0, self._MinAngle])
                 self.LowerLegs(group2)
 
         self.raiseLegs(group1)
 
-        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardleftsidegroup1, True, [0, 6]))
+        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardleftsidegroup1, True, [0, self._MinAngle]))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardrightsidegroup1, True, [0, 20]))
+        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardrightsidegroup1, True, [0, self._MaxAngle]))
         leg2Thread.start()
-        leg3Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardrightsidegroup2, False, [20, 0]))
+        leg3Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardrightsidegroup2, False, [self._MaxAngle, 0]))
         leg3Thread.start()
-        leg4Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardleftsidegroup2, False, [6, 0]))
+        leg4Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardleftsidegroup2, False, [self._MinAngle, 0]))
         leg4Thread.start()
 
         leg1Thread.join()
@@ -220,13 +216,13 @@ class Move(object):
         self.LowerLegs(group1)
         self.raiseLegs(group2)
 
-        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardleftsidegroup2, True, [0, 6]))
+        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardleftsidegroup2, True, [0, self._MinAngle]))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardrightsidegroup2, True, [0, 20]))
+        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardrightsidegroup2, True, [0, self._MaxAngle]))
         leg2Thread.start()
-        leg3Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardrightsidegroup1, False, [20, 0]))
+        leg3Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardrightsidegroup1, False, [self._MaxAngle, 0]))
         leg3Thread.start()
-        leg4Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardleftsidegroup1, False, [6, 0]))
+        leg4Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardleftsidegroup1, False, [self._MinAngle, 0]))
         leg4Thread.start()
 
         leg1Thread.join()
@@ -255,26 +251,26 @@ class Move(object):
         if not(self._LastCommand == 14 or self._LastCommand == 16):
             self.StopLegs()
             self.raiseLegs(group2)
-            self.MoveLegsBackward(forwardrightsidegroup2, True, [0, -20])
-            self.MoveLegsBackward(forwardleftsidegroup2, True, [0, -6])
+            self.MoveLegsBackward(forwardrightsidegroup2, True, [0, -self._MaxAngle])
+            self.MoveLegsBackward(forwardleftsidegroup2, True, [0, -self._MinAngle])
             self.LowerLegs(group2)
         else:
             if (self._LastCommand == 14 and Right == False) or (self._LastCommand == 16 and Right == True):
                 self.StopLegs()
                 self.raiseLegs(group2)
-                self.MoveLegsBackward(forwardrightsidegroup2, True, [0, -20])
-                self.MoveLegsBackward(forwardleftsidegroup2, True, [0, -6])
+                self.MoveLegsBackward(forwardrightsidegroup2, True, [0, -self._MaxAngle])
+                self.MoveLegsBackward(forwardleftsidegroup2, True, [0, -self._MinAngle])
                 self.LowerLegs(group2)
 
         self.raiseLegs(group1)
 
-        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardleftsidegroup1, True, [0, -6]))
+        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardleftsidegroup1, True, [0, -self._MinAngle]))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardrightsidegroup1, True, [0, -20]))
+        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardrightsidegroup1, True, [0, -self._MaxAngle]))
         leg2Thread.start()
-        leg3Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardrightsidegroup2, False, [-20, 0]))
+        leg3Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardrightsidegroup2, False, [-self._MaxAngle, 0]))
         leg3Thread.start()
-        leg4Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardleftsidegroup2, False, [-6, 0]))
+        leg4Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardleftsidegroup2, False, [-self._MinAngle, 0]))
         leg4Thread.start()
 
         leg1Thread.join()
@@ -285,13 +281,13 @@ class Move(object):
         self.LowerLegs(group1)
         self.raiseLegs(group2)
 
-        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardleftsidegroup2, True, [0, -6]))
+        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardleftsidegroup2, True, [0, -self._MinAngle]))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardrightsidegroup2, True, [0, -20]))
+        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (forwardrightsidegroup2, True, [0, -self._MaxAngle]))
         leg2Thread.start()
-        leg3Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardrightsidegroup1, False, [-20, 0]))
+        leg3Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardrightsidegroup1, False, [-self._MaxAngle, 0]))
         leg3Thread.start()
-        leg4Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardleftsidegroup1, False, [-6, 0]))
+        leg4Thread = threading.Thread(target=self.MoveLegsForward, args = (forwardleftsidegroup1, False, [-self._MinAngle, 0]))
         leg4Thread.start()
 
         leg1Thread.join()
@@ -314,16 +310,16 @@ class Move(object):
             forwardleftsidegroup2 = [self._MInterface._Legs[2]]
 
             self.raiseLegs(self.group1)
-            self.MoveLegsBackward(forwardrightsidegroup2, False, [20, 0])
-            self.MoveLegsBackward(forwardleftsidegroup2, False, [6, 0])
+            self.MoveLegsBackward(forwardrightsidegroup2, False, [self._MaxAngle, 0])
+            self.MoveLegsBackward(forwardleftsidegroup2, False, [self._MinAngle, 0])
             self.LowerLegs(self.group1)
         elif self._LastCommand == 13:
             group2 = [self._MInterface._Legs[0], self._MInterface._Legs[2], self._MInterface._Legs[4]]
             group1 = [self._MInterface._Legs[5], self._MInterface._Legs[3], self._MInterface._Legs[1]]
 
-            leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (group1, False, [20, 0],))
+            leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (group1, False, [self._MaxAngle, 0],))
             leg1Thread.start()
-            leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (group2, False, [-20, 0],))
+            leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (group2, False, [-self._MaxAngle, 0],))
             leg2Thread.start()
 
             leg1Thread.join()
@@ -334,14 +330,14 @@ class Move(object):
             forwardleftsidegroup2 = [self._MInterface._Legs[2]]
 
             self.raiseLegs(self.group1)
-            self.MoveLegsForward(forwardrightsidegroup2, False, [-20, 0])
-            self.MoveLegsForward(forwardleftsidegroup2, False, [-6, 0])
+            self.MoveLegsForward(forwardrightsidegroup2, False, [-self._MaxAngle, 0])
+            self.MoveLegsForward(forwardleftsidegroup2, False, [-self._MinAngle, 0])
             self.LowerLegs(self.group1)
 
 
         elif self._LastCommand == 15:
             self.raiseLegs(self.group1)
-            self.MoveLegsForward(self.group2, False, [-20, 0])
+            self.MoveLegsForward(self.group2, False, [-self._MaxAngle, 0])
             self.LowerLegs(self.group1)
 
         elif self._LastCommand == 16:
@@ -349,17 +345,17 @@ class Move(object):
             forwardleftsidegroup1 = [self._MInterface._Legs[3]]
 
             self.raiseLegs(self.group2)
-            self.MoveLegsForward(forwardrightsidegroup1, False, [-20, 0])
-            self.MoveLegsForward(forwardleftsidegroup1, False, [-6, 0])
+            self.MoveLegsForward(forwardrightsidegroup1, False, [-self._MaxAngle, 0])
+            self.MoveLegsForward(forwardleftsidegroup1, False, [-self._MinAngle, 0])
             self.LowerLegs(self.group2)
 
         elif self._LastCommand == 17:
             group1 = [self._MInterface._Legs[4], self._MInterface._Legs[2], self._MInterface._Legs[0]]
             group2 = [self._MInterface._Legs[1], self._MInterface._Legs[3], self._MInterface._Legs[5]]
 
-            leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (group1, False, [20, 0],))
+            leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (group1, False, [self._MaxAngle, 0],))
             leg1Thread.start()
-            leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (group2, False, [-20, 0],))
+            leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (group2, False, [-self._MaxAngle, 0],))
             leg2Thread.start()
 
             leg1Thread.join()
@@ -370,8 +366,8 @@ class Move(object):
 
 
             self.raiseLegs(self.group2)
-            self.MoveLegsBackward(forwardrightsidegroup1, False, [20, 0])
-            self.MoveLegsBackward(forwardleftsidegroup1, False, [6, 0])
+            self.MoveLegsBackward(forwardrightsidegroup1, False, [self._MaxAngle, 0])
+            self.MoveLegsBackward(forwardleftsidegroup1, False, [self._MinAngle, 0])
             self.LowerLegs(self.group2)
         else:
             pass
@@ -382,14 +378,14 @@ class Move(object):
         if self._LastCommand != 15:
             self.StopLegs()
             self.raiseLegs(self.group2)
-            self.MoveLegsBackward(self.group2, True, [0, -20])
+            self.MoveLegsBackward(self.group2, True, [0, -self._MaxAngle])
             self.LowerLegs(self.group2)
 
         self.raiseLegs(self.group1)
 
-        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group1, True, [0, -20],))
+        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group1, True, [0, -self._MaxAngle],))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group2, False, [-20, 0],))
+        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group2, False, [-self._MaxAngle, 0],))
         leg2Thread.start()
 
         leg1Thread.join()
@@ -398,9 +394,9 @@ class Move(object):
         self.LowerLegs(self.group1)
         self.raiseLegs(self.group2)
 
-        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group2, True, [0, -20],))
+        leg1Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group2, True, [0, -self._MaxAngle],))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group1, False, [-20, 0],))
+        leg2Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group1, False, [-self._MaxAngle, 0],))
         leg2Thread.start()
 
         leg1Thread.join()
@@ -414,14 +410,14 @@ class Move(object):
         if self._LastCommand != 11:
             self.StopLegs()
             self.raiseLegs(self.group2)
-            self.MoveLegsForward(self.group2, True)
+            self.MoveLegsForward(self.group2, True, [0, self._DefaultMaxAngle])
             self.LowerLegs(self.group2)
 
         self.raiseLegs(self.group1)
 
-        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group1, True,))
+        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group1, True, [0, self._DefaultMaxAngle]))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group2,))
+        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group2, False, [self._DefaultMaxAngle, 0]))
         leg2Thread.start()
 
         leg1Thread.join()
@@ -430,15 +426,13 @@ class Move(object):
         self.LowerLegs(self.group1)
         self.raiseLegs(self.group2)
 
-        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group2, True,))
+        leg1Thread = threading.Thread(target=self.MoveLegsForward, args = (self.group2, True,[0, self._DefaultMaxAngle]))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group1,))
+        leg2Thread = threading.Thread(target=self.MoveLegsBackward, args = (self.group1, False, [self._DefaultMaxAngle, 0]))
         leg2Thread.start()
 
         leg1Thread.join()
         leg2Thread.join()
 
-        #self.MoveLegsForward(self.group2, True)
-        #self.MoveLegsBackward(self.group1)
         self.LowerLegs(self.group2)
 

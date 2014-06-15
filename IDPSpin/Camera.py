@@ -24,21 +24,22 @@ class Camera(object):
             pass
 
     
-    def takeImage(self):
+    def takeImage(self, SafeImage=True):
         my_stream = io.BytesIO()
         try:
             self._Camera.capture(my_stream, 'jpeg')
         except:
             pass
         encoded_string = base64.b64encode(my_stream.getvalue())
-        self._StoredImage = encoded_string
+        if SafeImage:
+            self._StoredImage = encoded_string
         return encoded_string
 
     def getImageFromMemory(self):
         if len(self._StoredImage) > 0:
             return self._StoredImage
         else:
-            return self.takeImage()
+            return self.takeImage(False)
 
     def Exit(self):
         self._Camera.stop_preview()
