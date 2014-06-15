@@ -7,6 +7,7 @@ import io
 import base64
 try:
     import pygame
+    import pygame.camera
 except:
     "could not start local webcam"
 
@@ -20,7 +21,10 @@ class Camera(object):
             self._Camera.start_preview()
             self._StoredImage = ""
         except:
-            pass
+            pygame.init()
+            pygame.camera.init()
+            self._Camera = pygame.camera.Camera("/dev/video0",(640,480))
+            self._Camera.start()
 
     
     def takeImage(self):
@@ -28,7 +32,7 @@ class Camera(object):
         try:
             self._Camera.capture(my_stream, 'jpeg')
         except:
-            pass
+            my_stream = self._Camera.get_image()
         encoded_string = base64.b64encode(my_stream.getvalue())
         self._StoredImage = encoded_string
         return encoded_string

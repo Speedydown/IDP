@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VisionEngine.VisionInterface
 {
-    public abstract class VisionLabInterface
+    abstract class VisionLabInterface
     {
         protected VisionEngineForm visionEngine; 
         protected CommandHandler commandHandler;
