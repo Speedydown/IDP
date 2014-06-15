@@ -265,6 +265,8 @@ namespace VisionEngine
 
                 controllerSemaphore.Release();
                 #endregion
+
+                Thread.Sleep(1);
             }
         }
 

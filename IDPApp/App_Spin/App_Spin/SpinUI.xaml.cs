@@ -113,24 +113,24 @@ namespace App_Spin
             //LABEL
             lblSlope.Text = "Slope: " + slope.ToString();
         }
-        
+
         private async void sendCmd(string moveMessage)
         {
             /* Send msg method to Raspberry Pi
              * Needs input string (move)
              */
 
-            if (sending == false)
-            {
-                sending = true;
+            //if (sending == false)
+            //{
+            //    sending = true;
 
-                await (Network.NetworkHandler.Send(moveMessage));
-                await (Network.NetworkHandler.Recv());
+            //    await (Network.NetworkHandler.Send(moveMessage));
+            //    await (Network.NetworkHandler.Recv());
 
-                sending = false;
+            //    sending = false;
 
-                Network.NetworkHandler.InputBuffer.Get();
-            }
+            //    Network.NetworkHandler.InputBuffer.Get();
+            //}
             txtJoytest.Text = moveMessage;
         }
 
@@ -290,12 +290,10 @@ namespace App_Spin
             if (popBattery.IsOpen == false)
             {
                 popBattery.IsOpen = true;
-                txtTest.Text = "battery pressed";
             }
             else
             {
                 popBattery.IsOpen = false;
-                txtTest.Text = "popup closed";
             }
         }
 
@@ -317,7 +315,6 @@ namespace App_Spin
             heightValue = Convert.ToInt16(sldHeight.Value);
 
             /*INSERT NETWORK COMMAND*/
-            txtTest.Text = heightValue.ToString();
         }
 
         // Slider for configuring spider speed on the fly
@@ -326,7 +323,6 @@ namespace App_Spin
             speedValue = Convert.ToInt16(sldSpeed.Value);
 
             /*INSERT NETWORK COMMAND*/
-            txtTest.Text = speedValue.ToString();
         }
     }
 }
