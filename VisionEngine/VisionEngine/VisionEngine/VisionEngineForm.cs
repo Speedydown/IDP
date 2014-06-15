@@ -68,15 +68,11 @@ namespace VisionEngine
         private void startStreamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             commandHandler.startStream();
-            startStreamToolStripMenuItem.Enabled = false;
-            stopStreamToolStripMenuItem.Enabled = true;
         }
 
         private void stopStreamToolStripMenuItem_Click(object sender, EventArgs e)
         {
             commandHandler.stopStream();
-            startStreamToolStripMenuItem.Enabled = true;
-            stopStreamToolStripMenuItem.Enabled = false;
         }
 
         private void disconnectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -133,16 +129,7 @@ namespace VisionEngine
 
         private void enableCustomCommandsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (this.Height != 502)
-            {
-                this.Height = 502;
-                enableCustomCommandsToolStripMenuItem.Text = "Disable custom commands";
-            }
-            else
-            {
-                this.Height = 420;
-                enableCustomCommandsToolStripMenuItem.Text = "Enable custom commands";
-            }
+            this.Height = 502;
         }
 
         private void saveInputPictureToolStripMenuItem_Click(object sender, EventArgs e)
@@ -177,14 +164,12 @@ namespace VisionEngine
         {
             gcHandler.enable();
             enableControllerToolStripMenuItem.Enabled = false;
-            disableControllerToolStripMenuItem.Enabled = true;
         }
 
         private void disableControllerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             gcHandler.disable();
             enableControllerToolStripMenuItem.Enabled = true;
-            disableControllerToolStripMenuItem.Enabled = false;
         }
 
     }

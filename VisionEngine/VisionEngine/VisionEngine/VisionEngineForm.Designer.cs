@@ -42,9 +42,6 @@
             this.stopStreamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveInputPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveOutputPictureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.controllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.enableControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disableControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.enableCustomCommandsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,6 +55,9 @@
             this.balloon1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxOutput = new System.Windows.Forms.PictureBox();
             this.pictureBoxInput = new System.Windows.Forms.PictureBox();
+            this.controllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disableControllerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.balloonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.balloon3)).BeginInit();
@@ -166,7 +166,6 @@
             // 
             // stopStreamToolStripMenuItem
             // 
-            this.stopStreamToolStripMenuItem.Enabled = false;
             this.stopStreamToolStripMenuItem.Name = "stopStreamToolStripMenuItem";
             this.stopStreamToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.stopStreamToolStripMenuItem.Text = "Stop stream";
@@ -185,30 +184,6 @@
             this.saveOutputPictureToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.saveOutputPictureToolStripMenuItem.Text = "Save Output picture";
             this.saveOutputPictureToolStripMenuItem.Click += new System.EventHandler(this.saveOutputPictureToolStripMenuItem_Click);
-            // 
-            // controllerToolStripMenuItem
-            // 
-            this.controllerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.enableControllerToolStripMenuItem,
-            this.disableControllerToolStripMenuItem});
-            this.controllerToolStripMenuItem.Name = "controllerToolStripMenuItem";
-            this.controllerToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
-            this.controllerToolStripMenuItem.Text = "Controller";
-            // 
-            // enableControllerToolStripMenuItem
-            // 
-            this.enableControllerToolStripMenuItem.Name = "enableControllerToolStripMenuItem";
-            this.enableControllerToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.enableControllerToolStripMenuItem.Text = "Enable controller";
-            this.enableControllerToolStripMenuItem.Click += new System.EventHandler(this.enableControllerToolStripMenuItem_Click);
-            // 
-            // disableControllerToolStripMenuItem
-            // 
-            this.disableControllerToolStripMenuItem.Enabled = false;
-            this.disableControllerToolStripMenuItem.Name = "disableControllerToolStripMenuItem";
-            this.disableControllerToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.disableControllerToolStripMenuItem.Text = "Disable controller";
-            this.disableControllerToolStripMenuItem.Click += new System.EventHandler(this.disableControllerToolStripMenuItem_Click);
             // 
             // advancedToolStripMenuItem
             // 
@@ -322,6 +297,29 @@
             this.pictureBoxInput.Size = new System.Drawing.Size(477, 327);
             this.pictureBoxInput.TabIndex = 1;
             this.pictureBoxInput.TabStop = false;
+            // 
+            // controllerToolStripMenuItem
+            // 
+            this.controllerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.enableControllerToolStripMenuItem,
+            this.disableControllerToolStripMenuItem});
+            this.controllerToolStripMenuItem.Name = "controllerToolStripMenuItem";
+            this.controllerToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
+            this.controllerToolStripMenuItem.Text = "Controller";
+            // 
+            // enableControllerToolStripMenuItem
+            // 
+            this.enableControllerToolStripMenuItem.Name = "enableControllerToolStripMenuItem";
+            this.enableControllerToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.enableControllerToolStripMenuItem.Text = "Enable controller";
+            this.enableControllerToolStripMenuItem.Click += new System.EventHandler(this.enableControllerToolStripMenuItem_Click);
+            // 
+            // disableControllerToolStripMenuItem
+            // 
+            this.disableControllerToolStripMenuItem.Name = "disableControllerToolStripMenuItem";
+            this.disableControllerToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.disableControllerToolStripMenuItem.Text = "Disable controller";
+            this.disableControllerToolStripMenuItem.Click += new System.EventHandler(this.disableControllerToolStripMenuItem_Click);
             // 
             // VisionEngineForm
             // 
