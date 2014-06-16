@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace VisionEngine.VisionInterface
 {
-    abstract class VisionLabInterface
+    public abstract class VisionLabInterface
     {
         protected VisionEngineForm visionEngine; 
         protected CommandHandler commandHandler;
+
+        public static int imgWidth = 640;
+        public static int imgHeight = 480;
 
         protected string activeScript;
 
@@ -18,7 +21,7 @@ namespace VisionEngine.VisionInterface
 
         public abstract Bitmap processImage(Bitmap bmpPicture);
 
-        public abstract void determineMotion();
+        public abstract void determineMotion(int xCoordinate);
 
 
 

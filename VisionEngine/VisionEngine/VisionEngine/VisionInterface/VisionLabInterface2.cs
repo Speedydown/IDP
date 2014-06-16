@@ -9,6 +9,8 @@ namespace VisionEngine.VisionInterface
 {
     public class VisionLabInterface2
     {
+        
+        /*
         private VisionEngineForm visionEngine;
         private CommandHandler commandHandler;
         bool cardModus = true;
@@ -127,7 +129,7 @@ namespace VisionEngine.VisionInterface
             }
 
             return JL_VisionLib_V3.CmdInt.GetImage("img");
-        }
+        }*/
     }
 }
 
