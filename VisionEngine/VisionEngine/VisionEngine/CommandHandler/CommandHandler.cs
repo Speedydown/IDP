@@ -15,13 +15,14 @@ namespace VisionEngine
     public class CommandHandler
     {
         private NetworkInterface networkInterface;
-        private VisionLabInterface visionLabInterface;
+        //private VisionLabInterface2 visionLabInterface;
+        private BalloonFinder visionLabInterface;
         private Thread streamThread;
         private VisionEngineForm visionEngine;
         private Semaphore commandHandlerSemaphore;
         private ConnectionForm connectionForm;
         private GameControllerHandler gcHandler;
-
+        //public static string input = "C:\\Users\\Miriam\\Desktop\\Input1.jpg";
         public CommandHandler(NetworkInterface networkInterface, ConnectionForm connectionForm)
         {
             CmdInt.Init();
@@ -29,7 +30,7 @@ namespace VisionEngine
             this.connectionForm = connectionForm;
             this.networkInterface = networkInterface;
             this.visionEngine = new VisionEngineForm(this, connectionForm, gcHandler);
-            this.visionLabInterface = new VisionLabInterface(this.visionEngine, this);
+            this.visionLabInterface = new BalloonFinder(this.visionEngine, this);
             this.commandHandlerSemaphore = new Semaphore(1, 1);
             this.visionEngine.Show();
         }
@@ -63,7 +64,7 @@ namespace VisionEngine
             string output = networkInterface.Recv();
             commandHandlerSemaphore.Release();
 
-            if (Command == "gimg")
+            /*if (Command == "gimg")
             {
                 byte[] bytes = Convert.FromBase64String(output);
 
@@ -74,7 +75,7 @@ namespace VisionEngine
                     try
                     {
                         InputImage = new Bitmap(Image.FromStream(ms));
-                        //OutputImage = visionLabInterface.processImage(new Bitmap(InputImage));
+                        OutputImage = visionLabInterface.processImage(new Bitmap(InputImage));
                         visionEngine.Invoke(visionEngine.UpdateImageDelegate, new Object[] { InputImage, InputImage });
                     }
                     catch (Exception)
@@ -82,7 +83,7 @@ namespace VisionEngine
 
                     }
                 }
-            }
+            }*/
 
             return output;
 
@@ -90,10 +91,17 @@ namespace VisionEngine
             
         }
 
-        public static void runStream(CommandHandler commandHandler, VisionLabInterface visionLabInterface, VisionEngineForm visionEngine)
+        public static void runStream(CommandHandler commandHandler, BalloonFinder visionLabInterface, VisionEngineForm visionEngine)
         {
             while (true)
             {
+                /*
+                Image InputImage;
+                Image OutputImage;
+                InputImage = new Bitmap(Image.FromFile(CommandHandler.input));
+                OutputImage = visionLabInterface.processImage(new Bitmap(InputImage));
+                visionEngine.Invoke(visionEngine.UpdateImageDelegate, new Object[] { InputImage, OutputImage });*/
+                
                 byte[] bytes = Convert.FromBase64String(commandHandler.execute("gimg"));
 
                 Image InputImage;
@@ -102,7 +110,9 @@ namespace VisionEngine
                 {
                     try
                     {
+                        
                         InputImage = new Bitmap(Image.FromStream(ms));
+                        //InputImage = new Bitmap(Image.FromFile("C:\\Users\\Miriam\\Desktop\\Input1.jpg"));
                         OutputImage = visionLabInterface.processImage(new Bitmap(InputImage));
                         visionEngine.Invoke(visionEngine.UpdateImageDelegate, new Object[] { InputImage, OutputImage });
                     }

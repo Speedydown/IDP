@@ -21,5 +21,5 @@ class GetSpiData:
                 return adcout
 
         def getSpi(self):
-                spiData = '%d' %(readadc(0))
+                spiData = '%d' %(self.readadc(0))
                 return spiData

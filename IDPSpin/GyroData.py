@@ -14,8 +14,7 @@ class GyroData(object):
         self.address = 0x68
         self.bus.write_byte_data(self.address, self.power_mgmt_1, 0)
         self.xDegree = 0
-        self.yDegree = 0
-        self.run()
+        self.yDegree = 0        
         
     def read_byte(self, adr):
         return bus.read_byte_data(self.address, adr)
@@ -75,12 +74,12 @@ class GyroData(object):
 
     #Get x degree
     def getXDegrees(self):
-        CalculateAngle()
+        self.calculateAngle()
         xString = '%d' %(self.xDegree)
         return xString
 
     #Get y degree
     def getYDegrees(self):
-        CalculateAngle()
+        self.calculateAngle()
         yString = '%d' %(self.yDegree)
         return yString
