@@ -53,13 +53,17 @@ namespace App_Spin.Network
         public static async Task Recv()
         {
             // container for the received Data
-            string receivedData;
+            string receivedData = "";
             reader.InputStreamOptions = InputStreamOptions.Partial;
-            var count = await reader.LoadAsync(4096);
+            var count = await reader.LoadAsync(1024);
 
             // read the data as a string and store it in our container
             if (count > 0)
             {
+                while (!receivedData.Contains("<EOF>"))
+                {
+                    receivedData += reader.LoadAsync(1024);
+                }
                 receivedData = reader.ReadString(count);
                 InputBuffer.Append(receivedData);
             }
@@ -75,10 +79,6 @@ namespace App_Spin.Network
                 // commit and send the data in the OutputStream
                 await writer.StoreAsync();
             }
-        }
-
-        private static async void getImage(string command)
-        {
         }
 
         public static async Task Close()

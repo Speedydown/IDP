@@ -34,6 +34,8 @@ namespace App_Spin
         private int heightValue;
         private int speedValue;
 
+        public Image image;
+
         public SpinUI()
         {
             this.InitializeComponent();
@@ -113,6 +115,29 @@ namespace App_Spin
             //LABEL
             lblSlope.Text = "Slope: " + slope.ToString();
         }
+
+        //private async void getImage()
+        //{
+        //    if (sending == false)
+        //    {
+        //        sending = true;
+
+        //        await (Network.NetworkHandler.Send("gifm"));
+        //        await (Network.NetworkHandler.Recv());
+
+        //        sending = false;
+        //    }
+
+        //    byte[] bytes = Convert.FromBase64String(Network.NetworkHandler.InputBuffer.Get());
+        //    using (var ms = new MemoryStream())
+        //    {  
+        //        using (var imageFile = new StreamWriter(ms)
+        //        {
+        //            imageFile.Write(bytes, 0, bytes.Length);
+        //            imageFile.Flush();
+        //        }
+        //    }
+        //}
 
         private async void sendCmd(string moveMessage)
         {
