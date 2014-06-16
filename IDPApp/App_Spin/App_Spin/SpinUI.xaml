@@ -46,22 +46,22 @@
                 <Ellipse x:Name="joyStick" Fill="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Height="400" 
                          Margin="0,0,0,0" Stroke="Black" Width="400"/>
                 <Button x:Name="btnFw" Height="100" Width="100" Content="Forward" Canvas.Left="150" Canvas.Top="10" 
-                        PointerPressed="btnFw_Pressed" PointerReleased="btnFw_Released" Opacity="0"/>
+                        PointerPressed="btnFw_Pressed" PointerReleased="btnFw_Released" Opacity="0.3"/>
                 <Button x:Name="btnBw" Height="100" Width="100" Content="Backward" Canvas.Left="150" Canvas.Top="290" 
-                        PointerPressed="btnBw_Pressed" PointerReleased="btnBw_Released" Opacity="0"/>
+                        PointerPressed="btnBw_Pressed" PointerReleased="btnBw_Released" Opacity="0.3"/>
                 <Button x:Name="btnLeft" Height="100" Width="100" Content="Left" Canvas.Left="10" Canvas.Top="150" 
-                        PointerPressed="btnLeft_Pressed" PointerReleased="btnLeft_Released" Opacity="0"/>
+                        PointerPressed="btnLeft_Pressed" PointerReleased="btnLeft_Released" Opacity="0.3"/>
                 <Button x:Name="btnRight" Height="100" Width="100" Content="Right" Canvas.Left="290" Canvas.Top="150" 
-                        PointerPressed="btnRight_Pressed" PointerReleased="btnRight_Released" Opacity="0"/>
+                        PointerPressed="btnRight_Pressed" PointerReleased="btnRight_Released" Opacity="0.3"/>
 
                 <Button x:Name="btnLeftFw" Height="100" Width="100" Content="LeftFw" Canvas.Left="60" Canvas.Top="60"
-                        PointerPressed="btnLeftFw_Pressed" PointerReleased="btnLeftFw_Released" Opacity="0"/>
+                        PointerPressed="btnLeftFw_Pressed" PointerReleased="btnLeftFw_Released" Opacity="0.3" RenderTransformOrigin="0.5,0.5"/>
                 <Button x:Name="btnRightFw" Height="100" Width="100" Content="RightFw" Canvas.Left="240" Canvas.Top="60" 
-                        PointerPressed="btnRightFw_Pressed" PointerReleased="btnRightFw_Released" Opacity="0"/>
+                        PointerPressed="btnRightFw_Pressed" PointerReleased="btnRightFw_Released" Opacity="0.3"/>
                 <Button x:Name="btnLeftBw" Height="100" Width="100" Content="LeftBw" Canvas.Left="60" Canvas.Top="240" 
-                        PointerPressed="btnLeftBw_Pressed" PointerReleased="btnLeftBw_Released" Opacity="0"/>
+                        PointerPressed="btnLeftBw_Pressed" PointerReleased="btnLeftBw_Released" Opacity="0.3"/>
                 <Button x:Name="btnRightBw" Height="100" Width="100" Content="RightBw" Canvas.Left="240" Canvas.Top="240" 
-                        PointerPressed="btnRightBw_Pressed" PointerReleased="btnRightBw_Released" Opacity="0"/>
+                        PointerPressed="btnRightBw_Pressed" PointerReleased="btnRightBw_Released" Opacity="0.3"/>
             </Canvas>
             <!--Sliders-->
             <!--Style for Spider Height-->
@@ -81,11 +81,10 @@
         </Grid>
 
         <!--TextBox for input test-->
-        <TextBox x:Name="txtTest" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,700,0,0" Width="200"/>
         <TextBox x:Name="txtJoytest" HorizontalAlignment="Left" Margin="200,700,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" FontFamily="Global User Interface"/>
 
         <!--VideoFeed-->
-        <Image x:Name="videoFeed" Source="Assets/imgVideo.jpg" HorizontalAlignment="Left" Width="576" Height="432" Margin="700,190,0,0" VerticalAlignment="Top"/>
+        <Image x:Name="videoFeed" Source="Assets/spin30.jpg" HorizontalAlignment="Left" Width="576" Height="432" Margin="700,190,0,0" VerticalAlignment="Top"/>
 
         <!--Popup for battery graph-->
         <Popup x:Name="popBattery" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,300,0,0" Width="700" Height="300" IsOpen="False">

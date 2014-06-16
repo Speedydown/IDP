@@ -27,6 +27,7 @@ namespace App_Spin
     {
         public bool Sending = false;
 
+        private Info i;
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
@@ -54,6 +55,27 @@ namespace App_Spin
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
             this.navigationHelper.SaveState += navigationHelper_SaveState;
+            this.i = new Info();
+
+            if (i.getConnected() != true)
+            {
+                this.txtConn.IsEnabled = true;
+                this.gridDisc.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.btnConnect.Content = "Interface";
+                this.txtConn.IsEnabled = false;
+            }
+
+            if (i.getState() == null)
+            {
+                lblError.Text = "";
+            }
+            else
+            {
+                lblError.Text = i.getState();
+            }
         }
 
         /// <summary>
@@ -108,58 +130,86 @@ namespace App_Spin
 
         private async void btnConnect_Click(object sender, RoutedEventArgs e)
         {
-            if (txtConn.Text != null)
+            if (i.getConnected() != true)
             {
-                //Wait for connection
-                //await(Network.NetworkHandler.Connect(txtConn.Text));
-                //RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
-                //SendButton.IsEnabled = true;
-                //btnConnect.IsEnabled = false;
+                txtConn.IsEnabled = true;
+                if (txtConn.Text != null)
+                {
+                    //Wait for connection
+                    //await(Network.NetworkHandler.Connect(txtConn.Text));
+                    //btnConnect.IsEnabled = false;
 
-                this.Frame.Navigate(typeof(SpinUI));
-                lblError.Text = "You are connected to Spider!";
-                txtConn.IsEnabled = false;
+                    /* kan weg
+                    RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
+                    SendButton.IsEnabled = true; 
+                     */
+
+                    lblError.Text = "You are connected to Spider!";
+                    i.setState(lblError.Text);
+                    i.setConnected(true);
+
+                    this.Frame.Navigate(typeof(SpinUI));
+                }
+                else
+                {
+                    lblError.Text = "Could not connect to Spider!";
+                    i.setState(lblError.Text);
+                }
             }
             else
             {
-                lblError.Text = "Could not connect to Spider!";
+                this.Frame.Navigate(typeof(SpinUI));
+            }
+            
+        }
+
+        private async void btnDisconnect_Click(object sender, RoutedEventArgs e)
+        {
+            if (i.getConnected() == true)
+            {
+                //Disconnect the current connection
+                //await (Network.NetworkHandler.Close());
+
+                btnConnect.IsEnabled = true;
+                i.setConnected(false);
+                txtConn.IsEnabled = true;
+                btnConnect.Content = "Connect";
+                lblError.Text = "You have been disconnected.";
+                gridDisc.Visibility = Visibility.Collapsed;
             }
         }
 
-        private void btnDisconnect_Click(object sender, RoutedEventArgs e)
+        /* kan weg
+        private async void SendButton_Click(object sender, RoutedEventArgs e)
         {
+            if (Sending == false)
+            {
+                string input = Input.Text;
 
+                Sending = true;
+                if (input.Length > 0)
+                {
+                    await (Network.NetworkHandler.Send(input));
+                }
+
+                await (Network.NetworkHandler.Recv());
+                Sending = false;
+                RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
+            }
         }
 
-        //private async void SendButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (Sending == false)
-        //    {
-        //        string input = Input.Text;
+        private async void BTN_Exit_Click(object sender, RoutedEventArgs e)
+        {
+            await (Network.NetworkHandler.Close());
+            SendButton.IsEnabled = false;
+            btnConnect.IsEnabled = false;
+        }
 
-        //        Sending = true;
-        //        if (input.Length > 0)
-        //        {
-        //            await (Network.NetworkHandler.Send(input));
-        //        }
-
-        //        await (Network.NetworkHandler.Recv());
-        //        Sending = false;
-        //        RecievedLog.Text += Network.NetworkHandler.InputBuffer.Get() + "\n";
-        //    }
-        //}
-
-        //private async void BTN_Exit_Click(object sender, RoutedEventArgs e)
-        //{
-        //    await(Network.NetworkHandler.Close());
-        //    SendButton.IsEnabled = false;
-        //    btnConnect.IsEnabled = false;
-        //}
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this.Frame.Navigate(typeof(SpinUI));
-        //}
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SpinUI));
+        }
+         */
 
     }
 }

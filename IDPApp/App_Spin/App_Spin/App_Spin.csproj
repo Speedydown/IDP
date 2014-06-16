@@ -109,6 +109,7 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
+    <Compile Include="Info.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -127,7 +128,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\imgStick.png" />
-    <Content Include="Assets\imgVideo.jpg" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\MoveCommands.txt" />
     <Content Include="Assets\SmallLogo.scale-100.png" />

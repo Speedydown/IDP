@@ -47,7 +47,7 @@
             <TextBlock x:Name="lblError" Text="" Height="20" Width="145" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-80"/>
         </Grid>
 
-        <Grid Background="Orange" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,-200" Height="50" Width="150">
+        <Grid x:Name="gridDisc" Background="Orange" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,-200" Height="50" Width="150">
             <Button x:Name="btnDisconnect" BorderBrush="DarkBlue" Content="Disconnect" Margin="0,0,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDisconnect_Click"/>
         </Grid>
         

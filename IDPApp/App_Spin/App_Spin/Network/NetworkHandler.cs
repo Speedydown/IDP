@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Networking;
 using Windows.Networking.Sockets;
 using Windows.Storage.Streams;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media.Imaging;
+using System.Xml.Linq;
 
 namespace App_Spin.Network
 {
@@ -71,6 +75,10 @@ namespace App_Spin.Network
                 // commit and send the data in the OutputStream
                 await writer.StoreAsync();
             }
+        }
+
+        private static async void getImage(string command)
+        {
         }
 
         public static async Task Close()

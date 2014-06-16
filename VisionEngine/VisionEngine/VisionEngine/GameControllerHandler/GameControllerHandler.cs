@@ -120,8 +120,9 @@ namespace VisionEngine
         {
             while (true)
             {
-                #region Left Joystick
                 controllerSemaphore.WaitOne();
+
+                #region Left Joystick
                 //STOP
                 if (getCurrentState().X > 25000 && getCurrentState().X < 40000 && getCurrentState().Y > 25000 && getCurrentState().Y < 40000)
                 {
@@ -153,19 +154,19 @@ namespace VisionEngine
                 }
 
                 //RIGHTDOWN
-                if (getCurrentState().X > 45000 && getCurrentState().Y > 45000)
+                if (getCurrentState().X > 40000 && getCurrentState().Y > 45000)
                 {
                     move = 14;
                 }
 
                 //DOWN
-                if (getCurrentState().Y > 45000 && getCurrentState().X > 25000 && getCurrentState().X < 35000)
+                if (getCurrentState().Y > 45000 && getCurrentState().X > 20000 && getCurrentState().X < 45000)
                 {
                     move = 15;
                 }
 
                 //LEFTDOWN
-                if (getCurrentState().X < 20000 && getCurrentState().Y > 45000)
+                if (getCurrentState().X < 20000 && getCurrentState().Y > 40000)
                 {
                     move = 16;
                 }
@@ -229,6 +230,24 @@ namespace VisionEngine
                     buttons = 4;
                 }
 
+                if (getCurrentState().Buttons[4] == true)
+                {
+                    buttons = 5;
+                }
+
+                if (getCurrentState().Buttons[5] == true)
+                {
+                    buttons = 6;
+                }
+
+                if (getCurrentState().Buttons[10] == true)
+                {
+                    if (sec != DateTime.Now.Second)
+                    {
+                        sendCommand("horn");
+                        sec = DateTime.Now.Second;
+                    }
+                }
                 #endregion
 
                 #region Get and Send Input
@@ -263,8 +282,10 @@ namespace VisionEngine
                     oldbtncmd = btncmd;
                 }
 
-                controllerSemaphore.Release();
                 #endregion
+
+                controllerSemaphore.Release();
+                Thread.Sleep(1);
             }
         }
 
@@ -349,6 +370,12 @@ namespace VisionEngine
                     break;
                 case 4:
                     getButtons("btnt");
+                    break;
+                case 5:
+                    getButtons("move 20");
+                    break;
+                case 6:
+                    getButtons("move 21");
                     break;
                 default:
                     break;
