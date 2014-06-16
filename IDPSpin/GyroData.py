@@ -1,6 +1,6 @@
 #The class for the gyrometer
 
-import smbus
+#import smbus
 import math
 import time
 
@@ -10,12 +10,11 @@ class GyroData(object):
         #Set ports and address
         self.power_mgmt_1 = 0x6b
         self.power_mgmt_2 = 0x6c
-        self.bus = smbus.SMBus(1)
+        #self.bus = smbus.SMBus(1)
         self.address = 0x68
-        self.bus.write_byte_data(self.address, self.power_mgmt_1, 0)
+        #self.bus.write_byte_data(self.address, self.power_mgmt_1, 0)
         self.xDegree = 0
-        self.yDegree = 0
-        self.run()
+        self.yDegree = 0        
         
     def read_byte(self, adr):
         return bus.read_byte_data(self.address, adr)
@@ -75,12 +74,12 @@ class GyroData(object):
 
     #Get x degree
     def getXDegrees(self):
-        CalculateAngle()
+        self.calculateAngle()
         xString = '%d' %(self.xDegree)
         return xString
 
     #Get y degree
     def getYDegrees(self):
-        CalculateAngle()
+        self.calculateAngle()
         yString = '%d' %(self.yDegree)
         return yString
