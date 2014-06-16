@@ -2,6 +2,7 @@ __author__ = 'Ivar'
 
 from Leg import Leg
 import threading
+from FingerControl import FingerControl
 from threading import Semaphore
 from Move import Move
 import time
@@ -31,6 +32,8 @@ class MotionInterface(object):
         
         if mode == 1:
             self._CurrentMode = Move(self)
+        if mode == 2:
+            self._CurrentMode = FingerControl(self)
 
     def get_CurrentCommand(self):
         self._Semaphore.acquire()
@@ -124,6 +127,9 @@ class MotionInterface(object):
     def convertDegreesToPulse(self, pulse):
         return int(pulse * 2.8125)
 
+    def convertPulseToDegrees(self, pulse):
+        return int(pulse / 2.8125)
+
     def setDefaultPulse(self, pulse):
         self._DefaultPulse = int(pulse)
 
@@ -202,14 +208,85 @@ class MotionInterface(object):
         return self._DefaultPulse
 
     def Calibreren(self, number, pulse):
-        for Leg in self._MInterface._Legs:
+        for Leg in self._Legs:
             if number == 1:
                 Leg.moveHip(pulse)
             if number == 2:
                 Leg.moveAnkle(pulse)
             if number == 3:
                 Leg.moveKnee(pulse)
-        
+
+
+    def raiseLegs(self, Legs):
+        steps = 30
+        pulses = self.calculatePulse(self._Height, self._Length)
+        startpulseAnkle = Legs[0].getAnkle()
+        startpulseKnee = Legs[0].getKnee()
+        for step in range(1, steps):
+            #raise leg
+            for Leg in Legs:
+                Leg.moveAnkle(self.calculateVerticalPulse(startpulseAnkle, pulses[1] - 95, step, steps)) #was 312
+                Leg.moveKnee(self.calculateVerticalPulse(startpulseKnee, pulses[0] - 95, step, steps)) #was 329
+            time.sleep(self.SleepTime)
+
+    def LowerLegs(self, Legs):
+        steps = 30
+        startpulseAnkle = Legs[0].getAnkle() #klopt die array? twee keer 0 voor ankle en knee.
+        startpulseKnee = Legs[0].getKnee()
+        pulses = self.calculatePulse(self._Height, self._Length)
+
+        for step in range(1, steps):
+           #lower leg
+            for Leg in Legs:
+                Leg.moveAnkle(self.calculateVerticalPulse(startpulseAnkle, pulses[1], step, steps))
+                Leg.moveKnee(self.calculateVerticalPulse(startpulseKnee, pulses[0], step, steps)) #startpulseKnee in plaats van Ankle
+            time.sleep(self.SleepTime)
+
+    def MoveLegsForward(self, Legs, Raised=False, Turn=[0, 20]):
+        if Turn[0] > Turn[1]:
+            self.MoveLegsBackward(Legs, Raised, Turn)
+            return
+
+        startpoint = Turn[0]
+        steps = Turn[1]
+        pulses = self.calculatePulse(self._Height, self._Length)
+        if Raised:
+            pulses[0] -= 90
+            pulses[1] -= 90
+        for step in range(startpoint, steps):
+            #move leg forward
+            #pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step))
+
+            #if Raised:
+                #pulses[0] -= 90
+                #pulses[1] -= 90
+
+            for Leg in Legs:
+                Leg.moveHip(self.calculateHipPulse(step))
+                #Leg.moveKnee(pulses[0])
+                #Leg.moveAnkle(pulses[1])
+            time.sleep(self.SleepTime)
+
+
+    def MoveLegsBackward(self, Legs, Raised=False, Turn=[20, 0]):
+        if Turn[0] < Turn[1]:
+            self.MoveLegsForward(Legs, Raised, Turn)
+            return
+
+        startpoint = Turn[0]
+        steps = Turn[1]
+        pulses = self.calculatePulse(self._Height, self._Length)
+        if Raised:
+            pulses[0] -= 90
+            pulses[1] -= 90
+        for step in range(startpoint, steps, -1):
+
+            for Leg in Legs:
+                Leg.moveHip(self.calculateHipPulse(step))
+                #Leg.moveKnee(pulses[0])
+                #Leg.moveAnkle(pulses[1])
+
+            time.sleep(self.SleepTime)
 
 
 
