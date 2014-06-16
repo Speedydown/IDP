@@ -1,14 +1,30 @@
 __author__ = 'Matthe Jacobs'
 #Class that gets the finger control pulses and controls a leg with it
 
-from MotionInterface import MotionInterface
-import serial
+try:
+    import serial
+except:
+    "serial not initialised"
 
-class FingerControl(self, MotionInterface):    
-    def __init__(self):
-        MotionInterface.__init__(self)
+class FingerControl(object):
+
+    def __init__(self, MotionInterface):
+
+        self._MotionInterface = MotionInterface
+        self._DefaultSpeed = self._MotionInterface.getSpeed()
+        self._MotionInterface.setSpeed(self, 0.06)
         self.ser = serial.Serial('/dev/ttyUSB0', 9600)
-        run()
+        self._ForwardLegs = [self._MotionInterface._Legs[4], self._MotionInterface._Legs[5]]
+        self._middleLegs = [self._MotionInterface._Legs[2], self._MotionInterface._Legs[3]]
+
+        self._MotionInterface.raiseLegs(self._middleLegs)
+        self._MotionInterface.MoveLegsForward(self._middleLegs, True, [0, 20])
+        self._MotionInterface.LowerLegs(self._middleLegs)
+
+        self._MotionInterface.raiseLegs(self._ForwardLegs)
+        self._MotionInterface.MoveLegsForward(self._ForwardLegs, True, [0, 50])
+        self._MotionInterface.LowerLegs(self._ForwardLegs)
+        self.run()
 
     def run(self):
         while(True):
@@ -17,25 +33,38 @@ class FingerControl(self, MotionInterface):
             try:
                 if incoming[0] == 'a1':                    
                     #Move the leg
-                    MotionInterface.Legs[0].moveAnkle(int(incoming.strip('a1')))
+                    self._MotionInterface.Legs[4].moveAnkle(int(incoming.strip('a1')))
             except ValueError:
                 pass
             try:
                 if incoming[0] == 'a2':                    
                     #Move the leg
-                    MotionInterface.Legs[0].moveKnee(int(incoming.strip('a2')))
+                    self._MotionInterface.Legs[4].moveKnee(int(incoming.strip('a2')))
             except ValueError:
                 pass
             try:
                 if incoming[0] == 'b1':
                     #Move the leg
-                    MotionInterface.Legs[1].moveAnkle(int(incoming.strip('b1')))
+                    self._MotionInterface.Legs[5].moveAnkle(int(incoming.strip('b1')))
             except ValueError:
                 pass
             try:
                 if incoming[0] == 'b2':
                     #Move the leg
-                    MotionInterface.Legs[1].moveKnee(int(incoming.strip('b2')))
+                    self._MotionInterface.Legs[5].moveKnee(int(incoming.strip('b2')))
             except ValueError:
                 pass
+
+    def exit(self):
+
+
+        self._MotionInterface.raiseLegs(self._ForwardLegs)
+        self._self._MotionInterface.MoveLegsBackward(self._ForwardLegs, True, [self._MotionInterface.convertPulseToDegrees((self._ForwardLegs[0].getHip() - 375)), 0])
+        self._MotionInterface.LowerLegs(self._ForwardLegs)
+
+        self._MotionInterface.raiseLegs(self._middleLegs)
+        self._MotionInterface.MoveLegsBackward(self._middleLegs, True, [20, 0])
+        self._MotionInterface.LowerLegs(self._middleLegs)
+
+        self._MotionInterface.setSpeed(self._DefaultSpeed)
             

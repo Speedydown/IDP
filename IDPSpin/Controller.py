@@ -68,6 +68,8 @@ class Controller(object):
                     if int(self._Mode) == 1:
                         self._MotionInterface = MotionInterface(1)
                         print "mode set to 'move'"
+                    if int(self._Mode) == 2:
+                        self._MotionInterface = MotionInterface(2)
                     print threading.currentThread()
                     self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
                     self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.runThread)
