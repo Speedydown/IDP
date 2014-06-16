@@ -14,17 +14,30 @@
         </div>
 
         <h3>Recent behaalde doelstellingen:</h3>
-        <h4>Week 5:</h4>
+        <h4>Laatste ontwikkelingen binnen het projectteam</h4>
         <span>
-            In de korte week 5 stond de bouw van de spin op de planning. De onderdelen zijn echter 
-            niet allemaal binnengekomen en zo loopt het project in deze week grote vertraging op. 
-            Hopelijk komen volgende week de rest van de onderdelen binnen zodat we dan verder 
-            kunnen met het project. De binnengekomen onderdelen zullen komend weekend gespoten worden. 
-            De onderdelen die niet binnen zijn blijven de kleur houden die aluminium normaal heeft. 
-            Ook heeft Informatica deze week een lopende beweging gemaakt op basis van de 
-            Inverse Kinematics berekeningen van de jongens van Werktuigbouwkunde. Het is nu wachten 
-            tot de spin er is om dit te finetunen. Elektrotechniek is bezig geweest met de prints 
-            voor de stroomvoorziening voor de servo’s.
+            <br />
+            Het is een tijdje geleden sinds ons laatste update rondom het IDP project. Er is gelukkig weer 
+            een hoop nieuws te melden, want we hebben de afgelopen week absoluut niet stil gezeten.
+            <br />
+            <br />
+            De spin is inmiddels vrijwel volledig in kleur gespoten en geassembleerd door de Werktuigbouwkunde studenten. 
+            De printplaten van Elektrotechniek werken ook en het systeem functioneert naar behoren. Informatica heeft 
+            aan de software kant ook de nodige voortgang geboekt.
+            <br />
+            <br />
+            De spin kan alle kanten oplopen en de loopbeweging is ook nog goed gelukt. De constructie van de spin 
+            houdt het gewicht van de spin ook goed, dit is goed uitgedacht door de Werktuigbouwkunde studenten. 
+            Dit zorgt ervoor dat de servomotoren niet al het gewicht moeten dragen. Elektrotechniek heeft 
+            de servomotoren teruggebracht van 7.2v naar 6.0v, dit op aanwijzing van de firma HakDurOos, 
+            er waren namelijk meerdere groepen die de servomotoren volledig doorbrandden. Ook op dit voltage kunnen
+            we de spin nog goed bewegen en zijn we iets veiliger aan de slag met onze servomotoren.
+            <br />
+            <br />
+            Naast de loopbeweging (hieronder ook in de YouTube-feed te zien) is ook de input van de controller 
+            verwerkt in de software en kunnen we nu naast de app op de tablet ook met de controller lopen. 
+            Nu de spin volledig gemonteerd is kunnen we ook al de eerste autonome beweging van de spin zien. 
+            Met behulp van Vision is al een rode ballon gevolgd.
         </span>
     </div>
 
