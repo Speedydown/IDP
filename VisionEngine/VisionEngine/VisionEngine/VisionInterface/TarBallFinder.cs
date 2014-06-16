@@ -20,7 +20,7 @@ namespace VisionEngine.VisionInterface
             throw new NotImplementedException();
         }
 
-        public override void determineMotion()
+        public override void determineMotion(int xCoordinate)
         {
             throw new NotImplementedException();
         }

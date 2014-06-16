@@ -21,7 +21,7 @@ namespace VisionEngine
         public ConnectionForm()
         {
             InitializeComponent();
-            IPAdressTextbox.Text = "192.168.178.24";
+            IPAdressTextbox.Text = "192.168.31.103"; //192.168.178.24
             PortTextbox.Text = "1337";
             CheckTextSizes();
             formDelegate = new UpdateForm(UpdateFormAFterConnect);

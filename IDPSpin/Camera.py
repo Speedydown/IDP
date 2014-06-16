@@ -1,4 +1,5 @@
 import time
+import pygame.camera
 try:
     import picamera
 except:
@@ -21,6 +22,9 @@ class Camera(object):
             self._Camera.start_preview()
             self._StoredImage = ""
         except:
+            cam = pygame.camera.Camera(pygame.camera.list_cameras()[0])
+            cam.start_preview()
+            self._StoredImage = ""
             pass
 
     

@@ -8,13 +8,13 @@
     mc:Ignorable="d">
 
     <!--Open Background Grid-->
-    <Grid Background="DarkBlue">
+    <Grid Background="CornflowerBlue">
         <!--Open Bar Grid-->
         <Grid x:Name="gridApp" HorizontalAlignment="Left" Height="100" Margin="50,50,0,0" VerticalAlignment="Top" Width="1280">
             <Button x:Name="btnReturn" Margin="10,30,0,0" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top" Click="btnReturn_Click"/>
-            
-            <TextBlock HorizontalAlignment="Left" Margin="150,20,0,0" TextWrapping="Wrap" Text="Spider Control" VerticalAlignment="Top" 
-                       Height="60" Width="460" FontSize="60"/>
+
+            <TextBlock HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" Margin="130,20,0,0" Text="Tracheata" VerticalAlignment="Top" 
+                       Height="50" Width="400" FontSize="60"/>
 
             <TextBlock x:Name="lblBattery" Margin="1050,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" 
                        FontSize="15" PointerPressed="lblBattery_Pressed"/>
@@ -39,44 +39,44 @@
         </Grid>
 
         <!--Open Joystick Grid-->
-        <Grid Background="Orange" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190,190,0,0" Width="420" Height="420"/>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190,190,0,0" Width="420" Height="420"/>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,200,0,0" Width="400" Height="450">
             <Canvas>
                 <!--Joystick Layout + Buttons-->
-                <Ellipse x:Name="joyStick" Fill="Black" HorizontalAlignment="Left" VerticalAlignment="Top" Height="400" 
-                         Margin="0,0,0,0" Stroke="Black" Width="400"/>
+                <Image x:Name="joyStick" Source="Assets/imgJoy.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="400" 
+                         Margin="0,0,0,0" Width="400"/>
                 <Button x:Name="btnFw" Height="100" Width="100" Content="Forward" Canvas.Left="150" Canvas.Top="10" 
-                        PointerPressed="btnFw_Pressed" PointerReleased="btnFw_Released" Opacity="0.3"/>
+                        PointerPressed="btnFw_Pressed" PointerReleased="btnFw_Released" Opacity="0"/>
                 <Button x:Name="btnBw" Height="100" Width="100" Content="Backward" Canvas.Left="150" Canvas.Top="290" 
-                        PointerPressed="btnBw_Pressed" PointerReleased="btnBw_Released" Opacity="0.3"/>
+                        PointerPressed="btnBw_Pressed" PointerReleased="btnBw_Released" Opacity="0"/>
                 <Button x:Name="btnLeft" Height="100" Width="100" Content="Left" Canvas.Left="10" Canvas.Top="150" 
-                        PointerPressed="btnLeft_Pressed" PointerReleased="btnLeft_Released" Opacity="0.3"/>
+                        PointerPressed="btnLeft_Pressed" PointerReleased="btnLeft_Released" Opacity="0"/>
                 <Button x:Name="btnRight" Height="100" Width="100" Content="Right" Canvas.Left="290" Canvas.Top="150" 
-                        PointerPressed="btnRight_Pressed" PointerReleased="btnRight_Released" Opacity="0.3"/>
+                        PointerPressed="btnRight_Pressed" PointerReleased="btnRight_Released" Opacity="0"/>
 
                 <Button x:Name="btnLeftFw" Height="100" Width="100" Content="LeftFw" Canvas.Left="60" Canvas.Top="60"
-                        PointerPressed="btnLeftFw_Pressed" PointerReleased="btnLeftFw_Released" Opacity="0.3" RenderTransformOrigin="0.5,0.5"/>
+                        PointerPressed="btnLeftFw_Pressed" PointerReleased="btnLeftFw_Released" Opacity="0" RenderTransformOrigin="0.5,0.5"/>
                 <Button x:Name="btnRightFw" Height="100" Width="100" Content="RightFw" Canvas.Left="240" Canvas.Top="60" 
-                        PointerPressed="btnRightFw_Pressed" PointerReleased="btnRightFw_Released" Opacity="0.3"/>
+                        PointerPressed="btnRightFw_Pressed" PointerReleased="btnRightFw_Released" Opacity="0"/>
                 <Button x:Name="btnLeftBw" Height="100" Width="100" Content="LeftBw" Canvas.Left="60" Canvas.Top="240" 
-                        PointerPressed="btnLeftBw_Pressed" PointerReleased="btnLeftBw_Released" Opacity="0.3"/>
+                        PointerPressed="btnLeftBw_Pressed" PointerReleased="btnLeftBw_Released" Opacity="0"/>
                 <Button x:Name="btnRightBw" Height="100" Width="100" Content="RightBw" Canvas.Left="240" Canvas.Top="240" 
-                        PointerPressed="btnRightBw_Pressed" PointerReleased="btnRightBw_Released" Opacity="0.3"/>
+                        PointerPressed="btnRightBw_Pressed" PointerReleased="btnRightBw_Released" Opacity="0"/>
             </Canvas>
             <!--Sliders-->
             <!--Style for Spider Height-->
-            <Grid Background="Orange" Margin="-70,115,0,0" Height="220" Width="25" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1"/>
+            <Grid Margin="-70,115,0,0" Height="220" Width="25" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1"/>
             <!--Slider for Spider Height-->
-            <Slider x:Name="sldHeight" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-500,0,0,0" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+            <Slider x:Name="sldHeight" Foreground="Orange" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-500,0,0,0" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
                 <Slider.RenderTransform>
                     <CompositeTransform Rotation="270"/>
                 </Slider.RenderTransform>
             </Slider>
 
             <!--Style for Spider breadth-->
-            <Grid Background="Orange" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,420,0,0" Height="25" Width="220"/>
+            <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,420,0,0" Height="25" Width="220"/>
             <!--Slider for Spider breadth-->
-            <Slider x:Name="sldSpeed" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,410,0,0" Orientation="Horizontal"/>
+            <Slider x:Name="sldSpeed" Foreground="Orange" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,410,0,0" Orientation="Horizontal"/>
             <!--Close Joystick Grid-->
         </Grid>
 
@@ -84,7 +84,7 @@
         <TextBox x:Name="txtJoytest" HorizontalAlignment="Left" Margin="200,700,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" FontFamily="Global User Interface"/>
 
         <!--VideoFeed-->
-        <Image x:Name="videoFeed" Source="Assets/spin30.jpg" HorizontalAlignment="Left" Width="576" Height="432" Margin="700,190,0,0" VerticalAlignment="Top"/>
+        <Grid x:Name="videoFeed" HorizontalAlignment="Left" Width="576" Height="432" Margin="700,190,0,0" VerticalAlignment="Top"/>
 
         <!--Popup for battery graph-->
         <Popup x:Name="popBattery" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,300,0,0" Width="700" Height="300" IsOpen="False">

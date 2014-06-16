@@ -20,7 +20,7 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid Background="DarkBlue">
+    <Grid Background="CornflowerBlue">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -43,12 +43,12 @@
         
         <Grid Background="Orange" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,250" Height="100" Width="300">
             <TextBox x:Name="txtConn" Background="White" Height="35" Text="192.168.178.26" Margin="0,0,0,60" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Button x:Name="btnConnect" BorderBrush="DarkBlue" Content="Connect" Margin="0,0,0,-20" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnConnect_Click"/>
+            <Button x:Name="btnConnect" BorderBrush="CornflowerBlue" Content="Connect" Margin="0,0,0,-20" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnConnect_Click"/>
             <TextBlock x:Name="lblError" Text="" Height="20" Width="145" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-80"/>
         </Grid>
 
         <Grid x:Name="gridDisc" Background="Orange" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,-200" Height="50" Width="150">
-            <Button x:Name="btnDisconnect" BorderBrush="DarkBlue" Content="Disconnect" Margin="0,0,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDisconnect_Click"/>
+            <Button x:Name="btnDisconnect" BorderBrush="CornflowerBlue" Content="Disconnect" Margin="0,0,0,0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnDisconnect_Click"/>
         </Grid>
         
         <!--<TextBox x:Name="txtConn" Height="35" Text="192.168.178.26" Margin="120,70,0,0" Grid.Row="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" />

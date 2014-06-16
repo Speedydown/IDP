@@ -71,7 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Balloon.cs" />
+    <Compile Include="VisionInterface\Balloon.cs" />
     <Compile Include="CommandHandler\CommandHandler.cs" />
     <Compile Include="ConnectionForm.cs">
       <SubType>Form</SubType>
@@ -139,6 +139,7 @@
     <None Include="Resources\balloonBlue.png" />
     <None Include="Resources\balloonGreen.png" />
     <None Include="Resources\balloonGreen1.png" />
+    <Content Include="Resources\Input1.jpg" />
     <Content Include="spin.png" />
   </ItemGroup>
   <ItemGroup />

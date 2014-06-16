@@ -11,7 +11,8 @@ namespace VisionEngine
     {
         public int index { get; private set;}
         public Color color { get; private set; }
-        private string script = "findballoon";
+        public string script = "";
+        public string testImage = "";
 
         public Balloon(int index, Color color) {
             this.index = index;
@@ -28,18 +29,26 @@ namespace VisionEngine
                     break;                    
             }
 
-            Console.WriteLine(color.Name);
+            //Console.WriteLine(color.Name);
         }
+
 
         public void findBalloon()
         {
+           
             JL_VisionLib_V3.CmdInt.Execute("addScript findballoon findBalloon" + this.color.Name +".jls");
             JL_VisionLib_V3.CmdInt.Execute("icall findballoon");
+            Console.WriteLine("Searching for " + this.color.Name + " balloon");
         }
 
         public int CompareTo(Balloon b2)
         {
             return this.index.CompareTo(b2.index);
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Balloon: {0} at index: {1}", this.color.ToString(), this.index.ToString());
         }
     }
 
