@@ -6,6 +6,7 @@ import thread
 import threading
 import subprocess
 from MotionInterface import MotionInterface
+from GyroData import GyroData
 from GetSpiData import GetSpiData
 from Move import Move
 from threading import Thread
@@ -23,6 +24,7 @@ class Controller(object):
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
         self._MotionInterface = MotionInterface(1)
         self._SPIData = GetSpiData()
+        #self._GyroData = GyroData()
         self._Log = SpinLog.SpinLog()
         self._IOPIN = IOPIN()
         self._Camera = Camera()
@@ -99,6 +101,12 @@ class Controller(object):
                     self._NetworkInterface.Send(self._Camera.getImageFromMemory(), ID)
                 elif Command == "ping":
                     self._NetworkInterface.Send("ping", ID)
+                elif Command == "sdeg":
+                    self._NetworkInterface.Send(self._MotionInterface.setDegrees(data[11:13]), ID)
+                elif Command == "gdeg":
+                    self._NetworkInterface.Send(self._MotionInterface.getDegrees(), ID)
+                elif Command == "ggyr":
+                    self._NetworkInterfaceThread.Send(self._GyroData.getDegrees(), ID)
                 elif Command == "exit":
                     self._NetworkInterface.Send("Exited", ID)
                     self.Exit()

@@ -13,6 +13,7 @@ class MotionInterface(object):
         self._Height = 75
         self._Length = 65
         self._DefaultPulse = 375
+        self._currentModeInt = mode
         pulses = self.calculatePulse(self._Height, self._Length)
         
         self._Legs = [
@@ -242,7 +243,7 @@ class MotionInterface(object):
                 Leg.moveKnee(self.calculateVerticalPulse(startpulseKnee, pulses[0], step, steps)) #startpulseKnee in plaats van Ankle
             time.sleep(self.SleepTime)
 
-    def MoveLegsForward(self, Legs, Raised=False, Turn=[0, 20]):
+    def MoveLegsForward(self, Legs, Raised, Turn):
         if Turn[0] > Turn[1]:
             self.MoveLegsBackward(Legs, Raised, Turn)
             return
@@ -263,12 +264,10 @@ class MotionInterface(object):
 
             for Leg in Legs:
                 Leg.moveHip(self.calculateHipPulse(step))
-                #Leg.moveKnee(pulses[0])
-                #Leg.moveAnkle(pulses[1])
             time.sleep(self.SleepTime)
 
 
-    def MoveLegsBackward(self, Legs, Raised=False, Turn=[20, 0]):
+    def MoveLegsBackward(self, Legs, Raised, Turn):
         if Turn[0] < Turn[1]:
             self.MoveLegsForward(Legs, Raised, Turn)
             return
@@ -283,10 +282,22 @@ class MotionInterface(object):
 
             for Leg in Legs:
                 Leg.moveHip(self.calculateHipPulse(step))
-                #Leg.moveKnee(pulses[0])
-                #Leg.moveAnkle(pulses[1])
 
             time.sleep(self.SleepTime)
 
+
+    def setDegrees(self, degrees):
+        if (degrees < 30 or degrees > 8) and self._currentModeInt == 1:
+            try:
+                self._CurrentMode._MaxAngle = int(degrees)
+                return "Degrees has been set to " + degrees
+            except:
+                return "invalid input"
+        else:
+            return "invalid input"
+
+    def getDegrees(self):
+        if self._currentModeInt == 1:
+            return self._CurrentMode._MaxAngle
 
 
