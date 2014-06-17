@@ -42,7 +42,7 @@
         </Grid>
         
         <Grid Background="Orange" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,250" Height="100" Width="300">
-            <TextBox x:Name="txtConn" Background="White" Height="35" Text="192.168.178.26" Margin="0,0,0,60" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <TextBox x:Name="txtConn" Background="White" Height="35" Text="192.168.178.43" Margin="0,0,0,60" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <Button x:Name="btnConnect" BorderBrush="CornflowerBlue" Content="Connect" Margin="0,0,0,-20" HorizontalAlignment="Center" VerticalAlignment="Center" Click="btnConnect_Click"/>
             <TextBlock x:Name="lblError" Text="" Height="20" Width="145" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,-80"/>
         </Grid>
