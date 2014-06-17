@@ -10,6 +10,7 @@ namespace App_Spin
     {
         private static string connState;
         private static bool connected;
+        private static string mode = "start";
 
         public void setState(string state)
         {
@@ -29,6 +30,16 @@ namespace App_Spin
         public bool getConnected()
         {
             return connected;
+        }
+
+        public void setMode(string modus)
+        {
+            mode = modus;
+        }
+
+        public string getMode()
+        {
+            return mode;
         }
     }
 }

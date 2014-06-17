@@ -23,10 +23,9 @@ namespace App_Spin
     public sealed partial class SpinUI : Page
     {
         /*BATTERY AND SLOPE INTS*/
-        private int BatSlo;
         private int battery;
         private string slope;
-
+        /*BATTERY TIMING*/
         private int minute;
 
         /*MOVE STRING*/
@@ -38,7 +37,7 @@ namespace App_Spin
         private int heightValue;
         private int angleValue;
 
-        private string modeselect = "smde 1";
+        private string modeselect = "";
         private Info i;
 
         public SpinUI()
@@ -99,6 +98,7 @@ namespace App_Spin
                 cmbMissionSelect.Items.Add("Spider Gap");
                 cmbMissionSelect.Items.Add("Ballonnen");
                 cmbMissionSelect.Items.Add("Teerballen");
+                cmbMissionSelect.SelectedIndex = 0;
 
                 sldHeight.ValueChanged += sldHeight_ValueChanged;
                 sldAngle.ValueChanged += sldAngle_ValueChanged;
@@ -126,9 +126,14 @@ namespace App_Spin
 
                 sending = false;
 
-                if (message == "gbat" || message == "gslo")
+                if (message == "gspi")
                 {
-                    BatSlo = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
+                    battery = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
+                }
+
+                if (message == "ggyr")
+                {
+                    slope = Network.NetworkHandler.InputBuffer.Get();
                 }
                 else
                 {
@@ -328,8 +333,7 @@ namespace App_Spin
         {
             if (minute != DateTime.Now.Minute)
             {
-                sendCmd("gbat");
-                battery = BatSlo;
+                sendCmd("gspi");
 
                 //LABEL
                 lblBattery.Text = "Battery: " + battery.ToString();
@@ -340,11 +344,10 @@ namespace App_Spin
         /* Update info on status slope */
         private async void lblSlope_ContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            sendCmd("gslo");
-            slope = BatSlo.ToString();
+            sendCmd("ggyr");
 
             //LABEL
-            lblSlope.Text = "Slope: " + slope.ToString();
+            lblSlope.Text = "Slope: " + slope;
         }
 
         private async void cmbSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -355,6 +358,7 @@ namespace App_Spin
              * Ballonnen is 4
              * Teerballen is 5
              */
+
             if (cmbMissionSelect.SelectedIndex == 0)
             {
                 modeselect = "smde 1";
@@ -363,7 +367,14 @@ namespace App_Spin
             {
                 modeselect = "smde " + cmbMissionSelect.SelectedIndex.ToString();
             }
-            sendCmd(modeselect);
+
+            if (i.getMode() != "start")
+            {
+                sendCmd(modeselect);
+            }
+
+            i.setMode(modeselect);
+
         }
     }
 }
