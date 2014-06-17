@@ -106,7 +106,11 @@ class Controller(object):
                 elif Command == "gdeg":
                     self._NetworkInterface.Send(self._MotionInterface.getDegrees(), ID)
                 elif Command == "ggyr":
-                    self._NetworkInterfaceThread.Send(self._GyroData.getDegrees(), ID)
+                    self._NetworkInterface.Send(self._GyroData.getDegrees(), ID)
+                elif Command == "smul":
+                    self._NetworkInterface.Send(self._MotionInterface.setMultiplier(data[11:12]), ID)
+                elif Command == "gmul":
+                    self._NetworkInterface.Send(self._MotionInterface.getMultiplier(), ID)
                 elif Command == "exit":
                     self._NetworkInterface.Send("Exited", ID)
                     self.Exit()
