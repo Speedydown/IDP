@@ -26,12 +26,26 @@
       <file leaf-file-name="Move.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Move.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state line="312" column="39" selection-start="14882" selection-end="14882" vertical-scroll-proportion="0.0" vertical-offset="5304" max-vertical-offset="6375">
+=======
+            <state line="369" column="0" selection-start="17103" selection-end="17103" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6324">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Controller.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Controller.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="2601">
+>>>>>>> origin/master
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
       <file leaf-file-name="SpiderGap.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SpiderGap.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -39,6 +53,13 @@
               <folding>
                 <element signature="e#21#32#0" expanded="true" />
               </folding>
+=======
+      <file leaf-file-name="FingerControl.py" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/FingerControl.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="32" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.6527546" vertical-offset="357" max-vertical-offset="1360">
+              <folding />
+>>>>>>> origin/master
             </state>
           </provider>
         </entry>
@@ -92,6 +113,7 @@
         <option value="$PROJECT_DIR$/Move.py" />
         <option value="$PROJECT_DIR$/MotionInterface.py" />
         <option value="$PROJECT_DIR$/SpiderGap.py" />
+        <option value="$PROJECT_DIR$/FingerControl.py" />
       </list>
     </option>
   </component>
@@ -330,7 +352,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24981412" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17546469" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1749634" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32982087" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -612,11 +634,14 @@
     <entry file="file://$PROJECT_DIR$/Camera.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
+<<<<<<< HEAD
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IOPIN.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="589" />
+=======
+>>>>>>> origin/master
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Dance.py">
@@ -636,36 +661,73 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Adafruit_PWM_Servo_Driver.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state line="2" column="0" selection-start="19" selection-end="19" vertical-scroll-proportion="0.05245347" vertical-offset="3" max-vertical-offset="1207" />
+=======
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1666" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Servo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="11" selection-start="649" selection-end="649" vertical-scroll-proportion="-0.1443124" vertical-offset="391" max-vertical-offset="1173" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SpiderGap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="38" selection-start="507" selection-end="507" vertical-scroll-proportion="0.33333334" vertical-offset="85" max-vertical-offset="697">
+          <folding>
+            <element signature="e#21#32#0" expanded="true" />
+          </folding>
+        </state>
+>>>>>>> origin/master
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Move.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state line="312" column="39" selection-start="14882" selection-end="14882" vertical-scroll-proportion="0.0" vertical-offset="4815" max-vertical-offset="6324">
+=======
+        <state line="369" column="0" selection-start="17103" selection-end="17103" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6324">
+>>>>>>> origin/master
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/MotionInterface.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="176" column="0" selection-start="5082" selection-end="5082" vertical-scroll-proportion="0.0" vertical-offset="2992" max-vertical-offset="5066">
+=======
+    <entry file="file://$PROJECT_DIR$/Controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+>>>>>>> origin/master
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TestServo.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state line="8" column="49" selection-start="183" selection-end="183" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
+=======
+        <state line="176" column="0" selection-start="5082" selection-end="5082" vertical-scroll-proportion="0.0" vertical-offset="2992" max-vertical-offset="5066">
+>>>>>>> origin/master
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SpiderGap.py">
+    <entry file="file://$PROJECT_DIR$/FingerControl.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state line="32" column="0" selection-start="946" selection-end="946" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
           <folding>
             <element signature="e#21#32#0" expanded="true" />
           </folding>
+=======
+        <state line="44" column="32" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.6527546" vertical-offset="357" max-vertical-offset="1360">
+          <folding />
+>>>>>>> origin/master
         </state>
       </provider>
     </entry>
