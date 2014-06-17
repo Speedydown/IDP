@@ -17,23 +17,16 @@
                        Height="50" Width="400" FontSize="60"/>
 
             <TextBlock x:Name="lblBattery" Margin="1050,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" 
-                       FontSize="15" PointerPressed="lblBattery_Pressed"/>
+                       FontSize="15" PointerPressed="lblBattery_Pressed" DataContextChanged="lblBattery_ContextChanged"/>
             <TextBlock x:Name="lblSlope" Margin="1050,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" 
-                       FontSize="15" PointerPressed="lblSlope_Pressed"/>
+                       FontSize="15" PointerPressed="lblSlope_Pressed" DataContextChanged="lblSlope_ContextChanged"/>
             <TextBlock x:Name="lblHour" Margin="1240,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             <TextBlock x:Name="lblMin" Margin="1240,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             <TextBlock x:Name="lblSec" Margin="1240,65,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
 
             <!--ComboBox for Mission Select-->
             <ComboBox x:Name="cmbMissionSelect" Margin="650,25,0,0" Height="50" Width="280" HorizontalAlignment="Left" 
-                      VerticalAlignment="Top" FontFamily="Global User Interface">
-                <ComboBoxItem Content="Handmatige besturing - Tablet" IsSelected="True"/>
-                <ComboBoxItem Content="Handmatige besturing - Controller"/>
-                <ComboBoxItem Content="SYTYCD / Dansje"/>
-                <ComboBoxItem Content="Spinnijdig / Waterbeker"/>
-                <ComboBoxItem Content="Spider Gap / Oversteek"/>
-                <ComboBoxItem Content="Zwarte Weduwe / Ballonnen"/>
-                <ComboBoxItem Content="Spinnen in de olie / Herkennen"/>
+                      VerticalAlignment="Top" FontFamily="Global User Interface" SelectionChanged="cmbSelect_SelectionChanged">
             </ComboBox>
             <!--Close Bar Grid-->
         </Grid>
@@ -42,9 +35,12 @@
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190,190,0,0" Width="420" Height="420"/>
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,200,0,0" Width="400" Height="450">
             <Canvas>
+                <Ellipse Fill="Orange" Height="410" Width="410" Margin="-6,-7,0,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Ellipse Fill="CornflowerBlue" Height="150" Width="150" Margin="125,125,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.ZIndex="10"/>
                 <!--Joystick Layout + Buttons-->
                 <Image x:Name="joyStick" Source="Assets/imgJoy.png" HorizontalAlignment="Left" VerticalAlignment="Top" Height="400" 
-                         Margin="0,0,0,0" Width="400"/>
+                         Margin="0,0,0,0" Width="400">
+                </Image>
                 <Button x:Name="btnFw" Height="100" Width="100" Content="Forward" Canvas.Left="150" Canvas.Top="10" 
                         PointerPressed="btnFw_Pressed" PointerReleased="btnFw_Released" Opacity="0"/>
                 <Button x:Name="btnBw" Height="100" Width="100" Content="Backward" Canvas.Left="150" Canvas.Top="290" 
@@ -67,33 +63,21 @@
             <!--Style for Spider Height-->
             <Grid Margin="-70,115,0,0" Height="220" Width="25" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1"/>
             <!--Slider for Spider Height-->
-            <Slider x:Name="sldHeight" Foreground="Orange" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-500,0,0,0" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5">
+            <Slider x:Name="sldHeight" Foreground="Orange" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-500,0,0,0" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5" Minimum="65" Maximum="85">
                 <Slider.RenderTransform>
                     <CompositeTransform Rotation="270"/>
                 </Slider.RenderTransform>
             </Slider>
 
-            <!--Style for Spider breadth-->
+            <!--Style for Spider Angle-->
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,420,0,0" Height="25" Width="220"/>
-            <!--Slider for Spider breadth-->
-            <Slider x:Name="sldSpeed" Foreground="Orange" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,410,0,0" Orientation="Horizontal"/>
+            <!--Slider for Spider Angle-->
+            <Slider x:Name="sldAngle" Foreground="Orange" Value="10" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,410,0,0" Orientation="Horizontal" Minimum="10" Maximum="30"/>
             <!--Close Joystick Grid-->
         </Grid>
 
-        <!--TextBox for input test-->
-        <TextBox x:Name="txtJoytest" HorizontalAlignment="Left" Margin="200,700,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" FontFamily="Global User Interface"/>
-
         <!--VideoFeed-->
         <Grid x:Name="videoFeed" HorizontalAlignment="Left" Width="576" Height="432" Margin="700,190,0,0" VerticalAlignment="Top"/>
-
-        <!--Popup for battery graph-->
-        <Popup x:Name="popBattery" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="300,300,0,0" Width="700" Height="300" IsOpen="False">
-            <Canvas>
-                <TextBlock x:Name="popText" Text="HALLO" FontSize="100" FontStyle="Normal" Margin="200,0,0,0" Width="400"/>
-            </Canvas>
-        <!--Close battery graph popup-->
-        </Popup>
-        
         <!--Close Background Grid-->
-    </Grid>
+        </Grid>
 </Page>

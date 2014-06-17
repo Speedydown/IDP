@@ -23,8 +23,12 @@ namespace App_Spin
     public sealed partial class SpinUI : Page
     {
         /*BATTERY AND SLOPE INTS*/
+        private int BatSlo;
         private int battery;
-        private int slope;
+        private string slope;
+
+        private int minute;
+
         /*MOVE STRING*/
         public string move = "";
         /*BOOL TO CHECK SENDING*/
@@ -32,133 +36,109 @@ namespace App_Spin
 
         /*VALUES FOR SLIDERS SPEED AND HEIGHT*/
         private int heightValue;
-        private int speedValue;
+        private int angleValue;
 
-        public Image image;
+        private string modeselect = "smde 1";
+        private Info i;
 
         public SpinUI()
         {
-            this.InitializeComponent();
-            
-            /* TIMER IN RIGHT TOP CORNER SPLIT IN HOUR MINUTE SECOND */
-            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-            timer.Tick += (o, e) => lblHour.Text = "H " + DateTime.Now.Hour.ToString();
-            timer.Tick += (o, e) => lblMin.Text = "M " + DateTime.Now.Minute.ToString();
-            timer.Tick += (o, e) => lblSec.Text = "S " + DateTime.Now.Second.ToString();
-            timer.Start();
-            
-            /*
-             * Add new EventHandlers per button, not standard supported.
-             * Each button will get two new handlers, *_Pressed and *_Released.
-             */
+            this.i = new Info();
+            if (i.getConnected() == true)
+            {
+                this.InitializeComponent();
 
-            #region Handlers
-            //LF
-            btnLeftFw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnLeftFw_Pressed), true);
-            btnLeftFw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnLeftFw_Released), true);
-            //FW
-            btnFw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnFw_Pressed), true);
-            btnFw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnFw_Released), true);
-            //RF
-            btnRightFw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnRightFw_Pressed), true);
-            btnRightFw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnRightFw_Released), true);
-            //LEFT
-            btnLeft.AddHandler(PointerPressedEvent, new PointerEventHandler(btnLeft_Pressed), true);
-            btnLeft.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnLeft_Released), true);
-            //RIGHT
-            btnRight.AddHandler(PointerPressedEvent, new PointerEventHandler(btnRight_Pressed), true);
-            btnRight.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnRight_Released), true);
-            //LB
-            btnLeftBw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnLeftBw_Pressed), true);
-            btnLeftBw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnLeftBw_Released), true);
-            //BW
-            btnBw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnBw_Pressed), true);
-            btnBw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnBw_Released), true);
-            //RB
-            btnRightBw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnRightBw_Pressed), true);
-            btnRightBw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnRightBw_Released), true);
-            
-            //lblBattery
-            //lblSlope
-            lblBattery.AddHandler(PointerPressedEvent, new PointerEventHandler(lblBattery_Pressed), true);
-            lblSlope.AddHandler(PointerPressedEvent, new PointerEventHandler(lblSlope_Pressed), true);
-            #endregion
-                        
-            getBattery();
-            getSlope();
-            sldHeight.ValueChanged += sldHeight_ValueChanged;
-            sldSpeed.ValueChanged += sldSpeed_ValueChanged;
+                /* TIMER IN RIGHT TOP CORNER SPLIT IN HOUR MINUTE SECOND */
+                var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
+                timer.Tick += (o, e) => lblHour.Text = "H " + DateTime.Now.Hour.ToString();
+                timer.Tick += (o, e) => lblMin.Text = "M " + DateTime.Now.Minute.ToString();
+                timer.Tick += (o, e) => lblSec.Text = "S " + DateTime.Now.Second.ToString();
+                timer.Start();
+
+                /*
+                 * Add new EventHandlers per button, not standard supported.
+                 * Each button will get two new handlers, *_Pressed and *_Released.
+                 */
+
+                #region Handlers
+                //LF
+                btnLeftFw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnLeftFw_Pressed), true);
+                btnLeftFw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnLeftFw_Released), true);
+                //FW
+                btnFw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnFw_Pressed), true);
+                btnFw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnFw_Released), true);
+                //RF
+                btnRightFw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnRightFw_Pressed), true);
+                btnRightFw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnRightFw_Released), true);
+                //LEFT
+                btnLeft.AddHandler(PointerPressedEvent, new PointerEventHandler(btnLeft_Pressed), true);
+                btnLeft.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnLeft_Released), true);
+                //RIGHT
+                btnRight.AddHandler(PointerPressedEvent, new PointerEventHandler(btnRight_Pressed), true);
+                btnRight.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnRight_Released), true);
+                //LB
+                btnLeftBw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnLeftBw_Pressed), true);
+                btnLeftBw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnLeftBw_Released), true);
+                //BW
+                btnBw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnBw_Pressed), true);
+                btnBw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnBw_Released), true);
+                //RB
+                btnRightBw.AddHandler(PointerPressedEvent, new PointerEventHandler(btnRightBw_Pressed), true);
+                btnRightBw.AddHandler(PointerReleasedEvent, new PointerEventHandler(btnRightBw_Released), true);
+
+                //lblBattery
+                //lblSlope
+                lblBattery.AddHandler(PointerPressedEvent, new PointerEventHandler(lblBattery_Pressed), true);
+                lblSlope.AddHandler(PointerPressedEvent, new PointerEventHandler(lblSlope_Pressed), true);
+                #endregion
+
+                cmbMissionSelect.SelectionChanged += cmbSelect_SelectionChanged;
+                cmbMissionSelect.Items.Add("Handmatige besturing - Tablet");
+                cmbMissionSelect.Items.Add("Handmatige besturing - Controller");
+                cmbMissionSelect.Items.Add("Dansje");
+                cmbMissionSelect.Items.Add("Spider Gap");
+                cmbMissionSelect.Items.Add("Ballonnen");
+                cmbMissionSelect.Items.Add("Teerballen");
+
+                sldHeight.ValueChanged += sldHeight_ValueChanged;
+                sldAngle.ValueChanged += sldAngle_ValueChanged;
+                lblBattery.DataContextChanged += lblBattery_ContextChanged;
+                lblSlope.DataContextChanged += lblSlope_ContextChanged;
+            }
+            else
+            {
+                this.Frame.Navigate(typeof(MainPage));
+            }
         }
 
-        private async void getBattery()
-        {
-        //    await (Network.NetworkHandler.Send("gbat"));
-        //    await (Network.NetworkHandler.Recv());
-        //    battery = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
-
-            /*TEST*/
-            battery = 100;
-
-            //LABEL
-            lblBattery.Text = "Battery: " + battery.ToString();
-        }
-
-        private async void getSlope()
-        {
-            //await (Network.NetworkHandler.Send("gslo"));
-            //await (Network.NetworkHandler.Recv());
-            //slope = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
-
-            /*TEST*/
-            slope = 50;
-
-            //LABEL
-            lblSlope.Text = "Slope: " + slope.ToString();
-        }
-
-        //private async void getImage()
-        //{
-        //    if (sending == false)
-        //    {
-        //        sending = true;
-
-        //        await (Network.NetworkHandler.Send("gifm"));
-        //        await (Network.NetworkHandler.Recv());
-
-        //        sending = false;
-        //    }
-
-        //    byte[] bytes = Convert.FromBase64String(Network.NetworkHandler.InputBuffer.Get());
-        //    using (var ms = new MemoryStream())
-        //    {  
-        //        using (var imageFile = new StreamWriter(ms)
-        //        {
-        //            imageFile.Write(bytes, 0, bytes.Length);
-        //            imageFile.Flush();
-        //        }
-        //    }
-        //}
-
-        private async void sendCmd(string moveMessage)
+        private async void sendCmd(string message)
         {
             /* Send msg method to Raspberry Pi
              * Needs input string (move)
              */
 
-            //if (sending == false)
-            //{
-            //    sending = true;
+            if (sending == false)
+            {
+                sending = true;
 
-            //    await (Network.NetworkHandler.Send(moveMessage));
-            //    await (Network.NetworkHandler.Recv());
+                await (Network.NetworkHandler.Send(message));
+                await (Network.NetworkHandler.Recv());
 
-            //    sending = false;
+                sending = false;
 
-            //    Network.NetworkHandler.InputBuffer.Get();
-            //}
-            txtJoytest.Text = moveMessage;
+                if (message == "gbat" || message == "gslo")
+                {
+                    BatSlo = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
+                }
+                else
+                {
+                    Network.NetworkHandler.InputBuffer.Get();
+                }
+
+            }
         }
 
+        #region Joystick Controls
         /* Joypad Bindings 
          *  for buttons to send move commands to Raspberry Pi
          *  move commands are as follows:
@@ -307,19 +287,12 @@ namespace App_Spin
 
         #endregion
 
+        #endregion
 
         // label Battery Pressed to open batterygraph
         private void lblBattery_Pressed(object sender, PointerRoutedEventArgs e)
         {
-            
-            if (popBattery.IsOpen == false)
-            {
-                popBattery.IsOpen = true;
-            }
-            else
-            {
-                popBattery.IsOpen = false;
-            }
+
         }
 
         // label Slope Pressed to open slopegraph
@@ -335,19 +308,62 @@ namespace App_Spin
         }
 
         // Slider for configuring spider height on the fly
-        private void sldHeight_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private async void sldHeight_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             heightValue = Convert.ToInt16(sldHeight.Value);
 
-            /*INSERT NETWORK COMMAND*/
+            sendCmd("shgt " + heightValue.ToString());
         }
 
-        // Slider for configuring spider speed on the fly
-        private void sldSpeed_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        // Slider for configuring spider angle on the fly
+        private async void sldAngle_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            speedValue = Convert.ToInt16(sldSpeed.Value);
+            angleValue = Convert.ToInt16(sldAngle.Value);
 
-            /*INSERT NETWORK COMMAND*/
+            sendCmd("sdeg " + angleValue.ToString());
+        }
+
+        /* Update info on status battery */
+        private async void lblBattery_ContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            if (minute != DateTime.Now.Minute)
+            {
+                sendCmd("gbat");
+                battery = BatSlo;
+
+                //LABEL
+                lblBattery.Text = "Battery: " + battery.ToString();
+                minute = DateTime.Now.Minute;
+            }
+        }
+
+        /* Update info on status slope */
+        private async void lblSlope_ContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
+        {
+            sendCmd("gslo");
+            slope = BatSlo.ToString();
+
+            //LABEL
+            lblSlope.Text = "Slope: " + slope.ToString();
+        }
+
+        private async void cmbSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            /* Beide manuals zijn smde 1
+             * Dansje is smde 2
+             * Spider Gap is 3
+             * Ballonnen is 4
+             * Teerballen is 5
+             */
+            if (cmbMissionSelect.SelectedIndex == 0)
+            {
+                modeselect = "smde 1";
+            }
+            else
+            {
+                modeselect = "smde " + cmbMissionSelect.SelectedIndex.ToString();
+            }
+            sendCmd(modeselect);
         }
     }
 }
