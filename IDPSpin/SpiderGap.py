@@ -51,15 +51,6 @@ class GapMove(object):
         leg3Thread.join()
 
 
-        group1.moveHip(550),group1.moveKnee(200),group1.moveAnkle(550)
-        group2.moveHip(375),group2.moveKnee(400),group2.moveAnkle(550)
-        group3.moveHip(200),group3.moveKnee(550),group3.moveAnkle(550)
-
-        group1.moveHip(550),group1.moveKnee(250),group1.moveAnkle(550)
-        group2.moveHip(375),group2.moveKnee(400),group2.moveAnkle(550)
-        group3.moveHip(550),group3.moveKnee(200),group3.moveAnkle(550)
-
-
 
 
 
