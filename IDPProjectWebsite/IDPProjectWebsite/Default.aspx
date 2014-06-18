@@ -10,7 +10,7 @@
         <header><h2>Hoe ver zijn we?</h2></header>
 
         <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-succes" style="width: 55%;"></div>
+            <div class="progress-bar progress-bar-succes" style="width: 90%;"></div>
         </div>
 
         <h3>Recent behaalde doelstellingen:</h3>
