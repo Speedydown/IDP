@@ -12,6 +12,7 @@ class Move(object):
         self._MinAngle = 6
         self._DefaultMaxAngle = 20
         self._DefaultMinAngle = 6
+        self._DefaultHeight = self._MInterface._Height
         self.group1 = [self._MInterface._Legs[0], self._MInterface._Legs[3], self._MInterface._Legs[4]]
         self.group2 = [self._MInterface._Legs[1], self._MInterface._Legs[2], self._MInterface._Legs[5]]
 
@@ -50,6 +51,10 @@ class Move(object):
         elif Command == 18:
             self.MoveForwardAndRotate(False)
             self._LastCommand = 18
+        elif Command == 25:
+            self.turbo()
+            self._LastCommand = 25
+
 
     def exit(self):
         pass #exit methode
@@ -300,6 +305,10 @@ class Move(object):
             self._MInterface.MoveLegsBackward(forwardrightsidegroup1, False, [self._MaxAngle, 0])
             self._MInterface.MoveLegsBackward(forwardleftsidegroup1, False, [self._MinAngle, 0])
             self._MInterface.LowerLegs(self.group2)
+        elif self._LastCommand == 25:
+            self._MInterface.MoveLegsBackward(self._MInterface._Legs, False, [self._MaxAngle, 0])
+            self._MInterface.setHeight(self._DefaultHeight)
+            self._MInterface.LowerLegs(self._MInterface._Legs)
         else:
             pass
 
@@ -366,4 +375,36 @@ class Move(object):
         leg2Thread.join()
 
         self._MInterface.LowerLegs(self.group2)
+
+    def MoveSidways(self, Right=True):
+        group1 = [self._MInterface._Legs[0], self._MInterface._Legs[2], self._MInterface._Legs[4]]
+        group2 = [self._MInterface._Legs[1], self._MInterface._Legs[3], self._MInterface._Legs[5]]
+
+        steps = 100
+
+        for step in steps:
+            for Leg in group1:
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse())
+        time.sleep(self._MInterface.SleepTime)
+
+
+    def turbo(self):
+         group = self._MInterface._Legs
+
+         if self._LastCommand != 25:
+            self.StopLegs()
+
+            self._DefaultHeight = self._MInterface.getHeight()
+            self._MInterface.setHeight(55)
+
+            self._MInterface.raiseLegs(group)
+            self._MInterface.MoveLegsForward(group, True, [0, self._MaxAngle])
+            self._MInterface.LowerLegs(group)
+
+         self._MInterface.MoveLegsBackward(group, False, [self._MaxAngle, -self._MaxAngle])
+
+         self._MInterface.raiseLegs(group)
+         self._MInterface.MoveLegsForward(group, True, [-self._MaxAngle, self._MaxAngle])
+         self._MInterface.LowerLegs(group)
+
 
