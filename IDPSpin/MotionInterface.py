@@ -13,6 +13,8 @@ class MotionInterface(object):
         self._Height = 75
         self._Length = 65
         self._DefaultPulse = 375
+        self._Multiplier = 1
+        self._currentModeInt = mode
         pulses = self.calculatePulse(self._Height, self._Length)
         
         self._Legs = [
@@ -222,7 +224,7 @@ class MotionInterface(object):
         pulses = self.calculatePulse(self._Height, self._Length)
         startpulseAnkle = Legs[0].getAnkle()
         startpulseKnee = Legs[0].getKnee()
-        for step in range(1, steps):
+        for step in range(1, steps, 1 * self._Multiplier):
             #raise leg
             for Leg in Legs:
                 Leg.moveAnkle(self.calculateVerticalPulse(startpulseAnkle, pulses[1] - 95, step, steps)) #was 312
@@ -235,14 +237,14 @@ class MotionInterface(object):
         startpulseKnee = Legs[0].getKnee()
         pulses = self.calculatePulse(self._Height, self._Length)
 
-        for step in range(1, steps):
+        for step in range(1, steps, 1 * self._Multiplier):
            #lower leg
             for Leg in Legs:
                 Leg.moveAnkle(self.calculateVerticalPulse(startpulseAnkle, pulses[1], step, steps))
                 Leg.moveKnee(self.calculateVerticalPulse(startpulseKnee, pulses[0], step, steps)) #startpulseKnee in plaats van Ankle
             time.sleep(self.SleepTime)
 
-    def MoveLegsForward(self, Legs, Raised=False, Turn=[0, 20]):
+    def MoveLegsForward(self, Legs, Raised, Turn):
         if Turn[0] > Turn[1]:
             self.MoveLegsBackward(Legs, Raised, Turn)
             return
@@ -253,7 +255,7 @@ class MotionInterface(object):
         if Raised:
             pulses[0] -= 90
             pulses[1] -= 90
-        for step in range(startpoint, steps):
+        for step in range(startpoint, steps, 1 * self._Multiplier):
             #move leg forward
             #pulses = self._MInterface.calculatePulse(self._MInterface._Height, self._MInterface.calculateLengthLeg(self._MInterface._Length, step))
 
@@ -263,12 +265,10 @@ class MotionInterface(object):
 
             for Leg in Legs:
                 Leg.moveHip(self.calculateHipPulse(step))
-                #Leg.moveKnee(pulses[0])
-                #Leg.moveAnkle(pulses[1])
             time.sleep(self.SleepTime)
 
 
-    def MoveLegsBackward(self, Legs, Raised=False, Turn=[20, 0]):
+    def MoveLegsBackward(self, Legs, Raised, Turn):
         if Turn[0] < Turn[1]:
             self.MoveLegsForward(Legs, Raised, Turn)
             return
@@ -279,14 +279,34 @@ class MotionInterface(object):
         if Raised:
             pulses[0] -= 90
             pulses[1] -= 90
-        for step in range(startpoint, steps, -1):
+        for step in range(startpoint, steps, -1 * self._Multiplier):
 
             for Leg in Legs:
                 Leg.moveHip(self.calculateHipPulse(step))
-                #Leg.moveKnee(pulses[0])
-                #Leg.moveAnkle(pulses[1])
 
             time.sleep(self.SleepTime)
 
 
+    def setDegrees(self, degrees):
+        if (degrees < 30 or degrees > 8) and self._currentModeInt == 1:
+            try:
+                self._CurrentMode._MaxAngle = int(degrees)
+                return "Degrees has been set to " + degrees
+            except:
+                return "invalid input"
+        else:
+            return "invalid input"
 
+    def getDegrees(self):
+        if self._currentModeInt == 1:
+            return self._CurrentMode._MaxAngle
+
+    def setMultiplier(self, multiplier):
+        if multiplier >= 1 or multiplier <= 3:
+            self._Multiplier = int(multiplier)
+            return "multiplier has been set to: " + str(multiplier)
+        else:
+            return "invalid input"
+
+    def getMultiplier(self):
+        return self._Multiplier

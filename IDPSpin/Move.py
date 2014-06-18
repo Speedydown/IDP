@@ -232,7 +232,7 @@ class Move(object):
         #laatste pootbeweging
         if self._LastCommand == 11:
             self._MInterface.raiseLegs(self.group1)
-            self._MInterface.MoveLegsBackward(self.group2)
+            self._MInterface.MoveLegsBackward(self.group2, False, [self._DefaultMaxAngle, 0])
             self._MInterface.LowerLegs(self.group1)
         elif self._LastCommand == 9:
             self._MInterface.LowerLegs(self._MInterface._Legs)
@@ -341,14 +341,14 @@ class Move(object):
         if self._LastCommand != 11:
             self.StopLegs()
             self._MInterface.raiseLegs(self.group2)
-            self._MInterface.MoveLegsForward(self.group2, True, [0, self._DefaultMaxAngle])
+            self._MInterface.MoveLegsForward(self.group2, True, [0, self._MaxAngle])
             self._MInterface.LowerLegs(self.group2)
 
         self._MInterface.raiseLegs(self.group1)
 
-        leg1Thread = threading.Thread(target=self._MInterface.MoveLegsForward, args = (self.group1, True, [0, self._DefaultMaxAngle]))
+        leg1Thread = threading.Thread(target=self._MInterface.MoveLegsForward, args = (self.group1, True, [0, self._MaxAngle]))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self._MInterface.MoveLegsBackward, args = (self.group2, False, [self._DefaultMaxAngle, 0]))
+        leg2Thread = threading.Thread(target=self._MInterface.MoveLegsBackward, args = (self.group2, False, [self._MaxAngle, 0]))
         leg2Thread.start()
 
         leg1Thread.join()
@@ -357,9 +357,9 @@ class Move(object):
         self._MInterface.LowerLegs(self.group1)
         self._MInterface.raiseLegs(self.group2)
 
-        leg1Thread = threading.Thread(target=self._MInterface.MoveLegsForward, args = (self.group2, True,[0, self._DefaultMaxAngle]))
+        leg1Thread = threading.Thread(target=self._MInterface.MoveLegsForward, args = (self.group2, True,[0, self._MaxAngle]))
         leg1Thread.start()
-        leg2Thread = threading.Thread(target=self._MInterface.MoveLegsBackward, args = (self.group1, False, [self._DefaultMaxAngle, 0]))
+        leg2Thread = threading.Thread(target=self._MInterface.MoveLegsBackward, args = (self.group1, False, [self._MaxAngle, 0]))
         leg2Thread.start()
 
         leg1Thread.join()
