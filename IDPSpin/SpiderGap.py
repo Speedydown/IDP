@@ -25,20 +25,70 @@ class GapMove(object):
         pass #exit methode
 
     def PullLegsForward(self):
-        group1.moveHip(550), group1.moveKnee(200), group1.moveAnkle(550)
-        group2.moveHip(375), group2.moveKnee(400), group2.moveAnkle(550)
-        group3.moveHip(200), group3.moveKnee(550), group3.moveAnkle(550)
+        #groups = [self.group1, self.group2, self.group3]
+        AnkleStartpoint = self.group1[0].getAnkle()
+        KneeStartpoint = self.group1[0].getKnee()
+        HipStartpoint = self.group1[0].getHip()
 
-        group1.moveHip(550), group1.moveKnee(250), group1.moveAnkle(550)
-        group2.moveHip(375), group2.moveKnee(400), group2.moveAnkle(550)
-        group3.moveHip(550), group3.moveKnee(200), group3.moveAnkle(550)
+        for group1 in groups:
+            steps = 50
+
+            for step in range(1, steps):
+                for Leg in group1:
+                    Leg.moveAnkle(self._MInterface.calculateVerticalPulse(AnkleStartpoint, 400, step, steps))
+                    Leg.moveKnee(self._MInterface.calculateVerticalPulse(KneeStartpoint, 375, step, steps))
+                time.sleep(self.SleepTime)
+
+            for step in range(1, 20):
+                Leg.moveHip(self._MInterface.calculateVerticalPulse(HipStartpoint, 550, step, steps))
+            time.sleep(self.SleepTime)
 
 
-    def PullForward(self, Step, numberSteps=160):
-        if Step > numberSteps or Step < 1:
-            print "Step out of range - " + str(Step)
-            raise Exception("")
+        for group2 in groups:
+            steps = 50
 
+            for step in range(1, steps):
+                for Leg in group2:
+                    Leg.moveAnkle(self._MInterface(AnkleStartpoint, 400, step, steps))
+                    Leg.moveKnee(self._MInterface(KneeStartpoint, 400, step, steps))
+                time.sleep(self.SleepTime)
+
+
+        for group3 in groups:
+            steps = 50
+
+            for step in range(1, steps):
+                for Leg in group3:
+                    Leg.moveAnkle(self._MInterface(AnkleStartpoint, 400, step, steps))
+                    Leg.moveKnee(self._MInterface(KneeStartpoint, 550, step, steps))
+                time.sleep(self.SleepTime)
+
+            for step in range(1, 20):
+                Leg.moveHip(self._MInterface(HipStartpoint,550, step, steps))
+            time.sleep(self.SleepTime)
+
+
+        for group1 in groups:
+            steps = 50
+
+            for step in range(1, steps):
+                for Leg in group1:
+                    Leg.moveAnkle(self._MInterface.calculateVerticalPulse(AnkleStartpoint, 550, step, steps))
+                    Leg.moveKnee(self._MInterface.calculateVerticalPulse(KneeStartpoint, 200, step, steps))
+                time.sleep(self.SleepTime)
+
+
+        for group3 in groups:
+            steps = 50
+
+            for step in range(1, steps):
+                for Leg in group3:
+                    Leg.moveAnkle(self._MInterface(AnkleStartpoint, 550, step, steps))
+                    Leg.moveKnee(self._MInterface(KneeStartpoint, 400, step, steps))
+                time.sleep(self.SleepTime)
+
+
+    def PullForward(self):
         leg1Thread = threading.Thread(target=self._MInterface.PullLegsForward, args = (self.group1))
         leg1Thread.start()
         leg2Thread = threading.Thread(target=self._MInterface.PullLegsForward, args = (self.group2))
