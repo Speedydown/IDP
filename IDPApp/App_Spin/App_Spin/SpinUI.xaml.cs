@@ -91,15 +91,10 @@ namespace App_Spin
                 lblSlope.AddHandler(PointerPressedEvent, new PointerEventHandler(lblSlope_Pressed), true);
                 #endregion
 
-                cmbMissionSelect.SelectionChanged += cmbSelect_SelectionChanged;
-                cmbMissionSelect.Items.Add("Handmatige besturing - Tablet");
-                cmbMissionSelect.Items.Add("Handmatige besturing - Controller");
-                cmbMissionSelect.Items.Add("Dansje");
-                cmbMissionSelect.Items.Add("Spider Gap");
-                cmbMissionSelect.Items.Add("Ballonnen");
-                cmbMissionSelect.Items.Add("Teerballen");
-                cmbMissionSelect.SelectedIndex = 0;
+                //Fill the ComboBox
+                cmbMission();
 
+                cmbMissionSelect.SelectionChanged += cmbSelect_SelectionChanged;
                 sldHeight.ValueChanged += sldHeight_ValueChanged;
                 sldAngle.ValueChanged += sldAngle_ValueChanged;
                 lblBattery.DataContextChanged += lblBattery_ContextChanged;
@@ -109,6 +104,17 @@ namespace App_Spin
             {
                 this.Frame.Navigate(typeof(MainPage));
             }
+        }
+
+        private void cmbMission()
+        {
+            cmbMissionSelect.Items.Add("Handmatige besturing - Tablet");
+            cmbMissionSelect.Items.Add("Handmatige besturing - Controller");
+            cmbMissionSelect.Items.Add("Dansje");
+            cmbMissionSelect.Items.Add("Spider Gap");
+            cmbMissionSelect.Items.Add("Ballonnen");
+            cmbMissionSelect.Items.Add("Teerballen");
+            cmbMissionSelect.SelectedIndex = 0;
         }
 
         private async void sendCmd(string message)
