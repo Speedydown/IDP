@@ -390,21 +390,21 @@ namespace App_Spin
             {
                 sendCmd(modeselect);
             }
-
+            test.Text = modeselect;
             i.setMode(modeselect);
 
         }
 
         private async void cmbSpeedSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            speedint = cmbSpeedSelect.SelectedIndex;
-            speedselect = "sspd " + cmbSpeedSelect.SelectedIndex.ToString();
+            speedint = cmbSpeedSelect.SelectedIndex + 1;
+            speedselect = "smul " + speedint.ToString();
 
             if (i.getSpeed() != "start")
             {
-                //sendCmd(speedselect);
+                sendCmd(speedselect);
             }
-
+            test.Text = speedselect;
             i.setSpeed(speedselect);
         }
     }

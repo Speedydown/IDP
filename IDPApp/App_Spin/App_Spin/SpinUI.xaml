@@ -13,6 +13,7 @@
         <Grid x:Name="gridApp" HorizontalAlignment="Left" Height="100" Margin="50,50,0,0" VerticalAlignment="Top" Width="1280">
             <Button x:Name="btnReturn" Margin="10,30,0,0" Style="{StaticResource NavigationBackButtonNormalStyle}" VerticalAlignment="Top" Click="btnReturn_Click"/>
 
+            <TextBlock x:Name="test" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,0,0,0" Text="hoi"/>
             <TextBlock HorizontalAlignment="Left" Style="{StaticResource HeaderTextBlockStyle}" Margin="130,20,0,0" Text="Tracheata" VerticalAlignment="Top" 
                        Height="50" Width="400" FontSize="60"/>
 
@@ -80,7 +81,7 @@
             <!--Input for speedselection-->
             <!--Speed 1,2,3-->
             <ComboBox x:Name="cmbSpeedSelect" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-500,400,0,0" SelectionChanged="cmbSpeedSelect_SelectionChanged" />
-            <TextBlock x:Name="test" Text=""/>
+            
         </Grid>
 
         <!--VideoFeed-->
