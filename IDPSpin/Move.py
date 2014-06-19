@@ -391,10 +391,12 @@ class Move(object):
     def turbo(self):
          group = self._MInterface._Legs
 
+         print 25
+
          if self._LastCommand != 25:
             self.StopLegs()
 
-            self._DefaultHeight = self._MInterface.getHeight()
+            #self._DefaultHeight = self._MInterface.getHeight()
             self._MInterface.setHeight(55)
 
             self._MInterface.raiseLegs(group)

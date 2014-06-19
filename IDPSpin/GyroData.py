@@ -33,7 +33,7 @@ class GyroData(object):
         else:
             return val
 
-    def dist(a,b):
+    def dist(self, a, b):
         return math.sqrt((a*a)+(b*b))
 
     #Calculates y rotation and returns in degrees

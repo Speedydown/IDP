@@ -1,7 +1,8 @@
 try:
     import spidev
 except:
-    pass
+    print "could not load SPIDEV"
+
 import time
 
 class GetSpiData:
@@ -11,6 +12,7 @@ class GetSpiData:
                 self.spi.open(0, 0)
             except:
                 pass
+
 
         # read SPI data from MCP3008 chip, 8 possible adc's (0 thru 7)
         def readadc(self, adcnum):

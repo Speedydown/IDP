@@ -24,7 +24,7 @@ class Controller(object):
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
         self._MotionInterface = MotionInterface(1)
         self._SPIData = GetSpiData()
-        #self._GyroData = GyroData()
+        self._GyroData = GyroData()
         self._Log = SpinLog.SpinLog()
         self._IOPIN = IOPIN()
         self._Camera = Camera()
@@ -111,6 +111,9 @@ class Controller(object):
                     self._NetworkInterface.Send(self._MotionInterface.setMultiplier(data[11:12]), ID)
                 elif Command == "gmul":
                     self._NetworkInterface.Send(self._MotionInterface.getMultiplier(), ID)
+                elif Command == "horn":
+                    self._IOPIN.Horn()
+                    self._NetworkInterface.Send("toot toot!", ID)
                 elif Command == "exit":
                     self._NetworkInterface.Send("Exited", ID)
                     self.Exit()

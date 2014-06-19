@@ -50,7 +50,7 @@ class GapMove(object):
                 for Leg in group2:
                     Leg.moveAnkle(self._MInterface(AnkleStartpoint, 400, step, steps))
                     Leg.moveKnee(self._MInterface(KneeStartpoint, 400, step, steps))
-                time.sleep(self.SleepTime)
+                time.sleep(self._MInterface.SleepTime)
 
                 for step in range(1, 20):
                     Leg.moveHip(self._MInterface(HipStartpoint, 375, step, steps))
