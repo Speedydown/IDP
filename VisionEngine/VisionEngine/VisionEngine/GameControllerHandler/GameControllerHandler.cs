@@ -34,6 +34,11 @@ namespace VisionEngine
         private string oldbtncmd = "";
         private string olddpdcmd = "";
 
+        // dpad input
+        private bool dpdbool = false;
+        private int spdint = 1;
+        private int degint = 10;
+
 
         public GameControllerHandler(CommandHandler chandler)
         {
@@ -181,28 +186,49 @@ namespace VisionEngine
 
                 #region DPAD
 
-                if (getCurrentState().PointOfViewControllers[0] == 0)
+                if (getCurrentState().PointOfViewControllers[0] == 0 && dpdbool != true)
                 {
+                    dpdbool = true;
                     hwchange = 1;
+                    if (spdint <= 2)
+                    {
+                        spdint += 1;
+                    }
                 }
 
-                if (getCurrentState().PointOfViewControllers[0] == 9000)
+                if (getCurrentState().PointOfViewControllers[0] == 9000 && dpdbool != true)
                 {
+                    dpdbool = true;
                     hwchange = 2;
+                    if (degint <= 25)
+                    {
+                        degint += 5;
+                    }
                 }
 
-                if (getCurrentState().PointOfViewControllers[0] == 18000)
+                if (getCurrentState().PointOfViewControllers[0] == 18000 && dpdbool != true)
                 {
+                    dpdbool = true;
                     hwchange = 3;
+                    if (spdint >= 2)
+                    {
+                        spdint -= 1;
+                    }
                 }
 
-                if (getCurrentState().PointOfViewControllers[0] == 27000)
+                if (getCurrentState().PointOfViewControllers[0] == 27000 && dpdbool != true)
                 {
+                    dpdbool = true;
                     hwchange = 4;
+                    if (degint >= 15)
+                    {
+                        degint -= 5;
+                    }
                 }
 
                 if (getCurrentState().PointOfViewControllers[0] == -1)
                 {
+                    dpdbool = false;
                     hwchange = 0;
                 }
 
@@ -339,16 +365,16 @@ namespace VisionEngine
             switch (mod)
             {
                 case 1:
-                    getDpad("dpup");
+                    getDpad("smul " + spdint.ToString());
                     break;
                 case 2:
-                    getDpad("dpri");
+                    getDpad("sdeg " + degint.ToString());
                     break;
                 case 3:
-                    getDpad("dpdn");
+                    getDpad("smul " + spdint.ToString());
                     break;
                 case 4:
-                    getDpad("dple");
+                    getDpad("sdeg " + degint.ToString());
                     break;
                 default:
                     break;
