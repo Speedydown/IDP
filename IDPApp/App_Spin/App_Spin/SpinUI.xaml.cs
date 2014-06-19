@@ -25,6 +25,7 @@ namespace App_Spin
         /*BATTERY AND SLOPE INTS*/
         private int battery;
         private string slope;
+
         /*BATTERY TIMING*/
         private int minute;
 
@@ -40,6 +41,7 @@ namespace App_Spin
         private int speedint;
         private string speedselect = "";
         private string modeselect = "";
+
         private Info i;
 
         public SpinUI()
@@ -139,26 +141,31 @@ namespace App_Spin
             {
                 sending = true;
 
-                //await (Network.NetworkHandler.Send(message));
-                //await (Network.NetworkHandler.Recv());
+                await (Network.NetworkHandler.Send(message));
+                await (Network.NetworkHandler.Recv());
 
                 sending = false;
 
                 if (message == "gspi")
                 {
-                    //battery = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
+                    battery = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
                 }
 
                 if (message == "ggyr")
                 {
-                    //slope = Network.NetworkHandler.InputBuffer.Get();
-                }
-                else
-                {
-                    //Network.NetworkHandler.InputBuffer.Get();
+                    slope = Network.NetworkHandler.InputBuffer.Get();
                 }
 
+                else
+                {
+                    Network.NetworkHandler.InputBuffer.Get();
+                }
             }
+        }
+
+        private async void getImage()
+        {
+
         }
 
         #region Joystick Controls

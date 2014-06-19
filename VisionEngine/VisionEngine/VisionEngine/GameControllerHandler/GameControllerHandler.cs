@@ -16,21 +16,25 @@ namespace VisionEngine
 
         // joystick joystick
         private Joystick joystick;
-        // joystick
-        private int move;
+        // joystick left
+        int move;
+        // joystick right
+        int spec;
         // dpad
         private int hwchange;
         // buttons
         private int buttons;
 
         // send string
-        private string sendcmd;
+        private string leftstick;
+        private string rightstick;
         private string btncmd;
         private string dpdcmd;
 
         // help for input updates
         private float sec = DateTime.Now.Second;
-        private string oldjoycmd = "";
+        private string oldleftstick = "";
+        private string oldrightstick = "";
         private string oldbtncmd = "";
         private string olddpdcmd = "";
 
@@ -68,19 +72,10 @@ namespace VisionEngine
                 }
             }
 
-
-
             foreach (var deviceInstance in deviceInstanceList)
                 gamepadGuid = deviceInstance.InstanceGuid;
 
-            // If Gamepad not found, throws an error
-            if (gamepadGuid == Guid.Empty)
-            {
-                Console.WriteLine("No gamepad found.");
-            }
-
             // Instantiate the gamepad
-
             joystick = null;
 
             try
@@ -92,20 +87,12 @@ namespace VisionEngine
                 this.disable();
                 return;
             }
-
-            Console.WriteLine("Found Joystick/Gamepad with GUID: {0}", gamepadGuid);
-
-            // Query all suported ForceFeedback effects
-            var allEffects = joystick.GetEffects();
-            foreach (var effectInfo in allEffects)
-                Console.WriteLine("Effect available {0}", effectInfo.Name);
-
+            
             // Set BufferSize in order to use buffered data.
             joystick.Properties.BufferSize = 128;
 
             // Acquire the joystick
             joystick.Acquire();
-
 
             controllerThread = new Thread(() => run());
             controllerThread.Start();
@@ -180,6 +167,31 @@ namespace VisionEngine
                 if (getCurrentState().X < 20000 && getCurrentState().Y > 25000 && getCurrentState().Y < 35000)
                 {
                     move = 17;
+                }
+
+                #endregion
+
+                #region Right Joystick
+
+                //STOP
+                if (getCurrentState().Z > 25000 && getCurrentState().Z < 40000 && getCurrentState().RotationZ > 25000 && getCurrentState().RotationZ < 40000)
+                {
+                    spec = 10;
+                }
+                //LEFT
+                if (getCurrentState().Z < 20000 && getCurrentState().RotationZ > 25000 && getCurrentState().RotationZ < 50000)
+                {
+                    spec = 24;
+                }
+                //FORWARD
+                if (getCurrentState().RotationZ < 20000 && getCurrentState().Z > 25000 && getCurrentState().Z < 35000)
+                {
+                    spec = 25;
+                }
+                //RIGHT
+                if (getCurrentState().Z > 45000 && getCurrentState().RotationZ > 25000 && getCurrentState().RotationZ < 50000)
+                {
+                    spec = 26;
                 }
 
                 #endregion
@@ -275,30 +287,30 @@ namespace VisionEngine
                     }
                 }
 
-                if (getCurrentState().Buttons[12] == true)
-                {
-                    buttons = 13;
-                }
-
-                if (buttons == 13 && getCurrentState().Buttons[12] == false)
-                {
-                    buttons = 131;
-                }
-
                 #endregion
 
                 #region Get and Send Input
-                getInputJoyStick(move);
+                getInputLeftJoyStick(move);
+                getInputRightJoystick(spec);
                 getInputDpad(hwchange);
                 getInputButton(buttons);
 
-                if (sec != (DateTime.Now.Second / 2) && sendcmd != oldjoycmd)
+                if (sec != (DateTime.Now.Second / 2) && rightstick != oldrightstick)
                 {
-                    sendCommand(sendcmd);
+                    sendCommand(rightstick);
 
                     sec = DateTime.Now.Second;
 
-                    oldjoycmd = sendcmd;
+                    oldrightstick = rightstick;
+                }
+
+                if (sec != (DateTime.Now.Second / 2) && leftstick != oldleftstick)
+                {
+                    sendCommand(leftstick);
+
+                    sec = DateTime.Now.Second;
+
+                    oldleftstick = leftstick;
                 }
 
                 if (sec != (DateTime.Now.Second / 2) && dpdcmd != olddpdcmd)
@@ -326,45 +338,66 @@ namespace VisionEngine
             }
         }
 
-        public void getInputJoyStick(int moveInt)
+        public void getInputRightJoystick(int specInt)
+        {
+            switch (specInt)
+            {
+                case 10:
+                    getRightJoystick("move " + specInt.ToString());
+                    break;
+                case 24:
+                    getRightJoystick("move " + specInt.ToString());
+                    break;
+                case 25:
+                    getRightJoystick("move " + specInt.ToString());
+                    break;
+                case 26:
+                    getRightJoystick("move " + specInt.ToString());
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void getInputLeftJoyStick(int moveInt)
         {
             switch (moveInt)
             {
                 // stop
                 case 10:
-                    getJoystick("move " + moveInt.ToString());
+                    getLeftJoystick("move " + moveInt.ToString());
                     break;
                 // fw
                 case 11:
-                    getJoystick("move " + moveInt.ToString());
+                    getLeftJoystick("move " + moveInt.ToString());
                     break;
                 // rfw
                 case 12:
-                    getJoystick("move " + moveInt.ToString());
+                    getLeftJoystick("move " + moveInt.ToString());
                     break;
                 // r
                 case 13:
-                    getJoystick("move " + moveInt.ToString());
+                    getLeftJoystick("move " + moveInt.ToString());
                     break;
                 // rbw
                 case 14:
-                    getJoystick("move " + moveInt.ToString());
+                    getLeftJoystick("move " + moveInt.ToString());
                     break;
                 // bw
                 case 15:
-                    getJoystick("move " + moveInt.ToString());
+                    getLeftJoystick("move " + moveInt.ToString());
                     break;
                 // lbw
                 case 16:
-                    getJoystick("move " + moveInt.ToString());
+                    getLeftJoystick("move " + moveInt.ToString());
                     break;
                 // l
                 case 17:
-                    getJoystick("move " + moveInt.ToString());
+                    getLeftJoystick("move " + moveInt.ToString());
                     break;
                 //lfw
                 case 18:
-                    getJoystick("move " + moveInt.ToString());
+                    getLeftJoystick("move " + moveInt.ToString());
                     break;
                 default:
                     break;
@@ -414,20 +447,19 @@ namespace VisionEngine
                 case 6:
                     getButtons("move 21");
                     break;
-                case 13:
-                    getButtons("move 25");
-                    break;
-                case 131:
-                    getButtons("move 10");
-                    break;
                 default:
                     break;
             }
         }
 
-        public void getJoystick(string command)
+        public void getRightJoystick(string command)
         {
-            sendcmd = command;
+            rightstick = command;
+        }
+
+        public void getLeftJoystick(string command)
+        {
+            leftstick = command;
         }
 
         public void getButtons(string command)
@@ -443,14 +475,12 @@ namespace VisionEngine
         public void sendCommand(string send)
         {
             chandler.execute(send);
-            Console.WriteLine(send);
         }
 
         public JoystickState getCurrentState()
         {
             try
             {
-
                 return joystick.GetCurrentState();
             }
             catch (Exception e)
