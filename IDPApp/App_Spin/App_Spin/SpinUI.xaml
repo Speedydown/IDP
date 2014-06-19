@@ -26,7 +26,7 @@
 
             <!--ComboBox for Mission Select-->
             <ComboBox x:Name="cmbMissionSelect" Margin="650,25,0,0" Height="50" Width="280" HorizontalAlignment="Left" 
-                      VerticalAlignment="Top" FontFamily="Global User Interface" SelectionChanged="cmbSelect_SelectionChanged">
+                      VerticalAlignment="Top" FontFamily="Global User Interface" SelectionChanged="cmbMissionSelect_SelectionChanged">
             </ComboBox>
             <!--Close Bar Grid-->
         </Grid>
@@ -63,6 +63,7 @@
             <!--Style for Spider Height-->
             <Grid Margin="-70,115,0,0" Height="220" Width="25" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1"/>
             <!--Slider for Spider Height-->
+            <TextBlock x:Name="lblSldH" Text="Height" VerticalAlignment="Center"  HorizontalAlignment="Center" Margin="-520,250,0,0"/>
             <Slider x:Name="sldHeight" Foreground="Orange" Value="50" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-500,0,0,0" Orientation="Horizontal" RenderTransformOrigin="0.5,0.5" Minimum="65" Maximum="85">
                 <Slider.RenderTransform>
                     <CompositeTransform Rotation="270"/>
@@ -72,8 +73,14 @@
             <!--Style for Spider Angle-->
             <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="90,420,0,0" Height="25" Width="220"/>
             <!--Slider for Spider Angle-->
+            <TextBlock x:Name="lblSldA" Text="Angle" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-250,420,0,0"/>
             <Slider x:Name="sldAngle" Foreground="Orange" Value="10" Width="200" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,410,0,0" Orientation="Horizontal" Minimum="10" Maximum="30"/>
             <!--Close Joystick Grid-->
+            
+            <!--Input for speedselection-->
+            <!--Speed 1,2,3-->
+            <ComboBox x:Name="cmbSpeedSelect" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="-500,400,0,0" SelectionChanged="cmbSpeedSelect_SelectionChanged" />
+            <TextBlock x:Name="test" Text=""/>
         </Grid>
 
         <!--VideoFeed-->

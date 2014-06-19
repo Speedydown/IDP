@@ -37,6 +37,8 @@ namespace App_Spin
         private int heightValue;
         private int angleValue;
 
+        private int speedint;
+        private string speedselect = "";
         private string modeselect = "";
         private Info i;
 
@@ -93,8 +95,10 @@ namespace App_Spin
 
                 //Fill the ComboBox
                 cmbMission();
+                cmbSpeed();
 
-                cmbMissionSelect.SelectionChanged += cmbSelect_SelectionChanged;
+                cmbSpeedSelect.SelectionChanged += cmbSpeedSelect_SelectionChanged;
+                cmbMissionSelect.SelectionChanged += cmbMissionSelect_SelectionChanged;
                 sldHeight.ValueChanged += sldHeight_ValueChanged;
                 sldAngle.ValueChanged += sldAngle_ValueChanged;
                 lblBattery.DataContextChanged += lblBattery_ContextChanged;
@@ -117,6 +121,14 @@ namespace App_Spin
             cmbMissionSelect.SelectedIndex = 0;
         }
 
+        private void cmbSpeed()
+        {
+            cmbSpeedSelect.Items.Add("Normal Speed");
+            cmbSpeedSelect.Items.Add("Speed x2");
+            cmbSpeedSelect.Items.Add("Speed x3");
+            cmbSpeedSelect.SelectedIndex = 0;
+        }
+
         private async void sendCmd(string message)
         {
             /* Send msg method to Raspberry Pi
@@ -127,23 +139,23 @@ namespace App_Spin
             {
                 sending = true;
 
-                await (Network.NetworkHandler.Send(message));
-                await (Network.NetworkHandler.Recv());
+                //await (Network.NetworkHandler.Send(message));
+                //await (Network.NetworkHandler.Recv());
 
                 sending = false;
 
                 if (message == "gspi")
                 {
-                    battery = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
+                    //battery = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
                 }
 
                 if (message == "ggyr")
                 {
-                    slope = Network.NetworkHandler.InputBuffer.Get();
+                    //slope = Network.NetworkHandler.InputBuffer.Get();
                 }
                 else
                 {
-                    Network.NetworkHandler.InputBuffer.Get();
+                    //Network.NetworkHandler.InputBuffer.Get();
                 }
 
             }
@@ -356,7 +368,7 @@ namespace App_Spin
             lblSlope.Text = "Slope: " + slope;
         }
 
-        private async void cmbSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void cmbMissionSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             /* Beide manuals zijn smde 1
              * Dansje is smde 2
@@ -381,6 +393,19 @@ namespace App_Spin
 
             i.setMode(modeselect);
 
+        }
+
+        private async void cmbSpeedSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            speedint = cmbSpeedSelect.SelectedIndex;
+            speedselect = "sspd " + cmbSpeedSelect.SelectedIndex.ToString();
+
+            if (i.getSpeed() != "start")
+            {
+                //sendCmd(speedselect);
+            }
+
+            i.setSpeed(speedselect);
         }
     }
 }

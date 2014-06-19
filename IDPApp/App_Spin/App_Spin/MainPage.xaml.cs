@@ -136,9 +136,9 @@ namespace App_Spin
                 if (txtConn.Text != null)
                 {
                     //Wait for connection
-                    await (Network.NetworkHandler.Connect(txtConn.Text));
+                    //await (Network.NetworkHandler.Connect(txtConn.Text));
                     btnConnect.IsEnabled = false;
-                    
+
                     lblError.Text = "You are connected to Spider!";
                     i.setState(lblError.Text);
                     i.setConnected(true);
@@ -155,6 +155,7 @@ namespace App_Spin
             {
                 this.Frame.Navigate(typeof(SpinUI));
             }
+
         }
 
         private async void btnDisconnect_Click(object sender, RoutedEventArgs e)
@@ -162,7 +163,7 @@ namespace App_Spin
             if (i.getConnected() == true)
             {
                 //Disconnect the current connection
-                await (Network.NetworkHandler.Close());
+                //await (Network.NetworkHandler.Close());
 
                 btnConnect.IsEnabled = true;
                 i.setConnected(false);

@@ -11,6 +11,7 @@ namespace App_Spin
         private static string connState;
         private static bool connected;
         private static string mode = "start";
+        private static string speed = "start";
 
         public void setState(string state)
         {
@@ -41,5 +42,16 @@ namespace App_Spin
         {
             return mode;
         }
+
+        public void setSpeed(string speedvar)
+        {
+            speed = speedvar;
+        }
+
+        public string getSpeed()
+        {
+            return speed;
+        }
+
     }
 }
