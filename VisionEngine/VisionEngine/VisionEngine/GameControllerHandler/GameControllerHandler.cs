@@ -274,6 +274,17 @@ namespace VisionEngine
                         sec = DateTime.Now.Second;
                     }
                 }
+
+                if (getCurrentState().Buttons[12] == true)
+                {
+                    buttons = 13;
+                }
+
+                if (buttons == 13 && getCurrentState().Buttons[12] == false)
+                {
+                    buttons = 131;
+                }
+
                 #endregion
 
                 #region Get and Send Input
@@ -402,6 +413,12 @@ namespace VisionEngine
                     break;
                 case 6:
                     getButtons("move 21");
+                    break;
+                case 13:
+                    getButtons("move 25");
+                    break;
+                case 131:
+                    getButtons("move 10");
                     break;
                 default:
                     break;
