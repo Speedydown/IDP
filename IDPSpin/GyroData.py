@@ -76,6 +76,8 @@ class GyroData(object):
                                       accel_yout_scaled, accel_zout_scaled)
         self.yDegree = self.get_y_rotation(accel_xout_scaled,
                                       accel_yout_scaled, accel_zout_scaled)
+        self.zDegree = self.get_y_rotation(accel_xout_scaled,
+                                      accel_yout_scaled, accel_zout_scaled)
 
 
     #Get x degree
@@ -89,6 +91,12 @@ class GyroData(object):
         self.calculateAngle()
         yString = '%d' %(self.yDegree)
         return yString
+
+    #Get z degree
+    def getYDegrees(self):
+        self.calculateAngle()
+        zString = '%d' %(self.zDegree)
+        return zString
 
     def getDegrees(self):
         return self.getXDegrees() + "|" + self.getYDegrees()
