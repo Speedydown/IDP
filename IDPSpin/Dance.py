@@ -5,9 +5,8 @@ import threading
 import math
 from threading import Thread
 
-from MotionInterface import MotionInterface
 
-class Dance(MotionInterface):
+class Dance(object):
     def __init__(self, _MInterface):
         self._MInterface = _MInterface
         self._MaxAngle = 20
@@ -19,18 +18,28 @@ class Dance(MotionInterface):
         self.group2 = [self._MInterface._Legs[1], self._MInterface._Legs[2], self._MInterface._Legs[5]]
         self.allLegs = [self._MInterface._Legs[0], self._MInterface._Legs[1], self._MInterface._Legs[2],
                         self._MInterface._Legs[3], self._MInterface._Legs[4], self._MInterface._Legs[5]]
-            
+
+
+    def executeCommand(self, Command):
+
+        Command = int(Command)
+
+        if Command == 30:
+            self.dance()
+            self._MInterface.set_CurrentCommand(10)
+
+
     def exit(self):
         pass #exit methode
 
     #Calling dance methods
     def dance(self):
-        for x in range (0, 6):
+        for x in range (0, 3):
             self.doMoveForwards()
-        for x in range (0, 6):
+        for x in range (0, 3):
             self.doMoveBackwards()
 
-        for x in range (0, 6):
+        for x in range (0, 3):
             self.doMoveRotateLeft()
             time.sleep(self.sleepTime)
             self.doMoveRotateLeft()
@@ -53,15 +62,25 @@ class Dance(MotionInterface):
         #self.doMoveWave()
         self.fourLegs()
 
-        for x in range (0, 6):
+        for x in range (0, 3):
             self.doMoveForwards()
-        for x in range (0, 6):
+        for x in range (0, 3):
             self.doMoveBackwards()
 
         self.doMoveUpDown(self)
 
+    def startPos(self, forward):
+        if(forward):
+            self._MInterface.raiseLegs(self.group1)
+            self._MInterface.MoveLegsBackward(self.group2, False, [self._DefaultMaxAngle, 0])
+            self._MInterface.LowerLegs(self.group1)
+        else:
+            self._MInterface.raiseLegs(self.group1)
+            self._MInterface.MoveLegsForward(self.group2, False, [-self._MaxAngle, 0])
+            self._MInterface.LowerLegs(self.group1)
+
     #Walk a step forward
-    def doMoveForwards():
+    def doMoveForwards(self):
         self._MInterface.raiseLegs(self.group1)
 
         leg1Thread = threading.Thread(target=self._MInterface.MoveLegsForward, args = (self.group1, True, [0, self._DefaultMaxAngle]))
@@ -85,12 +104,10 @@ class Dance(MotionInterface):
 
         self._MInterface.LowerLegs(self.group2)
 
-        self._MInterface.raiseLegs(self.group1)
-        self._MInterface.MoveLegsBackward(self.group2, False, [self._DefaultMaxAngle, 0])
-        self._MInterface.LowerLegs(self.group1)
+        self.startPos(True)
 
     #Walk a step backwards
-    def doMoveBackwards():
+    def doMoveBackwards(self):
         self._MInterface.raiseLegs(self.group1)
 
         leg1Thread = threading.Thread(target=self._MInterface.MoveLegsBackward, args = (self.group1, True, [0, -self._MaxAngle],))
@@ -114,9 +131,7 @@ class Dance(MotionInterface):
 
         self._MInterface.LowerLegs(self.group2)
 
-        self._MInterface.raiseLegs(self.group1)
-        self._MInterface.MoveLegsForward(self.group2, False, [-self._MaxAngle, 0])
-        self._MInterface.LowerLegs(self.group1)
+        self.startPos(False)
         
     #Do a wave with all 6 legs. First lower the 1st two than 2nd two etc.
     def doMoveWave(self):

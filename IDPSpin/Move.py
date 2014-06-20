@@ -444,7 +444,7 @@ class Move(object):
 
     def Elevator(self):
 
-        Leg = self._MInterface._Legs[5]
+        Leg = self._MInterface._Legs[4]
 
         startposAnkle = Leg.getAnkle()
 
