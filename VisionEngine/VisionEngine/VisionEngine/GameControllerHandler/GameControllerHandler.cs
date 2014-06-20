@@ -43,6 +43,9 @@ namespace VisionEngine
         private int spdint = 1;
         private int degint = 10;
 
+        private string smulstring;
+        private string sdegstring;
+
 
         public GameControllerHandler(CommandHandler chandler)
         {
@@ -122,37 +125,37 @@ namespace VisionEngine
                 }
 
                 //LEFTFORWARD
-                if (getCurrentState().X < 20000 && getCurrentState().Y < 25000)
+                if (getCurrentState().X < 20000 && getCurrentState().Y < 20000)
                 {
                     move = 18;
                 }
 
                 //FORWARD
-                if (getCurrentState().Y < 20000 && getCurrentState().X > 25000 && getCurrentState().X < 35000)
+                if (getCurrentState().Y < 15000 && getCurrentState().X > 25000 && getCurrentState().X < 35000)
                 {
                     move = 11;
                 }
 
                 //RIGHTFORWARD
-                if (getCurrentState().X > 45000 && getCurrentState().Y < 25000)
+                if (getCurrentState().X > 45000 && getCurrentState().Y < 20000)
                 {
                     move = 12;
                 }
 
                 //RIGHT
-                if (getCurrentState().X > 45000 && getCurrentState().Y > 25000 && getCurrentState().Y < 35000)
+                if (getCurrentState().X > 45000 && getCurrentState().Y > 25000 && getCurrentState().Y < 40000)
                 {
                     move = 13;
                 }
 
                 //RIGHTDOWN
-                if (getCurrentState().X > 40000 && getCurrentState().Y > 45000)
+                if (getCurrentState().X > 40000 && getCurrentState().Y > 40000)
                 {
                     move = 14;
                 }
 
                 //DOWN
-                if (getCurrentState().Y > 45000 && getCurrentState().X > 20000 && getCurrentState().X < 45000)
+                if (getCurrentState().Y > 45000 && getCurrentState().X > 25000 && getCurrentState().X < 35000)
                 {
                     move = 15;
                 }
@@ -164,7 +167,7 @@ namespace VisionEngine
                 }
 
                 //LEFT
-                if (getCurrentState().X < 20000 && getCurrentState().Y > 25000 && getCurrentState().Y < 35000)
+                if (getCurrentState().X < 20000 && getCurrentState().Y > 25000 && getCurrentState().Y < 40000)
                 {
                     move = 17;
                 }
@@ -200,6 +203,7 @@ namespace VisionEngine
 
                 if (getCurrentState().PointOfViewControllers[0] == 0 && dpdbool != true)
                 {
+                    getMul();
                     dpdbool = true;
                     hwchange = 1;
                     if (spdint <= 2)
@@ -210,6 +214,7 @@ namespace VisionEngine
 
                 if (getCurrentState().PointOfViewControllers[0] == 9000 && dpdbool != true)
                 {
+                    getDeg();
                     dpdbool = true;
                     hwchange = 2;
                     if (degint <= 25)
@@ -220,6 +225,7 @@ namespace VisionEngine
 
                 if (getCurrentState().PointOfViewControllers[0] == 18000 && dpdbool != true)
                 {
+                    getMul();
                     dpdbool = true;
                     hwchange = 3;
                     if (spdint >= 2)
@@ -230,6 +236,7 @@ namespace VisionEngine
 
                 if (getCurrentState().PointOfViewControllers[0] == 27000 && dpdbool != true)
                 {
+                    getDeg();
                     dpdbool = true;
                     hwchange = 4;
                     if (degint >= 15)
@@ -490,6 +497,16 @@ namespace VisionEngine
             }
         }
 
+        public void getMul()
+        {
+            smulstring = chandler.execute("gmul");
+            spdint = Convert.ToInt16(smulstring);
+        }
 
+        public void getDeg()
+        {
+            sdegstring = chandler.execute("gdeg");
+            spdint = Convert.ToInt16(sdegstring);
+        }
     }
 }
