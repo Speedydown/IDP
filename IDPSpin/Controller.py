@@ -64,14 +64,14 @@ class Controller(object):
                 elif Command == "gspi":
                     self._NetworkInterface.Send(self._SPIData.getSpi(), ID)
                 elif Command == "smde":
-                    print "entering smde"
                     self._Mode = data[11:12]
                     self._MotionInterface.exit()
                     if int(self._Mode) == 1:
                         self._MotionInterface = MotionInterface(1)
-                        print "mode set to 'move'"
                     if int(self._Mode) == 2:
                         self._MotionInterface = MotionInterface(2)
+                    if int(self._Mode) == 3:
+                        self._MotionInterface = MotionInterface(3)
                     print threading.currentThread()
                     self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
                     self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.runThread)

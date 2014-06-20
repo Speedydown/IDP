@@ -51,9 +51,18 @@ class Move(object):
         elif Command == 18:
             self.MoveForwardAndRotate(False)
             self._LastCommand = 18
+        elif Command == 20:
+            self.MoveSidways(True)
+            self._LastCommand = 20
+        elif Command == 21:
+            self.MoveSidways(False)
+            self._LastCommand == 21
         elif Command == 25:
             self.turbo()
             self._LastCommand = 25
+        elif Command == 26:
+            self.Elevator()
+            self._LastCommand = 26
 
 
     def exit(self):
@@ -308,7 +317,10 @@ class Move(object):
         elif self._LastCommand == 25:
             self._MInterface.MoveLegsBackward(self._MInterface._Legs, False, [self._MaxAngle, 0])
             self._MInterface.setHeight(self._DefaultHeight)
+            self._MInterface.set_CurrentCommand == 10
+            self._LastCommand = 25
             self._MInterface.LowerLegs(self._MInterface._Legs)
+            self._MInterface.setMultiplier(1)
         else:
             pass
 
@@ -380,33 +392,84 @@ class Move(object):
         group1 = [self._MInterface._Legs[0], self._MInterface._Legs[2], self._MInterface._Legs[4]]
         group2 = [self._MInterface._Legs[1], self._MInterface._Legs[3], self._MInterface._Legs[5]]
 
+        if self._MInterface.get_CurrentCommand() == 21:
+            group1[0].moveAnkle(375)
+
+            group1[1].moveAnkle(350)
+
+            group1[2].moveAnkle(400)
+
         steps = 100
+        DefaultPulseAnkleGroup1 = 0 # = group1[0].getAnkle()
+        DefaultPulseKneeGroup1 = 0 #= group1[0].getKnee()
+        DefaultPulseAnkleGroup2 = group2[0].getAnkle()
+        DefaultPulseKneeGroup2 = group2[0].getKnee()
 
-        for step in steps:
+        for step in range(1, steps):
             for Leg in group1:
-                Leg.moveAnkle(self._MInterface.calculateVerticalPulse())
-        time.sleep(self._MInterface.SleepTime)
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(DefaultPulseAnkleGroup1, DefaultPulseAnkleGroup1 + 30, step, steps))
+                #Leg.moveKnee(self._MInterface.calculateVerticalPulse(DefaultPulseKneeGroup1, DefaultPulseKneeGroup1  , step, steps))
+
+            time.sleep(0.5)
 
 
-    def turbo(self):
+
+
+    def turbo(self, offset=0):
          group = self._MInterface._Legs
 
-         print 25
 
          if self._LastCommand != 25:
             self.StopLegs()
 
             #self._DefaultHeight = self._MInterface.getHeight()
             self._MInterface.setHeight(55)
+            self._MInterface.set_CurrentCommand(25)
+            self._MInterface.turbo()
 
-            self._MInterface.raiseLegs(group)
-            self._MInterface.MoveLegsForward(group, True, [0, self._MaxAngle])
             self._MInterface.LowerLegs(group)
+            #self._MInterface.raiseLegs(group)
+            self._MInterface.MoveLegsForward(group, False, [0, self._MaxAngle])
+            self._MInterface.raiseLegs(group)
+            #self._MInterface.LowerLegs(group)
 
-         self._MInterface.MoveLegsBackward(group, False, [self._MaxAngle, -self._MaxAngle])
+         self._MInterface.MoveLegsBackward(group, True, [self._MaxAngle, -self._MaxAngle])
 
-         self._MInterface.raiseLegs(group)
-         self._MInterface.MoveLegsForward(group, True, [-self._MaxAngle, self._MaxAngle])
+         #self._MInterface.raiseLegs(group)
          self._MInterface.LowerLegs(group)
+
+         self._MInterface.MoveLegsForward(group, False, [-self._MaxAngle, self._MaxAngle])
+         #self._MInterface.LowerLegs(group)
+         self._MInterface.raiseLegs(group)
+
+    def Elevator(self):
+
+        Leg = self._MInterface._Legs[5]
+
+        startposAnkle = Leg.getAnkle()
+
+        steps = 100
+
+        self._MInterface.raiseLegs([Leg])
+        self._MInterface.MoveLegsForward([Leg], True, [0, 90])
+        self._MInterface.LowerLegs([Leg])
+
+
+        for step in range(1, steps):
+            Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startposAnkle, startposAnkle + 450, step, steps))
+
+            #Leg.moveKnee(self._MInterface.calculateVerticalPulse())
+            time.sleep(self._MInterface.SleepTime)
+
+        time.sleep(5)
+
+        for step in range(1, steps):
+            Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startposAnkle + 450, startposAnkle, step, steps))
+            #Leg.moveKnee(self._MInterface.calculateVerticalPulse())
+            time.sleep(self._MInterface.SleepTime)
+
+        self._MInterface.raiseLegs([Leg])
+        self._MInterface.MoveLegsBackward([Leg], True, [90, 0])
+        self._MInterface.LowerLegs([Leg])
 
 

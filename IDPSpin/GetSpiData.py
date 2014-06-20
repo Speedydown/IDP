@@ -23,5 +23,8 @@ class GetSpiData:
                 return adcout
 
         def getSpi(self):
+            try:
                 spiData = '%d' %(self.readadc(0))
                 return spiData
+            except:
+                return "could not read SPI"

@@ -1,10 +1,11 @@
 __author__ = 'Ivar'
-
+#kengt 160
 from Leg import Leg
 import threading
 from FingerControl import FingerControl
 from threading import Semaphore
 from Move import Move
+from SpiderGap import SpiderGap
 import time
 import math
 
@@ -36,16 +37,21 @@ class MotionInterface(object):
             self._CurrentMode = Move(self)
         if mode == 2:
             self._CurrentMode = FingerControl(self)
+        if mode == 3:
+            self._CurrentMode = SpiderGap(self)
 
     def get_CurrentCommand(self):
         self._Semaphore.acquire()
-        if self._CurrentCommand is None:
-            self._Semaphore.release()
+        try:
+            if self._CurrentCommand is None:
+                self._Semaphore.release()
+                return 10
+            else:
+                temp = self._CurrentCommand
+                self._Semaphore.release()
+                return temp
+        except:
             return 10
-        else:
-            temp = self._CurrentCommand
-            self._Semaphore.release()
-            return temp
 
     def set_CurrentCommand(self, _CurrentCommand):
         self._Semaphore.acquire()
@@ -302,7 +308,7 @@ class MotionInterface(object):
             return self._CurrentMode._MaxAngle
 
     def setMultiplier(self, multiplier):
-        if multiplier >= 1 or multiplier <= 3:
+        if multiplier >= 1 or multiplier <= 5:
             self._Multiplier = int(multiplier)
             return "multiplier has been set to: " + str(multiplier)
         else:
@@ -310,3 +316,6 @@ class MotionInterface(object):
 
     def getMultiplier(self):
         return self._Multiplier
+
+    def turbo(self):
+        self._Multiplier = 5
