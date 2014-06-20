@@ -73,12 +73,16 @@
     <Content Include="Images\andre.jpg" />
     <Content Include="Images\denns.jpg" />
     <Content Include="Images\email.png" />
+    <Content Include="Images\Groepsfoto.jpg" />
     <Content Include="Images\imagesLCEWID2X.jpg" />
     <Content Include="Images\jasper.jpg" />
     <Content Include="Images\kees.jpg" />
     <Content Include="Images\miriam.jpg" />
     <Content Include="Images\spin-116-352832.jpg" />
     <Content Include="Images\spin.png" />
+    <Content Include="Images\Spin0.jpg" />
+    <Content Include="Images\Spin1.jpg" />
+    <Content Include="Images\Spin3.jpg" />
     <Content Include="Images\Teeak2.0.jpg" />
     <Content Include="Images\twitter.png" />
     <Content Include="packages.config" />
