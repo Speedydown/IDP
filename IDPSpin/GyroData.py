@@ -36,15 +36,20 @@ class GyroData(object):
     def dist(self, a, b):
         return math.sqrt((a*a)+(b*b))
 
-    #Calculates y rotation and returns in degrees
-    def get_y_rotation(self, x, y, z):
-        radians = math.atan2(y, self.dist(y,z))
-        return math.degrees(radians)
-
     #Calculates x rotation and returns in degrees
     def get_x_rotation(self,x,y,z):
-        radians = math.atan2(y, self.dist(x,z))
+        radians = math.atan2(y, self.dist(y, z))
         return math.degrees(radians)
+
+    #Calculates y rotation and returns in degrees
+    def get_y_rotation(self, x, y, z):
+        radians = math.atan2(y, self.dist(x, z))
+        return math.degrees(radians)
+
+    def get_z_rotation(self, x, y, z):
+        radians = math.atan2(z, self.dist(x, y))
+        return math.degrees(radians)
+    
 
     def printGyroData(self):
         gyro.xout = self.read_word_2c(0x43)
