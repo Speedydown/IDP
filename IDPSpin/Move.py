@@ -455,18 +455,18 @@ class Move(object):
         self._MInterface.LowerLegs([Leg])
 
 
-        for step in range(1, steps):
-            Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startposAnkle, startposAnkle + 450, step, steps))
+        #for step in range(1, steps):
+        #   Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startposAnkle, startposAnkle + 450, step, steps))
 
-            #Leg.moveKnee(self._MInterface.calculateVerticalPulse())
-            time.sleep(self._MInterface.SleepTime)
+        #  #Leg.moveKnee(self._MInterface.calculateVerticalPulse())
+        # time.sleep(self._MInterface.SleepTime)
 
         time.sleep(5)
 
-        for step in range(1, steps):
-            Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startposAnkle + 450, startposAnkle, step, steps))
-            #Leg.moveKnee(self._MInterface.calculateVerticalPulse())
-            time.sleep(self._MInterface.SleepTime)
+        #for step in range(1, steps):
+        #   Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startposAnkle + 450, startposAnkle, step, steps))
+        #  #Leg.moveKnee(self._MInterface.calculateVerticalPulse())
+        # time.sleep(self._MInterface.SleepTime)
 
         self._MInterface.raiseLegs([Leg])
         self._MInterface.MoveLegsBackward([Leg], True, [90, 0])
