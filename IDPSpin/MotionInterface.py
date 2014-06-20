@@ -4,6 +4,7 @@ from Leg import Leg
 import threading
 from FingerControl import FingerControl
 from threading import Semaphore
+from Dance import Dance
 from Move import Move
 from SpiderGap import SpiderGap
 import time
@@ -39,6 +40,9 @@ class MotionInterface(object):
             self._CurrentMode = FingerControl(self)
         if mode == 3:
             self._CurrentMode = SpiderGap(self)
+        if mode == 4:
+            self._CurrentMode = Dance(self)
+
 
     def get_CurrentCommand(self):
         self._Semaphore.acquire()
