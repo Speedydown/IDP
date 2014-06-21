@@ -30,7 +30,7 @@ class FingerControl(object):
         self._MotionInterface.LowerLegs(self._middleLegs)
 
         self._MotionInterface.raiseLegs(self._ForwardLegs)
-        self._MotionInterface.MoveLegsForward(self._ForwardLegs, True, [0, 80])
+        self._MotionInterface.MoveLegsForward(self._ForwardLegs, True, [0, 90])
 
         for Leg in self._ForwardLegs:
             Leg.moveAnkle(175)

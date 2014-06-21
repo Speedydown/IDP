@@ -66,7 +66,7 @@ class Move(object):
 
 
     def exit(self):
-        pass #exit methode
+        self.StopLegs()
 
 
 

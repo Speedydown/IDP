@@ -74,6 +74,8 @@ class Controller(object):
                         self._MotionInterface = MotionInterface(3)
                     if int(self._Mode) == 4:
                         self._MotionInterface = MotionInterface(4)
+                    if int(self._Mode) == 5:
+                        self._MotionInterface = MotionInterface(5)
                     print threading.currentThread()
                     self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
                     self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.runThread)

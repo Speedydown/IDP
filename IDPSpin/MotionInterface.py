@@ -7,6 +7,7 @@ from threading import Semaphore
 from Dance import Dance
 from Move import Move
 from SpiderGap import SpiderGap
+from BalloonRace import BalloonRace
 import time
 import math
 
@@ -42,7 +43,8 @@ class MotionInterface(object):
             self._CurrentMode = SpiderGap(self)
         if mode == 4:
             self._CurrentMode = Dance(self)
-
+        if mode == 5:
+            self._CurrentMode = BalloonRace(self)
 
     def get_CurrentCommand(self):
         self._Semaphore.acquire()
@@ -298,7 +300,7 @@ class MotionInterface(object):
 
 
     def setDegrees(self, degrees):
-        if (degrees < 30 or degrees > 8) and self._currentModeInt == 1:
+        if (degrees < 30 and degrees > 8) and (self._currentModeInt == 1 or self._currentModeInt == 5):
             try:
                 self._CurrentMode._MaxAngle = int(degrees)
                 return "Degrees has been set to " + degrees
