@@ -45,6 +45,10 @@ class MotionInterface(object):
             self._CurrentMode = Dance(self)
         if mode == 5:
             self._CurrentMode = BalloonRace(self)
+        if mode == 6:
+            self._CurrentMode = Move(self)
+        if mode == 7:
+            self._CurrentMode = Move(self)
 
     def get_CurrentCommand(self):
         self._Semaphore.acquire()

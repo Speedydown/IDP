@@ -76,6 +76,10 @@ class Controller(object):
                         self._MotionInterface = MotionInterface(4)
                     if int(self._Mode) == 5:
                         self._MotionInterface = MotionInterface(5)
+                    if int(self._Mode) == 6:
+                        self._MotionInterface = MotionInterface(6)
+                    if int(self._Mode) == 7:
+                        self._MotionInterface = MotionInterface(7)
                     print threading.currentThread()
                     self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
                     self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.runThread)
