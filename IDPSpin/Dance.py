@@ -18,7 +18,9 @@ class Dance(object):
         self.group2 = [self._MInterface._Legs[1], self._MInterface._Legs[2], self._MInterface._Legs[5]]
         self.allLegs = [self._MInterface._Legs[0], self._MInterface._Legs[1], self._MInterface._Legs[2],
                         self._MInterface._Legs[3], self._MInterface._Legs[4], self._MInterface._Legs[5]]
-
+            
+    def exit(self):
+        pass #exit methode
 
     def executeCommand(self, Command):
 
@@ -28,56 +30,89 @@ class Dance(object):
             self.dance()
             self._MInterface.set_CurrentCommand(10)
 
-
-    def exit(self):
-        pass #exit methode
-
     #Calling dance methods
     def dance(self):
         for x in range (0, 3):
             self.doMoveForwards()
+        self.startPos(1)
         for x in range (0, 3):
             self.doMoveBackwards()
+        self.startPos(2)
 
         for x in range (0, 3):
             self.doMoveRotateLeft()
             time.sleep(self.sleepTime)
-            self.doMoveRotateLeft()
+        self.startPos(3)
+
+        for x in range (0, 3):
+            self.doMoveRotateRight()
             time.sleep(self.sleepTime)
+        self.startPos(4)        
         
-        for x in range(0, 3):
-            doMoveStamp(1)
-            doMoveStamp(2)
-            time.sleep(self.sleepTime)
+        doMoveStamp(1)
+        time.sleep(self.sleepTime)
+        doMoveStamp(2)            
             
-        #doMoveWaveLeg()
+        self.doMoveWaveLeg()
         time.sleep(self.sleepTime)
         
-        for x in range(0, 3):
-            self.doMoveRaiseSingle(True)
-            self.doMoveRaiseSingle(False)
-            time.sleep(self.sleepTime)
+        self.doMoveRaiseSingle(True)
+        time.sleep(self.sleepTime)
+        
+        self.doMoveRaiseSingle(False)
+        time.sleep(self.sleepTime)
             
-        #self.doMoveWaveLeg()
+        self.doMoveWaveLeg()
+        
         #self.doMoveWave()
-        self.fourLegs()
+        
+        self.doMoveFourLegs()
 
         for x in range (0, 3):
             self.doMoveForwards()
+        self.startPos(1)
         for x in range (0, 3):
             self.doMoveBackwards()
+        self.startPos(2)
 
-        self.doMoveUpDown(self)
+        self.doMoveHip()
 
-    def startPos(self, forward):
-        if(forward):
+        self.doMoveUpDown()
+
+        self.doMoveWaveLegTwo()
+
+    #Sets the spin to his starting position
+    def startPos(self, resetMove):
+        if(resetMove == 1):
             self._MInterface.raiseLegs(self.group1)
             self._MInterface.MoveLegsBackward(self.group2, False, [self._DefaultMaxAngle, 0])
             self._MInterface.LowerLegs(self.group1)
-        else:
+        elif(resetMove == 2):
             self._MInterface.raiseLegs(self.group1)
             self._MInterface.MoveLegsForward(self.group2, False, [-self._MaxAngle, 0])
             self._MInterface.LowerLegs(self.group1)
+        elif(resetMove == 3):
+            group2 = [self._MInterface._Legs[0], self._MInterface._Legs[2], self._MInterface._Legs[4]]
+            group1 = [self._MInterface._Legs[5], self._MInterface._Legs[3], self._MInterface._Legs[1]]
+
+            leg1Thread = threading.Thread(target=self._MInterface.MoveLegsBackward, args = (group1, False, [self._MaxAngle, 0],))
+            leg1Thread.start()
+            leg2Thread = threading.Thread(target=self._MInterface.MoveLegsForward, args = (group2, False, [-self._MaxAngle, 0],))
+            leg2Thread.start()
+
+            leg1Thread.join()
+            leg2Thread.join()
+        elif(resetMove == 4):
+            group1 = [self._MInterface._Legs[4], self._MInterface._Legs[2], self._MInterface._Legs[0]]
+            group2 = [self._MInterface._Legs[1], self._MInterface._Legs[3], self._MInterface._Legs[5]]
+
+            leg1Thread = threading.Thread(target=self._MInterface.MoveLegsBackward, args = (group1, False, [self._MaxAngle, 0],))
+            leg1Thread.start()
+            leg2Thread = threading.Thread(target=self._MInterface.MoveLegsForward, args = (group2, False, [-self._MaxAngle, 0],))
+            leg2Thread.start()
+
+            leg1Thread.join()
+            leg2Thread.join()                
 
     #Walk a step forward
     def doMoveForwards(self):
@@ -102,9 +137,7 @@ class Dance(object):
         leg1Thread.join()
         leg2Thread.join()
 
-        self._MInterface.LowerLegs(self.group2)
-
-        self.startPos(True)
+        self._MInterface.LowerLegs(self.group2)        
 
     #Walk a step backwards
     def doMoveBackwards(self):
@@ -130,16 +163,55 @@ class Dance(object):
         leg2Thread.join()
 
         self._MInterface.LowerLegs(self.group2)
-
-        self.startPos(False)
+        
         
     #Do a wave with all 6 legs. First lower the 1st two than 2nd two etc.
     def doMoveWave(self):
         pass
         
-    #Wave with 1 leg
+    #Wave with 2 legs
     def doMoveWaveLeg(self):
-        pass
+        self._MotionInterface._Legs[5].moveAnkle(175)
+        self._MotionInterface._Legs[5].moveKnee(575)
+
+        self._MotionInterface._Legs[5].moveAnkle(190)
+        self._MotionInterface._Legs[5].moveAnkle(150)
+        self._MotionInterface._Legs[5].moveAnkle(175)
+        self._MotionInterface._Legs[5].moveAnkle(375)
+        self._MotionInterface._Legs[5].moveAnkle(375)
+
+    #Raises the 2 front legs and waves with them.
+    def doMoveWaveLegTwo(self):
+        self._DefaultSpeed = self._MotionInterface.getSpeed()
+        self._MotionInterface.setSpeed(0.06)
+        self.ser = serial.Serial('/dev/ttyUSB0', 9600)
+        self._ForwardLegs = [self._MotionInterface._Legs[4], self._MotionInterface._Legs[5]]
+        self._middleLegs = [self._MotionInterface._Legs[2], self._MotionInterface._Legs[3]]
+
+        self._MotionInterface.raiseLegs(self._middleLegs)
+        self._MotionInterface.MoveLegsForward(self._middleLegs, True, [0, 20])
+        self._MotionInterface.LowerLegs(self._middleLegs)
+
+        self._MotionInterface.raiseLegs(self._ForwardLegs)
+        self._MotionInterface.MoveLegsForward(self._ForwardLegs, True, [0, 80])
+
+        for Leg in self._ForwardLegs:
+            Leg.moveAnkle(175)
+            Leg.moveKnee(575)
+
+        #Movement
+        
+
+        #To start position
+        self._MotionInterface.raiseLegs(self._ForwardLegs)
+        self._MotionInterface.MoveLegsBackward(self._ForwardLegs, True, [self._MotionInterface.convertPulseToDegrees((self._ForwardLegs[0].getHip() - 375)), 0])
+        self._MotionInterface.LowerLegs(self._ForwardLegs)
+
+        self._MotionInterface.raiseLegs(self._middleLegs)
+        self._MotionInterface.MoveLegsBackward(self._middleLegs, True, [20, 0])
+        self._MotionInterface.LowerLegs(self._middleLegs)
+
+        self._MotionInterface.setSpeed(self._DefaultSpeed)
 
     #Only move the hips
     def doMoveHip(self):
@@ -161,12 +233,12 @@ class Dance(object):
         self.setHeight(75)
         
         
-    #Spider stands on 4 legs and moves the middle 2
-    def fourLegs(self):
+    #Spider stands on 4 legs
+    def doMoveFourLegs(self):
         group = [self._MInterface._Legs[2], self._MInterface._Legs[3]]
         self._MInterface.raiseLegs(group)
-        #Move the 2 legs
-        
+        time.sleep(2)
+        self._MInterface.LowerLegs(group)
                 
     #Raise and lower all 6 legs one by one
     def doMoveRaiseSingle(self, Start):        
@@ -175,11 +247,13 @@ class Dance(object):
                 array = [self.allLegs[x]]
                 self._MInterface.raiseLegs(array)
                 self._MInterface.LowerLegs(array)
+                time.sleep(0,2)
         else:
             for x in range(5, -1, -1):
                 array = [self.allLegs[x]]
                 self._MInterface.raiseLegs(array)
                 self._MInterface.LowerLegs(array)
+                time.sleep(0,2)
         
     def rotateLegs(self, group1, group2, group1from, group1to, group2from, group2to):
         for i in range(0, 3):
@@ -208,14 +282,6 @@ class Dance(object):
         #tilt legs and move them back to start position for rotation, stop command mov  es them back to default position if next command != rotate
         self.rotateLegs(group1, group2, -self._MaxAngle, self._MaxAngle, self._MaxAngle, -self._MaxAngle)
 
-        leg1Thread = threading.Thread(target=self._MInterface.MoveLegsBackward, args = (group1, False, [self._MaxAngle, 0],))
-        leg1Thread.start()
-        leg2Thread = threading.Thread(target=self._MInterface.MoveLegsForward, args = (group2, False, [-self._MaxAngle, 0],))
-        leg2Thread.start()
-
-        leg1Thread.join()
-        leg2Thread.join()
-
     #Rotate spider to the right
     def doMoveRotateRight(self):
         group2 = [self._MInterface._Legs[0], self._MInterface._Legs[2], self._MInterface._Legs[4]]
@@ -235,13 +301,6 @@ class Dance(object):
         #tilt legs and move them back to start position for rotation, stop command moves them back to default position if next command != rotate
         self.rotateLegs(group1, group2, -self._MaxAngle, self._MaxAngle, self._MaxAngle, -self._MaxAngle)
 
-        leg1Thread = threading.Thread(target=self._MInterface.MoveLegsBackward, args = (group1, False, [self._MaxAngle, 0],))
-        leg1Thread.start()
-        leg2Thread = threading.Thread(target=self._MInterface.MoveLegsForward, args = (group2, False, [-self._MaxAngle, 0],))
-        leg2Thread.start()
-
-        leg1Thread.join()
-        leg2Thread.join()
 
     #Raise leg 1, 4, 6 and lower. After that same thing with 2, 3, 5
     def doMoveStamp(self, group):
@@ -249,5 +308,5 @@ class Dance(object):
             self._MInterface.raiseLegs(self.group2)
             self._MInterface.LowerLegs(self.group2)
         else:
-            self._MInterface.LowerLegs(self.group1)
             self._MInterface.raiseLegs(self.group1)
+            self._MInterface.LowerLegs(self.group1)
