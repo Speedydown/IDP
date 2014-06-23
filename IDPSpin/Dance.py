@@ -49,9 +49,9 @@ class Dance(object):
             time.sleep(self.sleepTime)
         self.startPos(4)        
         
-        doMoveStamp(1)
+        self.doMoveStamp(1)
         time.sleep(self.sleepTime)
-        doMoveStamp(2)            
+        self.doMoveStamp(2)
             
         self.doMoveWaveLeg()
         time.sleep(self.sleepTime)
