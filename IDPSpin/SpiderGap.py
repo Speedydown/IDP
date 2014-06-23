@@ -20,7 +20,6 @@ class SpiderGap(object):
         leg1Thread = threading.Thread(target=self.PullLegsForward)
         leg1Thread.start()
 
-
     def executeCommand(self, Command):
         Command = int(Command)
 
@@ -46,7 +45,7 @@ class SpiderGap(object):
 
         for step in range(1, 20):
             for Leg in self.group1:
-                Leg.moveHip(self._MInterface.calculateVerticalPulse(HipStartpoint, 550, step, steps))
+                Leg.moveHip(self._MInterface.calculateVerticalPulse(HipStartpoint, 225, step, steps))
             time.sleep(self.SleepTime)
 
         for step in range(1, steps):
@@ -79,7 +78,7 @@ class SpiderGap(object):
 
         for step in range(1, 20):
             for Leg in self.group1:
-                Leg.moveHip(self._MInterface(HipStartpoint, 550, step, steps))
+                Leg.moveHip(self._MInterface(HipStartpoint, 225, step, steps))
             time.sleep(self.SleepTime)
 
         for step in range(1, steps):
