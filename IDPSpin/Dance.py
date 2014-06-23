@@ -182,6 +182,7 @@ class Dance(object):
 
     #Raises the 2 front legs and waves with them.
     def doMoveWaveLegTwo(self):
+        group = [self._MInterface._Legs[4], self._MInterface._Legs[5]]
         self._DefaultSpeed = self._MotionInterface.getSpeed()
         self._MotionInterface.setSpeed(0.06)
         self.ser = serial.Serial('/dev/ttyUSB0', 9600)
@@ -200,7 +201,7 @@ class Dance(object):
             Leg.moveKnee(575)
 
         #Movement
-        
+        self._MotionInterface.raiseLegs(
 
         #To start position
         self._MotionInterface.raiseLegs(self._ForwardLegs)
