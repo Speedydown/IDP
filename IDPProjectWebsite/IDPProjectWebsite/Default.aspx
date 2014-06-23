@@ -10,8 +10,27 @@
         <header><h2>Hoe ver zijn we?</h2></header>
 
         <div class="progress progress-striped active">
-            <div class="progress-bar progress-bar-succes" style="width: 90%;"></div>
+            <div class="progress-bar progress-bar-succes" style="width: 93%;"></div>
         </div>
+
+        <h3>Fotosessie:</h3>
+        <span>
+            <br />
+            Er is gisteren een fotoshoot geweest voor het projectteam. We zijn erg tevreden met de gemaakte foto's!
+            <br />
+            Foto's gemaakt door <asp:HyperLink id="navUrl" Text="Hans Jellema" NavigateUrl="http://hansjellema.nl/" runat="server" />.
+            <br />
+            <asp:Image id="groupfoto" ImageUrl="/Images/Groepsfoto.jpg" runat="server" Height="426" Width="640"/>
+            <br />
+            <br />
+            <asp:Image id="Image1" ImageUrl="/Images/Spin0.jpg" runat="server" Height="426" Width="640"/>
+            <br />
+            <br />
+            <asp:Image id="Image2" ImageUrl="/Images/Spin1.jpg" runat="server" Height="426" Width="640"/>
+            <br />
+            <br />
+            <asp:Image id="Image3" ImageUrl="/Images/Spin3.jpg" runat="server" Height="426" Width="640"/>
+        </span>
 
         <h3>Recent behaalde doelstellingen:</h3>
         <h4>Laatste ontwikkelingen binnen het projectteam</h4>

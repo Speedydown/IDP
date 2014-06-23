@@ -22,7 +22,7 @@
     <div class="container body">
         <div class="page-header PaginaHeader">
             <div style="position: relative; float: left">
-                <asp:Image id="HeaderImage" ImageUrl="/Images/spin.png"  runat="server" Height="98px" Width="125px" />
+                <asp:Image id="HeaderImage" ImageUrl="/Images/Spin1.jpg"  runat="server" Height="98px" Width="125px" />
             </div>
             <div style="position: relative; float: left; margin-left: 3px;">
                 <h1>Tracheata (groep 9)</h1>

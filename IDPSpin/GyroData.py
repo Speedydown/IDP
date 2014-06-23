@@ -36,15 +36,20 @@ class GyroData(object):
     def dist(self, a, b):
         return math.sqrt((a*a)+(b*b))
 
-    #Calculates y rotation and returns in degrees
-    def get_y_rotation(self, x, y, z):
-        radians = math.atan2(y, self.dist(y,z))
-        return math.degrees(radians)
-
     #Calculates x rotation and returns in degrees
     def get_x_rotation(self,x,y,z):
-        radians = math.atan2(y, self.dist(x,z))
+        radians = math.atan2(y, self.dist(y, z))
         return math.degrees(radians)
+
+    #Calculates y rotation and returns in degrees
+    def get_y_rotation(self, x, y, z):
+        radians = math.atan2(y, self.dist(x, z))
+        return math.degrees(radians)
+
+    def get_z_rotation(self, x, y, z):
+        radians = math.atan2(z, self.dist(x, y))
+        return math.degrees(radians)
+    
 
     def printGyroData(self):
         gyro.xout = self.read_word_2c(0x43)
@@ -71,6 +76,8 @@ class GyroData(object):
                                       accel_yout_scaled, accel_zout_scaled)
         self.yDegree = self.get_y_rotation(accel_xout_scaled,
                                       accel_yout_scaled, accel_zout_scaled)
+        self.zDegree = self.get_y_rotation(accel_xout_scaled,
+                                      accel_yout_scaled, accel_zout_scaled)
 
 
     #Get x degree
@@ -84,6 +91,12 @@ class GyroData(object):
         self.calculateAngle()
         yString = '%d' %(self.yDegree)
         return yString
+
+    #Get z degree
+    def getYDegrees(self):
+        self.calculateAngle()
+        zString = '%d' %(self.zDegree)
+        return zString
 
     def getDegrees(self):
         return self.getXDegrees() + "|" + self.getYDegrees()
