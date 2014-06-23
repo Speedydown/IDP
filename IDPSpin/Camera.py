@@ -6,11 +6,6 @@ except:
     "could not start camera"
 import io
 import base64
-try:
-    import pygame
-    import pygame.camera
-except:
-    "could not start local webcam"
 
 class Camera(object):
 
@@ -22,9 +17,6 @@ class Camera(object):
             self._Camera.start_preview()
             self._StoredImage = ""
         except:
-            cam = pygame.camera.Camera(pygame.camera.list_cameras()[0])
-            cam.start_preview()
-            self._StoredImage = ""
             pass
 
     
