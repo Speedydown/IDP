@@ -24,10 +24,13 @@ namespace App_Spin
     {
         /*BATTERY AND SLOPE INTS*/
         private int battery;
-        private string slope;
+        private string batString;
+
+        private string sloString;
+        private string X;
+        private string Y;
 
         /*BATTERY TIMING*/
-        private int minute;
 
         /*MOVE STRING*/
         public string move = "";
@@ -56,6 +59,8 @@ namespace App_Spin
                 timer.Tick += (o, e) => lblHour.Text = "H " + DateTime.Now.Hour.ToString();
                 timer.Tick += (o, e) => lblMin.Text = "M " + DateTime.Now.Minute.ToString();
                 timer.Tick += (o, e) => lblSec.Text = "S " + DateTime.Now.Second.ToString();
+                timer.Tick += (o, e) => lblBattery.Text = getBattery();
+                timer.Tick += (o, e) => lblSlope.Text = getSlope();
                 timer.Start();
 
                 /*
@@ -93,6 +98,9 @@ namespace App_Spin
                 //lblSlope
                 lblBattery.AddHandler(PointerPressedEvent, new PointerEventHandler(lblBattery_Pressed), true);
                 lblSlope.AddHandler(PointerPressedEvent, new PointerEventHandler(lblSlope_Pressed), true);
+
+                btn25.AddHandler(PointerPressedEvent, new PointerEventHandler(btn25_Pressed), true);
+                btn26.AddHandler(PointerPressedEvent, new PointerEventHandler(btn26_Pressed), true);
                 #endregion
 
                 //Fill the ComboBox
@@ -144,28 +152,25 @@ namespace App_Spin
                 await (Network.NetworkHandler.Send(message));
                 await (Network.NetworkHandler.Recv());
 
-                sending = false;
-
                 if (message == "gspi")
                 {
-                    battery = Convert.ToInt16(Network.NetworkHandler.InputBuffer.Get());
+                    batString = Network.NetworkHandler.InputBuffer.Get();
                 }
 
-                if (message == "ggyr")
+                else if (message == "ggyr")
                 {
-                    slope = Network.NetworkHandler.InputBuffer.Get();
+                    sloString = Network.NetworkHandler.InputBuffer.Get();
                 }
 
                 else
                 {
                     Network.NetworkHandler.InputBuffer.Get();
                 }
+
+                sending = false;
+
+                
             }
-        }
-
-        private async void getImage()
-        {
-
         }
 
         #region Joystick Controls
@@ -353,26 +358,63 @@ namespace App_Spin
             sendCmd("sdeg " + angleValue.ToString());
         }
 
+        private string getBattery()
+        {
+            sendCmd("gspi");
+
+            //LABEL
+            bool result = Int32.TryParse(batString, out battery);
+            if (result == true)
+            {
+                float batVolt = ((battery * 3.3f) / 1023f) * 4;
+                float batPerc = (batVolt / 12.6f) * 100;
+                lblBattery.Text = "Battery: " + battery.ToString();
+            }
+            else
+            {
+                lblBattery.Text = "Battery: " + "Error";
+            }
+            return lblBattery.Text;
+        }
+
+        private string getSlope()
+        {
+            sendCmd("ggyr");
+
+            string[] xy = sloString.Split('|');
+            X = "X " + xy[0];
+            Y = "Y " + xy[1];
+
+            lblSlope.Text = "Slope: " + X + " " + Y + ".";
+            return lblSlope.Text;
+        }
+
         /* Update info on status battery */
         private async void lblBattery_ContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            if (minute != DateTime.Now.Minute)
-            {
-                sendCmd("gspi");
+            //sendCmd("gspi");
 
-                //LABEL
-                lblBattery.Text = "Battery: " + battery.ToString();
-                minute = DateTime.Now.Minute;
-            }
+            ////LABEL
+            //bool result = Int32.TryParse(batString, out battery);
+            //if (result == true)
+            //{
+            //    float batVolt = ((battery * 3.3f) / 1023f) * 4;
+            //    float batPerc = (batVolt / 12.6f) * 100;
+            //    lblBattery.Text = "Battery: " + battery.ToString();
+            //}
+            //else
+            //{
+            //    lblBattery.Text = "Battery: " + "Error";
+            //}
         }
 
         /* Update info on status slope */
         private async void lblSlope_ContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            sendCmd("ggyr");
+            //sendCmd("ggyr");
 
             //LABEL
-            lblSlope.Text = "Slope: " + slope;
+            //lblSlope.Text = "Slope: " + slope;
         }
 
         private async void cmbMissionSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -413,6 +455,16 @@ namespace App_Spin
             }
             test.Text = speedselect;
             i.setSpeed(speedselect);
+        }
+
+        private void btn26_Pressed(object sender, PointerRoutedEventArgs e)
+        {
+            sendCmd("move 26");
+        }
+
+        private void btn25_Pressed(object sender, PointerRoutedEventArgs e)
+        {
+
         }
     }
 }

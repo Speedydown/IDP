@@ -60,11 +60,8 @@ namespace App_Spin.Network
             // read the data as a string and store it in our container
             if (count > 0)
             {
-                //while (!receivedData.Contains("<EOF>"))
-                //{
-                //    receivedData += reader.LoadAsync(1024);
-                //}
                 receivedData = reader.ReadString(count);
+                receivedData = receivedData.Replace("<EOF>", "");
                 InputBuffer.Append(receivedData);
             }
         }
