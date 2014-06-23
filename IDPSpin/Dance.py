@@ -201,7 +201,7 @@ class Dance(object):
             Leg.moveKnee(575)
 
         #Movement
-        self._MotionInterface.raiseLegs(
+        self._MotionInterface.raiseLegs(group, [
 
         #To start position
         self._MotionInterface.raiseLegs(self._ForwardLegs)
