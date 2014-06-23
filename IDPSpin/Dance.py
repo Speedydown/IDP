@@ -171,6 +171,9 @@ class Dance(object):
         
     #Wave with 2 legs
     def doMoveWaveLeg(self):
+        group = [self._MInterface._Legs[5]]
+
+        self._MotionInterface.raiseLegs(group, [0, 95])
         self._MotionInterface._Legs[5].moveAnkle(175)
         self._MotionInterface._Legs[5].moveKnee(575)
 
@@ -201,7 +204,12 @@ class Dance(object):
             Leg.moveKnee(575)
 
         #Movement
-        self._MotionInterface.raiseLegs(group, [
+        self._MotionInterface.raiseLegs(group, [0, 110])
+        self._MotionInterface.raiseLegs(group, [0, 90])
+        self._MotionInterface.raiseLegs(group, [0, 60])
+        self._MotionInterface.raiseLegs(group, [0, 90])
+        self._MotionInterface.raiseLegs(group, [0, 110])
+        self._MotionInterface.raiseLegs(group, [0, 95])
 
         #To start position
         self._MotionInterface.raiseLegs(self._ForwardLegs)
