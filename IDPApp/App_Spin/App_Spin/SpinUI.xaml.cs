@@ -464,7 +464,12 @@ namespace App_Spin
 
         private void btn25_Pressed(object sender, PointerRoutedEventArgs e)
         {
+            sendCmd("move 25");
+        }
 
+        private void btn25_Released(object sender, PointerRoutedEventArgs e)
+        {
+            stop();
         }
     }
 }
