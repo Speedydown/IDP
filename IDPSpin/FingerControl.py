@@ -52,8 +52,9 @@ class FingerControl(object):
                 if incoming[:2] == 'a2':
                     #Move the leg
                     pulse = int(incoming.strip('a2'))
-                    if pulse > 450:
-                        pulse = 450
+                    if pulse > 250:
+                        pulse = 250
+
                     self._MotionInterface._Legs[4].moveKnee(pulse)
             except ValueError:
                 pass
@@ -70,8 +71,8 @@ class FingerControl(object):
                 if incoming[:2] == 'b2':
                     #Move the leg
                     pulse = int(incoming.strip('b2'))
-                    if pulse > 450:
-                        pulse = 450
+                    if pulse > 250:
+                        pulse = 250
                     self._MotionInterface._Legs[5].moveKnee(pulse)
             except ValueError:
                 pass

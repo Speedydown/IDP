@@ -5,6 +5,7 @@ import threading
 from FingerControl import FingerControl
 from threading import Semaphore
 from Dance import Dance
+from Dance2 import Dance2
 from Move import Move
 from SpiderGap import SpiderGap
 from BalloonRace import BalloonRace
@@ -49,6 +50,8 @@ class MotionInterface(object):
             self._CurrentMode = Move(self)
         if mode == 7:
             self._CurrentMode = Move(self)
+        if mode == 8:
+            self._CurrentMode = Dance2(self)
 
     def get_CurrentCommand(self):
         self._Semaphore.acquire()
@@ -260,7 +263,7 @@ class MotionInterface(object):
                 Leg.moveKnee(self.calculateVerticalPulse(startpulseKnee, pulses[0], step, steps)) #startpulseKnee in plaats van Ankle
             time.sleep(self.SleepTime)
 
-    def MoveLegsForward(self, Legs, Raised, Turn, offset=[90,90]):
+    def MoveLegsForward(self, Legs, Raised, Turn, offset=[0,95]):
         if Turn[0] > Turn[1]:
             self.MoveLegsBackward(Legs, Raised, Turn)
             return
@@ -304,7 +307,7 @@ class MotionInterface(object):
 
 
     def setDegrees(self, degrees):
-        if int(degrees) < 35 and int(degrees) > 8 and (self._currentModeInt is 1 or self._currentModeInt is 5):
+        if int(degrees) < 35 and int(degrees) > 8 and (self._currentModeInt is 1 or self._currentModeInt is 5 or self._currentModeInt is 6 or self._currentModeInt is 7):
             try:
                 self._CurrentMode._MaxAngle = int(degrees)
                 return "Degrees has been set to " + degrees

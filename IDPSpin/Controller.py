@@ -80,6 +80,8 @@ class Controller(object):
                         self._MotionInterface = MotionInterface(6)
                     if int(self._Mode) == 7:
                         self._MotionInterface = MotionInterface(7)
+                    if int(self._Mode) == 8:
+                        self._MotionInterface = MotionInterface(8)
                     print threading.currentThread()
                     self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
                     self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.runThread)
