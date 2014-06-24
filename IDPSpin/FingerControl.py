@@ -56,17 +56,19 @@ class FingerControl(object):
                         pulse = 450
                     self._MotionInterface._Legs[4].moveAnkle(pulse)
             except ValueError:
-                pass
+               print incoming
+
             try:
                 if incoming[:2] == 'a2':
                     #Move the leg
                     pulse = int(incoming.strip('a2'))
-                    if pulse > 250:
-                        pulse = 250
+                    if pulse > 150:
+                        pulse = 150
 
                     self._MotionInterface._Legs[4].moveKnee(pulse)
             except ValueError:
-                pass
+                print incoming
+
             try:
                 if incoming[:2] == 'b1':
                     #Move the leg
@@ -75,16 +77,18 @@ class FingerControl(object):
                         pulse = 450
                     self._MotionInterface._Legs[5].moveAnkle(pulse)
             except ValueError:
-                pass
+                print incoming
+
             try:
                 if incoming[:2] == 'b2':
                     #Move the leg
                     pulse = int(incoming.strip('b2'))
-                    if pulse > 250:
-                        pulse = 250
+                    if pulse > 200:
+                        pulse = 200
+                    print pulse
                     self._MotionInterface._Legs[5].moveKnee(pulse)
             except ValueError:
-                pass
+                print incoming
 
     def exit(self):
         #self._Semaphore.acquire()

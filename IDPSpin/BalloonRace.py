@@ -22,7 +22,7 @@ class BalloonRace(object):
         self.StopLegs()
 
         self._MInterface.raiseLegs(self.ForwardLegs)
-        self._MInterface.MoveLegsForward(self.ForwardLegs, True, [0, 90])
+        self._MInterface.MoveLegsForward(self.ForwardLegs, True, [0, 100])
         self._MInterface.LowerLegs(self.ForwardLegs)
 
         startposAnkle = self.ForwardLegs[0].getAnkle()
@@ -30,7 +30,7 @@ class BalloonRace(object):
         steps = 100
         for step in range(1, steps):
             for Leg in self.ForwardLegs:
-                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startposAnkle, startposAnkle + 340, step, steps))
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(startposAnkle, startposAnkle + 240, step, steps))
 
             time.sleep(self._MInterface.SleepTime)
 
