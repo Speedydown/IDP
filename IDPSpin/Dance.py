@@ -32,6 +32,7 @@ class Dance(object):
         
         self.doMoveStamp(1)
         time.sleep(self.sleepTime)
+        
         self.doMoveStamp(2)
         time.sleep(self.sleepTime)
 
@@ -48,20 +49,56 @@ class Dance(object):
         time.sleep(self.sleepTime)
 
         self.doMoveBig()
+        time.sleep(self.sleepTime)
             
         self.doMoveWaveLeg()
+        time.sleep(self.sleepTime)
         
         #self.doMoveWave()
+        time.sleep(self.sleepTime)
         
         self.doMoveFourLegs()
+        time.sleep(self.sleepTime)
 
         self.doMoveHip()
+        time.sleep(self.sleepTime)
+
+        self.doMoveWiggle()
+        time.sleep(self.sleepTime)
 
         self.doMoveUpDown()
+        time.sleep(self.sleepTime)
 
         self.doMoveWaveLegTwo()
+        time.sleep(self.sleepTime)
 
         self.doMoveEnd()
+        time.sleep(self.sleepTime)
+
+    def doMoveStepForward(self):
+        self._MInterface.raiseLegs(self.group2)
+        self._MInterface.MoveLegsForward(self.group2, True, [0, self._MaxAngle])
+        self._MInterface.LowerLegs(self.group2)
+
+        self._MInterface.raiseLegs(self.group1)
+
+        self._MInterface.MoveLegsForward, args = (self.group1, True, [0, self._MaxAngle])
+        self._MInterface.MoveLegsBackward, args = (self.group2, False, [self._MaxAngle, 0])
+
+        self._MInterface.LowerLegs(self.group1)
+        self._MInterface.raiseLegs(self.group2)
+
+        self._MInterface.MoveLegsForward, args = (self.group2, True,[0, self._MaxAngle])
+        self._MInterface.MoveLegsBackward, args = (self.group1, False, [self._MaxAngle, 0])
+
+        self._MInterface.LowerLegs(self.group2)
+
+    def doMoveStepBackward(self):
+        self._MInterface.raiseLegs(self.group2)
+        self._MInterface.MoveLegsBackward(self.group2, True, [0, -self._MaxAngle])
+        self._MInterface.LowerLegs(self.group2)
+
+        self._MInterface.raiseLegs(self.group1)
   
         
     #Do a wave with all 6 legs. First lower the 1st two than 2nd two etc.
@@ -149,17 +186,17 @@ class Dance(object):
     def doMoveGoLow(self):
         self._MInterface.setHeight(55)
         
-        self._MInterface.raiseLegs([group1[2], group2[2]])
+        self._MInterface.raiseLegs([self.group1[2], self.group2[2]])
         time.sleep(0,5)
-        self._MInterface.raiseLegs([group1[1], group2[1]])
+        self._MInterface.raiseLegs([self.group1[1], self.group2[1]])
         time.sleep(0,5)
-        self._MInterface.raiseLegs([group1[0], group2[0]])
+        self._MInterface.raiseLegs([self.group1[0], self.group2[0]])
         time.sleep(0,5)
 
         for x in range(0, 5):
-            self._MInterface.raiseLegs([group1[x], group2[x]], [0, 110])
-            self._MInterface.raiseLegs([group1[x], group2[x]], [0, 90])
-            self._MInterface.raiseLegs([group1[x], group2[x]], [0, 110])
+            self._MInterface.raiseLegs([self.group1[x], self.group2[x]], [0, 110])
+            self._MInterface.raiseLegs([self.group1[x], self.group2[x]], [0, 90])
+            self._MInterface.raiseLegs([self.group1[x], self.group2[x]], [0, 110])
             time.sleep(0,5)
 
         self._MInterface.setHeight(75)
@@ -171,16 +208,16 @@ class Dance(object):
     def doMoveHip(self):
         angle = 20
 
-        self._MInterface.MoveLegsForward(group, False, [0, angle])
-        self._MInterface.MoveLegsBackward(group, False, [angle, -angle])
-        self._MInterface.MoveLegsForward(group, False, [-angle, angle])
-        self._MInterface.MoveLegsBackward(group, False, [angle, -angle])
-        self._MInterface.MoveLegsForward(group, False, [-angle, angle])
-        self._MInterface.MoveLegsBackward(group, False, [angle, -angle])
-        self._MInterface.MoveLegsForward(group, False, [-angle, angle])
-        self._MInterface.MoveLegsBackward(group, False, [angle, -angle])
-        self._MInterface.MoveLegsForward(group, False, [-angle, angle])
-        self._MInterface.MoveLegsBackward(group, False, [angle, 0])
+        self._MInterface.MoveLegsForward(allLegs, False, [0, angle])
+        self._MInterface.MoveLegsBackward(allLegs, False, [angle, -angle])
+        self._MInterface.MoveLegsForward(allLegs, False, [-angle, angle])
+        self._MInterface.MoveLegsBackward(allLegs, False, [angle, -angle])
+        self._MInterface.MoveLegsForward(allLegs, False, [-angle, angle])
+        self._MInterface.MoveLegsBackward(allLegs, False, [angle, -angle])
+        self._MInterface.MoveLegsForward(allLegs, False, [-angle, angle])
+        self._MInterface.MoveLegsBackward(allLegs, False, [angle, -angle])
+        self._MInterface.MoveLegsForward(allLegs, False, [-angle, angle])
+        self._MInterface.MoveLegsBackward(allLegs, False, [angle, 0])
                 
 
     #The whole spin moves up and down
