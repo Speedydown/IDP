@@ -51,25 +51,25 @@ class BalloonRace(object):
             self.Forward()
             self._LastCommand = 11
         elif Command == 12:
-            self.Forward(0, -10)
+            self.Forward(0, -25)
             self._LastCommand = 12
         elif Command == 13:
-            self.Forward(0, -20)
+            self.Forward(0, -35)
             self._LastCommand = 13
         elif Command == 14:
-            self.Backward(0, -15)
+            self.Backward(0, -25)
             self._LastCommand = 14
         elif Command == 15:
             self.Backward()
             self._LastCommand = 15
         elif Command == 16:
-            self.Backward(-15, 0)
+            self.Backward(-35, 0)
             self._LastCommand = 16
         elif Command == 17:
-            self.Forward(-20, 0)
+            self.Forward(-35, 0)
             self._LastCommand = 17
         elif Command == 18:
-            self.Forward(-10, 0)
+            self.Forward(-25, 0)
             self._LastCommand = 18
 
 
