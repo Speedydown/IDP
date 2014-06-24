@@ -317,7 +317,7 @@ class MotionInterface(object):
             return "invalid input. Current mode = " + str(self._currentModeInt) + " and degrees is: " + str(degrees)
 
     def getDegrees(self):
-        if self._currentModeInt == 1 or self._currentModeInt == 5:
+        if self._currentModeInt == 1 or self._currentModeInt == 5 or self._currentModeInt == 6 or self._currentModeInt == 7:
             return self._CurrentMode._MaxAngle
 
     def setMultiplier(self, multiplier):
