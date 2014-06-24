@@ -18,9 +18,9 @@
                        Height="50" Width="400" FontSize="60"/>
 
             <TextBlock x:Name="lblBattery" Margin="1050,20,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" 
-                       FontSize="15" PointerPressed="lblBattery_Pressed" DataContextChanged="lblBattery_ContextChanged"/>
-            <TextBlock x:Name="lblSlope" Margin="1050,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="100" 
-                       FontSize="15" PointerPressed="lblSlope_Pressed" DataContextChanged="lblSlope_ContextChanged"/>
+                       FontSize="15" PointerPressed="lblBattery_Pressed"/>
+            <TextBlock x:Name="lblSlope" Margin="1050,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="150" 
+                       FontSize="15" PointerPressed="lblSlope_Pressed"/>
             <TextBlock x:Name="lblHour" Margin="1240,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             <TextBlock x:Name="lblMin" Margin="1240,35,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>
             <TextBlock x:Name="lblSec" Margin="1240,65,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Height="30" Width="30"/>

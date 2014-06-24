@@ -26,7 +26,7 @@ namespace App_Spin
         private int battery;
         private string batString;
 
-        private string sloString;
+        private string sloString = "";
         private string X;
         private string Y;
 
@@ -59,9 +59,15 @@ namespace App_Spin
                 timer.Tick += (o, e) => lblHour.Text = "H " + DateTime.Now.Hour.ToString();
                 timer.Tick += (o, e) => lblMin.Text = "M " + DateTime.Now.Minute.ToString();
                 timer.Tick += (o, e) => lblSec.Text = "S " + DateTime.Now.Second.ToString();
-                timer.Tick += (o, e) => lblBattery.Text = getBattery();
-                timer.Tick += (o, e) => lblSlope.Text = getSlope();
                 timer.Start();
+
+                var battery = new DispatcherTimer { Interval = TimeSpan.FromSeconds(15) };
+                battery.Tick += (o, e) => lblBattery.Text = getBattery();
+                battery.Start();
+
+                var slope = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+                slope.Tick += (o, e) => lblSlope.Text = getSlope();
+                slope.Start();
 
                 /*
                  * Add new EventHandlers per button, not standard supported.
@@ -111,8 +117,6 @@ namespace App_Spin
                 cmbMissionSelect.SelectionChanged += cmbMissionSelect_SelectionChanged;
                 sldHeight.ValueChanged += sldHeight_ValueChanged;
                 sldAngle.ValueChanged += sldAngle_ValueChanged;
-                lblBattery.DataContextChanged += lblBattery_ContextChanged;
-                lblSlope.DataContextChanged += lblSlope_ContextChanged;
             }
             else
             {
@@ -122,12 +126,14 @@ namespace App_Spin
 
         private void cmbMission()
         {
-            cmbMissionSelect.Items.Add("Handmatige besturing - Tablet");
-            cmbMissionSelect.Items.Add("Handmatige besturing - Controller");
-            cmbMissionSelect.Items.Add("Dansje");
+            cmbMissionSelect.Items.Add("Manual Controls - Tablet");
+            cmbMissionSelect.Items.Add("Manual Controls - Controller");
+            cmbMissionSelect.Items.Add("Fingercontrol");
             cmbMissionSelect.Items.Add("Spider Gap");
-            cmbMissionSelect.Items.Add("Ballonnen");
-            cmbMissionSelect.Items.Add("Teerballen");
+            cmbMissionSelect.Items.Add("Dance");
+            cmbMissionSelect.Items.Add("Balloon Sprint");
+            cmbMissionSelect.Items.Add("Balloon Recognition");
+            cmbMissionSelect.Items.Add("Oil on the Beach");
             cmbMissionSelect.SelectedIndex = 0;
         }
 
@@ -152,16 +158,17 @@ namespace App_Spin
                 await (Network.NetworkHandler.Send(message));
                 await (Network.NetworkHandler.Recv());
 
-                if (message == "gspi")
+                if (message == "gspi" || message == "ggyr")
                 {
-                    batString = Network.NetworkHandler.InputBuffer.Get();
+                    if (message == "gspi")
+                    {
+                        batString = Network.NetworkHandler.InputBuffer.Get();
+                    }
+                    else
+                    {
+                        sloString = Network.NetworkHandler.InputBuffer.Get();
+                    }
                 }
-
-                else if (message == "ggyr")
-                {
-                    sloString = Network.NetworkHandler.InputBuffer.Get();
-                }
-
                 else
                 {
                     Network.NetworkHandler.InputBuffer.Get();
@@ -368,7 +375,7 @@ namespace App_Spin
             {
                 float batVolt = ((battery * 3.3f) / 1023f) * 4;
                 float batPerc = (batVolt / 12.6f) * 100;
-                lblBattery.Text = "Battery: " + battery.ToString();
+                lblBattery.Text = "Battery: " + Math.Round(batPerc).ToString() + " %";
             }
             else
             {
@@ -381,49 +388,31 @@ namespace App_Spin
         {
             sendCmd("ggyr");
 
-            string[] xy = sloString.Split('|');
-            X = "X " + xy[0];
-            Y = "Y " + xy[1];
+            if (sloString != "")
+            {
+                string[] xy = new string[2];
+                xy = sloString.Split('|');
+                X = "X=" + xy[0];
+                Y = "Y=" + xy[1];
+            }
+            else
+            {
+                X = "X " + "...";
+                Y = "Y " + "...";
+            }
+            
 
-            lblSlope.Text = "Slope: " + X + " " + Y + ".";
+            lblSlope.Text = "Slope: " + X + " " + Y;
             return lblSlope.Text;
-        }
-
-        /* Update info on status battery */
-        private async void lblBattery_ContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            //sendCmd("gspi");
-
-            ////LABEL
-            //bool result = Int32.TryParse(batString, out battery);
-            //if (result == true)
-            //{
-            //    float batVolt = ((battery * 3.3f) / 1023f) * 4;
-            //    float batPerc = (batVolt / 12.6f) * 100;
-            //    lblBattery.Text = "Battery: " + battery.ToString();
-            //}
-            //else
-            //{
-            //    lblBattery.Text = "Battery: " + "Error";
-            //}
-        }
-
-        /* Update info on status slope */
-        private async void lblSlope_ContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
-        {
-            //sendCmd("ggyr");
-
-            //LABEL
-            //lblSlope.Text = "Slope: " + slope;
         }
 
         private async void cmbMissionSelect_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             /* Beide manuals zijn smde 1
-             * Dansje is smde 2
+             * Fingercontrol is 2
              * Spider Gap is 3
-             * Ballonnen is 4
-             * Teerballen is 5
+             * Dance is 4
+             * Ballonnen is 5
              */
 
             if (cmbMissionSelect.SelectedIndex == 0)
