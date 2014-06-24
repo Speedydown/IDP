@@ -69,7 +69,7 @@ class SpiderGap(object):
                 Leg.moveKnee(self._MInterface.calculateVerticalPulse(KneeStartpoint, 375, step, steps))
             time.sleep(self.SleepTime)
 
-        self._MInterface.MoveLegsForward(self.group1, True, [0, 100])
+        self._MInterface.MoveLegsForward(self.group3, True, [0, 100])
 
 
         #for step in range(1, 20):
