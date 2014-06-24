@@ -14,9 +14,6 @@ class Dance(object):
         self.group2 = [self._MInterface._Legs[1], self._MInterface._Legs[2], self._MInterface._Legs[5]]
         self.allLegs = [self._MInterface._Legs[0], self._MInterface._Legs[1], self._MInterface._Legs[2],
                         self._MInterface._Legs[3], self._MInterface._Legs[4], self._MInterface._Legs[5]]
-
-        leg1Thread = threading.Thread(target=self.Dance)
-        leg1Thread.start()
             
     def exit(self):
         self._MotionInterface.setHeight(75)
@@ -90,6 +87,8 @@ class Dance(object):
 
         self._LowerLegs(allLegs)
 
+        self._MInterface.setHeight(75)
+
         
 
     def doMoveBig(self):
@@ -109,6 +108,9 @@ class Dance(object):
         self._MotionInterface.MoveLegsForward(allLegs, False, [-angle, angle])
         self._MotionInterface.MoveLegsBackward(allLegs, False, [angle, 0])
 
+        self._MInterface.setHeight(75)
+        self._MInterface.setLength(65)
+        
         self._LowerLegs(allLegs)
 
             
@@ -159,6 +161,8 @@ class Dance(object):
             self._MInterface.raiseLegs([group1[x], group2[x]], [0, 90])
             self._MInterface.raiseLegs([group1[x], group2[x]], [0, 110])
             time.sleep(0,5)
+
+        self._MInterface.setHeight(75)
 
         self.MInterface.LowerLegs(self.allLegs)
         
