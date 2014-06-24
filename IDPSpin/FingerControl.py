@@ -54,6 +54,7 @@ class FingerControl(object):
                     pulse = int(incoming.strip('a1'))
                     if pulse > 450:
                         pulse = 450
+                        print str(pulse) + "a1"
                     self._MotionInterface._Legs[4].moveAnkle(pulse)
             except ValueError:
                print incoming
@@ -64,7 +65,7 @@ class FingerControl(object):
                     pulse = int(incoming.strip('a2'))
                     if pulse > 150:
                         pulse = 150
-
+                    print str(pulse) + "a2"
                     self._MotionInterface._Legs[4].moveKnee(pulse)
             except ValueError:
                 print incoming
@@ -75,6 +76,7 @@ class FingerControl(object):
                     pulse = int(incoming.strip('b1'))
                     if pulse > 450:
                         pulse = 450
+                    print str(pulse) + "b1"
                     self._MotionInterface._Legs[5].moveAnkle(pulse)
             except ValueError:
                 print incoming
@@ -85,7 +87,7 @@ class FingerControl(object):
                     pulse = int(incoming.strip('b2'))
                     if pulse > 200:
                         pulse = 200
-                    print pulse
+                    print str(pulse) + "b2"
                     self._MotionInterface._Legs[5].moveKnee(pulse)
             except ValueError:
                 print incoming
