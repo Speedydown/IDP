@@ -1,6 +1,7 @@
 __author__ = 'Matthe Jacobs'
 #Class that gets the finger control pulses and controls a leg with it
 import threading
+from threading import Semaphore
 
 try:
     import serial
@@ -11,8 +12,11 @@ class FingerControl(object):
 
     def __init__(self, MotionInterface):
         self._MotionInterface = MotionInterface
+        #self._Semaphore = threading.Semaphore(1)
+        self._Exited = False
         self._MotionInterfaceThread = threading.Thread(target=self.run)
         self._MotionInterfaceThread.start()
+
 
     def executeCommand(self, Command):
         pass
@@ -36,8 +40,13 @@ class FingerControl(object):
             Leg.moveAnkle(175)
             Leg.moveKnee(575)
 
-        while(True):
+        while(not self._Exited):
             #Read incoming data
+            #self._Semaphore.acquire()
+            
+
+            #self._Semaphore.release()
+
             incoming = self.ser.readline()
             try:
                 if incoming[:2] == 'a1':
@@ -78,7 +87,9 @@ class FingerControl(object):
                 pass
 
     def exit(self):
-        print("ik ben hier")
+        #self._Semaphore.acquire()
+        self._Exited = True
+        #self._Semaphore.release()
 
         self._MotionInterface.raiseLegs(self._ForwardLegs)
         self._MotionInterface.MoveLegsBackward(self._ForwardLegs, True, [self._MotionInterface.convertPulseToDegrees((self._ForwardLegs[0].getHip() - 375)), 0])

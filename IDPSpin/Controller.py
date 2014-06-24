@@ -66,22 +66,25 @@ class Controller(object):
                 elif Command == "smde":
                     self._Mode = data[11:12]
                     self._MotionInterface.exit()
-                    if int(self._Mode) == 1:
-                        self._MotionInterface = MotionInterface(1)
-                    if int(self._Mode) == 2:
-                        self._MotionInterface = MotionInterface(2)
-                    if int(self._Mode) == 3:
-                        self._MotionInterface = MotionInterface(3)
-                    if int(self._Mode) == 4:
-                        self._MotionInterface = MotionInterface(4)
-                    if int(self._Mode) == 5:
-                        self._MotionInterface = MotionInterface(5)
-                    if int(self._Mode) == 6:
-                        self._MotionInterface = MotionInterface(6)
-                    if int(self._Mode) == 7:
-                        self._MotionInterface = MotionInterface(7)
-                    if int(self._Mode) == 8:
-                        self._MotionInterface = MotionInterface(8)
+
+                    if self._MotionInterface._currentModeInt != self._Mode:
+
+                        if int(self._Mode) == 1:
+                            self._MotionInterface = MotionInterface(1)
+                        if int(self._Mode) == 2:
+                            self._MotionInterface = MotionInterface(2)
+                        if int(self._Mode) == 3:
+                            self._MotionInterface = MotionInterface(3)
+                        if int(self._Mode) == 4:
+                            self._MotionInterface = MotionInterface(4)
+                        if int(self._Mode) == 5:
+                            self._MotionInterface = MotionInterface(5)
+                        if int(self._Mode) == 6:
+                            self._MotionInterface = MotionInterface(6)
+                        if int(self._Mode) == 7:
+                            self._MotionInterface = MotionInterface(7)
+                        if int(self._Mode) == 8:
+                            self._MotionInterface = MotionInterface(8)
                     print threading.currentThread()
                     self._NetworkInterface.Send("Mode set to:" + self._Mode, ID)
                     self._MotionInterfaceThread = threading.Thread(target=self._MotionInterface.runThread)
