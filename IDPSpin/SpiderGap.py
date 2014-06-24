@@ -39,40 +39,48 @@ class SpiderGap(object):
 
         for step in range(1, steps):
             for Leg in self.group1:
-                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(AnkleStartpoint, 125, step, steps))
-                Leg.moveKnee(self._MInterface.calculateVerticalPulse(KneeStartpoint, 0, step, steps))
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(AnkleStartpoint, 225, step, steps))
+                #Leg.moveKnee(self._MInterface.calculateVerticalPulse(KneeStartpoint, 375, step, steps))
             time.sleep(self.SleepTime)
 
-        for step in range(1, 20):
-            for Leg in self.group1:
-                Leg.moveHip(self._MInterface.calculateVerticalPulse(HipStartpoint, 150, step, steps))
-            time.sleep(self.SleepTime)
+        self._MInterface.MoveLegsBackward(self.group1, True, [0, -100])
+
+
+        #for step in range(1, 20):
+            #for Leg in self.group1:
+
+               # Leg.moveHip(self._MInterface.calculateVerticalPulse(HipStartpoint, 175, step, steps))
+           # time.sleep(self.SleepTime)
 
         for step in range(1, steps):
             for Leg in self.group2:
-                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(AnkleStartpoint, -150, step, steps))
-                Leg.moveKnee(self._MInterface.calculateVerticalPulse(KneeStartpoint, -150, step, steps))
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(AnkleStartpoint, 200, step, steps))
+                Leg.moveKnee(self._MInterface.calculateVerticalPulse(KneeStartpoint, 200, step, steps))
             time.sleep(self._MInterface.SleepTime)
 
         for step in range(1, 20):
             for Leg in self.group2:
-                Leg.moveHip(self._MInterface.calculateVerticalPulse(HipStartpoint, 0, step, steps))
+                Leg.moveHip(self._MInterface.calculateVerticalPulse(HipStartpoint, 375, step, steps))
             time.sleep(self.SleepTime)
 
         for step in range(1, steps):
             for Leg in self.group3:
-                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(AnkleStartpoint, -125, step, steps))
-                Leg.moveKnee(self._MInterface.calculateVerticalPulse(KneeStartpoint, 0, step, steps))
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(AnkleStartpoint, 225, step, steps))
+                Leg.moveKnee(self._MInterface.calculateVerticalPulse(KneeStartpoint, 375, step, steps))
             time.sleep(self.SleepTime)
 
-        for step in range(1, 20):
-            for Leg in self.group3:
-                Leg.moveHip(self._MInterface.calculateVerticalPulse(HipStartpoint, -150, step, steps))
-            time.sleep(self.SleepTime)
+        self._MInterface.MoveLegsForward(self.group1, True, [0, 100])
 
+
+        #for step in range(1, 20):
+         #   for Leg in self.group3:
+          #      Leg.moveHip(self._MInterface.calculateVerticalPulse(HipStartpoint, 550, step, steps))
+           # time.sleep(self.SleepTime)
+
+        """
         for step in range(1, steps):
             for Leg in self.group1:
-                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(250, 200, step, steps))
+                Leg.moveAnkle(self._MInterface.calculateVerticalPulse(225, 200, step, steps))
                 Leg.moveKnee(self._MInterface.calculateVerticalPulse(375, 125, step, steps))
             time.sleep(self.SleepTime)
 
@@ -91,6 +99,7 @@ class SpiderGap(object):
             for Leg in self.group3:
                 Leg.moveHip(self._MInterface.calculateVerticalPulse(575, 575, step, steps))
             time.sleep(self.SleepTime)
+        """
 
 
 
