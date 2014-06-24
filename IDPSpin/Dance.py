@@ -32,21 +32,20 @@ class Dance(object):
 
     #Calling dance methods
     def dance(self):
-        for x in range (0, 3):
-            self.doMoveForwards()
+        
+        self.doMoveForwards()
         self.startPos(1)
-        for x in range (0, 3):
-            self.doMoveBackwards()
+        
+        self.doMoveBackwards()
         self.startPos(2)
 
-        for x in range (0, 3):
-            self.doMoveRotateLeft()
-            time.sleep(self.sleepTime)
+        
+        self.doMoveRotateLeft()
+        time.sleep(self.sleepTime)
         self.startPos(3)
 
-        for x in range (0, 3):
-            self.doMoveRotateRight()
-            time.sleep(self.sleepTime)
+        self.doMoveRotateRight()
+        time.sleep(self.sleepTime)
         self.startPos(4)        
         
         self.doMoveStamp(1)
@@ -102,6 +101,8 @@ class Dance(object):
 
             leg1Thread.join()
             leg2Thread.join()
+
+            self.rotateLegs(group1, group2, 0, self._MaxAngle, 0, -self._MaxAngle)
         elif(resetMove == 4):
             group1 = [self._MInterface._Legs[4], self._MInterface._Legs[2], self._MInterface._Legs[0]]
             group2 = [self._MInterface._Legs[1], self._MInterface._Legs[3], self._MInterface._Legs[5]]
@@ -112,7 +113,9 @@ class Dance(object):
             leg2Thread.start()
 
             leg1Thread.join()
-            leg2Thread.join()                
+            leg2Thread.join()
+
+            self.rotateLegs(group1, group2, 0, self._MaxAngle, 0, -self._MaxAngle)
 
     #Walk a step forward
     def doMoveForwards(self):
@@ -254,15 +257,16 @@ class Dance(object):
         if(Start):
             for x in range(0, 6):
                 array = [self.allLegs[x]]
-                self._MInterface.raiseLegs(array)
-                self._MInterface.LowerLegs(array)
-                time.sleep(0,2)
+                self._MInterface.raiseLegs(array, [0, 110])
+                time.sleep(0,5)
+                self._MInterface.LowerLegs(array)                
         else:
             for x in range(5, -1, -1):
                 array = [self.allLegs[x]]
-                self._MInterface.raiseLegs(array)
+                self._MInterface.raiseLegs(array, [0, 110])
+                time.sleep(0,5)
                 self._MInterface.LowerLegs(array)
-                time.sleep(0,2)
+                
         
     def rotateLegs(self, group1, group2, group1from, group1to, group2from, group2to):
         for i in range(0, 3):
@@ -314,8 +318,10 @@ class Dance(object):
     #Raise leg 1, 4, 6 and lower. After that same thing with 2, 3, 5
     def doMoveStamp(self, group):
         if(group == 1):
-            self._MInterface.raiseLegs(self.group2)
+            self._MInterface.raiseLegs(self.group2, [0, 110])
+            time.sleep(1)
             self._MInterface.LowerLegs(self.group2)
         else:
-            self._MInterface.raiseLegs(self.group1)
-            self._MInterface.LowerLegs(self.group1)
+            self._MInterface.raiseLegs(self.group1, [0, 110])
+            time.sleep(1)
+            self._MInterface.LowerLegs(self.group1, )
