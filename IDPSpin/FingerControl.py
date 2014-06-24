@@ -91,6 +91,19 @@ class FingerControl(object):
                     self._MotionInterface._Legs[5].moveKnee(pulse)
             except ValueError:
                 print incoming
+            try:
+                if incoming[:2] == 'k1':
+                    print incoming
+                    print 'Knop 1'
+            except ValueError:
+                print incoming
+
+            try:
+                if incoming[:2] == 'k0':
+                    print incoming
+                    print 'Knop 0'
+            except ValueError:
+                print incoming
 
     def exit(self):
         #self._Semaphore.acquire()

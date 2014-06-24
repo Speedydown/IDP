@@ -93,12 +93,31 @@ class Dance(object):
 
         self._MInterface.LowerLegs(self.group2)
 
+        self._MInterface.raiseLegs(self.group1)
+        self._MInterface.MoveLegsBackward(self.group2, False, [self._DefaultMaxAngle, 0])
+        self._MInterface.LowerLegs(self.group1)
+
     def doMoveStepBackward(self):
         self._MInterface.raiseLegs(self.group2)
         self._MInterface.MoveLegsBackward(self.group2, True, [0, -self._MaxAngle])
         self._MInterface.LowerLegs(self.group2)
 
         self._MInterface.raiseLegs(self.group1)
+        
+        self._MInterface.MoveLegsBackward, args = (self.group1, True, [0, -self._MaxAngle],)
+        self._MInterface.MoveLegsForward, args = (self.group2, False, [-self._MaxAngle, 0],)
+
+        self._MInterface.LowerLegs(self.group1)
+        self._MInterface.raiseLegs(self.group2)
+
+        self._MInterface.MoveLegsBackward, args = (self.group2, True, [0, -self._MaxAngle],)
+        self._MInterface.MoveLegsForward, args = (self.group1, False, [-self._MaxAngle, 0],)
+
+        self._MInterface.LowerLegs(self.group2)
+
+        self._MInterface.raiseLegs(self.group1)
+        self._MInterface.MoveLegsForward(self.group2, False, [-self._MaxAngle, 0])
+        self._MInterface.LowerLegs(self.group1)
   
         
     #Do a wave with all 6 legs. First lower the 1st two than 2nd two etc.
