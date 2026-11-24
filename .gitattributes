@@ -20,3 +20,8 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+
+# Pi side: must stay LF
+IDPSpin/*.py text eol=lf
+sdcard/*.sh text eol=lf
+sdcard/*.service text eol=lf

@@ -21,7 +21,7 @@ class Leg(object):
             self._Knee = Servo(self._AddressArray[1], self._ChannelArray[1], self._DefaultPulseArray[1], self._inverse, self._offset[1])
             self._Ankle = Servo(self._AddressArray[2], self._ChannelArray[2],self._DefaultPulseArray[2], self._inverse, self._offset[2]) #3 keer nul? aangepast naar 0,1,2
         else:
-            print "-----------Error Creating leg-----------"
+            print("-----------Error Creating leg-----------")
 
     # Setting the Hip to the position of the given pulse
     def moveHip(self, Pulse):

@@ -1,0 +1,17 @@
+[Unit]
+Description=spInOS optional extras (pyserial for finger control, picamera2 for the camera)
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=!/var/lib/spin/extras-installed
+
+[Service]
+Type=oneshot
+TimeoutStartSec=infinity
+# Walking/dancing works without these; they are only needed for mode 2 (finger
+# control over /dev/ttyUSB0) and the camera commands (gimg/gifm).
+ExecStart=/bin/sh -c 'apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends python3-serial python3-picamera2 && mkdir -p /var/lib/spin && touch /var/lib/spin/extras-installed && systemctl try-restart spin.service'
+Restart=on-failure
+RestartSec=300
+
+[Install]
+WantedBy=multi-user.target

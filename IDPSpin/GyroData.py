@@ -3,7 +3,13 @@
 try:
     import smbus
 except:
-    print "no smbus"
+    try:
+        try:
+            import smbus2 as smbus
+        except ImportError:
+            import smbus_compat as smbus
+    except Exception:
+        print("no smbus")
 import math
 import time
 
@@ -23,7 +29,7 @@ class GyroData(object):
             pass
         
     def read_byte(self, adr):
-        return bus.read_byte_data(self.address, adr)
+        return self.bus.read_byte_data(self.address, adr)
     
     def read_word(self, adr):
         high = self.bus.read_byte_data(self.address, adr)
@@ -58,12 +64,12 @@ class GyroData(object):
     
 
     def printGyroData(self):
-        gyro.xout = self.read_word_2c(0x43)
+        gyro_xout = self.read_word_2c(0x43)
         gyro_yout = self.read_word_2c(0x45)
         gyro_zout = self.read_word_2c(0x47)
-        print "gyro_xout: ", gyro_xout, " scaled: ", (gyro_xout / 131)
-        print "gyro_yout: ", gyro_yout, " scaled: ", (gyro_yout / 131)
-        print "gyro_zout: ", gyro_zout, " scaled: ", (gyro_zout / 131)
+        print("gyro_xout: ", gyro_xout, " scaled: ", (gyro_xout / 131))
+        print("gyro_yout: ", gyro_yout, " scaled: ", (gyro_yout / 131))
+        print("gyro_zout: ", gyro_zout, " scaled: ", (gyro_zout / 131))
 
     #Calculates the rotation in degrees
     def calculateAngle(self):

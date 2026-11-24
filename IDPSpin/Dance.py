@@ -16,8 +16,8 @@ class Dance(object):
                         self._MInterface._Legs[3], self._MInterface._Legs[4], self._MInterface._Legs[5]]
             
     def exit(self):
-        self._MotionInterface.setHeight(75)
-        self._MotionInterface.LowerLegs(self.Legs)
+        self._MInterface.setHeight(75)
+        self._MInterface.LowerLegs(self.allLegs)
 
     def executeCommand(self, Command):
 

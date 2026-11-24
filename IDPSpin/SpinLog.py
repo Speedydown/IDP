@@ -1,6 +1,10 @@
 import datetime
+import os
 import threading
 from threading import Semaphore
+
+# Override with SPIN_LOG (the systemd unit points it at tmpfs to spare the SD card)
+LOG_PATH = os.environ.get('SPIN_LOG', 'spInOSLog.txt')
 
 class SpinLog(object):
 
@@ -28,7 +32,7 @@ class SpinLog(object):
 
     def ReadLogFromFile(self):
         try:
-            SpInOSLog = open('spInOSLog.txt', 'r') 
+            SpInOSLog = open(LOG_PATH, 'r') 
             return SpInOSLog.read()
         except:
             return ""
@@ -36,10 +40,10 @@ class SpinLog(object):
     def WriteLogToFile(self):
         self._LogSemaphore.acquire()
         try:
-            SpInOSLog = open('spInOSLog.txt', 'w')
+            SpInOSLog = open(LOG_PATH, 'w')
             SpInOSLog.write(self._Log)
             SpInOSLog.close()
         except:
-            print "Error writing log to file"
+            print("Error writing log to file")
         
         self._LogSemaphore.release()

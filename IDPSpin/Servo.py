@@ -2,7 +2,7 @@ __author__ = 'Ivar'
 try:
     from Adafruit_PWM_Servo_Driver import PWM
 except ImportError:
-    print "my guess is you are running windows or your PWM driver is not correctly configured"
+    print("my guess is you are running windows or your PWM driver is not correctly configured")
 
 class Servo(object):
     """

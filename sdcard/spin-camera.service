@@ -1,0 +1,18 @@
+[Unit]
+Description=spInOS camera - live MJPEG stream + web remote (HTTP 8080)
+After=network.target spin.service
+
+[Service]
+Type=simple
+User=pi
+SupplementaryGroups=video
+WorkingDirectory=/home/pi/IDPSpin
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 /home/pi/IDPSpin/CameraStream.py
+Restart=on-failure
+RestartSec=3
+# rpicam-vid only runs while someone watches; keep it below the walking controller
+Nice=5
+
+[Install]
+WantedBy=multi-user.target

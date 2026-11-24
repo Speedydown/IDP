@@ -77,7 +77,7 @@ class MotionInterface(object):
         while self.isExited() == False:
             self._CurrentMode.executeCommand(self.get_CurrentCommand())
             self._ExitSemaphore.release()
-            time.sleep(0.001)
+            time.sleep(0.01)  # was 1 kHz busy polling
 
     def exit(self):
         self._ExitSemaphore.acquire()
@@ -212,7 +212,7 @@ class MotionInterface(object):
 
     def calculateVerticalPulse(self, startingPulse, EndPulse, Step, numberOfSteps=160):
         if Step > numberOfSteps or Step < 1:
-            print "Step out of range - " + str(Step)
+            print("Step out of range - " + str(Step))
             raise Exception("")
 
         pulsedifference = 150 # wordt deze gebruikt?
@@ -307,7 +307,7 @@ class MotionInterface(object):
 
 
     def setDegrees(self, degrees):
-        if int(degrees) < 35 and int(degrees) > 8 and (self._currentModeInt is 1 or self._currentModeInt is 5 or self._currentModeInt is 6 or self._currentModeInt is 7):
+        if int(degrees) < 35 and int(degrees) > 8 and (self._currentModeInt == 1 or self._currentModeInt == 5 or self._currentModeInt == 6 or self._currentModeInt == 7):
             try:
                 self._CurrentMode._MaxAngle = int(degrees)
                 return "Degrees has been set to " + degrees

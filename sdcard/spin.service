@@ -1,0 +1,20 @@
+[Unit]
+Description=spInOS - IDP groep 9 robot spin (TCP 1337)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/pi/IDPSpin
+Environment=PYTHONUNBUFFERED=1
+# keep the command log in RAM: writing it to the SD card on every command wears the card out
+Environment=SPIN_LOG=/run/spin/spInOSLog.txt
+RuntimeDirectory=spin
+RuntimeDirectoryPreserve=yes
+ExecStart=/usr/bin/python3 /home/pi/IDPSpin/Test.py
+# "exit" command ends with code 0 and stays stopped; crashes restart
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

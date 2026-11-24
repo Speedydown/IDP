@@ -1,8 +1,8 @@
 import NetworkBuffer
 import NetworkInterface
 import SpinLog
+import os
 import time
-import thread
 import threading
 import subprocess
 from MotionInterface import MotionInterface
@@ -19,7 +19,7 @@ class Controller(object):
     CommandSize = 4
     
     def __init__(self):
-        print "spInOS active"
+        print("spInOS active")
         self._networkInputBuffer = NetworkBuffer.NetworkBuffer()
         self._NetworkInterface = NetworkInterface.NetworkInterface(self._networkInputBuffer)
         self._MotionInterface = MotionInterface(1)
@@ -40,9 +40,22 @@ class Controller(object):
     
     def CommandHandler(self):
         while self._Exit == False:
-            data = self._networkInputBuffer.Pop()    
+            data = self._networkInputBuffer.Pop()
 
             if len(str(data)) > 0:
+                # One failing command (e.g. a missing gyro or I2C board) must not
+                # kill the command thread, otherwise the spider stops responding.
+                try:
+                    self.HandleCommand(data)
+                except Exception as e:
+                    print("Command failed: " + str(data) + " -> " + repr(e))
+                    self._NetworkInterface.Send("Error: " + repr(e), data[:6])
+
+            time.sleep(0.01)  # 100 Hz is plenty; 1 kHz polling starved the Pi 1 CPU
+        print("CommandHandler says goodbye")
+
+    def HandleCommand(self, data):
+            if True:
                 ID = data[:6]
                 Command = data[6:10]
                 self._Log.append(str(data))
@@ -131,7 +144,9 @@ class Controller(object):
                     self._NetworkInterface.Send("Exited", ID)
                     self.Exit()
                     self._Exit = True
-                    exit()
+                    # exit() only ends this thread; stop the whole process (exit code 0,
+                    # so systemd does not restart it)
+                    os._exit(0)
                 elif Command == "rebt":
                     self._NetworkInterface.Send("Reboot!", ID)
                     self.Exit()
@@ -145,27 +160,23 @@ class Controller(object):
                 else:
                     self._NetworkInterface.Send("Could not execute command", ID)
 
-                    
-            time.sleep(0.001)
-        print "CommandHandler says goodbye"
-
     def Exit(self):
         self._NetworkInterface.Exit()
         self._Camera.Exit()
         self._MotionInterface.exit()
 
-        print "Goodbye"
+        print("Goodbye")
         
     def Reboot(self):
         self._NetworkInterface.Exit()
         self._Camera.Exit()
         try:
             call(["reboot"])
-            print "Goodbye"
+            print("Goodbye")
 
-            print "BRB"
+            print("BRB")
         except:
-            print "Cannot reboot"
+            print("Cannot reboot")
         
     def Shutdown(self):
         self._NetworkInterface.Exit()
@@ -173,13 +184,13 @@ class Controller(object):
 
         try:
             call(["poweroff"])
-            print "Goodbye"
+            print("Goodbye")
         except:
-            print "Cannot shut down"
+            print("Cannot shut down")
 
     def gcpu(self, ID):
         cmd = ["top -b -n 10 -d.2 | grep 'Cpu' |  awk 'NR==3{ print($2)}'"]
-        result = subprocess.check_output(cmd,shell=True)
+        result = subprocess.check_output(cmd,shell=True).decode("utf-8", "ignore")
 
         self._NetworkInterface.Send("CPU usage: " + result, ID)
         

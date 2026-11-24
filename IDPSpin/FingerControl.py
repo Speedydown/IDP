@@ -47,17 +47,17 @@ class FingerControl(object):
 
             #self._Semaphore.release()
 
-            incoming = self.ser.readline()
+            incoming = self.ser.readline().decode("ascii", "ignore").strip()
             try:
                 if incoming[:2] == 'a1':
                     #Move the leg
                     pulse = int(incoming.strip('a1'))
                     if pulse > 450:
                         pulse = 450
-                        print str(pulse) + "a1"
+                        print(str(pulse) + "a1")
                     self._MotionInterface._Legs[4].moveAnkle(pulse)
             except ValueError:
-               print incoming
+               print(incoming)
 
             try:
                 if incoming[:2] == 'a2':
@@ -65,10 +65,10 @@ class FingerControl(object):
                     pulse = int(incoming.strip('a2'))
                     if pulse > 150:
                         pulse = 150
-                    print str(pulse) + "a2"
+                    print(str(pulse) + "a2")
                     self._MotionInterface._Legs[4].moveKnee(pulse)
             except ValueError:
-                print incoming
+                print(incoming)
 
             try:
                 if incoming[:2] == 'b1':
@@ -76,10 +76,10 @@ class FingerControl(object):
                     pulse = int(incoming.strip('b1'))
                     if pulse > 450:
                         pulse = 450
-                    print str(pulse) + "b1"
+                    print(str(pulse) + "b1")
                     self._MotionInterface._Legs[5].moveAnkle(pulse)
             except ValueError:
-                print incoming
+                print(incoming)
 
             try:
                 if incoming[:2] == 'b2':
@@ -87,23 +87,23 @@ class FingerControl(object):
                     pulse = int(incoming.strip('b2'))
                     if pulse > 200:
                         pulse = 200
-                    print str(pulse) + "b2"
+                    print(str(pulse) + "b2")
                     self._MotionInterface._Legs[5].moveKnee(pulse)
             except ValueError:
-                print incoming
+                print(incoming)
             try:
                 if incoming[:2] == 'k1':
-                    print incoming
-                    print 'Knop 1'
+                    print(incoming)
+                    print('Knop 1')
             except ValueError:
-                print incoming
+                print(incoming)
 
             try:
                 if incoming[:2] == 'k0':
-                    print incoming
-                    print 'Knop 0'
+                    print(incoming)
+                    print('Knop 0')
             except ValueError:
-                print incoming
+                print(incoming)
 
     def exit(self):
         #self._Semaphore.acquire()

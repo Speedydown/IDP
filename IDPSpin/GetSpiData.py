@@ -1,7 +1,7 @@
 try:
     import spidev
 except:
-    print "could not load SPIDEV"
+    print("could not load SPIDEV")
 
 import time
 

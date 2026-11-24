@@ -1,5 +1,4 @@
 import NetworkBuffer
-import thread
 import threading
 from threading import Thread
 from NetworkBuffer import NetworkBuffer
@@ -29,6 +28,7 @@ class NetworkInterface(Thread):
     #Accepts incoming connections and creates a socket listening Thread.
     def run(self):
         serverSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        serverSocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
         serverSocket.bind(('', 1337))
         serverSocket.listen(1)
@@ -39,30 +39,33 @@ class NetworkInterface(Thread):
             self._NetworkClients.append(networkclient)
             self._Identify += 1
 
-            print "Connected with " + address[0] + ":" + str(address[1]) + "\n"
+            print("Connected with " + address[0] + ":" + str(address[1]) + "\n")
             
             try:
                 t =  threading.Thread(target=self.Listen, args = (networkclient,))
                 t.start()
             
             except:
-                print "Error: Unable to start thread \n"
+                print("Error: Unable to start thread \n")
 
             time.sleep(1)
 
     #Method listens to incoming data. Runs in Thread
     def Listen(self, clientSocket):
+        pending = ""
         while self._Exit == False:
             try:
-                data = clientSocket.getClientSocket().recv(1024)
-                while "<EOF>" not in data:
-                    data = data + clientSocket.getClientSocket().recv(1024)
+                while "<EOF>" not in pending:
+                    chunk = clientSocket.getClientSocket().recv(1024)
+                    if not chunk:
+                        raise IOError("connection closed")
+                    pending = pending + chunk.decode("utf-8", "ignore")
 
-                data = data[:data.find("<EOF>")]
+                data, pending = pending.split("<EOF>", 1)
                 self._Buffer.Append("<ID" + clientSocket.getClientID() + ">" + data)
                 time.sleep(0.001)
             except:
-                print "Client " + clientSocket.getClientID() + " has disconnected."
+                print("Client " + clientSocket.getClientID() + " has disconnected.")
                 break
 
     #Method that sends data to connected client.
@@ -76,7 +79,7 @@ class NetworkInterface(Thread):
                     ClientSocket = c
                     break
             try:
-                ClientSocket.getClientSocket().send(str(Data) + "<EOF>")
+                ClientSocket.getClientSocket().sendall((str(Data) + "<EOF>").encode("utf-8"))
             except:
                 pass
 
